@@ -11,8 +11,8 @@ export const REMOVE_FROM_BOARDT = 'REMOVE_FROM_BOARDT'
 export const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD'
 
 const initialState = {
-    boards: [],
-    board: [],
+    boards: null,
+    board: null,
     lastRemovedBoard: null
 }
 
@@ -41,8 +41,7 @@ export function boardReducer(state = initialState, action) {
             break
 
         case SET_CURRENT_BOARD: 
-            const currBoard = state.boards.filter(board => board._id === action.boardId)
-            newState = {...state, board: currBoard}
+            newState = {...state, board: action.board}
             break
         default:
     }

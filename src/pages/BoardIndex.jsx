@@ -47,7 +47,7 @@ export function BoardIndex() {
             showErrorMsg('Cannot update board')
         }
     }
-    console.log(boardId);
+    console.log(boards);
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
         <main>

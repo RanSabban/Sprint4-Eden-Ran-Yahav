@@ -47,7 +47,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
     var boards = await storageService.query(STORAGE_KEY)
     if (!boards.length) {
         boards = gBoards
-        await storageService.post(STORAGE_KEY, gBoards)
+        _save(STORAGE_KEY, gBoards)
     }
     return boards
 }
@@ -98,6 +98,9 @@ function getEmptyBoard() {
 
 // PRIVATE FUNCS
 
+function _save(entityType, entities) {
+    localStorage.setItem(entityType, JSON.stringify(entities))
+}
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

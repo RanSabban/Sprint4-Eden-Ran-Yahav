@@ -3,6 +3,8 @@ import { useParams } from "react-router"
 import { useSelector } from 'react-redux'
 
 import { loadBoard } from "../../store/board.actions"
+import { BoardFilter } from "./BoardFilter"
+import { BoardPreview } from "./BoardPreview"
 
 
 export function BoardDetails() {
@@ -20,8 +22,9 @@ export function BoardDetails() {
     if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
-            <h2>Hello from board details</h2>
-            <p>{board.title} {board._id} {board.isStarred}</p>
+            {/* <h2>Hello from board details</h2> */}
+            <BoardFilter/>
+            <BoardPreview />
         </section>
     )
 }
