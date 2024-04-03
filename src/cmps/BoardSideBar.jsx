@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { BoardList } from "./BoardList"
-import { home, home2, myWork, threePoints } from "../services/svg.service"
+import { closeSidebar, home, home2, myWork, threePoints } from "../services/svg.service"
 import { useState } from "react"
 import { useEffect } from "react"
 
@@ -9,18 +9,14 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
    const [isOpen, setIsOpen] = useState(true)
     const dynClass = isOpen ? 'block' : 'none'
 
-    useEffect(() => {
-
-    },[isOpen])
-    
-
-    return <section style={{display: dynClass}} className="board-sidebar">
-        <div style={{marginLeft: "1em"}}>
+    return <section className="board-sidebar">
+        
+            {/* <button>puki</button> */}
+        <div style={{marginLeft: "1em", display: dynClass}}>
             <div className="board-sidebar-upper">
                 <Link className="actions-sidebar-upper" to="/board"> {home()} <div className="home-sidebar">Home</div></Link>
                 <Link className="actions-sidebar-upper">{myWork()}<div className="home-sidebar">My work</div></Link>
             </div>
-            <button onChange={() => setIsOpen(!isOpen)}></button>
             <hr style={{ width: "100%" }} />
             <section className="sidebar-workspace">
                 <div style={{ background: "orange", position: "relative" }}>M {home2()}</div>
