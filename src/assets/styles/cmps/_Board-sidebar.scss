@@ -1,0 +1,49 @@
+.board-sidebar {
+    background-color: #ffffff;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+
+    .actions-sidebar-upper {
+        line-height: 20px;
+        font-size: 14px;
+        text-align: start;
+        color: #323338;
+        text-decoration: none;
+        display: flex;
+    }
+
+    .home-sidebar {
+        line-height: 22.5px;
+        font-size: 15px;
+    }
+
+    .sidebar-workspace {
+        display: flex;
+    }
+
+    .plus-button {
+        background-color: #0073ea;
+        color: #ffffff;
+        font-size: 14px;
+        border-radius: 4px;
+        box-shadow: none;
+        border: none;
+        height: 32px;
+        line-height: 24px;
+        font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
+    }
+
+    .three-points{
+        background-color: #ffffff;
+        color:#323338;
+        box-shadow: none;
+    }
+
+    .main-workspace{
+        color:#000000;
+        line-height: 23px;
+        font-size:16px;
+        text-align: center;
+    }
+}
