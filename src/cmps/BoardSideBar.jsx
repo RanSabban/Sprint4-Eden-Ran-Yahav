@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { BoardList } from "./BoardList"
-import { closeSidebar, home, home2, myWork, threePoints } from "../services/svg.service"
+import { clipRule, home, home2, myWork, threePoints } from "../services/svg.service"
 import { useState } from "react"
 import { useEffect } from "react"
 
