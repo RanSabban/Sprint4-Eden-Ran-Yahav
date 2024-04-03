@@ -6,6 +6,7 @@ import { CloseSidebar, Home, Home2, MyWork, ThreePoints } from "../../services/s
 
 export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
     const [isOpen, setIsOpen] = useState(true)
+    const [isOpen2, setIsOpen2] = useState(true)
     const dynClass = isOpen ? 'block' : 'none'
     const dynPad = isOpen ? '270px' : '38px'
 
@@ -14,13 +15,14 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
     }
 
     const handleMouseLeave = () => {
+        if(isOpen2) return
         setIsOpen(false)
     }
 
-    return (<section style={{width: dynPad,}} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    return (<section style={{ width: dynPad, }} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 
-        <button className="close-sidebar-btn" onClick={() => setIsOpen(!isOpen)}><CloseSidebar /></button>
-        <div style={{ marginLeft: "1em", display: dynClass}}>
+        <button className="close-sidebar-btn" onClick={() => setIsOpen2(!isOpen2)}><CloseSidebar /></button>
+        <div style={{ marginLeft: "1em", display: dynClass }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <div className="board-sidebar-upper">
                     <Link className="actions-sidebar-upper" to="/board"> <Home /> <div className="home-sidebar">Home</div></Link>
