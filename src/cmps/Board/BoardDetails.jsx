@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { loadBoard } from "../../store/board.actions"
 
+import { BoardHeader } from "./BoardHeader";
 
 export function BoardDetails() {
 
@@ -20,6 +21,7 @@ export function BoardDetails() {
     if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
+            <BoardHeader/>
             <h2>Hello from board details</h2>
             <p>{board.title} {board._id} {board.isStarred}</p>
         </section>
