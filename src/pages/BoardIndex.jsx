@@ -48,6 +48,7 @@ export function BoardIndex() {
         }
     }
     console.log(boardId);
+    if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
         <main>
         <BoardSideBar
