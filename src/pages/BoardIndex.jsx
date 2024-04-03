@@ -5,10 +5,11 @@ import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board.a
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { boardService } from '../services/board.service.local.js'
-import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
 import { useParams } from 'react-router'
 import { BoardHome } from '../cmps/Board/BoardHome.jsx'
 import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
+import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
+
 
 export function BoardIndex() {
 

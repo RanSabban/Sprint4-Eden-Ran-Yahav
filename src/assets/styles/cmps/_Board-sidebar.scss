@@ -3,6 +3,8 @@
     position: fixed;
     left: 0;
     height: 100vh;
+    border-radius: 1em;
+
 
     .actions-sidebar-upper {
         line-height: 20px;
@@ -11,7 +13,7 @@
         color: #323338;
         text-decoration: none;
         display: flex;
-        gap:1em;
+        gap: 1em;
     }
 
     .home-sidebar {
@@ -37,16 +39,26 @@
         font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
     }
 
-    .three-points{
+    .three-points {
         background-color: #ffffff;
-        color:#323338;
+        color: #323338;
         box-shadow: none;
     }
 
-    .main-workspace{
-        color:#000000;
+    .main-workspace {
+        color: #000000;
         line-height: 23px;
-        font-size:16px;
+        font-size: 16px;
         text-align: center;
+    }
+
+    .close-sidebar-btn {
+        right: -5px;
+        top: -5px;
+        position: absolute;
+        background-color: #f6f7fb;
+        color:#323338;
+        box-shadow: 0;
+        border-radius: 0px 8px;
     }
 }
