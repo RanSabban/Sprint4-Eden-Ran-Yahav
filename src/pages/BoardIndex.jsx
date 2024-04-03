@@ -51,7 +51,6 @@ export function BoardIndex() {
     console.log(boards);
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
-        <main>
         <BoardSideBar
                 boards={boards}
                 onRemoveBoard={onRemoveBoard}
@@ -63,8 +62,6 @@ export function BoardIndex() {
             {
                 boardId ? <BoardDetails /> : <BoardHome boards={boards}/>
             }
-            
-        </main>
     </section>
     )
 }

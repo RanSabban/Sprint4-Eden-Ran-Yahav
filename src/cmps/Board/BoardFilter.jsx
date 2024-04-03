@@ -3,7 +3,11 @@ export function BoardFilter() {
 
     return (
         <section className="board-filter">
-            <h2>I am Book Filter</h2>
+            <form>
+                <blockquote contentEditable="true">Book Filter Header</blockquote>
+                {/* <blockquote contentEditable="true">Book Filter Header</blockquote> */}
+            </form>
+
         </section>
     )
 }
