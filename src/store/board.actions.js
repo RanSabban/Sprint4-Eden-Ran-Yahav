@@ -83,6 +83,21 @@ export function addToBoard(board) {
     })
 }
 
+export async function loadBoard(boardId) {
+    try {
+        const board = await boardService.getById(boardId)
+        console.log('Boards from DB:', board)
+        store.dispatch({
+        type: SET_CURRENT_BOARD,
+            board
+        })
+
+    } catch (err) {
+        console.log('Cannot load boards', err)
+        throw err
+    }
+}
+
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {
