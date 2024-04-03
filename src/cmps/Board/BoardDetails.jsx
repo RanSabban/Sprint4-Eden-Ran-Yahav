@@ -6,6 +6,7 @@ import { loadBoard } from "../../store/board.actions"
 import { BoardFilter } from "./BoardFilter"
 import { BoardPreview } from "./BoardPreview"
 
+import { BoardHeader } from "./BoardHeader";
 
 export function BoardDetails() {
 
@@ -22,9 +23,15 @@ export function BoardDetails() {
     if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
+<<<<<<< HEAD
             {/* <h2>Hello from board details</h2> */}
             <BoardFilter/>
             <BoardPreview />
+=======
+            <BoardHeader/>
+            <h2>Hello from board details</h2>
+            <p>{board.title} {board._id} {board.isStarred}</p>
+>>>>>>> ed45636b9cd664d3d09db7ea93a42a2b0b735442
         </section>
     )
 }
