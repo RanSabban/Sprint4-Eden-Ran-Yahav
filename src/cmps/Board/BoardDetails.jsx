@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
+import { BoardHeader } from "./BoardHeader";
 
 export function BoardDetails() {
 
@@ -17,6 +18,7 @@ export function BoardDetails() {
 
     return (
         <section className="board-preview">
+            <BoardHeader/>
             <h2>Hello from board preview</h2>
         </section>
     )

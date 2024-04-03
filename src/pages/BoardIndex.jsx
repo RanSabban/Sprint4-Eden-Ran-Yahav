@@ -61,6 +61,7 @@ export function BoardIndex() {
             {
                 boardId ? <BoardDetails /> : <BoardHome boards={boards}/>
             }
+            
         </main>
     </section>
     )
