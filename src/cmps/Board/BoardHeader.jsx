@@ -1,4 +1,4 @@
-import {MyWork} from '../../services/svg.service.jsx'
+import {InviteIcon, MyWork} from '../../services/svg.service.jsx'
 
 export function BoardHeader() {
 
@@ -7,7 +7,8 @@ export function BoardHeader() {
             <div className="board-header-top flex">
                 <h2>Start from scratch</h2>
                 {/* <ActivityMembers/> */}
-        <MyWork/>
+        <InviteIcon/>
+        <InfoIcon/>
             </div>
         </section>
     )
