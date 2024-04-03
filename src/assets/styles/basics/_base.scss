@@ -8,17 +8,22 @@
 }
 
 html {
-    font-family: figtree;
-    line-height: 1.6;
     color: $clr-main;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display: block
 }
 
 body {
-    font-size: rem(18px);
-    margin: 0;
-    max-width: 1024px;
-    margin: auto;
+    font-family: figtree;
     background-color: $bgc-main;
+    line-height: 1;
 
 }
 
@@ -29,8 +34,11 @@ h4,
 h5,
 h6 {
     font-family: poppins;
-    margin: 0 0 0.6em;
-    line-height: 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 }
 
 
