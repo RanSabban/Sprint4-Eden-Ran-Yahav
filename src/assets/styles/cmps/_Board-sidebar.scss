@@ -11,6 +11,7 @@
         color: #323338;
         text-decoration: none;
         display: flex;
+        gap:1em;
     }
 
     .home-sidebar {
@@ -20,6 +21,8 @@
 
     .sidebar-workspace {
         display: flex;
+        justify-content: space-between;
+
     }
 
     .plus-button {
