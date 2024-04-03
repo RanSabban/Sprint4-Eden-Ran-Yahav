@@ -7,13 +7,13 @@ import { UserMsg } from './UserMsg.jsx'
 
 export function AppFooter() {
 
-    return (
-        <footer className="app-footer">
-            <p>
-                coffeerights - count:
-            </p>
+    return (     <UserMsg />
+        // <footer className="app-footer">
+        //     <p>
+        //         coffeerights - count:
+        //     </p>
 
-            <UserMsg />
-        </footer>
+        
+        // </footer>
     )
 }

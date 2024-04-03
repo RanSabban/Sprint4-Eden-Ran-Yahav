@@ -1,0 +1,9 @@
+.board-details {
+    display: grid ;
+    position: relative; 
+    background-color: $clr6;
+    display: grid;
+    grid-template-rows: 190px;
+    border-radius: 0.5em;
+    padding: 5px;
+}

@@ -5,10 +5,11 @@ import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board.a
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { boardService } from '../services/board.service.local.js'
-import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
 import { useParams } from 'react-router'
 import { BoardHome } from '../cmps/Board/BoardHome.jsx'
 import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
+import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
+
 
 export function BoardIndex() {
 
@@ -47,10 +48,9 @@ export function BoardIndex() {
             showErrorMsg('Cannot update board')
         }
     }
-    console.log(boardId);
+    console.log(boards);
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
-        <main>
         <BoardSideBar
                 boards={boards}
                 onRemoveBoard={onRemoveBoard}
@@ -62,8 +62,6 @@ export function BoardIndex() {
             {
                 boardId ? <BoardDetails /> : <BoardHome boards={boards}/>
             }
-            
-        </main>
     </section>
     )
 }

@@ -14,7 +14,6 @@ html {
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
-    text-align: center;
 }
 
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
@@ -25,7 +24,7 @@ body {
     font-family: figtree;
     background-color: $bgc-main;
     line-height: 1;
-
+    margin: 0;
 }
 
 h1,
@@ -46,7 +45,7 @@ h6 {
 section,
 main,
 footer {
-    padding: 5px;
+    // padding: 5px;
 }
 
 img {
@@ -63,4 +62,9 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+main{
+   display: grid; 
+   grid-auto-flow: column;
 }
