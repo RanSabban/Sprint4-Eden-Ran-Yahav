@@ -1,3 +1,5 @@
+import { boardService } from "../services/board.service.local"
+
 export const SET_BOARDS = 'SET_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
@@ -6,10 +8,11 @@ export const ADD_TO_BOARDT = 'ADD_TO_BOARDT'
 export const CLEAR_BOARDT = 'CLEAR_BOARDT'
 export const UNDO_REMOVE_BOARD = 'UNDO_REMOVE_BOARD'
 export const REMOVE_FROM_BOARDT = 'REMOVE_FROM_BOARDT'
+export const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD'
 
 const initialState = {
     boards: [],
-    currBoard: [],
+    board: [],
     lastRemovedBoard: null
 }
 
@@ -35,6 +38,11 @@ export function boardReducer(state = initialState, action) {
             if (state.lastRemovedBoard) {
                 newState = { ...state, boards: [...state.boards, state.lastRemovedBoard], lastRemovedBoard: null }
             }
+            break
+
+        case SET_CURRENT_BOARD: 
+            const currBoard = state.boards.filter(board => board._id === action.boardId)
+            newState = {...state, board: currBoard}
             break
         default:
     }
