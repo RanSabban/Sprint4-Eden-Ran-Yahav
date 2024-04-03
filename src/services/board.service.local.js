@@ -18,13 +18,7 @@ window.cs = boardService
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var boards = await storageService.query(STORAGE_KEY)
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        boards = boards.filter(board => regex.test(board.vendor) || regex.test(board.description))
-    }
-    if (filterBy.price) {
-        boards = boards.filter(board => board.price <= filterBy.price)
-    }
+    if (!boards.length) return _createBoards()
     return boards
 }
 
@@ -72,6 +66,36 @@ function getEmptyBoard() {
     }
 }
 
+// PRIVATE FUNCS
+
+function _createBoards() {
+    return [
+        {
+            "_id": "b101",
+            "title": "Robot dev proj",
+            "isStarred": false,
+            "archivedAt": 1589983468418
+        },
+        {
+            "_id": "b102",
+            "title": "AI Chatbot Enhancement",
+            "isStarred": true,
+            "archivedAt": null
+        },
+        {
+            "_id": "b103",
+            "title": "Data Analysis Tool Development",
+            "isStarred": false,
+            "archivedAt": null
+        },
+        {
+            "_id": "b104",
+            "title": "Mobile App UI Redesign",
+            "isStarred": true,
+            "archivedAt": null
+        }
+    ];
+}
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
