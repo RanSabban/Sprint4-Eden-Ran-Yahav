@@ -13,6 +13,8 @@
         text-decoration: none;
         display: flex;
         gap: 1em;
+        padding: 12px 40px 12px 12px;
+        ;
     }
 
     .home-sidebar {
@@ -23,7 +25,7 @@
     .sidebar-workspace {
         display: flex;
         justify-content: space-between;
-
+        margin-bottom: 1em;
     }
 
     .plus-button {
@@ -36,6 +38,7 @@
         height: 32px;
         line-height: 24px;
         font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
+        margin-left: 1em;
     }
 
     .three-points {
@@ -44,20 +47,47 @@
         box-shadow: none;
     }
 
+    .main-back {
+        background: #fb275d;
+        position: relative;
+        display: flex;
+        // align-items: center;
+        // justify-content: center;
+        font-weight: 500;
+        margin: auto;
+        color: #fff;
+        padding: 0.3em;
+        border-radius: 4px;
+        margin-right: 2.5em;
+        text-align: start;
+        margin-left: 0;
+    }
+
+    .house-svg {
+        position: absolute;
+        bottom: -11px;
+        left: 16.5px;
+    }
+
     .main-workspace {
-        color: #000000;
-        line-height: 23px;
+        color: #323338;
+        line-height: 30px;
         font-size: 16px;
-        text-align: center;
+        text-align: start;
+        // margin-right: 8em;
     }
 
     .close-sidebar-btn {
-        right: -5px;
-        top: -5px;
+        right: 0px;
+        top: 0px;
         position: absolute;
         background-color: #f6f7fb;
-        color:#323338;
+        color: #323338;
         box-shadow: 0;
         border-radius: 0px 8px;
+    }
+
+    .actions-sidebar-upper:hover {
+        background-color: #eceff8;
     }
 }
