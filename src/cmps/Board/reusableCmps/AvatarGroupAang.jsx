@@ -9,10 +9,10 @@ export function AvatarGroupAng({ users }) {
             {
                 users.map(user => (
                     <Avatar
-                    ariaLabel={user.fullname}
-                    src={user.imgUrl}
-                    type="img"
-                />
+                        ariaLabel={user.fullname}
+                        src={user.imgUrl}
+                        type="img"
+                    />
                 ))
             }
         </AvatarGroup>
