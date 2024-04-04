@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useEffect } from "react"
 import { CloseSidebar, Home, Home2, MyWork, ThreePoints } from "../../services/svg.service"
+import { BoardList } from "./BoardList"
 
 
 export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
@@ -46,6 +47,11 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                 <div className="board-sidebar-lowwer"></div>
             </div>
         </div>
+
+        {/* From Ran: Opened Board List */}
+
+        <BoardList boards= {boards} onAddBoard = {onAddBoard} onRemoveBoard= {onRemoveBoard} onUpdateBoard={onUpdateBoard} />
+
     </section>
     )
 }

@@ -16,29 +16,330 @@ export const boardService = {
 window.cs = boardService
 
 const gBoards = [
-    {   
+    {
         "_id": "b101",
         "title": "Robot dev proj",
         "isStarred": false,
-        "archivedAt": 1589983468418
+        "archivedAt": 1589983468418,
+        "createdBy": {
+            "_id": "EtzD1",
+            "fullname": "Puki Norma",
+            "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+        },
+        "status": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l102",
+                "title": "Progress",
+                "color": "#61bd33"
+            }
+        ],
+        "members": [
+            {
+                "_id": "EtzD1",
+                "fullname": "Puki Norma",
+                "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+            }
+        ],
+        "groups": [
+            {
+                "id": "g102",
+                "title": "Group 2",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Task 1",
+                        "status": "to-do",
+                        "priority": "low",
+                        "description": "Description for Task 1",
+                        "memberIds": ["u102"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u102",
+                            "username": "John",
+                            "fullname": "John Doe",
+                            "imgUrl": "http://example.com/john.jpg"
+                        }
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Task 2",
+                        "status": "in-progress",
+                        "priority": "medium",
+                        "description": "Description for Task 2",
+                        "memberIds": ["u103"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u103",
+                            "username": "Alice",
+                            "fullname": "Alice Johnson",
+                            "imgUrl": "http://example.com/alice.jpg"
+                        }
+                    },
+                    {
+                        "id": "c103",
+                        "title": "Task 3",
+                        "status": "done",
+                        "priority": "high",
+                        "description": "Description for Task 3",
+                        "memberIds": ["u104"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u104",
+                            "username": "Jane",
+                            "fullname": "Jane Smith",
+                            "imgUrl": "http://example.com/jane.jpg"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "g103",
+                "title": "Group 3",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Task 1",
+                        "status": "to-do",
+                        "priority": "low",
+                        "description": "Description for Task 1",
+                        "memberIds": ["u102"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u102",
+                            "username": "John",
+                            "fullname": "John Doe",
+                            "imgUrl": "http://example.com/john.jpg"
+                        }
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Task 2",
+                        "status": "in-progress",
+                        "priority": "medium",
+                        "description": "Description for Task 2",
+                        "memberIds": ["u103"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u103",
+                            "username": "Alice",
+                            "fullname": "Alice Johnson",
+                            "imgUrl": "http://example.com/alice.jpg"
+                        }
+                    },
+                    {
+                        "id": "c103",
+                        "title": "Task 3",
+                        "status": "done",
+                        "priority": "high",
+                        "description": "Description for Task 3",
+                        "memberIds": ["u104"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u104",
+                            "username": "Jane",
+                            "fullname": "Jane Smith",
+                            "imgUrl": "http://example.com/jane.jpg"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "g104",
+                "title": "Group 4",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "id": "c101",
+                        "title": "Task 1",
+                        "status": "to-do",
+                        "priority": "low",
+                        "description": "Description for Task 1",
+                        "memberIds": ["u102"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u102",
+                            "username": "John",
+                            "fullname": "John Doe",
+                            "imgUrl": "http://example.com/john.jpg"
+                        }
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Task 2",
+                        "status": "in-progress",
+                        "priority": "medium",
+                        "description": "Description for Task 2",
+                        "memberIds": ["u103"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u103",
+                            "username": "Alice",
+                            "fullname": "Alice Johnson",
+                            "imgUrl": "http://example.com/alice.jpg"
+                        }
+                    },
+                    {
+                        "id": "c103",
+                        "title": "Task 3",
+                        "status": "done",
+                        "priority": "high",
+                        "description": "Description for Task 3",
+                        "memberIds": ["u104"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u104",
+                            "username": "Jane",
+                            "fullname": "Jane Smith",
+                            "imgUrl": "http://example.com/jane.jpg"
+                        }
+                    }
+                ]
+            }
+        ]
     },
     {
         "_id": "b102",
-        "title": "AI Chatbot Enhancement",
+        "title": "Website Redesign",
         "isStarred": true,
-        "archivedAt": null
+        "archivedAt": null,
+        "createdBy": {
+            "_id": "xyz123",
+            "fullname": "John Doe",
+            "imgUrl": "https://example.com/profile.jpg"
+        },
+        "status": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l102",
+                "title": "Progress",
+                "color": "#61bd33"
+            }
+        ],
+        "members": [
+            {
+                "_id": "EtzD1",
+                "fullname": "Puki Norma",
+                "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+            },
+            {
+                "_id": "xyz123",
+                "fullname": "John Doe",
+                "imgUrl": "https://example.com/profile.jpg"
+            }
+        ],
+        "groups": {
+            "id": "g102",
+            "title": "Group 2",
+            "archivedAt": null,
+            "tasks": [
+                {
+                    "id": "c101",
+                    "title": "Task 1",
+                    "status": "to-do",
+                    "priority": "low",
+                    "description": "Description for Task 1",
+                    "memberIds": ["u102"],
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u102",
+                        "username": "John",
+                        "fullname": "John Doe",
+                        "imgUrl": "http://example.com/john.jpg"
+                    }
+                },
+                {
+                    "id": "c102",
+                    "title": "Task 2",
+                    "status": "in-progress",
+                    "priority": "medium",
+                    "description": "Description for Task 2",
+                    "memberIds": ["u103"],
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u103",
+                        "username": "Alice",
+                        "fullname": "Alice Johnson",
+                        "imgUrl": "http://example.com/alice.jpg"
+                    }
+                },
+                {
+                    "id": "c103",
+                    "title": "Task 3",
+                    "status": "done",
+                    "priority": "high",
+                    "description": "Description for Task 3",
+                    "memberIds": ["u104"],
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u104",
+                        "username": "Jane",
+                        "fullname": "Jane Smith",
+                        "imgUrl": "http://example.com/jane.jpg"
+                    }
+                }
+            ]
+        }
     },
     {
         "_id": "b103",
-        "title": "Data Analysis Tool Development",
+        "title": "Mobile App Development",
         "isStarred": false,
-        "archivedAt": null
-    },
-    {
-        "_id": "b104",
-        "title": "Mobile App UI Redesign",
-        "isStarred": true,
-        "archivedAt": null
+        "archivedAt": null,
+        "createdBy": {
+            "_id": "abc456",
+            "fullname": "Jane Smith",
+            "imgUrl": "https://example.com/profile.jpg"
+        },
+        "status": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l102",
+                "title": "Progress",
+                "color": "#61bd33"
+            }
+        ],
+        "members": [
+            {
+                "_id": "abc456",
+                "fullname": "Jane Smith",
+                "imgUrl": "https://example.com/profile.jpg"
+            },
+            {
+                "_id": "xyz789",
+                "fullname": "Alice Johnson",
+                "imgUrl": "https://example.com/profile.jpg"
+            }
+        ],
+        "groups": {
+            "id": "g103",
+            "title": "Group 3",
+            "archivedAt": null,
+            "tasks": [
+                {
+                    "id": "c105",
+                    "title": "Wireframe screens"
+                },
+                {
+                    "id": "c106",
+                    "title": "Implement user authentication"
+                }
+            ]
+        }
     }
 ]
 

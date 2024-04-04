@@ -23,9 +23,9 @@ export function BoardDetails() {
     if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
-            {/* <h2>Hello from board details</h2> */}
+            {/* ADD BOARD HEADER */}
             <BoardFilter/>
-            <BoardPreview />
+            <BoardPreview board={board} />
         </section>
     )
 }
