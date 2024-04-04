@@ -213,7 +213,7 @@ const gBoards = [
                 {
                   _id: "c115",
                   type: "date",
-                  txt: "1703703751234"
+                  date: 1589983468418
                 },
                 {
                   _id: "c116",
@@ -271,7 +271,7 @@ const gBoards = [
                 {
                   _id: "c115",
                   type: "date",
-                  txt: "1703703752234"
+                  date: 1589983468418
                 },
                 {
                   _id: "c116",
@@ -322,7 +322,7 @@ const gBoards = [
                 {
                   _id: "c115",
                   type: "date",
-                  txt: "1703703753234"
+                  date: 1589983468418
                 },
                 {
                   _id: "c116",
