@@ -1,11 +1,9 @@
-export function StatusCellComponent({ clmTypesFiltered, cell }) {
+export function StatusCellComponent({ ClmType, cell }) {
 
-    console.log(clmTypesFiltered, cell);
+    console.log(ClmType, cell);
+    const { data } = ClmType[0]
 
     function getCellTxt() {
-        const clmType = clmTypesFiltered.find(clmType => clmType._id === cell._id)
-        if (!clmType) return
-        const { data } = clmType
         // console.log(data);
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'puki wrongico'
@@ -16,7 +14,16 @@ export function StatusCellComponent({ clmTypesFiltered, cell }) {
 
     }
 
+    function getCellColor() {
+        const item = data.find(item => item.id === cell.dataId)
+        if (!item) return 'red'
+        const color = item.color
+        console.log(color);
+        return color
+        
+    }
+
     return (
-        <span className="status-cell">{getCellTxt()}</span>
+        <span className="dyn-cell status" style={{backgroundColor: getCellColor()}}>{getCellTxt()}</span>
     )
 }

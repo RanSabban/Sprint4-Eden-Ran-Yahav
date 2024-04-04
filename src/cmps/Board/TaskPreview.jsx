@@ -14,24 +14,25 @@ export function TaskPreview({ task }) {
 
 
     const { cells } = task
-    function getClmType(type) {
-        const ClmTypesFiltered = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn.type === type))
-        return ClmTypesFiltered
+    function getClmType(cellId) {
+        const ClmToReturn = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn._id === cellId))
+        return ClmToReturn
     }
 
-    return (<ul>
-        <li key={task._id}>{task.title}</li>
+    return (<li key={task._id}>
+        <span className='dyn-cell title'>{task.title}</span>
         {
             cells.map((cell) => (
-                <li>
+                <>
                     <DynamicCmp cmpType={cell.type}
-                        clmTypesFiltered={getClmType(cell.type)}
+                        ClmType={getClmType(cell._id)}
                         cell={cell}
                     />
-                </li>
+                </>
+
             ))
         }
-    </ul>
+    </li>
 
     )
 }
