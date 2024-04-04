@@ -1,29 +1,51 @@
 // import { InviteIcon } from "../../services/svg.service";
 
 // import { Tooltip } from "@mui/material";
-import { Avatar, AvatarGroup, Button, EditableHeading, Tooltip } from "monday-ui-react-core";
+import { Avatar, AvatarGroup, Button, EditableHeading, Tooltip, } from "monday-ui-react-core";
+import { Favorite, Warning } from "monday-ui-react-core/icons";
 import { BoardFilter } from "./BoardFilter";
-
 
 export function BoardHeader() {
 
     return (
         <section className="board-header-wrapper">
-            <h1>yoyo</h1>
             <div className="board-header-top flex align-center justify-between">
                 <div className="board-title">
-                    <div className="editable-container">
+                    <div className="editable-container flex">
                         <Tooltip
-                            content='Start from scratch'
+                            position="bottom"
+                            content='Click to edit'
                             animationType="expand">
-                                
-                            <EditableHeading    
-                                // id="b-head"
+                            <EditableHeading
                                 type={"h2"}
-                                // className="edit-input"
                                 value='Start from scratch'
                             />
                         </Tooltip>
+                        
+                        <Tooltip
+                            content='Show board description'
+                            animationType="expand">
+                            <Button
+                                className="btn-info"
+                                kind="tertiary"
+                                onClick={() => console.log('m-list')}
+                                size="small">
+                                <Warning />
+                            </Button>
+                        </Tooltip>
+
+                        <Tooltip
+                            content='Add to favorites'
+                            animationType="expand">
+                            <Button
+                                className="btn-starred"
+                                kind="tertiary"
+                                onClick={() => console.log('m-list')}
+                                size="small">
+                                <Favorite />
+                            </Button>
+                        </Tooltip>
+
                     </div>
                 </div>
                 <Button
@@ -52,7 +74,7 @@ export function BoardHeader() {
                     </AvatarGroup>
                 </Button>
             </div>
-            <BoardFilter/>
+            <BoardFilter />
         </section>
     )
 }

@@ -9,11 +9,6 @@
 
 html {
     color: $clr-main;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
 
 }
 
@@ -33,7 +28,6 @@ section {
 
 body {
     font-family: figtree;
-    // font-size: em(14px);
     background-color: $bgc-page;
     line-height: 1;
     margin: 0;
@@ -43,6 +37,10 @@ body {
 span {
     font-size: em(14px);
     line-height: lh(21px);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
 }
 
 h1,
@@ -64,7 +62,7 @@ h1 {
 }
 
 h2 {
-    font-size: em(24px);
+    font-size: em(32px);
     line-height: lh(32px);
 }
 
@@ -82,6 +80,7 @@ h5 {
     font-size: 1em;
     line-height: lh(24px);
 }
+
 
 section,
 main,
@@ -109,3 +108,45 @@ main {
     display: grid;
     grid-auto-flow: column;
 }
+
+html,
+body,
+div,
+span,
+p,
+blockquote,
+pre,
+a,
+em,
+img,
+strong,
+ol,
+ul,
+li,
+form,
+label,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+footer,
+header,
+nav,
+output,
+section,
+summary {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline
+}
+
+// li {
+//     list-style: none;
+// }
