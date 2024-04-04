@@ -1,3 +1,4 @@
-export function DateCellComponent() {
+export function DateCellComponent({clmType,cell}) {
+    
     
 }

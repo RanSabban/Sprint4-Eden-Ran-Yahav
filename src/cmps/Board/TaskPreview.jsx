@@ -10,20 +10,21 @@ import { TextCellComponent } from './dynamicCmp/TextCellComponent';
 
 export function TaskPreview({ task }) {
 
-    const cellComponents = {
-        status: StatusCellComponent,
-        priority: PriorityCellComponent,
-        members: MembersCellComponent,
-        txt: TextCellComponent,
-        date: DateCellComponent
-    };
+    // const cellComponents = {
+    //     status: StatusCellComponent,
+    //     priority: PriorityCellComponent,
+    //     members: MembersCellComponent,
+    //     txt: TextCellComponent,
+    //     date: DateCellComponent
+    // };
 
     const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
 
 
     const { cells } = task
     function getClmType(type) {
-        // const dynamicCmp = 
+        const ClmTypesFiltered = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn.type === type))
+        return ClmTypesFiltered
     }
 
     return (<ul>
@@ -33,6 +34,7 @@ export function TaskPreview({ task }) {
                 <li>
                     <DynamicCmp cmpType={cell.type}
                     clmType={getClmType(cell.type)}
+                    cell={cell}
                     />
                 </li>
             ))
@@ -44,10 +46,18 @@ export function TaskPreview({ task }) {
 
 function DynamicCmp(props) {
     switch (props.cmpType) {
-        case 'color':
-            return <ColorInput {...props} />
-        case 'fontSize':
-            return <FontsizeInput {...props} />
+        case 'status':
+            return <StatusCellComponent {...props} />
+        case 'priority':
+            return <PriorityCellComponent {...props} />
+        case 'members':
+            return <MembersCellComponent {...props} />
+        case 'txt':
+            return <TextCellComponent {...props} />
+        case 'date':
+            return <DateCellComponent {...props} />
+        default:
+            <span>NoNo</span>
     }
 }
 
