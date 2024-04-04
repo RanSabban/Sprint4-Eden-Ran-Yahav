@@ -1,4 +1,4 @@
-export function DateCellComponent({clmTypesFiltered,cell}) {
+export function DateCellComponent({ClmType,cell}) {
     
     function getCellDate(){
         const date = new Date(cell.date);
@@ -6,6 +6,6 @@ export function DateCellComponent({clmTypesFiltered,cell}) {
     }
 
     return (
-        <span className="date-cell">{getCellDate()}</span>
+        <span className="dyn-cell date">{getCellDate()}</span>
     )
 }

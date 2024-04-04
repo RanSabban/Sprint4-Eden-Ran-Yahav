@@ -1,17 +1,20 @@
 import { useSelector } from 'react-redux'
+import { TableHeader, TableHeaderCell } from 'monday-ui-react-core'
 
 export function RenderHeaders({clmTypes}) {
 
-
+    console.log(clmTypes.title);
 
     // const columns = useSelector(storeState => storeState.boardModule.columns)
     
     return (
-        <section className="headers">
-            {clmTypes.map(clmType => (
-                <span>{clmType.title} </span>
+        
+        <>
+            {clmTypes.map((clmType,idx) => (
+                <div className='dyn-cell header-item' title={clmType.title} key={idx}/> 
             ))}
-        </section>
+        </>
+
     )
 
 }

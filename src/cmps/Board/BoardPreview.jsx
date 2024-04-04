@@ -10,12 +10,12 @@ export function BoardPreview({ board }) {
     if (!board) return <div>LOADING</div>
     return (
         <section className="board-preview">
-            <h2>I am Board Preview</h2>
+            {/* <h2>I am Board Preview</h2> */}
 
             {
                 groups.map((group) => {
-                    const tasks = group.tasks
-                    return (<section className="group-item" key={group.id}>
+                    // const tasks = group.tasks
+                    return (<section className="group-container" key={group._id}>
                         <GroupList clmTypes={clmTypes} groups={groups} />
                     </section>
                     )
