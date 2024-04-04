@@ -1,4 +1,7 @@
 .board-header-wrapper {
+    background-color: $bgc-main;
+    width: 500px;
+    
     & h2 {
 
         font-size: em(24px);

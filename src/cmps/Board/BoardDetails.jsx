@@ -20,12 +20,13 @@ export function BoardDetails() {
 
     console.log(board);
 
-    if (!board) return <div>LOADING BRO</div>
+    // if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
+            <BoardHeader />
             {/* <h2>Hello from board details</h2> */}
             <BoardFilter/>
-            <BoardPreview />
+            {/* <BoardPreview /> */}
         </section>
     )
 }
