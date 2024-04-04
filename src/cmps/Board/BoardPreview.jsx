@@ -15,7 +15,7 @@ export function BoardPreview({ board }) {
                     const tasks = group.tasks
                     return ( <section className="group-item" key={group.id}>
                         {/* GROUP HEADER CMP WITH BOARD TYPES */}
-                    <h2>Group Title: {group.title}</h2>
+                    <h4>Group Title: {group.title}</h4>
                         {/* {tasks.map(task => {
                             return (        
                             <li key={task.id}>   

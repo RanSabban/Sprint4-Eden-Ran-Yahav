@@ -14,6 +14,7 @@ html {
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
+
 }
 
 article,
@@ -31,37 +32,56 @@ section {
 }
 
 body {
-
-    & h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @include header-font-sizes($font-size-h1, $font-size-h2, $font-size-h3, $font-size-h4, $font-size-h5);
-    }
-
     font-family: figtree;
+    // font-size: em(14px);
     background-color: $bgc-page;
     line-height: 1;
     margin: 0;
 
 }
 
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//     margin: 0;
-//     padding: 0;
-//     border: 0;
-//     font-size: 100%;
-//     vertical-align: baseline;
-// }
+span {
+    font-size: em(14px);
+    line-height: lh(21px);
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: poppins-medium;
+}
 
+h1 {
+    font-size: em(30px);
+    line-height: lh(42px);
+}
+
+h2 {
+    font-size: em(24px);
+    line-height: lh(32px);
+}
+
+h3 {
+    font-size: em(24px);
+    line-height: lh(32px);
+}
+
+h4 {
+    font-size: em(18px);
+    line-height: lh(24px);
+}
+
+h5 {
+    font-size: 1em;
+    line-height: lh(24px);
+}
 
 section,
 main,

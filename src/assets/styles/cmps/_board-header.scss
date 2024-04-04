@@ -1,20 +1,22 @@
 .board-header-wrapper {
     // background-color: $bgc-main;
 
-    
-    
-    .board-title .edit-input {
-        font-size: 500px; // Adjusts font size for headings within .board-title
-    
-     
-
+    .board-header-top .board-title * {
+        font-family: poppins-medium;
+        width: auto
         
-
-
-        padding: 0 4px;
-        min-width: 0;
-        border: 1px solid transparent;
-        
-    
+        // .edit-input {
+        //     font-size: 100px;
+        // }
     }
+
+
+    // #b-head {
+    ; // Adjusts font size for headings within .board-title
+    padding: 0 4px;
+    min-width: 0;
+    border: 1px solid transparent;
+
+
+    // }
 }
