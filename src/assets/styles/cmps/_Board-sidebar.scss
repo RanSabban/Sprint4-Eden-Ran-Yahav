@@ -19,7 +19,7 @@
 
     .home-sidebar {
         line-height: 22.5px;
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .sidebar-workspace {
@@ -85,6 +85,10 @@
         color: #323338;
         box-shadow: 0;
         border-radius: 0px 8px;
+    }
+
+    .close-sidebar-btn:hover {
+        display: block;
     }
 
     .actions-sidebar-upper:hover {
