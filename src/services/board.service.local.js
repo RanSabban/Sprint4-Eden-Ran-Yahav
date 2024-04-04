@@ -26,39 +26,129 @@ const gBoards = [
             "fullname": "Puki Norma",
             "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
         },
-        "status": [
+
+        "clmTypes": [
             {
-                "id": "l101",
-                "title": "Done",
-                "color": "#61bd4f"
+                _id: "c111",
+                type: 'status',
+                title: 'Status',
+                data: [
+                    {
+                        _id: "d111",
+                        "txt": "Done",
+                        "color": "#61bd4f"
+                    },
+                    {
+                        _id: "d112",
+                        "txt": "Progress",
+                        "color": "#61bd33"
+                    },
+                ]
             },
             {
-                "id": "l102",
-                "title": "Progress",
-                "color": "#61bd33"
-            }
-        ],
-        "members": [
+                _id: "c116",
+                type: 'priority',
+                title: 'Priority',
+                data: [
+                    {
+                        _id: "d116",
+                        "txt": "Urgent",
+                        "color": "#61bd4f"
+                    },
+                    {
+                        _id: "d119",
+                        "txt": "NOW",
+                        "color": "#61bd33"
+                    },
+                ]
+            },
             {
-                "_id": "EtzD1",
-                "fullname": "Puki Norma",
-                "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                _id: "c112",
+                type: 'members',
+                title: 'Assigned To',
+                data: [
+                    {
+                        "_id": "EtzD1",
+                        "fullname": "Puki Norma",
+                        "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                    }
+                ]
+            },
+            {
+                _id: 'c113',
+                title: 'Free text',
+                type: 'txt',
+            },
+            {
+                _id: 'c114',
+                title: 'Date',
+                type: 'date',
             }
         ],
         "groups": [
+            {
+                "_id": "g101",
+                "title": "Group 1",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c101",
+                        "title": "Task 1",
+                        "cells": [
+                            {
+                                _id: "c111",
+                                type: 'status',
+                                dataId: 'd111'
+                            },
+                            {
+                                _id: "c116",
+                                type: 'priority',
+                                dataId: 'd116'
+                            },
+                            {
+                                _id: "c112",
+                                type: 'members',
+                                dataId: 'EtzD1'
+                            },
+                            {
+                                _id: "c113",
+                                type: 'txt',
+                                txt: 'puki'
+                            },
+                            {
+                                _id: "c114",
+                                type: 'date',
+                                date: 1234
+                            }
+                        ],
+                        "createdBy": {
+                            "_id": "u102",
+                            "fullname": "John Doe",
+                            "imgUrl": "http://example.com/john.jpg"
+                        }
+                    },
+                ]
+            },
             {
                 "id": "g102",
                 "title": "Group 2",
                 "archivedAt": null,
                 "tasks": [
                     {
-                        "id": "c101",
-                        "title": "Task 1",
-                        "status": "to-do",
-                        "priority": "low",
-                        "description": "Description for Task 1",
-                        "memberIds": ["u102"],
-                        "dueDate": 16156215211,
+                        "id": "c102",
+                        "title": "Task 2",
+                        "cells": [
+                            {
+                                _id: "c111",
+                                type: 'status',
+                                optionId: 'd112'
+                            },
+                            {
+                                _id: "c112",
+                                type: 'members',
+                                optionId: 'EtzD1'
+                            }
+                        ],
                         "byMember": {
                             "_id": "u102",
                             "username": "John",
@@ -66,142 +156,8 @@ const gBoards = [
                             "imgUrl": "http://example.com/john.jpg"
                         }
                     },
-                    {
-                        "id": "c102",
-                        "title": "Task 2",
-                        "status": "in-progress",
-                        "priority": "medium",
-                        "description": "Description for Task 2",
-                        "memberIds": ["u103"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u103",
-                            "username": "Alice",
-                            "fullname": "Alice Johnson",
-                            "imgUrl": "http://example.com/alice.jpg"
-                        }
-                    },
-                    {
-                        "id": "c103",
-                        "title": "Task 3",
-                        "status": "done",
-                        "priority": "high",
-                        "description": "Description for Task 3",
-                        "memberIds": ["u104"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u104",
-                            "username": "Jane",
-                            "fullname": "Jane Smith",
-                            "imgUrl": "http://example.com/jane.jpg"
-                        }
-                    }
                 ]
             },
-            {
-                "id": "g103",
-                "title": "Group 3",
-                "archivedAt": null,
-                "tasks": [
-                    {
-                        "id": "c101",
-                        "title": "Task 1",
-                        "status": "to-do",
-                        "priority": "low",
-                        "description": "Description for Task 1",
-                        "memberIds": ["u102"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u102",
-                            "username": "John",
-                            "fullname": "John Doe",
-                            "imgUrl": "http://example.com/john.jpg"
-                        }
-                    },
-                    {
-                        "id": "c102",
-                        "title": "Task 2",
-                        "status": "in-progress",
-                        "priority": "medium",
-                        "description": "Description for Task 2",
-                        "memberIds": ["u103"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u103",
-                            "username": "Alice",
-                            "fullname": "Alice Johnson",
-                            "imgUrl": "http://example.com/alice.jpg"
-                        }
-                    },
-                    {
-                        "id": "c103",
-                        "title": "Task 3",
-                        "status": "done",
-                        "priority": "high",
-                        "description": "Description for Task 3",
-                        "memberIds": ["u104"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u104",
-                            "username": "Jane",
-                            "fullname": "Jane Smith",
-                            "imgUrl": "http://example.com/jane.jpg"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "g104",
-                "title": "Group 4",
-                "archivedAt": null,
-                "tasks": [
-                    {
-                        "id": "c101",
-                        "title": "Task 1",
-                        "status": "to-do",
-                        "priority": "low",
-                        "description": "Description for Task 1",
-                        "memberIds": ["u102"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u102",
-                            "username": "John",
-                            "fullname": "John Doe",
-                            "imgUrl": "http://example.com/john.jpg"
-                        }
-                    },
-                    {
-                        "id": "c102",
-                        "title": "Task 2",
-                        "status": "in-progress",
-                        "priority": "medium",
-                        "description": "Description for Task 2",
-                        "memberIds": ["u103"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u103",
-                            "username": "Alice",
-                            "fullname": "Alice Johnson",
-                            "imgUrl": "http://example.com/alice.jpg"
-                        }
-                    },
-                    {
-                        "id": "c103",
-                        "title": "Task 3",
-                        "status": "done",
-                        "priority": "high",
-                        "description": "Description for Task 3",
-                        "memberIds": ["u104"],
-                        "dueDate": 16156215211,
-                        "byMember": {
-                            "_id": "u104",
-                            "username": "Jane",
-                            "fullname": "Jane Smith",
-                            "imgUrl": "http://example.com/jane.jpg"
-                        }
-                    }
-                ]
-            }
         ]
     },
     {
