@@ -1,5 +1,4 @@
-export function TextCellComponent({clmType,cell}) {
-    console.log(clmType,cell);
+export function TextCellComponent({clmTypeFiltered,cell}) {
 
     return <span>{cell.txt}</span>
 }

@@ -17,8 +17,6 @@ export function BoardDetails() {
         if (boardId) loadBoard(boardId)
     }, [])
 
-    console.log(board);
-
     if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">

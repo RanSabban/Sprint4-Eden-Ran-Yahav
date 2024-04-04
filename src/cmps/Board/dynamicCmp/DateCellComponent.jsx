@@ -1,7 +1,5 @@
-export function DateCellComponent({clmType,cell}) {
+export function DateCellComponent({clmTypesFiltered,cell}) {
     
-    console.log(clmType,cell);
-    console.log(cell);
     function getCellDate(){
         const date = new Date(cell.date);
         return date.toLocaleDateString()

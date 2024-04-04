@@ -2,8 +2,7 @@ import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 
 export function BoardPreview({ board }) {
-    console.log(board);
-    console.log(board.groups);
+
     const groups = board.groups
     const clmTypes = board.clmTypes
 

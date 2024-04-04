@@ -10,14 +10,6 @@ import { TextCellComponent } from './dynamicCmp/TextCellComponent';
 
 export function TaskPreview({ task }) {
 
-    // const cellComponents = {
-    //     status: StatusCellComponent,
-    //     priority: PriorityCellComponent,
-    //     members: MembersCellComponent,
-    //     txt: TextCellComponent,
-    //     date: DateCellComponent
-    // };
-
     const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
 
 
@@ -33,8 +25,8 @@ export function TaskPreview({ task }) {
             cells.map((cell) => (
                 <li>
                     <DynamicCmp cmpType={cell.type}
-                    clmType={getClmType(cell.type)}
-                    cell={cell}
+                        clmTypesFiltered={getClmType(cell.type)}
+                        cell={cell}
                     />
                 </li>
             ))
@@ -56,8 +48,8 @@ function DynamicCmp(props) {
             return <TextCellComponent {...props} />
         case 'date':
             return <DateCellComponent {...props} />
-        default:
-            <span>NoNo</span>
+        default: <span>NoNo</span>
+
     }
 }
 
