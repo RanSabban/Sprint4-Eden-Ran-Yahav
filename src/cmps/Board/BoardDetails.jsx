@@ -3,7 +3,6 @@ import { useParams } from "react-router"
 import { useSelector } from 'react-redux'
 
 import { loadBoard } from "../../store/board.actions"
-import { BoardFilter } from "./BoardFilter"
 import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
 
@@ -24,7 +23,6 @@ export function BoardDetails() {
     return (
         <section className="board-details">
             <BoardHeader />
-            <BoardFilter/>
             <BoardPreview board={board} />
         </section>
     )

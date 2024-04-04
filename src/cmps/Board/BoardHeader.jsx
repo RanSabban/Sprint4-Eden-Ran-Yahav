@@ -2,6 +2,7 @@
 
 // import { Tooltip } from "@mui/material";
 import { Avatar, AvatarGroup, Button, EditableHeading, Tooltip } from "monday-ui-react-core";
+import { BoardFilter } from "./BoardFilter";
 
 
 export function BoardHeader() {
@@ -16,12 +17,10 @@ export function BoardHeader() {
                             content='Start from scratch'
                             animationType="expand">
                                 
-                            <EditableHeading
-                            
+                            <EditableHeading    
+                                id="b-head"
                                 type="h2"
-                                // weight="700"
                                 className="edit-input"
-                                // type="h2"
                                 value='Start from scratch'
                             />
                         </Tooltip>
@@ -53,6 +52,7 @@ export function BoardHeader() {
                     </AvatarGroup>
                 </Button>
             </div>
+            <BoardFilter/>
         </section>
     )
 }
