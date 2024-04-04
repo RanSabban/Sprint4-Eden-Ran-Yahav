@@ -10,11 +10,55 @@
         display: flex;
         gap: 1em;
         margin-bottom: 1em;
+        padding: 0.3em;
     }
+
 
     .board-side-preview:hover {
         background-color: #eceff8;
         border-radius: 2px;
         cursor: pointer;
+    }
+
+    .board-side-preview.active {
+        background-color: #cce5ff;
+    }
+
+    .preview-three-points {
+        position: absolute;
+        right: 0;
+        top: 207px;
+        background: none;
+        display: none;
+    }
+
+    .button.preview-three-points {
+        background-color: none;
+    }
+
+    .board-side-preview:hover {
+        .preview-three-points {
+            display: block;
+        }
+    }
+
+    .actions-border-side {
+        position: absolute;
+        right: 1em;
+        top: 230px;
+        background-color: #fff;
+        box-shadow: 0 4px 17px 6px #0000001a;
+        border-radius: 8px;
+        padding: 8px;
+        white-space: nowrap;
+    }
+
+    .action-side{
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        white-space: nowrap;
+        flex-direction: row;
+        gap: 0.6em;
     }
 }
