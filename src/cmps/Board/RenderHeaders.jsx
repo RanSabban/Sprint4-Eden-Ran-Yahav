@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-export function RenderHeaders({columns}) {
+export function RenderHeaders({clmTypes}) {
 
 
 
@@ -8,8 +8,8 @@ export function RenderHeaders({columns}) {
     
     return (
         <section className="headers">
-            {columns.map(column => (
-                <span>{column.title} </span>
+            {clmTypes.map(clmType => (
+                <span>{clmType.title} </span>
             ))}
         </section>
     )

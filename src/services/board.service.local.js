@@ -17,286 +17,332 @@ window.cs = boardService
 
 const gBoards = [
     {
-        "_id": "b101",
-        "title": "Robot dev proj",
-        "isStarred": false,
-        "archivedAt": 1589983468418,
-        "createdBy": {
-            "_id": "EtzD1",
-            "fullname": "Puki Norma",
-            "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+        _id: "b101",
+        title: "Robot dev proj",
+        isStarred: false,
+        archivedAt: 1589983468418,
+        createdBy: {
+            _id: "EtzD1",
+            fullname: "Puki Norma",
+            imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
         },
-
-        "clmTypes": [
+        clmTypes: [
             {
                 _id: "c111",
-                type: 'status',
-                title: 'Status',
+                type: "status",
+                title: "Status",
                 data: [
                     {
-                        _id: "d111",
-                        "txt": "Done",
-                        "color": "#61bd4f"
+                        id: "l102",
+                        title: "Working on it",
+                        color: "#fdab3d"
                     },
                     {
-                        _id: "d112",
-                        "txt": "Progress",
-                        "color": "#61bd33"
+                        id: "l103",
+                        title: "Stuck",
+                        color: "#df2f4a"
                     },
+                    {
+                        id: "l101",
+                        title: "Done",
+                        color: "#00c875"
+                    },
+                    {
+                        title: 'Will do',
+                        id: "l100",
+                        color: "#c4c4c4"
+                    }
                 ]
             },
             {
                 _id: "c116",
-                type: 'priority',
-                title: 'Priority',
+                type: "priority",
+                title: "Priority",
                 data: [
                     {
-                        _id: "d116",
-                        "txt": "Urgent",
-                        "color": "#61bd4f"
+                        id: "l201",
+                        title: "Critical ⚠",
+                        color: "#333333"
                     },
                     {
-                        _id: "d119",
-                        "txt": "NOW",
-                        "color": "#61bd33"
+                        id: "l202",
+                        title: "High",
+                        color: "#401694"
                     },
+                    {
+                        id: "l203",
+                        title: "Medium",
+                        color: "#5559df"
+                    },
+                    {
+                        id: "l204",
+                        title: "Low",
+                        color: "#579bfc"
+                    },
+                    {
+                        id: "l200",
+                        color: "#c4c4c4"
+                    }
                 ]
             },
             {
                 _id: "c112",
-                type: 'members',
-                title: 'Assigned To',
+                type: "members",
+                title: "Assigned To",
                 data: [
                     {
-                        "_id": "EtzD1",
-                        "fullname": "Puki Norma",
-                        "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                        _id: "EtzD1",
+                        fullname: "Eden Gilady",
+                        imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                    },
+                    {
+                        _id: "EtzD2",
+                        fullname: "Yahav Ganon",
+                        imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                    },
+                    {
+                        _id: "EtzD3",
+                        fullname: "Ran Sabban",
+                        imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                    },
+                    {
+                        _id: "EtzD4",
+                        fullname: "Mor Marzan",
+                        imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
                     }
                 ]
             },
             {
-                _id: 'c113',
-                title: 'Free text',
-                type: 'txt',
+                _id: "c113",
+                type: "timelines",
+                title: "Timeline",
+                data: [
+                    {
+                        _id: "sdf123",
+                        startDate: 1703703751234,
+                        dueDate: 1703703751345
+                    }
+                ]
             },
             {
-                _id: 'c114',
-                title: 'Date',
-                type: 'date',
+                _id: "c114",
+                type: "files",
+                title: "Files",
+                data: [
+                    {
+                        _id: "sdf124",
+                        file: "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png"
+                    }
+                ]
+            },
+            {
+                _id: "c1145",
+                type: "txt",
+                title: "Free text"
+            },
+            {
+                _id: "c115",
+                type: "date",
+                title: "Date"
+            },
+            {
+                _id: "c116",
+                type: "updates",
+                title: "Last Updated",
+                data: [
+                    {
+                        _id: "1478",
+                        fullname: "Yahav Ganon",
+                        date: 1703703751234,
+                        activity: "Moved"
+                    },
+                    {
+                        _id: "456",
+                        fullname: "Eden Gilady",
+                        date: 1703703751434,
+                        activity: "Added"
+                    },
+                    {
+                        _id: "8965",
+                        fullname: "Ran Sabban",
+                        date: 1703703751834,
+                        activity: "Removed"
+                    }
+                ]
             }
         ],
-        "groups": [
+        groups: [
             {
-                "_id": "g101",
-                "title": "Group 1",
-                "archivedAt": null,
-                "tasks": [
+                _id: "g101",
+                title: "Group 1",
+                archivedAt: null,
+                tasks: [
                     {
-                        "_id": "c101",
-                        "title": "Task 1",
-                        "cells": [
+                        _id: "c101",
+                        title: "Task 1",
+                        cells: [
                             {
                                 _id: "c111",
-                                type: 'status',
-                                dataId: 'd111'
+                                type: "status",
+                                dataId: "l103"
                             },
                             {
                                 _id: "c116",
-                                type: 'priority',
-                                dataId: 'd116'
+                                type: "priority",
+                                dataId: "d116"
                             },
                             {
                                 _id: "c112",
-                                type: 'members',
-                                dataId: 'EtzD1'
+                                type: "members",
+                                dataId: "EtzD1"
                             },
                             {
                                 _id: "c113",
-                                type: 'txt',
-                                txt: 'puki'
+                                type: "timelines",
+                                dataId: "sdf123"
                             },
                             {
                                 _id: "c114",
-                                type: 'date',
-                                date: 1234
+                                type: "files",
+                                dataId: "sdf124"
+                            },
+                            {
+                                _id: "c1145",
+                                type: "txt",
+                                txt: "puki"
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            },
+                            {
+                                _id: "c116",
+                                type: "updates",
+                                dataId: "1478"
                             }
                         ],
-                        "createdBy": {
-                            "_id": "u102",
-                            "fullname": "John Doe",
-                            "imgUrl": "http://example.com/john.jpg"
+                        createdBy: {
+                            _id: "u102",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
                         }
-                    },
+                    }
                 ]
             },
             {
-                "id": "g102",
-                "title": "Group 2",
-                "archivedAt": null,
-                "tasks": [
+                _id: "g102",
+                title: "Group 2",
+                archivedAt: null,
+                tasks: [
                     {
-                        "id": "c102",
-                        "title": "Task 2",
-                        "cells": [
+                        _id: "c102",
+                        title: "Task 2",
+                        cells: [
                             {
                                 _id: "c111",
-                                type: 'status',
-                                optionId: 'd112'
+                                type: "status",
+                                dataId: "l102"
+                            },
+                            {
+                                _id: "c116",
+                                type: "priority",
+                                dataId: "l204"
                             },
                             {
                                 _id: "c112",
-                                type: 'members',
-                                optionId: 'EtzD1'
+                                type: "members",
+                                dataId: "EtzD2"
+                            },
+                            {
+                                _id: "c113",
+                                type: "timelines",
+                                dataId: "sdf123"
+                            },
+                            {
+                                _id: "c114",
+                                type: "files",
+                                dataId: "sdf124"
+                            },
+                            {
+                                _id: "c1145",
+                                type: "txt",
+                                txt: "Important notes here"
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            },
+                            {
+                                _id: "c116",
+                                type: "updates",
+                                dataId: "456"
                             }
                         ],
-                        "byMember": {
-                            "_id": "u102",
-                            "username": "John",
-                            "fullname": "John Doe",
-                            "imgUrl": "http://example.com/john.jpg"
+                        createdBy: {
+                            _id: "u103",
+                            fullname: "Eden Gilady",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
                         }
                     },
+                    {
+                        _id: "c103",
+                        title: "Task 3",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l103"
+                            },
+                            {
+                                _id: "c116",
+                                type: "priority",
+                                dataId: "l202"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: "EtzD3"
+                            },
+                            {
+                                _id: "c113",
+                                type: "timelines",
+                                dataId: "sdf123"
+                            },
+                            {
+                                _id: "c114",
+                                type: "files",
+                                dataId: "sdf124"
+                            },
+                            {
+                                _id: "c1145",
+                                type: "txt",
+                                txt: "Secondary notes"
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            },
+                            {
+                                _id: "c116",
+                                type: "updates",
+                                dataId: "8965"
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u104",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    }
                 ]
-            },
+            }
         ]
     },
-    {
-        "_id": "b102",
-        "title": "Website Redesign",
-        "isStarred": true,
-        "archivedAt": null,
-        "createdBy": {
-            "_id": "xyz123",
-            "fullname": "John Doe",
-            "imgUrl": "https://example.com/profile.jpg"
-        },
-        "status": [
-            {
-                "id": "l101",
-                "title": "Done",
-                "color": "#61bd4f"
-            },
-            {
-                "id": "l102",
-                "title": "Progress",
-                "color": "#61bd33"
-            }
-        ],
-        "members": [
-            {
-                "_id": "EtzD1",
-                "fullname": "Puki Norma",
-                "imgUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-            },
-            {
-                "_id": "xyz123",
-                "fullname": "John Doe",
-                "imgUrl": "https://example.com/profile.jpg"
-            }
-        ],
-        "groups": {
-            "id": "g102",
-            "title": "Group 2",
-            "archivedAt": null,
-            "tasks": [
-                {
-                    "id": "c101",
-                    "title": "Task 1",
-                    "status": "to-do",
-                    "priority": "low",
-                    "description": "Description for Task 1",
-                    "memberIds": ["u102"],
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u102",
-                        "username": "John",
-                        "fullname": "John Doe",
-                        "imgUrl": "http://example.com/john.jpg"
-                    }
-                },
-                {
-                    "id": "c102",
-                    "title": "Task 2",
-                    "status": "in-progress",
-                    "priority": "medium",
-                    "description": "Description for Task 2",
-                    "memberIds": ["u103"],
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u103",
-                        "username": "Alice",
-                        "fullname": "Alice Johnson",
-                        "imgUrl": "http://example.com/alice.jpg"
-                    }
-                },
-                {
-                    "id": "c103",
-                    "title": "Task 3",
-                    "status": "done",
-                    "priority": "high",
-                    "description": "Description for Task 3",
-                    "memberIds": ["u104"],
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u104",
-                        "username": "Jane",
-                        "fullname": "Jane Smith",
-                        "imgUrl": "http://example.com/jane.jpg"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "_id": "b103",
-        "title": "Mobile App Development",
-        "isStarred": false,
-        "archivedAt": null,
-        "createdBy": {
-            "_id": "abc456",
-            "fullname": "Jane Smith",
-            "imgUrl": "https://example.com/profile.jpg"
-        },
-        "status": [
-            {
-                "id": "l101",
-                "title": "Done",
-                "color": "#61bd4f"
-            },
-            {
-                "id": "l102",
-                "title": "Progress",
-                "color": "#61bd33"
-            }
-        ],
-        "members": [
-            {
-                "_id": "abc456",
-                "fullname": "Jane Smith",
-                "imgUrl": "https://example.com/profile.jpg"
-            },
-            {
-                "_id": "xyz789",
-                "fullname": "Alice Johnson",
-                "imgUrl": "https://example.com/profile.jpg"
-            }
-        ],
-        "groups": {
-            "id": "g103",
-            "title": "Group 3",
-            "archivedAt": null,
-            "tasks": [
-                {
-                    "id": "c105",
-                    "title": "Wireframe screens"
-                },
-                {
-                    "id": "c106",
-                    "title": "Implement user authentication"
-                }
-            ]
-        }
-    }
+
+
 ]
 
 

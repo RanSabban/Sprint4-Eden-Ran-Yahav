@@ -1,10 +1,11 @@
 import { RenderHeaders } from "./RenderHeaders";
 import { TaskList } from "./TaskList";
+import { GroupPreview } from "./GroupPreview";
 
-export function GroupList({ columns, groups }) {
+export function GroupList({ clmTypes, groups }) {
     // const columns = UseSelector(storeState => storeState.boardModule.columns)
     // console.log(tasks);
-    console.log(columns);
+    console.log(clmTypes);
 
 
 
@@ -12,11 +13,11 @@ export function GroupList({ columns, groups }) {
 
     return <section className="group-list">
         {groups.map((group) => {
-            return (<section className="group-item" key={group.id}>
-                <h1>Group Title {group.title}</h1>
-                <RenderHeaders columns={columns} />
-                {/* <GroupPreview /> */}
-            </section>)
+            return (<ul className="group-item" key={group.id}>
+                <span>Group Title {group.title}</span>
+                <RenderHeaders clmTypes={clmTypes} />
+                <TaskList tasks = {group.tasks} />
+            </ul>)
         })}
 
     </section>

@@ -1,11 +1,16 @@
-export function TaskList({group,columns}) {
+import { TaskPreview } from './TaskPreview'
 
-    return (<section className="task-list">
-        {/* {  
-            group.tasks.cells.map((cell) => (
-                <span key={cell._id}>{cell.type}</span>
+export function TaskList({ tasks }) {
+
+
+    return (<>
+        {
+            tasks.map(task => (
+                <ul key={task._id}>
+                    <TaskPreview task={task} />
+                </ul>
             ))
-        } */}
-    </section>
+        }
+    </>
     )
 }
