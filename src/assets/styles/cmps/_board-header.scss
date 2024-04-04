@@ -4,10 +4,19 @@
     padding-left: 38px;
 
     .board-header-top >* h2  {
-        font-family: poppins-medium;
+        font-size: 32px;
         width: auto;
         padding: 0 4px;
         min-width: 0;
-        border: 1px solid transparent;
+        border: 1px solid transparent;     
+    }
+
+    .editable-container * {
+        font-family: poppins-medium;
+        
+        
+    }
+    .board-title-right{
+        gap: em(8px);
     }
 }

@@ -1,0 +1,34 @@
+.overlap-images-wrapper {
+    flex-wrap: nowrap;
+    >* {
+        position: relative;
+        overflow: hidden;
+
+
+    }
+
+    > :first-child {
+        height: 26px;
+        width: 26px;
+        margin-right: em(-5px);
+    }
+
+    > :nth-child(2) {
+        height: 26px;
+        width: 26px;
+        margin-right: em(-5px);
+        margin-left: em(-5px);
+    }
+
+    span>* {
+        // height: 26px;
+        // width: 26px;
+        margin-left: em(-5px);
+        align-items: center;
+
+    }
+}
+.avatarGroupContainer_4a7aad6681{
+    padding-left: em(12.66px);
+    padding-right: 0;
+}

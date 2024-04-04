@@ -13,26 +13,12 @@ const routes = [
         component: <BoardIndex />,
         label: 'Board'
     },
-    // {
-    //     path: 'review',
-    //     component: <ReviewIndex />,
-    //     label: 'Reviews'
-    // },
-    // {
-    //     path: 'chat',
-    //     component: <ChatApp />,
-    //     label: 'Chat'
-    // },
-    // {
-    //     path: 'about',
-    //     component: <AboutUs />,
-    //     label: 'About us'
-    // },
-    // {
-    //     path: 'admin',
-    //     component: <AdminApp />,
-    //     label: 'Admin Only'
-    // }
+    {
+        path: 'board/:boardId',
+        component: <BoardIndex />,
+        label: 'Board'
+    },
+
 ]
 
 export default routes

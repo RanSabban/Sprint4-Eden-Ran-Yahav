@@ -61,7 +61,7 @@ h1 {
     line-height: lh(42px);
 }
 
-h2 {
+h2 >* {
     font-size: em(32px);
     line-height: lh(32px);
 }
@@ -79,13 +79,6 @@ h4 {
 h5 {
     font-size: 1em;
     line-height: lh(24px);
-}
-
-
-section,
-main,
-footer {
-    // padding: 5px;
 }
 
 img {
@@ -139,7 +132,6 @@ footer,
 header,
 nav,
 output,
-section,
 summary {
     margin: 0;
     padding: 0;
@@ -147,6 +139,7 @@ summary {
     vertical-align: baseline
 }
 
-// li {
-//     list-style: none;
-// }
+li {
+    list-style: none;
+}
+
