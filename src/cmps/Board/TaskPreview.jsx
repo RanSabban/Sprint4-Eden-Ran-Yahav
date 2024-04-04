@@ -19,19 +19,20 @@ export function TaskPreview({ task }) {
         return ClmToReturn
     }
 
-    return (<ul>
-        <li key={task._id}>{task.title}</li>
+    return (<li key={task._id}>
+        <span className='dyn-cell title'>{task.title}</span>
         {
             cells.map((cell) => (
-                <li>
+                <>
                     <DynamicCmp cmpType={cell.type}
                         ClmType={getClmType(cell._id)}
                         cell={cell}
                     />
-                </li>
+                </>
+
             ))
         }
-    </ul>
+    </li>
 
     )
 }

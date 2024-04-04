@@ -22,6 +22,6 @@ export function MembersCellComponent({ClmType,cell}) {
 
 
     return (
-        <span><AvatarGroupAng users= {getUsers()} /></span>
+        <span className="dyn-cell members"><AvatarGroupAng users= {getUsers()} /></span>
     )
 }

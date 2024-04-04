@@ -6,6 +6,6 @@ export function DateCellComponent({ClmType,cell}) {
     }
 
     return (
-        <span className="date-cell">{getCellDate()}</span>
+        <span className="dyn-cell date">{getCellDate()}</span>
     )
 }
