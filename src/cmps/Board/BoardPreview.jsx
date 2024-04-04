@@ -30,4 +30,9 @@ export function BoardPreview({ board }) {
             }
         </section>
     )
+    // return (
+    //     // <section className="book-preview">
+    //     //     {/* <h2>I am Book Preview</h2> */}
+    //     // </section>
+    // )
 }
