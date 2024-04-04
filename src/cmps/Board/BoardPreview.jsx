@@ -5,7 +5,7 @@ export function BoardPreview({ board }) {
     console.log(board);
     console.log(board.groups);
     const groups = board.groups
-    const columns = board.columns
+    const clmTypes = board.clmTypes
 
 
     if (!board) return <div>LOADING</div>
@@ -17,7 +17,7 @@ export function BoardPreview({ board }) {
                 groups.map((group) => {
                     const tasks = group.tasks
                     return (<section className="group-item" key={group.id}>
-                        <GroupList columns={columns} groups={groups} />
+                        <GroupList clmTypes={clmTypes} groups={groups} />
                     </section>
                     )
                 })

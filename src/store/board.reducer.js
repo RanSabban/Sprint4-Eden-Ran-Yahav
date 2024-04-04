@@ -13,6 +13,8 @@ export const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD'
 const initialState = {
     boards: null,
     board: null,
+    groups: null,
+    clmTypes: null,
     lastRemovedBoard: null
 }
 
@@ -40,9 +42,12 @@ export function boardReducer(state = initialState, action) {
             }
             break
 
-        case SET_CURRENT_BOARD: 
-            newState = {...state, board: action.board}
+        case SET_CURRENT_BOARD:
+            const { groups, clmTypes } = action.board
+            newState = { ...state, board: action.board, groups: groups, clmTypes: clmTypes}
             break
+        // case SET_CURRENT_GROUP:
+        // case SET_CURRENT_CLMTYPES:
         default:
     }
     return newState
