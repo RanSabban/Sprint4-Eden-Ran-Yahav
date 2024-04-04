@@ -147,6 +147,14 @@ summary {
     vertical-align: baseline
 }
 
-// li {
-//     list-style: none;
-// }
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.active{
+    color:#323338;
+}

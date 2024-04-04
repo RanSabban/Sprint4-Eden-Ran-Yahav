@@ -14,7 +14,6 @@
         display: flex;
         gap: 1em;
         padding: 12px 40px 12px 12px;
-        ;
     }
 
     .home-sidebar {
@@ -47,12 +46,14 @@
         box-shadow: none;
     }
 
+    .three-points:hover {
+        background-color: #eceff8;
+    }
+
     .main-back {
         background: #fb275d;
         position: relative;
         display: flex;
-        // align-items: center;
-        // justify-content: center;
         font-weight: 500;
         margin: auto;
         color: #fff;
@@ -87,10 +88,6 @@
         border-radius: 0px 8px;
     }
 
-    .close-sidebar-btn:hover {
-        display: block;
-    }
-
     .actions-sidebar-upper:hover {
         background-color: #eceff8;
     }
@@ -103,3 +100,14 @@
         width: 14em;
     }
 }
+
+.board-sidebar:hover {
+
+    .close-sidebar-btn {
+        display: block;
+    }
+
+
+
+}
+
