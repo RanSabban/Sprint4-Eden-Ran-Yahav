@@ -20,17 +20,16 @@
 @import "views/UserDetails";
 
 // Components
-@import "cmps/AppHeader";
-@import "cmps/AppFooter";
-@import "cmps/UserMsg";
-@import "cmps/ShoppingCart";
-@import "cmps/_Board-sidebar";
-@import "cmps/_board-details";
-@import "cmps/_board-preview";
-@import "cmps/_board-filter";
-@import "cmps/_board-index";
-@import "cmps/board-header";
+@import "cmps/app-header";
+@import "cmps/app-footer";
+@import "cmps/user-msg";
+@import "cmps/shopping-cart";
 @import "cmps/board-sidebar";
+@import "cmps/board-details";
+@import "cmps/board-preview";
+@import "cmps/board-filter";
+@import "cmps/board-index";
+@import "cmps/board-header";
 
 
 
