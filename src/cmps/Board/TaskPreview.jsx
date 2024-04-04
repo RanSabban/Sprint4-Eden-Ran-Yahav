@@ -14,9 +14,9 @@ export function TaskPreview({ task }) {
 
 
     const { cells } = task
-    function getClmType(type) {
-        const ClmTypesFiltered = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn.type === type))
-        return ClmTypesFiltered
+    function getClmType(cellId) {
+        const ClmToReturn = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn._id === cellId))
+        return ClmToReturn
     }
 
     return (<ul>
@@ -25,7 +25,7 @@ export function TaskPreview({ task }) {
             cells.map((cell) => (
                 <li>
                     <DynamicCmp cmpType={cell.type}
-                        clmTypesFiltered={getClmType(cell.type)}
+                        ClmType={getClmType(cell._id)}
                         cell={cell}
                     />
                 </li>

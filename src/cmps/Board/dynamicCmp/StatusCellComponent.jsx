@@ -1,11 +1,9 @@
-export function StatusCellComponent({ clmTypesFiltered, cell }) {
+export function StatusCellComponent({ ClmType, cell }) {
 
-    console.log(clmTypesFiltered, cell);
+    console.log(ClmType, cell);
 
     function getCellTxt() {
-        const clmType = clmTypesFiltered.find(clmType => clmType._id === cell._id)
-        if (!clmType) return
-        const { data } = clmType
+        const { data } = ClmType[0]
         // console.log(data);
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'puki wrongico'

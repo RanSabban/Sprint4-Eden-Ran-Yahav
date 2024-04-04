@@ -194,7 +194,7 @@ const gBoards = [
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: "EtzD1"
+                                dataId: ["EtzD1"]
                             },
                             {
                                 _id: "c113",
@@ -252,7 +252,7 @@ const gBoards = [
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: "EtzD2"
+                                dataId: ["EtzD2"]
                             },
                             {
                                 _id: "c113",
@@ -303,7 +303,7 @@ const gBoards = [
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: "EtzD3"
+                                dataId: ["EtzD3"]
                             },
                             {
                                 _id: "c113",

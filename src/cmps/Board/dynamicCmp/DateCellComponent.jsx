@@ -1,4 +1,4 @@
-export function DateCellComponent({clmTypesFiltered,cell}) {
+export function DateCellComponent({ClmType,cell}) {
     
     function getCellDate(){
         const date = new Date(cell.date);
