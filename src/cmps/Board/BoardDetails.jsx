@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux'
 import { loadBoard } from "../../store/board.actions"
 import { BoardFilter } from "./BoardFilter"
 import { BoardPreview } from "./BoardPreview"
+import { BoardHeader } from "./BoardHeader"
 
-import { BoardHeader } from "./BoardHeader";
 
 export function BoardDetails() {
 
@@ -25,7 +25,7 @@ export function BoardDetails() {
         <section className="board-details">
             <BoardHeader />
             {/* ADD BOARD HEADER */}
-            <BoardFilter/>
+            {/* <BoardFilter/> */}
             {/* <BoardPreview /> */}
         </section>
     )

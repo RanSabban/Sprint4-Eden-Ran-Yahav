@@ -16,30 +16,51 @@ html {
     vertical-align: baseline;
 }
 
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     display: block
 }
 
 body {
+
+    & h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @include header-font-sizes($font-size-h1, $font-size-h2, $font-size-h3, $font-size-h4, $font-size-h5);
+    }
+
     font-family: figtree;
     background-color: $bgc-page;
     line-height: 1;
     margin: 0;
+
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: poppins;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//     margin: 0;
+//     padding: 0;
+//     border: 0;
+//     font-size: 100%;
+//     vertical-align: baseline;
+// }
+
 
 
 section,
@@ -64,7 +85,7 @@ a:hover {
     text-decoration: underline;
 }
 
-main{
-   display: grid; 
-   grid-auto-flow: column;
+main {
+    display: grid;
+    grid-auto-flow: column;
 }

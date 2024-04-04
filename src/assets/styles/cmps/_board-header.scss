@@ -1,14 +1,20 @@
 .board-header-wrapper {
-    background-color: $bgc-main;
-    // width: 100%;
-    
-    & h2 {
+    // background-color: $bgc-main;
 
-        font-size: em(24px);
-        letter-spacing: -.1px;
+    
+    
+    .board-title .edit-input {
+        font-size: 500px; // Adjusts font size for headings within .board-title
+    
+     
+
+        
+
+
         padding: 0 4px;
         min-width: 0;
-        line-height: 30px;
         border: 1px solid transparent;
+        
+    
     }
 }

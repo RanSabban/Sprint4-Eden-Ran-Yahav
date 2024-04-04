@@ -1,20 +1,27 @@
 // import { InviteIcon } from "../../services/svg.service";
 
-import { Tooltip } from "@mui/material";
-import { Avatar, AvatarGroup, Button, EditableHeading } from "monday-ui-react-core";
+// import { Tooltip } from "@mui/material";
+import { Avatar, AvatarGroup, Button, EditableHeading, Tooltip } from "monday-ui-react-core";
 
 
 export function BoardHeader() {
 
     return (
         <section className="board-header-wrapper">
+            <h1>yoyo</h1>
             <div className="board-header-top flex align-center justify-between">
                 <div className="board-title">
-                    <div className="editible-container">
+                    <div className="editable-container">
                         <Tooltip
                             content='Start from scratch'
                             animationType="expand">
+                                
                             <EditableHeading
+                            
+                                type="h2"
+                                // weight="700"
+                                className="edit-input"
+                                // type="h2"
                                 value='Start from scratch'
                             />
                         </Tooltip>
