@@ -41,7 +41,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                         <div style={{ position: "absolute", top: "165px", right: "231px" }}>
                             <SearchTool />
                         </div>
-                        <input style={{ borderRadius: "4px", outline: "1px solid #d0d4e4", border: "none", height: "2.5em" }} name="title" type="search" placeholder="      Search" autoComplete="off"></input>
+                        <input className="input-sidebar" name="title" type="search" placeholder="      Search" autoComplete="off"></input>
                         <button className="plus-button"><PlusTool /></button>
                     </section>
                 </section>

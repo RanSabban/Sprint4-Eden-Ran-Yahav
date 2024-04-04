@@ -18,9 +18,9 @@ export function BoardHeader() {
                             animationType="expand">
                                 
                             <EditableHeading    
-                                id="b-head"
-                                type="h2"
-                                className="edit-input"
+                                // id="b-head"
+                                type={"h2"}
+                                // className="edit-input"
                                 value='Start from scratch'
                             />
                         </Tooltip>

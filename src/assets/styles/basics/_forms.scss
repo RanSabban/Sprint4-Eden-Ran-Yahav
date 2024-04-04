@@ -22,3 +22,14 @@ form > * {
     background-color: $clr1;
     transform: scale(1.1);
 }
+
+.button{
+    background-color: #0073EA;
+    color: #FFFFFF;
+    font-size: 14px;
+    border-radius: 4px 0 0 4px;
+    border:none;
+    height: 32px;
+    line-height: 24px;
+    font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
+}

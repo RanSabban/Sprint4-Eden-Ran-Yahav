@@ -62,39 +62,38 @@
 // $font-size-h1: em(100px);
 
 // Header font settings
-@mixin header-font-sizes ($h1-size, $h2-size, $h3-size, $h4-size, $h5-size) {
-    // font-family: poppins;
-    font-family: poppins-medium;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    font-size: 100%;
+// @mixin header-font-sizes ($h1-size, $h2-size, $h3-size, $h4-size, $h5-size) {
+//     // font-family: poppins;
+//     margin: 0;
+//     padding: 0;
+//     border: 0;
+//     vertical-align: baseline;
+//     font-size: 100%;
 
-    @if h1 {
-        font-size: $h1-size;
-        line-height: lh(42px);
-    }
+//     @if h1 {
+//         font-size: $h1-size;
+//         line-height: lh(42px);
+//     }
 
-    @else if h2 {
-        font-size: $h2-size;
-        font-family: poppins-medium;
-        line-height: lh(32px);
+//     @if h2 {
+//         font-size: $h2-size;
+//         // font-family: poppins-medium;
+//         line-height: lh(32px);
         
-    }
+//     }
 
-    @if h3 {
-        font-size: $h3-size;
-        line-height: lh(32px);
-    }
+//     @if h3 {
+//         font-size: $h3-size;
+//         line-height: lh(32px);
+//     }
 
-    @if h4 {
-        font-size: $h4-size;
-        line-height: lh(24px);
-    }
+//     @if h4 {
+//         font-size: $h4-size;
+//         line-height: lh(24px);
+//     }
 
-    @if h5 {
-        font-size: $h5-size;
-        line-height: lh(24px);
-    }
-}
+//     @if h5 {
+//         font-size: $h5-size;
+//         line-height: lh(24px);
+//     }
+// }
