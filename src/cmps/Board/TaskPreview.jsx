@@ -4,6 +4,10 @@ import { StatusCellComponent } from './dynamicCmp/StatusCellComponent'
 import { PriorityCellComponent } from './dynamicCmp/PriorityCellComponent';
 import { MembersCellComponent } from './dynamicCmp/MembersCellComponent';
 import { TextCellComponent } from './dynamicCmp/TextCellComponent';
+import { LastUpdatedComponent } from './dynamicCmp/LastUpdatedComponent'
+import { FilesComponent } from './dynamicCmp/FilesComponent';
+import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
+
 
 
 
@@ -19,12 +23,12 @@ export function TaskPreview({ task }) {
         return ClmToReturn
     }
 
-    return (<li key={task._id}>
+    return (<li key={task._id} className='list-item'>
         <span className='dyn-cell title'>{task.title}</span>
         {
-            cells.map((cell) => (
+            cells.map((cell,idx) => (
                 <>
-                    <DynamicCmp cmpType={cell.type}
+                    <DynamicCmp key={idx} cmpType={cell.type}
                         ClmType={getClmType(cell._id)}
                         cell={cell}
                     />
@@ -49,43 +53,18 @@ function DynamicCmp(props) {
             return <TextCellComponent {...props} />
         case 'date':
             return <DateCellComponent {...props} />
+        case 'timelines':
+            return <TimelinesComponent {...props} />
+        case 'files':
+            return <FilesComponent {...props} />
+        case 'updates':
+            return <LastUpdatedComponent {...props} />
+
         default: <span>NoNo</span>
 
     }
 }
 
-
-// const { useState } = React
-
-// import { ColorInput } from "./dynamic-inputs/ColorInput.jsx"
-// import { FontsizeInput } from "./dynamic-inputs/FontSizeInput.jsx"
-
-// export function AppFooter() {
-//     const [cmpType, setCmpType] = useState('color')
-//     const [footerStyle, setFooterStyle] = useState({
-//         backgroundColor: 'pink',
-//         fontSize: '16px'
-//     })
-
-//     function onChangeStyle(newStyle) {
-//         setFooterStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
-//     }
-
-//     console.log('footerStyle', footerStyle)
-
-//     return <footer style={footerStyle} className="app-footer full main-layout" >
-//         <h3>Hello from footer</h3>
-//         <section>
-//             <select onChange={(ev) => { setCmpType(ev.target.value) }}>
-//                 <option value="color">Color</option>
-//                 <option value="fontSize">Font size</option>
-//             </select>
-//         </section>
-//         <section>
-//             <DynamicCmp cmpType={cmpType} name="Puki" onChangeStyle={onChangeStyle} footerStyle={footerStyle} />
-//         </section>
-//     </footer>
-// }
 
 
 
