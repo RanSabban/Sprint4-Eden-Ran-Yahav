@@ -1,6 +1,7 @@
 // import { InviteIcon } from "../../services/svg.service";
 
-import { Avatar, AvatarGroup, Button } from "monday-ui-react-core";
+import { Tooltip } from "@mui/material";
+import { Avatar, AvatarGroup, Button, EditableHeading } from "monday-ui-react-core";
 
 
 export function BoardHeader() {
@@ -8,7 +9,17 @@ export function BoardHeader() {
     return (
         <section className="board-header-wrapper">
             <div className="board-header-top flex align-center justify-between">
-                <h2>Start from scratch</h2>
+                <div className="board-title">
+                    <div className="editible-container">
+                        <Tooltip
+                            content='Start from scratch'
+                            animationType="expand">
+                            <EditableHeading
+                                value='Start from scratch'
+                            />
+                        </Tooltip>
+                    </div>
+                </div>
                 <Button
                     className="btn-avatars"
                     kind="tertiary"
