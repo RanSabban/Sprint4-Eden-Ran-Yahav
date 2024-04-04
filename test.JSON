@@ -65,7 +65,6 @@
                 "dueDate": 16156215211,
                 "byMember": {
                     "_id": "u102",
-                    "username": "John",
                     "fullname": "John Doe",
                     "imgUrl": "http://example.com/john.jpg"
                 }

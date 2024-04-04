@@ -1,20 +1,26 @@
 // import { InviteIcon } from "../../services/svg.service";
 
-import { Tooltip } from "@mui/material";
-import { Avatar, AvatarGroup, Button, EditableHeading } from "monday-ui-react-core";
+// import { Tooltip } from "@mui/material";
+import { Avatar, AvatarGroup, Button, EditableHeading, Tooltip } from "monday-ui-react-core";
+import { BoardFilter } from "./BoardFilter";
 
 
 export function BoardHeader() {
 
     return (
         <section className="board-header-wrapper">
+            <h1>yoyo</h1>
             <div className="board-header-top flex align-center justify-between">
                 <div className="board-title">
-                    <div className="editible-container">
+                    <div className="editable-container">
                         <Tooltip
                             content='Start from scratch'
                             animationType="expand">
-                            <EditableHeading
+                                
+                            <EditableHeading    
+                                id="b-head"
+                                type="h2"
+                                className="edit-input"
                                 value='Start from scratch'
                             />
                         </Tooltip>
@@ -46,6 +52,7 @@ export function BoardHeader() {
                     </AvatarGroup>
                 </Button>
             </div>
+            <BoardFilter/>
         </section>
     )
 }

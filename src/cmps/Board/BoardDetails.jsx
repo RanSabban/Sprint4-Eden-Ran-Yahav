@@ -3,10 +3,9 @@ import { useParams } from "react-router"
 import { useSelector } from 'react-redux'
 
 import { loadBoard } from "../../store/board.actions"
-import { BoardFilter } from "./BoardFilter"
 import { BoardPreview } from "./BoardPreview"
+import { BoardHeader } from "./BoardHeader"
 
-import { BoardHeader } from "./BoardHeader";
 
 export function BoardDetails() {
 
@@ -20,13 +19,11 @@ export function BoardDetails() {
 
     console.log(board);
 
-    // if (!board) return <div>LOADING BRO</div>
+    if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
             <BoardHeader />
-            {/* ADD BOARD HEADER */}
-            <BoardFilter/>
-            {/* <BoardPreview /> */}
+            <BoardPreview board={board} />
         </section>
     )
 }
