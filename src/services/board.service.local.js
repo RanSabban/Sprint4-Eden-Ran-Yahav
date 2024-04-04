@@ -26,6 +26,150 @@ const gBoards = [
         fullname: "Puki Norma",
         imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
       },
+      clmTypes: [
+        {
+          _id: "c111",
+          type: "status",
+          title: "Status",
+          data: [
+            {
+              id: "l102",
+              title: "Working on it",
+              color: "#fdab3d"
+            },
+            {
+              id: "l103",
+              title: "Stuck",
+              color: "#df2f4a"
+            },
+            {
+              id: "l101",
+              title: "Done",
+              color: "#00c875"
+            },
+            {
+              id: "l100",
+              color: "#c4c4c4"
+            }
+          ]
+        },
+        {
+          _id: "c116",
+          type: "priority",
+          title: "Priority",
+          data: [
+            {
+              id: "l201",
+              title: "Critical ⚠",
+              color: "#333333"
+            },
+            {
+              id: "l202",
+              title: "High",
+              color: "#401694"
+            },
+            {
+              id: "l203",
+              title: "Medium",
+              color: "#5559df"
+            },
+            {
+              id: "l204",
+              title: "Low",
+              color: "#579bfc"
+            },
+            {
+              id: "l200",
+              color: "#c4c4c4"
+            }
+          ]
+        },
+        {
+          _id: "c112",
+          type: "members",
+          title: "Assigned To",
+          data: [
+            {
+              _id: "EtzD1",
+              fullname: "Eden Gilady",
+              imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+            },
+            {
+              _id: "EtzD2",
+              fullname: "Yahav Ganon",
+              imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+            },
+            {
+              _id: "EtzD3",
+              fullname: "Ran Sabban",
+              imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+            },
+            {
+              _id: "EtzD4",
+              fullname: "Mor Marzan",
+              imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+            }
+          ]
+        },
+        {
+          _id: "c113",
+          type: "timelines",
+          title: "Timeline",
+          data: [
+            {
+              _id: "sdf123",
+              startDate: 1703703751234,
+              dueDate: 1703703751345
+            }
+          ]
+        },
+        {
+          _id: "c114",
+          type: "files",
+          title: "Files",
+          data: [
+            {
+              _id: "sdf124",
+              file: "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png"
+            }
+          ]
+        },
+        {
+          _id: "c1145",
+          type: "txt",
+          title: "Free text"
+        },
+        {
+          _id: "c115",
+          type: "date",
+          title: "Date"
+        },
+        {
+          _id: "c116",
+          type: "updates",
+          title: "Last Updated",
+          data: [
+            {
+              _id: "1478",
+              fullname: "Yahav Ganon",
+              date: 1703703751234,
+              activity: "Moved"
+            },
+            {
+              _id: "456",
+              fullname: "Eden Gilady",
+              date: 1703703751434,
+              activity: "Added"
+            },
+            {
+              _id: "8965",
+              fullname: "Ran Sabban",
+              date: 1703703751834,
+              activity: "Removed"
+            }
+          ]
+        }
+      ],
       groups: [
         {
           _id: "g101",
@@ -196,152 +340,8 @@ const gBoards = [
         }
       ]
     },
-    {
-      clmTypes: [
-        {
-          _id: "c111",
-          type: "status",
-          title: "Status",
-          data: [
-            {
-              id: "l102",
-              title: "Working on it",
-              color: "#fdab3d"
-            },
-            {
-              id: "l103",
-              title: "Stuck",
-              color: "#df2f4a"
-            },
-            {
-              id: "l101",
-              title: "Done",
-              color: "#00c875"
-            },
-            {
-              id: "l100",
-              color: "#c4c4c4"
-            }
-          ]
-        },
-        {
-          _id: "c116",
-          type: "priority",
-          title: "Priority",
-          data: [
-            {
-              id: "l201",
-              title: "Critical ⚠",
-              color: "#333333"
-            },
-            {
-              id: "l202",
-              title: "High",
-              color: "#401694"
-            },
-            {
-              id: "l203",
-              title: "Medium",
-              color: "#5559df"
-            },
-            {
-              id: "l204",
-              title: "Low",
-              color: "#579bfc"
-            },
-            {
-              id: "l200",
-              color: "#c4c4c4"
-            }
-          ]
-        },
-        {
-          _id: "c112",
-          type: "members",
-          title: "Assigned To",
-          data: [
-            {
-              _id: "EtzD1",
-              fullname: "Eden Gilady",
-              imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
-            },
-            {
-              _id: "EtzD2",
-              fullname: "Yahav Ganon",
-              imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
-            },
-            {
-              _id: "EtzD3",
-              fullname: "Ran Sabban",
-              imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
-            },
-            {
-              _id: "EtzD4",
-              fullname: "Mor Marzan",
-              imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
-            }
-          ]
-        },
-        {
-          _id: "c113",
-          type: "timelines",
-          title: "Timeline",
-          data: [
-            {
-              _id: "sdf123",
-              startDate: 1703703751234,
-              dueDate: 1703703751345
-            }
-          ]
-        },
-        {
-          _id: "c114",
-          type: "files",
-          title: "Files",
-          data: [
-            {
-              _id: "sdf124",
-              file: "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png"
-            }
-          ]
-        },
-        {
-          _id: "c1145",
-          type: "txt",
-          title: "Free text"
-        },
-        {
-          _id: "c115",
-          type: "date",
-          title: "Date"
-        },
-        {
-          _id: "c116",
-          type: "updates",
-          title: "Last Updated",
-          data: [
-            {
-              _id: "1478",
-              fullname: "Yahav Ganon",
-              date: 1703703751234,
-              activity: "Moved"
-            },
-            {
-              _id: "456",
-              fullname: "Eden Gilady",
-              date: 1703703751434,
-              activity: "Added"
-            },
-            {
-              _id: "8965",
-              fullname: "Ran Sabban",
-              date: 1703703751834,
-              activity: "Removed"
-            }
-          ]
-        }
-      ]
-    }
+    
+      
   ]
 
 
