@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { useSelector } from 'react-redux'
 
@@ -12,6 +12,7 @@ export function BoardDetails() {
 
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
+    const [isCollapsed, setIsCollapsed] = useState(false)
 
     useEffect(() => {
         if (boardId) loadBoard(boardId)
@@ -20,7 +21,7 @@ export function BoardDetails() {
     if (!board) return <div>LOADING BRO</div>
     return (
         <section className="board-details">
-            <BoardHeader />
+            <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed}/>
             <BoardPreview board={board} />
         </section>
     )
