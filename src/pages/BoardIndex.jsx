@@ -41,6 +41,7 @@ export function BoardIndex() {
     }
 
     async function onUpdateBoard(board) {
+        console.log('rannn', board)
         try {
             const savedBoard = await updateBoard(board)
             showSuccessMsg(`Board updated`)
@@ -48,7 +49,8 @@ export function BoardIndex() {
             showErrorMsg('Cannot update board')
         }
     }
-    console.log(boards);
+
+
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
         <BoardSideBar

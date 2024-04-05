@@ -64,6 +64,7 @@ export async function addBoard(board) {
 }
 
 export function updateBoard(board) {
+
     return boardService.save(board)
         .then(savedBoard => {
             console.log('Updated Board:', savedBoard)

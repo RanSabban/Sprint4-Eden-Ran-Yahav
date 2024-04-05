@@ -53,12 +53,16 @@
         white-space: nowrap;
     }
 
-    .action-side{
+    .action-side {
         display: flex;
         flex-direction: column;
         padding: 8px;
         white-space: nowrap;
         flex-direction: row;
         gap: 0.6em;
+
+        &:hover {
+            background-color: #eceff8;
+        }
     }
 }

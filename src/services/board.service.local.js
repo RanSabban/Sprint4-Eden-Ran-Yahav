@@ -370,7 +370,8 @@ async function save(board) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
         // Later, owner is set by the backend
-        board.owner = userService.getLoggedinUser()
+        console.log('hey from save from local', board)
+        // board.owner = userService.getLoggedinUser(),
         savedBoard = await storageService.post(STORAGE_KEY, board)
     }
     return savedBoard
