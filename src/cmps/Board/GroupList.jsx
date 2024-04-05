@@ -5,12 +5,7 @@ import { Table, TableHeader } from "monday-ui-react-core";
 
 export function GroupList({ clmTypes, groups }) {
     // const columns = UseSelector(storeState => storeState.boardModule.columns)
-    // console.log(tasks);
-    console.log(clmTypes);
-
-
-
-
+    // console.log(tasks)
 
     return <section className="group-list">
         {groups.map((group) => {
