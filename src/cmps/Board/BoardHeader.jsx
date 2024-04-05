@@ -124,9 +124,9 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 </Tab>
                             </Tooltip>
                         </TabList>
-                        <Tooltip content='Add view' animationType="expand">
+                        <Tooltip content='Add view' animationType="expand" position="right">
                             <Button
-                                className="btn-add"
+                                className="btn-add"                                
                                 kind="tertiary"
                                 onClick={() => console.log('m-list')}
                                 size="sm"
