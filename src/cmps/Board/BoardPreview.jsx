@@ -11,16 +11,7 @@ export function BoardPreview({ board }) {
     return (
         <section className="board-preview">
             {/* <h2>I am Board Preview</h2> */}
-
-            {
-                groups.map((group) => {
-                    // const tasks = group.tasks
-                    return (<section className="group-container" key={group._id}>
-                        <GroupList clmTypes={clmTypes} groups={groups} />
-                    </section>
-                    )
-                })
-            }
+            <GroupList clmTypes={clmTypes} groups={groups} />
         </section>
     )
 }
