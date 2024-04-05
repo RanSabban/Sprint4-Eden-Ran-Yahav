@@ -1,3 +1,5 @@
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
+import { addTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 
@@ -6,12 +8,22 @@ export function BoardPreview({ board }) {
     const groups = board.groups
     const clmTypes = board.clmTypes
 
+    async function onAddTask(groupId) {
+        try {
+            await addTask(groupId)
+            showSuccessMsg('Task Added')
+        }
+        catch (err) {
+            console.log('err adding task', err);
+            showErrorMsg('Cannot add task')
+        }
+    }
 
     if (!board) return <div>LOADING</div>
     return (
         <section className="board-preview">
             {/* <h2>I am Board Preview</h2> */}
-            <GroupList clmTypes={clmTypes} groups={groups} />
+            <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} />
         </section>
     )
 }

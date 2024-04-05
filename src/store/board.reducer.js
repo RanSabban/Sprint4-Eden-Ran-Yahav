@@ -9,6 +9,7 @@ export const CLEAR_BOARDT = 'CLEAR_BOARDT'
 export const UNDO_REMOVE_BOARD = 'UNDO_REMOVE_BOARD'
 export const REMOVE_FROM_BOARDT = 'REMOVE_FROM_BOARDT'
 export const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD'
+export const ADD_TASK = 'ADD_TASK'
 
 const initialState = {
     boards: null,
@@ -43,7 +44,16 @@ export function boardReducer(state = initialState, action) {
             const { groups, clmTypes } = action.board
             newState = { ...state, board: action.board, groups: groups, clmTypes: clmTypes }
             break
-        // case SET_CURRENT_GROUP:
+        
+        case ADD_TASK:
+            // const group = groups.find(group => group._id === action.groupId)
+            return { ...state, 
+                groups: state.groups.map(group => group._id === action.groupId ? {...group, tasks: [...group.tasks,task]} : group )}
+        
+
+
+
+
         // case SET_CURRENT_CLMTYPES:
         default:
     }

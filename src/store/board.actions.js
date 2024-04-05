@@ -2,7 +2,7 @@ import { boardService } from '../services/board.service.local.js'
 import { userService } from '../services/user.service.js'
 import { store } from '../store/store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_BOARD, ADD_TO_BOARDT, CLEAR_BOARDT, REMOVE_BOARD, REMOVE_FROM_BOARDT, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD } from './board.reducer.js'
+import { ADD_BOARD, ADD_TO_BOARDT, CLEAR_BOARDT, REMOVE_BOARD, REMOVE_FROM_BOARDT, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK } from './board.reducer.js'
 import { SET_SCORE } from './user.reducer.js'
 
 // Action Creators:
@@ -80,13 +80,6 @@ export function updateBoard(board) {
         })
 }
 
-export function addToBoard(board) {
-    store.dispatch({
-        type: ADD_TO_BOARDT,
-        board
-    })
-}
-
 export async function loadBoard(boardId) {
     try {
         const board = await boardService.getById(boardId)
@@ -100,6 +93,20 @@ export async function loadBoard(boardId) {
         console.log('Cannot load boards', err)
         throw err
     }
+}
+
+export async function addTask(groupId){
+    try {
+        const task = boardService.getEmptyTask()
+        await boardService.addTask(task,groupId)
+        store.dispatch({
+            type: ADD_TASK,
+            groupId, 
+            task
+        })
+        
+    } 
+    catch (err) {}
 }
 
 // Demo for Optimistic Mutation 

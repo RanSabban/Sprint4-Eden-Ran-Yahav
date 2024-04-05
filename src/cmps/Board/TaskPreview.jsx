@@ -14,7 +14,7 @@ import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
 
 export function TaskPreview({ task }) {
 
-    const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
+const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
 
 
     const { cells } = task

@@ -11,7 +11,9 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
-    addBoardMsg
+    addBoardMsg, 
+    getEmptyTask,
+    addTask
 }
 window.cs = boardService
 
@@ -545,9 +547,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
     return boards
 }
 
-function getById(boardId) {
-    return storageService.get(STORAGE_KEY, boardId)
-}
+
 
 async function remove(boardId) {
     // throw new Error('Nope')
@@ -585,9 +585,75 @@ async function addBoardMsg(boardId, txt) {
 
 function getEmptyBoard() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+       
     }
+}
+
+function getEmptyTask() {
+    return {
+        _id: utilService.makeId(),
+        title: "Task 1",
+        cells: [
+            {
+                _id: "c111",
+                type: "status",
+                dataId: "l103"
+            },
+            {
+                _id: "c116",
+                type: "priority",
+                dataId: "l201"
+            },
+            {
+                _id: "c112",
+                type: "members",
+                dataId: ["EtzD1"]
+            },
+            {
+                _id: "c113",
+                type: "timelines",
+                dataId: "sdf123"
+            },
+            {
+                _id: "c114",
+                type: "files",
+                dataId: "sdf124"
+            },
+            {
+                _id: "c1145",
+                type: "txt",
+                txt: "puki"
+            },
+            {
+                _id: "c115",
+                type: "date",
+                date: 1589983468418
+            },
+            {
+                _id: "c116",
+                type: "updates",
+                dataId: "1478"
+            }
+        ]
+}
+}
+
+function getById(boardId) {
+    return storageService.get(STORAGE_KEY, boardId)
+}
+
+async function addTask(groupId,task) {
+    console.log(groupId,task);
+    const boards = storageService.query(STORAGE_KEY)
+    boards.map(board => {
+        return board.groups.map((group => {
+            if (group._id === groupId) {
+                group.tasks.push(task)
+            }
+            return group
+        }))
+    })
+    _save(STORAGE_KEY, boards)
 }
 
 // PRIVATE FUNCS
