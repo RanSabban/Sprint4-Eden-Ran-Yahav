@@ -10,30 +10,43 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
     const inputRef = useRef(null)
 
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (inputRef.current && !inputRef.current.contains(event.target)) {
-                setIsEdit(false)
-                setIsShown(false)
+    // useEffect(() => {
+    //     const handleClickOutside = (event) => {
+    //         if (inputRef.current && !inputRef.current.contains(event.target)) {
+    //             setIsEdit(false)
+    //             setIsShown(false)
 
-                if (editedTitle.trim() !== "") {
-                    onUpdateBoard(editedTitle)
-                }
-                setEditedTitle("")
-            }
-        }
+    //             if (editedTitle.trim() !== "") {
+    //                 onUpdateBoard(editedTitle)
+    //             }
+    //             setEditedTitle("")
+    //         }
+    //     }
 
-        document.addEventListener("mousedown", handleClickOutside)
+    //     document.addEventListener("mousedown", handleClickOutside)
 
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }, [editedTitle, onUpdateBoard])
+    //     return () => {
+    //         document.removeEventListener("mousedown", handleClickOutside)
+    //     }
+    // }, [editedTitle, onUpdateBoard])
 
     function changeBoardName(board) {
+        console.log(board);
+        if (!isEdit) setEditedTitle(board.title)
         setIsEdit(!isEdit)
-        setEditedTitle(board.title)
     }
+
+    function onSubmitTitle(ev,board) {
+        ev.preventDefault()
+        console.log(board);
+        board.title = editedTitle
+        onUpdateBoard(board)
+        setIsEdit(!isEdit)
+    }
+
+    // function handleChange() {
+
+    // }
 
     function removeBoard(board) {
         onRemoveBoard(board)
@@ -141,7 +154,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                             </div>
                         </div>
                     )}
-                    {isEdit && <input type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />}
+                    {isEdit && <form onSubmit={(ev) => onSubmitTitle(ev,board)}><input type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} /></form>}
                 </NavLink>
             ))}
         </section>

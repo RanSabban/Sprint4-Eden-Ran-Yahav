@@ -68,7 +68,10 @@ export function updateBoard(board) {
     return boardService.save(board)
         .then(savedBoard => {
             console.log('Updated Board:', savedBoard)
-            store.dispatch(getActionUpdateBoard(savedBoard))
+            store.dispatch(
+              {  type: UPDATE_BOARD,
+                board:savedBoard}
+            )
             return savedBoard
         })
         .catch(err => {

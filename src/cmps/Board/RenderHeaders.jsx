@@ -3,7 +3,7 @@ import { TableHeader, TableHeaderCell } from 'monday-ui-react-core'
 
 export function RenderHeaders({clmTypes}) {
 
-    console.log(clmTypes.title);
+    // console.log(clmTypes.title);
 
     // const columns = useSelector(storeState => storeState.boardModule.columns)
     

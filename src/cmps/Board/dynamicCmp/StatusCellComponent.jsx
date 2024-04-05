@@ -1,6 +1,6 @@
 export function StatusCellComponent({ ClmType, cell }) {
 
-    console.log(ClmType, cell);
+    // console.log(ClmType, cell);
     const { data } = ClmType[0]
 
     function getCellTxt() {
@@ -8,7 +8,7 @@ export function StatusCellComponent({ ClmType, cell }) {
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'puki wrongico'
         const title = item.title || 'puki wrongico'
-        console.log(title);
+        // console.log(title);
         return title
 
 
@@ -18,7 +18,7 @@ export function StatusCellComponent({ ClmType, cell }) {
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'red'
         const color = item.color
-        console.log(color);
+        // console.log(color);
         return color
         
     }
