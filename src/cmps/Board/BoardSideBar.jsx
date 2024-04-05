@@ -9,7 +9,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
     const [isOpen, setIsOpen] = useState(true)
     const [isOpen2, setIsOpen2] = useState(true)
     const dynClass = isOpen ? 'block' : 'none'
-    const isbtnshow = isOpen2 ? 'hide' : 'show' 
+    const isbtnshow = isOpen2 ? 'hide' : 'show'
     const dynPad = isOpen ? '270px' : '38px'
 
     const handleMouseEnter = () => {
@@ -23,12 +23,12 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
     return (<section style={{ width: dynPad, }} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 
-        <button style={{ transform: !isOpen ? 'rotate(180deg)' : ''}} className={`close-sidebar-btn ${isOpen && isOpen2 ? 'show' : 'hide'} ${isbtnshow}`} onClick={() => setIsOpen2(!isOpen2)}><OpenSidebar /></button>
+        <button style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} className={`close-sidebar-btn ${isOpen && isOpen2 ? 'show' : 'hide'} ${isbtnshow}`} onClick={() => setIsOpen2(!isOpen2)}><OpenSidebar /></button>
         <div style={{ marginLeft: "1em", display: dynClass }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
                 {/* <div className="board-sidebar-upper"> */}
-                    <NavLink className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
-                    <NavLink className="actions-sidebar-upper"><MyWork /><div className="home-sidebar">My work</div></NavLink>
+                <NavLink className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
+                <NavLink className="actions-sidebar-upper"><MyWork /><div className="home-sidebar">My work</div></NavLink>
                 {/* </div> */}
                 <hr style={{ width: "100%" }} />
                 <section className="sidebar-workspace">
@@ -38,8 +38,8 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                     <button className="three-points"><ThreePoints /></button>
                 </section>
                 <section className="sidebar-workspace">
-                    <section style={{marginBottom: "0"}} className="sidebar-workspace">
-                        <div style={{ position: "absolute", top: "165px", right: "231px"}}>
+                    <section style={{ marginBottom: "0" }} className="sidebar-workspace">
+                        <div style={{ position: "absolute", top: "165px", right: "231px" }}>
                             <SearchTool />
                         </div>
                         <input className="input-sidebar" name="title" type="search" placeholder="      Search" autoComplete="off"></input>
