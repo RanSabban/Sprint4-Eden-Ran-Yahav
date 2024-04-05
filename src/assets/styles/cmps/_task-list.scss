@@ -1,1 +1,27 @@
+.list-item {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, 100px);
+    border: 1px solid $clr-border;
+    border-top: none;
+    height: 2.25em;
+    align-items: center;
+    text-align: center;
 
+    .dyn-cell {
+        align-self: center;
+        height: 2.25em;
+        display: grid;
+        align-items: center;
+        // border-left: 1px solid $clr-border;
+        border-right: 1px solid $clr-border;
+        width: 100px;
+    }
+    .members {
+        display: grid;
+        justify-items: center;
+    }
+    .status, .priority {
+        color: $clr6;
+    }
+}

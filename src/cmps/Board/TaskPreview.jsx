@@ -23,7 +23,7 @@ export function TaskPreview({ task }) {
         return ClmToReturn
     }
 
-    return (<li key={task._id} className='list-item'>
+    return (<>
         <span className='dyn-cell title'>{task.title}</span>
         {
             cells.map((cell,idx) => (
@@ -36,7 +36,7 @@ export function TaskPreview({ task }) {
 
             ))
         }
-    </li>
+    </>
 
     )
 }
