@@ -65,7 +65,7 @@ export function CloseSidebar() {
 
 export function OpenSidebar() {
   return (
-    <svg style={{transform: "rotate(180deg)"}} width="20" height="20" viewBox="0 0 20 20" fillRule="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.5303 9.46967L12 10L12.5303 10.5303C12.8232 10.2374 12.8232 9.76256 12.5303 9.46967ZM10.9393 10L7.46967 13.4697C7.17678 13.7626 7.17678 14.2374 7.46967 14.5303C7.76256 14.8232 8.23744 14.8232 8.53033 14.5303L12.5303 10.5303L12 10L12.5303 9.46967L8.53033 5.46967C8.23744 5.17678 7.76256 5.17678 7.46967 5.46967C7.17678 5.76256 7.17678 6.23744 7.46967 6.53033L10.9393 10Z"></path></svg>
+    <svg style={{ transform: "rotate(180deg)" }} width="20" height="20" viewBox="0 0 20 20" fillRule="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.5303 9.46967L12 10L12.5303 10.5303C12.8232 10.2374 12.8232 9.76256 12.5303 9.46967ZM10.9393 10L7.46967 13.4697C7.17678 13.7626 7.17678 14.2374 7.46967 14.5303C7.76256 14.8232 8.23744 14.8232 8.53033 14.5303L12.5303 10.5303L12 10L12.5303 9.46967L8.53033 5.46967C8.23744 5.17678 7.76256 5.17678 7.46967 5.46967C7.17678 5.76256 7.17678 6.23744 7.46967 6.53033L10.9393 10Z"></path></svg>
   )
 }
 
@@ -81,11 +81,6 @@ export function PlusTool() {
   )
 }
 
-
-
-
-
-
 export function InviteIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -99,28 +94,10 @@ export function InviteIcon() {
   )
 }
 
-// export function AvatarIcon({user}) {
-//     return (
-//       <Stack direction="row" spacing={1}>
-//         <Avatar
-//           alt={user}
-//           src="/static/images/avatar/1.jpg"
-//           sx={{ width: 24, height: 24 }}
-//         />
-//       </Stack>
-//     );
-  
-// }
-
-
-// export default function TotalAvatars() {
-//   return (
-//     <AvatarGroup total={3} sx={{
-//       '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 15 },
-//     }}>
-//       {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 24, height: 24 }} /> */}
-//       <Avatar alt="Travis Howard" src="https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195" />
-//       <Avatar alt="Agnes Walker" src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081" />
-//     </AvatarGroup  >
-//   );
-// }
+export function HexSvg() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fillRule="#ffffff" xmlns="http://www.w3.org/2000/svg">
+    <path d="M29.004 5.5359L43.0081 13.6211C44.2457 14.3357 45.0081 15.6562 45.0081 17.0852V33.2557C45.0081 34.6848 44.2457 36.0053 43.0081 36.7198L29.004 44.805C27.7664 45.5196 26.2416 45.5196 25.004 44.805L11 36.7198C9.7624 36.0053 9 34.6848 9 33.2557V17.0852C9 15.6562 9.7624 14.3357 11 13.6211L25.004 5.5359C26.2416 4.82137 27.7664 4.82137 29.004 5.5359Z" stroke="#d0d4e4" strokeWidth="2"></path>
+    </svg>
+  )
+}

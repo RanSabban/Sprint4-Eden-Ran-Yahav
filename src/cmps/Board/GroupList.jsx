@@ -18,6 +18,7 @@ export function GroupList({ clmTypes, groups }) {
                 <span>Group Title {group.title}</span>
                 {/* <Table> */}
                 <section className="header-items">
+                <div className='dyn-cell header-item'>Item</div>
                     <RenderHeaders clmTypes={clmTypes} />
                 </section>
                 <TaskList tasks={group.tasks} />

@@ -6,9 +6,9 @@ export function TaskList({ tasks }) {
     return (<>
         {
             tasks.map(task => (
-                <ul key={task._id}>
+                <div className='list-item' key={task._id}>
                     <TaskPreview task={task} />
-                </ul>
+                </div>
             ))
         }
     </>

@@ -1,4 +1,21 @@
 .group-list {
     display: grid;
     row-gap: 2em;
+
+    .header-items {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(auto-fill, 100px);
+        border: 1px solid $clr-border;
+        height: 2.25em;
+        align-items: center;
+        text-align: center;
+    }
+    .dyn-cell .header-items{
+        border-right: 1px solid $clr-border;
+        height: 2.25em;
+        display: grid;
+        align-self: center;
+    }
+    
 }
