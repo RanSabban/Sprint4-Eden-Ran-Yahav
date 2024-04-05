@@ -1,21 +1,23 @@
 .board-header-wrapper {
-
+    grid-row: 1;
     padding: 30px 30px 0px 30px;
+    padding-right: 18px;
     padding-top: 16px;
-    padding-left: 38px;
     position: sticky;
     top: 0;
+    background-color: $bgc-main;
 
-    // z-index: 10;
+    // z-index: 10020;
     .board-header {
-
+        grid-row: 1;
         display: grid;
         grid-template-rows: auto auto;
         row-gap: em(8px);
-        
+
         .counterContainer_92bb3fc345.light_03931cbba0 {
             background-color: $bgc-main;
             border-color: $clr-border;
+
             .kindFill_ba4c56c649.colorLight_03931cbba0 {
                 background-color: $bgc-main;
             }
@@ -24,7 +26,7 @@
         .board-header-top {
 
             width: auto;
-            padding: 0 4px;
+            // padding: 0 4px;
             min-width: 0;
             border: 1px solid transparent;
 
@@ -50,6 +52,12 @@
             .tabsWrapper_63f5a9c091 {
                 padding-bottom: 0;
 
+                .tabWrapper_327c220e12 .tabInner_3d041b1150 {
+                    font-size: 14px;
+                    padding-left: 12px;
+                    padding-right: 12px;
+                    // margin-bottom: 2px;
+                }
             }
         }
     }

@@ -9,13 +9,14 @@ import { useParams } from 'react-router'
 import { BoardHome } from '../cmps/Board/BoardHome.jsx'
 import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
 import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
+import { AppHeader } from '../cmps/AppHeader.jsx'
 
 
 export function BoardIndex() {
 
     const boards = useSelector(storeState => storeState.boardModule.boards)
 
-    const {boardId} = useParams()
+    const { boardId } = useParams()
 
     useEffect(() => {
         loadBoards()
@@ -53,17 +54,25 @@ export function BoardIndex() {
 
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
-        <BoardSideBar
-                boards={boards}
-                onRemoveBoard={onRemoveBoard}
-                onUpdateBoard={onUpdateBoard}
-                onAddBoard={onAddBoard} />
-            {/* 
-            // ADD: 
-            If there's not a selected board return board home */} 
-            {
-                boardId ? <BoardDetails /> : <BoardHome boards={boards}/>
-            }
+
+        <div class="app-wrapper">
+            <aside class="sidebar">
+                <BoardSideBar
+                    boards={boards}
+                    onRemoveBoard={onRemoveBoard}
+                    onUpdateBoard={onUpdateBoard}
+                    onAddBoard={onAddBoard} />
+
+            </aside>
+ 
+            <main class="board-details">
+                {
+                    boardId ? <BoardDetails /> : <BoardHome boards={boards} />
+                }
+            </main>
+        </div>
+
+
     </section>
     )
 }

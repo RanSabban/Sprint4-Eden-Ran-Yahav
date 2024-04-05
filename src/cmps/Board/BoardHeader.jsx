@@ -22,7 +22,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 animationType="expand">
                                 <EditableHeading
                                     type={EditableHeading.types.h1}
-                                    value='Start from scratch'
+                                    value='Demo'
                                     isEditMode={"true"}
                                 />
                                 <Tooltip
@@ -97,7 +97,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 size="small"
                             >
                                 <Invite
-                                    style={{ marginRight: "4px" }}
+                                    style={{ marginRight: "8px" }}
                                 />Invite
                             </Button>
                         </Tooltip>
@@ -116,17 +116,17 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                             size="sm">
                             <Tooltip content='Main Table' animationType="expand">
                                 <Tab
-                                    icon={Home}
                                     className="main-table-tab"
                                     active={true}
                                     iconSide="left">
+                                    <Home style={{height: "16px", marginRight: "4px" }}   />
                                     Main Table
                                 </Tab>
                             </Tooltip>
                         </TabList>
-                        <Tooltip content='Add view' animationType="expand">
+                        <Tooltip content='Add view' animationType="expand" position="right">
                             <Button
-                                className="btn-add"
+                                className="btn-add"                                
                                 kind="tertiary"
                                 onClick={() => console.log('m-list')}
                                 size="sm"
@@ -164,7 +164,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                             kind="secondary"
                             onClick={() => setIsCollapsed(prevIsCollapsed => !prevIsCollapsed)}
                         >
-                           {!dynCollapseBtn ? <DropdownChevronUp style={{ height: "16px" }} /> : <DropdownChevronDown style={{ height: "16px" }} />}
+                            {!dynCollapseBtn ? <DropdownChevronUp style={{ height: "16px" }} /> : <DropdownChevronDown style={{ height: "16px" }} />}
                         </Button>
                     </div>
 

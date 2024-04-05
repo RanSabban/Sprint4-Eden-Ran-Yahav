@@ -1,9 +1,12 @@
 import { Link, NavLink } from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import routes from '../routes'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
+import { Help, Inbox, Invite, Notifications, Search } from 'monday-ui-react-core/icons'
+import { Avatar, Button } from 'monday-ui-react-core'
+import { Tooltip } from '@mui/material'
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -12,7 +15,7 @@ export function AppHeader() {
         try {
             const user = await login(credentials)
             showSuccessMsg(`Welcome: ${user.fullname}`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot login')
         }
     }
@@ -20,7 +23,7 @@ export function AppHeader() {
         try {
             const user = await signup(credentials)
             showSuccessMsg(`Welcome new user: ${user.fullname}`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot signup')
         }
     }
@@ -28,30 +31,95 @@ export function AppHeader() {
         try {
             await logout()
             showSuccessMsg(`Bye now`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot logout')
         }
     }
 
     return (
         <header className="app-header">
-            <nav>
-                {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)} */}
-                
-                {/* {user &&
-                    <span className="user-info">
-                        <Link to={`user/${user._id}`}>
-                            {user.imgUrl && <img src={user.imgUrl} />}
-                            {user.fullname}
-                        </Link>
-                        <button onClick={onLogout}>Logout</button>
-                    </span>
-                } */}
-                {/* {!user &&
-                    <section className="user-info">
-                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                    </section>
-                } */}
+            <div className='logo'>
+                <img alt="monday.com logo" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/monday-logo-x2.png"></img>
+            </div>
+
+            <nav className='nav-container'>
+
+
+
+                <Tooltip content='Notifications' animationType="expand">
+                    <Button
+                        className="btn"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="sm"
+                    >
+                        <Notifications />
+                    </Button>
+                </Tooltip>
+
+                <Tooltip content='Inbox' animationType="expand">
+                    <Button
+                        className="btn"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="sm"
+                    >
+                        <Inbox />
+                    </Button>
+                </Tooltip>
+
+                <Tooltip content='Invite' animationType="expand">
+                    <Button
+                        className="btn"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="sm"
+                    >
+                        <Invite />
+                    </Button>
+                </Tooltip>
+
+                <Tooltip content='Search' animationType="expand">
+                    <Button
+                        className="btn"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="sm"
+                    >
+                        <Search />
+                    </Button>
+                </Tooltip>
+
+                <Tooltip content='Help' animationType="expand">
+                    <Button
+                        className="btn"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="sm"
+                    >
+                        <Help />
+                    </Button>
+                </Tooltip>
+
+                <Tooltip content='Help' animationType="expand">
+                    <Button
+                        className="btn"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="sm"
+                    >
+                        <Avatar size={Avatar.sizes.MEDIUM}
+                            src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                            border="none"
+                            type={Avatar.types.IMG}
+                            ariaLabel="Eden Gilady" />
+                    </Button>
+                </Tooltip>
+
+
+
+
+
             </nav>
         </header>
     )

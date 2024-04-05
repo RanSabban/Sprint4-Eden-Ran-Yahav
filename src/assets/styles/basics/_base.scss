@@ -11,6 +11,10 @@ html {
     color: $clr-main;
 
 }
+body, html {
+    overflow: hidden;
+    height: 100%; /* Ensures that the body takes up the full viewport height */
+}
 
 article,
 aside,
