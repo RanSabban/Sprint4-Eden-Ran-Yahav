@@ -10,7 +10,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
     const [isOpen2, setIsOpen2] = useState(true)
     const dynClass = isOpen ? 'block' : 'none'
     const isbtnshow = isOpen2 ? 'hide' : 'show'
-    const dynPad = isOpen ? '270px' : '38px'
+    const dynPad = isOpen ? '255px' : '30px'
 
     const handleMouseEnter = () => {
         setIsOpen(true)

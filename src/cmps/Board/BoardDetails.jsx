@@ -20,9 +20,14 @@ export function BoardDetails() {
 
     if (!board) return <div>LOADING BRO</div>
     return (
-        <section className="board-details">
+        <>
+        <div className="main-wrapper">
             <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed}/>
+
+        <section className="board-details">
             <BoardPreview board={board} />
         </section>
+        </div>
+        </>
     )
 }
