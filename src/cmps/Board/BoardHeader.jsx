@@ -2,7 +2,7 @@
 
 // import { Tooltip } from "@mui/material";
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, Tab, TabList, Tooltip, } from "monday-ui-react-core";
-import { Emoji, Favorite, Invite, Warning } from "monday-ui-react-core/icons";
+import { Emoji, Home, Favorite, Invite, Warning, Add } from "monday-ui-react-core/icons";
 import { BoardFilter } from "./BoardFilter";
 
 export function BoardHeader() {
@@ -17,7 +17,7 @@ export function BoardHeader() {
                             content='Click to edit'
                             animationType="expand">
                             <EditableHeading
-                                type="h2"
+                                type={EditableHeading.types.h1}
                                 value='Start from scratch'
                                 isEditMode={"true"}
                             />
@@ -105,22 +105,36 @@ export function BoardHeader() {
                     </Tooltip>
                 </div>
             </div>
-                <div className="board-header-bottom flex align-center justify-between">
+            <div className="board-header-bottom flex align-center justify-between">
                 <TabList
-                    
+
                     size="sm">
-                    <Tab
-                        className="main-table-tab"
-                       
-                        iconSide="left">
-                        Main Table
-                    </Tab>
-                  
-                    <Tab >
-                        Dashboard
-                    </Tab>
+                    <Tooltip content='Main Table' animationType="expand">
+                        <Tab
+                            icon={Home}
+                            className="main-table-tab"
+                            iconSide="left">
+                            Main Table
+                        </Tab>
+                    </Tooltip>
+
+                    <Tooltip content='Add view' animationType="expand">
+                        <Tab
+                            // icon={Add}
+                        >
+                            <Button
+                                className="btn-add"
+                                kind="secondary"
+                                onClick={() => console.log('m-list')}
+                                size="small"
+                            >
+                            </Button>
+                        </Tab>
+                    </Tooltip>
+
+
                 </TabList>
-                </div>
+            </div>
             <BoardFilter />
         </section>
     )
