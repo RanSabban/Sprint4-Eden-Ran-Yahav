@@ -5,19 +5,25 @@
     .header-items {
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: 200px repeat(auto-fill, 100px);
+        grid-template-columns: 350px 150px 150px repeat(auto-fill, 100px);
         border: 1px solid $clr-border;
         height: 2.25em;
         align-items: center;
         text-align: center;
         border-right: 1px solid $clr-border;
     }
-    .header-items .dyn-cell{
+
+    .header-items .dyn-cell {
         border-right: 1px solid $clr-border;
         height: 2.25em;
         display: grid;
         align-self: center;
         align-items: center;
     }
-    
+
+    .group-title {
+        font-family: poppins;
+        font-size: 1.125em;
+        margin-right: 7px;
+    }
 }

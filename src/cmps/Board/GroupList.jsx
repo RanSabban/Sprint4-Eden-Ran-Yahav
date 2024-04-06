@@ -25,8 +25,8 @@ export function GroupList({ clmTypes, groups, onAddTask }) {
     return <section className="group-list">
         {groups.map((group) => {
             return (<section className="group-item" key={group._id}>
-                <span>Group Title {group.title}</span>
-                <Button onClick={() => onRemoveGroup(group._id)}>Remove group</Button>
+                <span className="group-title">{group.title}</span>
+                <Button onClick={() => onRemoveGroup(group._id)}>X</Button>
                 {/* <Table> */}
                 <section className="header-items">
                     <div className='dyn-cell header-item'>Item</div>

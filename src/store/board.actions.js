@@ -143,6 +143,23 @@ export async function addTask(groupId) {
     }
 }
 
+export async function updateCell(cell,taskId,groupId) {
+    try {
+        console.log(cell,taskId,groupId);
+        boardService.updateCell(cell,taskId,groupId)
+
+        // store.dispatch({
+        //     type: ADD_TASK,
+        //     groupId,
+        //     task
+        // })
+
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {

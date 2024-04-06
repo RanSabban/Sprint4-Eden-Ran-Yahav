@@ -1,6 +1,6 @@
-export function PriorityCellComponent({ClmType, cell}) {
+export function PriorityCellComponent({clmType, cell}) {
     // console.log(ClmType, cell);
-    const { data } = ClmType[0]
+    const { data } = clmType[0]
 
     function getCellTxt() {
         // console.log(data);
@@ -22,7 +22,8 @@ export function PriorityCellComponent({ClmType, cell}) {
     }
 
     return (
-        <span className="dyn-cell priority" style={{backgroundColor: getCellColor(), height: '2.25em'}}>{getCellTxt()}</span>
-    )
+        <div style={{backgroundColor: getCellColor(),height: '2.25em', width: '100%'}} className="dyn-cell priority">
+        <span className="priority-txt">{getCellTxt()}</span>
+    </div>    )
 }
 

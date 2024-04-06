@@ -1,7 +1,7 @@
 .list-item {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 200px repeat(auto-fill, 100px);
+    grid-template-columns: 350px 150px 150px repeat(auto-fill, 100px);
     border: 1px solid $clr-border;
     border-top: none;
     height: 2.25em;

@@ -1,4 +1,4 @@
-export function DateCellComponent({ClmType,cell}) {
+export function DateCellComponent({clmType,cell}) {
     
     function getCellDate(){
         const date = new Date(cell.date);

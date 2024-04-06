@@ -1,13 +1,13 @@
 import { AvatarGroupAng } from "../reusableCmps/AvatarGroupAang";
 
-export function MembersCellComponent({ClmType,cell}) {
+export function MembersCellComponent({clmType,cell}) {
 
-    // console.log(ClmType,cell);
+    // console.log(clmType,cell);
     const assignedUsers = cell.dataId
     // console.log(assignedUsers);
 
     function getUsers(){
-        const clmTypeObj = ClmType[0]
+        const clmTypeObj = clmType[0]
         const users = clmTypeObj.data.filter(user => {
             const id = user._id
             // console.log(user);
