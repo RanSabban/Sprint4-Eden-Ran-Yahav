@@ -99,7 +99,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
         <section className="board-list">
             {boards.map((board) => (
 
-                <Link onClick={() => setCurrentBoard(board)}
+                <NavLink onClick={() => setCurrentBoard(board)}
                     className="board-side-preview"
                     style={{ textDecoration: "none", display: "flex", gap: "1em", color: "#323338" }}
                     to={`/board/${board._id}`}
@@ -161,7 +161,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                         </div>
                     )}
                     {isEdit && <form onSubmit={(ev) => onSubmitTitle(ev, board)}><input type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} /></form>}
-                </Link>
+                </NavLink>
             ))
             }
         </section >
