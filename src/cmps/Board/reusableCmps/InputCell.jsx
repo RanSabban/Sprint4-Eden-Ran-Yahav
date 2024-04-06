@@ -1,5 +1,4 @@
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText } from "monday-ui-react-core";
-import { useState } from "react"
 
 export function InputCell() {
 
@@ -7,7 +6,6 @@ export function InputCell() {
         console.log(ev)
 
     }
-
 
     return (
         <EditableText
