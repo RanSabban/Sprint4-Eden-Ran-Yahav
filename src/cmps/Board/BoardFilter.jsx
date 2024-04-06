@@ -2,7 +2,7 @@ import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu
 import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
 import { useState } from "react";
 
-export function BoardFilter() {
+export function BoardFilter({onAddGroup,boardId}) {
 
     const [isSearch, setIsSearch] = useState(false)
 
@@ -25,7 +25,7 @@ export function BoardFilter() {
                 secondaryDialogContent={
                     <SplitButtonMenu _id="split-menu">
                         <MenuItem
-                            onClick={() => console.log('clicked')}
+                            onClick={() => onAddGroup(boardId)}
                             title="New group of tasks"
                         />
                     </SplitButtonMenu>}>New Item

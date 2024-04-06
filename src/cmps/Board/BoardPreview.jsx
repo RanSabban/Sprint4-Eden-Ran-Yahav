@@ -26,7 +26,7 @@ export function BoardPreview({ board }) {
     return (
         <section className="board-preview">
             {/* <h2>I am Board Preview</h2> */}
-            <Button  variend="contained" sx={{maxWidth: "75px"}} onClick={() => onAddGroup(board._id)}>Add group</Button>
+            {/* <Button  variend="contained" sx={{maxWidth: "75px"}} onClick={() => onAddGroup(board._id)}>Add group</Button> */}
             <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} />
             {/* <Button variend="contained" onClick={() => onAddGroup()} /> */}
         </section>
