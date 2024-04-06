@@ -58,8 +58,20 @@ export function BoardIndex() {
             showSuccessMsg('Group added')
         } catch (err) {
             console.log('Err add group', err);
+            showErrorMsg('Nono')
         }
     }
+
+    async function onRemoveGroup(groupId) {
+        try {
+            await removeGroup(groupId)
+            showSuccessMsg('Group removed')
+        } catch (err) {
+            console.log('cannot remove group', err); 
+            showErrorMsg('Error remove group')
+        }
+    }
+
 
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
@@ -76,7 +88,7 @@ export function BoardIndex() {
  
             <main className="board-details">
                 {
-                    boardId ? <BoardDetails  onAddGroup={onAddGroup} /> : <BoardHome boards={boards} />
+                    boardId ? <BoardDetails  onAddGroup={onAddGroup} onRemoveGroup={onRemoveGroup} /> : <BoardHome boards={boards} />
                 }
             </main>
         </div>

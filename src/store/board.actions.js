@@ -2,7 +2,7 @@ import { boardService } from '../services/board.service.local.js'
 import { userService } from '../services/user.service.js'
 import { store } from '../store/store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP } from './board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP,REMOVE_GROUP } from './board.reducer.js'
 import { SET_SCORE } from './user.reducer.js'
 
 // Action Creators:
@@ -110,6 +110,19 @@ export async function addGroup(boardId) {
         return group
     } catch (err) {
 
+    }
+}
+
+export async function removeGroup(groupId) {
+    try {
+        boardService.removeGroup(groupId)
+        store.dispatch({
+            type: REMOVE_GROUP,
+            groupId
+        })
+        
+    } catch (err) {
+        console.log('cannot remove group', err);
     }
 }
 

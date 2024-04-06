@@ -24,6 +24,6 @@ export function StatusCellComponent({ ClmType, cell }) {
     }
 
     return (
-        <span className="dyn-cell status" style={{backgroundColor: getCellColor()}}>{getCellTxt()}</span>
+        <span className="dyn-cell status" style={{backgroundColor: getCellColor(),height: '2.25em'}}>{getCellTxt()}</span>
     )
 }

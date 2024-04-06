@@ -14,7 +14,8 @@ export const boardService = {
     addBoardMsg, 
     getEmptyTask,
     addTask,
-    addGroup
+    addGroup,
+    removeGroup
 }
 window.cs = boardService
 
@@ -654,6 +655,16 @@ async function addGroup(boardId) {
     return group
 }
 
+async function removeGroup(groupId) {
+    console.log(groupId);
+    const boards = await storageService.query(STORAGE_KEY) 
+    const boardsToReturn = boards.map((board) => ({
+        ...board, groups: board.groups.filter(group => group._id !== groupId)
+    }))
+    console.log(boardsToReturn);
+    _save(STORAGE_KEY,boardsToReturn)
+}
+
 async function addTask(groupId,task) {
     console.log(groupId,task);
     const boards = await storageService.query(STORAGE_KEY)
@@ -672,61 +683,61 @@ function getEmptyGroup() {
 
     return {
         _id: utilService.makeId(),
-        title: "Group 1",
+        title: "Puki",
         archivedAt: null,
         tasks: [
-            {
-                _id: "c101",
-                title: "Task 1",
-                cells: [
-                    {
-                        _id: "c111",
-                        type: "status",
-                        dataId: "l103"
-                    },
-                    {
-                        _id: "c116",
-                        type: "priority",
-                        dataId: "l201"
-                    },
-                    {
-                        _id: "c112",
-                        type: "members",
-                        dataId: ["EtzD1"]
-                    },
-                    {
-                        _id: "c113",
-                        type: "timelines",
-                        dataId: "sdf123"
-                    },
-                    {
-                        _id: "c114",
-                        type: "files",
-                        dataId: "sdf124"
-                    },
-                    {
-                        _id: "c1145",
-                        type: "txt",
-                        txt: "puki"
-                    },
-                    {
-                        _id: "c115",
-                        type: "date",
-                        date: 1589983468418
-                    },
-                    {
-                        _id: "c116",
-                        type: "updates",
-                        dataId: "1478"
-                    }
+            // {
+            //     _id: "c101",
+            //     title: "Task 1",
+            //     cells: [
+            //         {
+            //             _id: "c111",
+            //             type: "status",
+            //             dataId: "l103"
+            //         },
+            //         {
+            //             _id: "c116",
+            //             type: "priority",
+            //             dataId: "l201"
+            //         },
+            //         {
+            //             _id: "c112",
+            //             type: "members",
+            //             dataId: ["EtzD1"]
+            //         },
+            //         {
+            //             _id: "c113",
+            //             type: "timelines",
+            //             dataId: "sdf123"
+            //         },
+            //         {
+            //             _id: "c114",
+            //             type: "files",
+            //             dataId: "sdf124"
+            //         },
+            //         {
+            //             _id: "c1145",
+            //             type: "txt",
+            //             txt: "puki"
+            //         },
+            //         {
+            //             _id: "c115",
+            //             type: "date",
+            //             date: 1589983468418
+            //         },
+            //         {
+            //             _id: "c116",
+            //             type: "updates",
+            //             dataId: "1478"
+            //         }
                 ],
                 createdBy: {
                     _id: "u102",
                     fullname: "Ran Sabban",
                     imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
                 }
-            }
-        ]
+            
+        
     }
 }
 
