@@ -5,7 +5,7 @@ import { addTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 
-export function BoardPreview({ board , onAddGroup}) {
+export function BoardPreview({ board }) {
 
     const groups = board.groups
     const clmTypes = board.clmTypes
@@ -21,6 +21,7 @@ export function BoardPreview({ board , onAddGroup}) {
         }
     }
 
+  
     if (!board) return <div>LOADING</div>
     return (
         <section className="board-preview">

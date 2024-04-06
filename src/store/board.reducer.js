@@ -11,6 +11,7 @@ export const REMOVE_FROM_BOARDT = 'REMOVE_FROM_BOARDT'
 export const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD'
 export const ADD_GROUP = 'ADD_GROUP'
 export const ADD_TASK = 'ADD_TASK'
+export const REMOVE_GROUP = 'REMOVE_GROUP'
 
 const initialState = {
     boards: null,
@@ -66,6 +67,14 @@ export function boardReducer(state = initialState, action) {
                 board: {
                     ...state.board, 
                     groups: [...state.board.groups,action.group]
+                }
+            }
+        case REMOVE_GROUP: 
+            return {
+                ...state, 
+                board: {
+                    ...state.board, 
+                    groups: state.board.groups.filter(group => group._id !== action.groupId)
                 }
             }
 

@@ -22,7 +22,7 @@ export function PriorityCellComponent({ClmType, cell}) {
     }
 
     return (
-        <span className="dyn-cell priority" style={{backgroundColor: getCellColor()}}>{getCellTxt()}</span>
+        <span className="dyn-cell priority" style={{backgroundColor: getCellColor(), height: '2.25em'}}>{getCellTxt()}</span>
     )
 }
 

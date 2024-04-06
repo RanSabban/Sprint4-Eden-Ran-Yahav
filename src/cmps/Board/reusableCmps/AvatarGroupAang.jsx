@@ -12,7 +12,7 @@ export function AvatarGroupAng({ users }) {
                         ariaLabel={user.fullname}
                         src={user.imgUrl}
                         type="img"
-                        key={users._id}
+                        key={user._id}
                     />
                 ))
             }
