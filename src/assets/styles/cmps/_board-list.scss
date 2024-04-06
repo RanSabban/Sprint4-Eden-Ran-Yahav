@@ -9,7 +9,6 @@
     .board-side-preview {
         display: flex;
         gap: 1em;
-        margin-bottom: 1em;
         padding: 0.3em;
     }
 
@@ -26,13 +25,15 @@
         width: 14.2em;
     }
 
-    .board-list-prev{
+    .board-list-prev {
         display: flex;
         place-items: center;
     }
 
     .preview-three-points {
         opacity: 0;
+        position: absolute;
+        left: 15.5em;
         background: none;
     }
 
@@ -48,8 +49,6 @@
 
     .actions-border-side {
         position: absolute;
-        right: 1em;
-        top: 230px;
         background-color: #fff;
         box-shadow: 0 4px 17px 6px #0000001a;
         border-radius: 8px;
