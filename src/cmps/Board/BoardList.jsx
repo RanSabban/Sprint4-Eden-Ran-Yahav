@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from "react"
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
 import { addBoard, loadBoards } from "../../store/board.actions"
 import { boardService } from "../../services/board.service.local"
 
 export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
-    const navigate = useNavigate('')
     const [isEdit, setIsEdit] = useState(false)
     const [isShown, setIsShown] = useState(false)
     const [editedTitle, setEditedTitle] = useState("")

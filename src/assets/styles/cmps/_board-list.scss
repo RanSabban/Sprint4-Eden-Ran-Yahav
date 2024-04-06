@@ -23,15 +23,15 @@
     .board-side-preview.active {
         background-color: #cce5ff;
         border-radius: 6px;
-        width: 15.5em;
+        width: 14.2em;
     }
 
     .preview-three-points {
+        display: none;
         position: absolute;
-        right: 0;
+        left: 15.5em;
         top: 207px;
         background: none;
-        display: none;
     }
 
     .button.preview-three-points {

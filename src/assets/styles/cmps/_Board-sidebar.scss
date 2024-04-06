@@ -36,15 +36,20 @@
         box-shadow: none;
         border: none;
         height: 32px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         line-height: 24px;
         font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
-        margin-left: 1em;
+        margin-left: 0.5em;
     }
 
     .three-points {
         background-color: #ffffff;
         color: #323338;
         box-shadow: none;
+        margin-right: 0.79em;
     }
 
     .three-points:hover {
@@ -75,7 +80,7 @@
         line-height: 19px;
         font-size: 16px;
         text-align: start;
-        margin-right: 3.5em;
+        margin-right: 1em;
         gap: 1px;
         word-break: keep-all;
     }
@@ -88,6 +93,7 @@
         color: #323338;
         box-shadow: 0;
         border-radius: 0px 8px;
+        padding: 0.4em;
     }
 
     .actions-sidebar-upper:hover {
@@ -98,7 +104,7 @@
         border-radius: 4px;
         outline: 1px solid #d0d4e4;
         border: none;
-        height: 2.5em;
+        height: auto;
         width: 14em;
     }
 
