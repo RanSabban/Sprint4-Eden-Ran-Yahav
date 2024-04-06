@@ -18,4 +18,9 @@
         outline: none;
         position: relative;
     }
+    .title-container{
+        display: grid;
+        grid-auto-flow: column;
+
+    }
 }

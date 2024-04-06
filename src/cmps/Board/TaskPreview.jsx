@@ -7,6 +7,8 @@ import { TextCellComponent } from './dynamicCmp/TextCellComponent';
 import { LastUpdatedComponent } from './dynamicCmp/LastUpdatedComponent'
 import { FilesComponent } from './dynamicCmp/FilesComponent';
 import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
+import { Button } from 'monday-ui-react-core';
+import { Update } from 'monday-ui-react-core/icons';
 
 
 
@@ -14,7 +16,7 @@ import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
 
 export function TaskPreview({ task }) {
 
-const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
+    const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
 
 
     const { cells } = task
@@ -24,9 +26,18 @@ const clmTypes = useSelector(storeState => storeState.boardModule.clmTypes)
     }
 
     return (<>
-        <span className='dyn-cell title'>{task.title}</span>
+        <div className='title-container'>
+            <span style={{ width: '150px' }} className='dyn-cell title'>{task.title}</span>
+            <Button
+                className="btn-message"
+                kind="tertiary"
+                onClick={() => console.log('m-list')}
+                size="small">
+                <Update />
+            </Button>
+        </div>
         {
-            cells.map((cell,idx) => (
+            cells.map((cell, idx) => (
                 <>
                     <DynamicCmp key={idx} cmpType={cell.type}
                         ClmType={getClmType(cell._id)}
