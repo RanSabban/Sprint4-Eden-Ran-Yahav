@@ -104,18 +104,20 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                     style={{ textDecoration: "none", display: "flex", gap: "1em", color: "#323338" }}
                     to={`/board/${board._id}`}
                     key={board._id}>
-                    <SidePrevSvg />
+                    <div className="board-list-prev">
+                        <SidePrevSvg />
+                        {!isEdit && <BoardListPreview board={board} />}
+                        {!isEdit && <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
+                            <ThreePoints />
+                        </button>}
+                    </div>
                     {!isEdit && (
                         <div>
-                            <BoardListPreview board={board}/>
-                            <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
-                                <ThreePoints />
-                            </button>
                             <div style={{ display: isShown ? "block" : "none" }} className={`actions-border-side`}>
 
                                 <div
                                     onChange={() => setIsShown(!isShown)}
-                                    onClick={() => openInNewTab(board)}
+                                    onClick={() => openInNewTab(currentBoard)}
                                     style={{ lineheight: "20px" }}
                                     className="action-side"
                                 >
@@ -124,7 +126,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                                 </div>
                                 <hr style={{ width: '100%', color: "#323338" }} />
                                 <div
-                                    onClick={() => removeBoard(board._id)}
+                                    onClick={() => removeBoard(currentBoard._id)}
                                     style={{ lineheight: "20px" }}
                                     className="action-side"
                                 >
@@ -132,7 +134,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                                     <p>Delete</p>
                                 </div>
                                 <div
-                                    onClick={() => changeBoardName(board)}
+                                    onClick={() => changeBoardName(currentBoard)}
                                     style={{ lineHeight: "20px" }}
                                     className="action-side"
                                 >
@@ -141,7 +143,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                                 </div>
 
                                 <div
-                                    onClick={(ev) => duplicateBoard(ev, board)}
+                                    onClick={(ev) => duplicateBoard(ev, currentBoard)}
                                     style={{ lineheight: "20px" }}
                                     className="action-side"
                                 >
@@ -150,7 +152,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                                 </div>
 
                                 <div
-                                    onClick={(ev) => addToFavorites(ev, board)}
+                                    onClick={(ev) => addToFavorites(ev, currentBoard)}
                                     style={{ lineheight: "20px" }}
                                     className="action-side"
                                 >
@@ -160,7 +162,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                             </div>
                         </div>
                     )}
-                    {isEdit && <form onSubmit={(ev) => onSubmitTitle(ev, board)}><input type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} /></form>}
+                    {isEdit && <form onSubmit={(ev) => onSubmitTitle(ev, board)}><input style={{width: '175px'}} type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} /></form>}
                 </NavLink>
             ))
             }

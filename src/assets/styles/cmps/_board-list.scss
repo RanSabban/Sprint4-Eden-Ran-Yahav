@@ -26,11 +26,13 @@
         width: 14.2em;
     }
 
+    .board-list-prev{
+        display: flex;
+        place-items: center;
+    }
+
     .preview-three-points {
-        display: none;
-        position: absolute;
-        left: 15.5em;
-        top: 207px;
+        opacity: 0;
         background: none;
     }
 
@@ -40,7 +42,7 @@
 
     .board-side-preview:hover {
         .preview-three-points {
-            display: block;
+            opacity: 1;
         }
     }
 

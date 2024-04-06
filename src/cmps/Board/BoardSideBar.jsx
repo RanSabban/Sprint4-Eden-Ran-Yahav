@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom"
 import { useState } from "react"
 import { CloseSidebar, Home, Home2, MyWork, OpenSidebar, OpenWorkSpace, PlusTool, SearchTool, ThreePoints } from "../../services/svg.service"
 import { BoardList } from "./BoardList"
+import { InputCell } from "./reusableCmps/InputCell"
 
 
 export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
@@ -62,6 +63,8 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
                 <div className="board-sidebar-lowwer">
                     <BoardList boards={boards} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
+
+                    {/* <InputCell /> */}
                 </div>
             </div>
         </div>
