@@ -9,7 +9,7 @@
 
 html {
     color: $clr-main;
-
+    scroll-behavior: smooth;
 }
 body, html {
     overflow: hidden;
@@ -104,6 +104,16 @@ a:hover {
 main {
     display: grid;
     grid-auto-flow: column;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+
+    // background-color: black;
+
+}
+::-webkit-scrollbar-thumb{
+    background-color: $sb-clr;
 }
 
 html,

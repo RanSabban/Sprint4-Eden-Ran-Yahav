@@ -1,6 +1,12 @@
-.btn-collapse{
+.btn-collapse {
     border-radius: 2em;
     height: em(25px);
     width: em(25px);
     padding: 0;
+}
+
+.icon {
+    display: flex;
+    justify-self: center;
+    color: $clr-icon;
 }

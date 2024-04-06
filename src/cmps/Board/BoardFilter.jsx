@@ -1,13 +1,99 @@
+import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu, Tooltip } from "monday-ui-react-core";
+import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
+import { useState } from "react";
+
 export function BoardFilter() {
 
+    const [isSearch, setIsSearch] = useState(false)
 
-     return (
-         <section className="board-filter">
-            <form>
-           {/* I AM BOARD FILTER */}
-            {/* <blockquote contentEditable="true">Board Filter Header</blockquote> */}
-                 {/* <blockquote contentEditable="true">Book Filter Header</blockquote> */}
-             </form>
-         </section>
-     )
+    const dynSearchBtn = isSearch ? '' : 'searchBtn'
+
+    function toggleIsSearch(){
+        setIsSearch(!isSearch)
+    }
+
+    return (
+        <section className="board-filter flex">
+
+
+
+            <SplitButton
+                shouldCloseOnClickInsideDialog
+                onClick={console.log("Add Item Click")}
+                size="small"
+
+                secondaryDialogContent={
+                    <SplitButtonMenu _id="split-menu">
+                        <MenuItem
+                            onClick={() => console.log('clicked')}
+                            title="New group of tasks"
+                        />
+                    </SplitButtonMenu>}>New Item
+
+            </SplitButton>
+
+            {isSearch ? (
+                <Button
+                className="icon"
+                onBlur={() => toggleIsSearch()}
+
+                leftIcon={Search}
+                kind="tertiary"
+                style={{ marginRight: "6px", marginLeft: "6px" }}
+                size="small">
+                        Search
+                </Button>
+
+            ) : (
+                <SearchComponent
+                    id="search-input"
+                    onBlur={() => toggleIsSearch()}
+                    autoFocus
+                    debounceRate={200}
+                    iconName={Search}
+                    placeholder="Search"
+                    size="small"
+                    wrapperClassName="dyn-search"
+                />)
+            }
+
+
+            <Tooltip content='Sort board by person' animationType="expand">
+                <Button
+                    className="icon"
+                    leftIcon={PersonRound}
+                    kind="tertiary"
+                    size="small"
+                    style={{ marginRight: "6px" }}
+                >
+                    Person
+                </Button>
+            </Tooltip>
+
+            <Tooltip content='Filter board by anything' animationType="expand">
+                <Button
+                    className="icon"
+                    leftIcon={Filter}
+                    kind="tertiary"
+                    style={{ marginRight: "6px" }}
+                    size="small">
+                    Filter
+                </Button>
+            </Tooltip>
+
+
+            <Tooltip content='Sort board by any column' animationType="expand">
+                <Button
+                    className="icon"
+                    leftIcon={Sort}
+                    kind="tertiary"
+                    style={{ marginRight: "6px" }}
+                    size="small">
+                    Sort
+                </Button>
+
+            </Tooltip>
+
+        </section>
+    )
 }

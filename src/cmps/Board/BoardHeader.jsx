@@ -1,10 +1,9 @@
 // import { InviteIcon } from "../../services/svg.service";
 
 // import { Tooltip } from "@mui/material";
-import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, Tab, TabList, Tooltip, } from "monday-ui-react-core";
-import { Emoji, Home, Favorite, Invite, Warning, Add, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown } from "monday-ui-react-core/icons";
+import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core";
+import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
 import { BoardFilter } from "./BoardFilter";
-import { HexSvg } from "../../services/svg.service";
 
 export function BoardHeader({ isCollapsed, setIsCollapsed }) {
 
@@ -20,15 +19,13 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 position="bottom"
                                 content='Click to edit'
                                 animationType="expand">
+
                                 <EditableHeading
                                     type={EditableHeading.types.h1}
                                     value='Demo'
                                     isEditMode={"true"}
+                                    on
                                 />
-                                <Tooltip
-                                    content='Click to edit'
-                                    animationType="expand">
-                                </Tooltip>
                             </Tooltip>
 
                             <Tooltip
@@ -39,7 +36,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                     kind="tertiary"
                                     onClick={() => console.log('m-list')}
                                     size="small">
-                                    <Warning />
+                                    <Info className="icon" />
                                 </Button>
                             </Tooltip>
 
@@ -51,7 +48,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                     kind="tertiary"
                                     onClick={() => console.log('m-list')}
                                     size="small">
-                                    <Favorite />
+                                    <Favorite className="icon" />
                                 </Button>
                             </Tooltip>
 
@@ -97,6 +94,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 size="small"
                             >
                                 <Invite
+                                    className="icon"
                                     style={{ marginRight: "8px" }}
                                 />Invite
                             </Button>
@@ -105,7 +103,16 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                         <Tooltip
                             content='Options'
                             animationType="expand">
-                            <MenuButton />
+                            <MenuButton
+                            // kind="tertiary"
+                            // size={"large"} 
+                            >
+                                <Menu id="menu" size={Menu.sizes.LARGE}>
+                                    <MenuItem icon={Sun} title="The sun" />
+                                    <MenuItem icon={Moon} title="The moon" />
+                                    <MenuItem icon={Favorite} title="And the stars" />
+                                </Menu>
+                            </MenuButton>
                         </Tooltip>
                     </div>
                 </div>
@@ -113,20 +120,23 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                 <div className="board-header-bottom flex align-center justify-between">
                     <div className="board-header-nav flex">
                         <TabList
+                                style={{marginBottom: "16px"}}
                             size="sm">
                             <Tooltip content='Main Table' animationType="expand">
                                 <Tab
                                     className="main-table-tab"
                                     active={true}
-                                    iconSide="left">
-                                    <Home style={{height: "16px", marginRight: "4px" }}   />
+                                    iconSide="left"
+                                // size={}
+                                >
+                                    <Home style={{ height: "16px", marginRight: "4px", marginLeft: "-4px" }} />
                                     Main Table
                                 </Tab>
                             </Tooltip>
                         </TabList>
                         <Tooltip content='Add view' animationType="expand" position="right">
                             <Button
-                                className="btn-add"                                
+                                className="btn-add"
                                 kind="tertiary"
                                 onClick={() => console.log('m-list')}
                                 size="sm"
@@ -145,6 +155,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 size="sm"
                             >
                                 <Integrations
+                                    className="icon"
                                     style={{ marginRight: "8px" }} /> Integrate
                             </Button>
                         </Tooltip>
@@ -155,7 +166,9 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                                 onClick={() => console.log('m-list')}
                                 size="sm"
                             >
-                                <Robot style={{ marginRight: "8px" }} /> Automate
+                                <Robot
+                                    className="icon"
+                                    style={{ marginRight: "8px" }} /> Automate
                             </Button>
                         </Tooltip>
 
@@ -169,6 +182,8 @@ export function BoardHeader({ isCollapsed, setIsCollapsed }) {
                     </div>
 
                 </div>
+                <BoardFilter />
+
             </div>
             {/* <BoardFilter /> */}
         </section>
