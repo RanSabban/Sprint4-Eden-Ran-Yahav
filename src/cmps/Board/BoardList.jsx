@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
 import { addBoard, loadBoards } from "../../store/board.actions"
 import { boardService } from "../../services/board.service.local"
+import { BoardListPreview } from "./BoardListPreview"
 
 export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
     const [isEdit, setIsEdit] = useState(false)
@@ -10,28 +11,30 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
     const [editedTitle, setEditedTitle] = useState("")
     const inputRef = useRef(null)
     const [currentBoard, setCurrentBoard] = useState(null)
+    console.log('the current board please: ', currentBoard)
+    console.log('IS IT?', isShown)
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (inputRef.current && !inputRef.current.contains(event.target)) {
-                setIsEdit(false)
-                setIsShown(false)
+    // useEffect(() => {
+    //     const handleClickOutside = (event) => {
+    //         if (inputRef.current && !inputRef.current.contains(event.target)) {
+    //             setIsEdit(false)
+    //             setIsShown(false)
 
-                if (editedTitle.trim() !== "" && currentBoard) {
-                    const updatedBoard = { ...currentBoard, title: editedTitle }
-                    onUpdateBoard(updatedBoard)
-                }
-                setEditedTitle("")
-                setCurrentBoard(null)
-            }
-        }
+    //             if (editedTitle.trim() !== "" && currentBoard) {
+    //                 const updatedBoard = { ...currentBoard, title: editedTitle }
+    //                 onUpdateBoard(updatedBoard)
+    //             }
+    //             setEditedTitle("")
+    //             setCurrentBoard(null)
+    //         }
+    //     }
 
-        document.addEventListener("mousedown", handleClickOutside)
+    //     document.addEventListener("mousedown", handleClickOutside)
 
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }, [editedTitle, currentBoard, onUpdateBoard])
+    //     return () => {
+    //         document.removeEventListener("mousedown", handleClickOutside)
+    //     }
+    // }, [editedTitle, currentBoard, onUpdateBoard])
 
     function changeBoardName(board) {
         if (!isEdit) {
@@ -96,7 +99,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
         <section className="board-list">
             {boards.map((board) => (
 
-                < NavLink
+                <Link onClick={() => setCurrentBoard(board)}
                     className="board-side-preview"
                     style={{ textDecoration: "none", display: "flex", gap: "1em", color: "#323338" }}
                     to={`/board/${board._id}`}
@@ -104,7 +107,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                     <SidePrevSvg />
                     {!isEdit && (
                         <div>
-                            <div className="board-option-sidebar">{board.title}</div>
+                            <BoardListPreview board={board}/>
                             <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
                                 <ThreePoints />
                             </button>
@@ -158,7 +161,7 @@ export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) 
                         </div>
                     )}
                     {isEdit && <form onSubmit={(ev) => onSubmitTitle(ev, board)}><input type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} /></form>}
-                </NavLink>
+                </Link>
             ))
             }
         </section >
