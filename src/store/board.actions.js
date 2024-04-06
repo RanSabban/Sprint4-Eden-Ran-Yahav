@@ -2,7 +2,7 @@ import { boardService } from '../services/board.service.local.js'
 import { userService } from '../services/user.service.js'
 import { store } from '../store/store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_BOARD, ADD_TO_BOARDT, CLEAR_BOARDT, REMOVE_BOARD, REMOVE_FROM_BOARDT, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK } from './board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP } from './board.reducer.js'
 import { SET_SCORE } from './user.reducer.js'
 
 // Action Creators:
@@ -30,7 +30,7 @@ export async function loadBoards() {
         const boards = await boardService.query()
         console.log('Boards from DB:', boards)
         store.dispatch({
-        type: SET_BOARDS,
+            type: SET_BOARDS,
             boards
         })
 
@@ -69,8 +69,10 @@ export function updateBoard(board) {
         .then(savedBoard => {
             console.log('Updated Board:', savedBoard)
             store.dispatch(
-              {  type: UPDATE_BOARD,
-                board:savedBoard}
+                {
+                    type: UPDATE_BOARD,
+                    board: savedBoard
+                }
             )
             return savedBoard
         })
@@ -85,7 +87,7 @@ export async function loadBoard(boardId) {
         const board = await boardService.getById(boardId)
         console.log('Boards from DB:', board)
         store.dispatch({
-        type: SET_CURRENT_BOARD,
+            type: SET_CURRENT_BOARD,
             board
         })
 
@@ -95,21 +97,40 @@ export async function loadBoard(boardId) {
     }
 }
 
-export async function addTask(groupId){
+export async function addGroup(boardId) {
     try {
-        const task = boardService.getEmptyTask()
-        await boardService.addTask(task,groupId)
+        // const board = await boardService.getById(boardId)
+        // console.log('Boards from DB:', board)
+        const group = boardService.addGroup(boardId)
+        console.log(group);
         store.dispatch({
-            type: ADD_TASK,
-            groupId, 
-            task
+            type: ADD_GROUP,
+            group
         })
-        
-    } 
-    catch (err) {}
+        return group
+    } catch (err) {
+
+    }
 }
 
-// Demo for Optimistic Mutation 
+export async function addTask(groupId) {
+    try {
+        const task = boardService.getEmptyTask()
+        await boardService.addTask(groupId, task)
+
+        store.dispatch({
+            type: ADD_TASK,
+            groupId,
+            task
+        })
+
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+// Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {
 //     store.dispatch({

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board.actions.js'
+import { loadBoards, addBoard, updateBoard, removeBoard, addGroup } from '../store/board.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
@@ -51,6 +51,15 @@ export function BoardIndex() {
         }
     }
 
+    async function onAddGroup(boardId) {
+        try {
+            const group = await addGroup(boardId)
+            console.log(group);
+            showSuccessMsg('Group added')
+        } catch (err) {
+            console.log('Err add group', err);
+        }
+    }
 
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
@@ -67,7 +76,7 @@ export function BoardIndex() {
  
             <main class="board-details">
                 {
-                    boardId ? <BoardDetails /> : <BoardHome boards={boards} />
+                    boardId ? <BoardDetails  onAddGroup={onAddGroup} /> : <BoardHome boards={boards} />
                 }
             </main>
         </div>

@@ -1,9 +1,11 @@
+
+import { Button } from "@mui/material";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { addTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 
-export function BoardPreview({ board }) {
+export function BoardPreview({ board , onAddGroup}) {
 
     const groups = board.groups
     const clmTypes = board.clmTypes
@@ -23,10 +25,19 @@ export function BoardPreview({ board }) {
     return (
         <section className="board-preview">
             {/* <h2>I am Board Preview</h2> */}
+            <Button  variend="contained" sx={{maxWidth: "75px"}} onClick={() => onAddGroup(board._id)}>Add group</Button>
             <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} />
+            {/* <Button variend="contained" onClick={() => onAddGroup()} /> */}
         </section>
     )
 }
+
+
+
+
+
+
+
 // const BoardContainer = () => {
 //     const columns = useSelector(state => state.columns);
 //     const tasksByColumnId = useSelector(state => state.tasksByColumnId);

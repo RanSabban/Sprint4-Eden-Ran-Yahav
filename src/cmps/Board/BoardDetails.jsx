@@ -7,7 +7,7 @@ import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
 
 
-export function BoardDetails() {
+export function BoardDetails({ onAddGroup={onAddGroup}}) {
 
 
     const { boardId } = useParams()
@@ -25,7 +25,7 @@ export function BoardDetails() {
             <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed}/>
 
         <section className="board-details">
-            <BoardPreview board={board} />
+            <BoardPreview  onAddGroup={onAddGroup} board={board} />
         </section>
         </div>
         </>

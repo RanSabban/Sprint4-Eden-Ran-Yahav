@@ -13,7 +13,8 @@ export const boardService = {
     getEmptyBoard,
     addBoardMsg, 
     getEmptyTask,
-    addTask
+    addTask,
+    addGroup
 }
 window.cs = boardService
 
@@ -642,18 +643,91 @@ function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
 }
 
+async function addGroup(boardId) {
+    const board = await getById(boardId)
+    console.log(board);
+    const group = getEmptyGroup()
+    board.groups.push(group)
+    console.log(board);
+    await save(board)
+    console.log(group,board);
+    return group
+}
+
 async function addTask(groupId,task) {
     console.log(groupId,task);
-    const boards = storageService.query(STORAGE_KEY)
+    const boards = await storageService.query(STORAGE_KEY)
     boards.map(board => {
         return board.groups.map((group => {
             if (group._id === groupId) {
                 group.tasks.push(task)
             }
-            return group
         }))
     })
+    console.log(boards);
     _save(STORAGE_KEY, boards)
+}
+
+function getEmptyGroup() {
+
+    return {
+        _id: utilService.makeId(),
+        title: "Group 1",
+        archivedAt: null,
+        tasks: [
+            {
+                _id: "c101",
+                title: "Task 1",
+                cells: [
+                    {
+                        _id: "c111",
+                        type: "status",
+                        dataId: "l103"
+                    },
+                    {
+                        _id: "c116",
+                        type: "priority",
+                        dataId: "l201"
+                    },
+                    {
+                        _id: "c112",
+                        type: "members",
+                        dataId: ["EtzD1"]
+                    },
+                    {
+                        _id: "c113",
+                        type: "timelines",
+                        dataId: "sdf123"
+                    },
+                    {
+                        _id: "c114",
+                        type: "files",
+                        dataId: "sdf124"
+                    },
+                    {
+                        _id: "c1145",
+                        type: "txt",
+                        txt: "puki"
+                    },
+                    {
+                        _id: "c115",
+                        type: "date",
+                        date: 1589983468418
+                    },
+                    {
+                        _id: "c116",
+                        type: "updates",
+                        dataId: "1478"
+                    }
+                ],
+                createdBy: {
+                    _id: "u102",
+                    fullname: "Ran Sabban",
+                    imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                }
+            }
+        ]
+    }
 }
 
 // PRIVATE FUNCS
