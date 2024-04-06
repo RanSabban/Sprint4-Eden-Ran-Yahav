@@ -64,7 +64,6 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                 <div className="board-sidebar-lowwer">
                     <BoardList boards={boards} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
 
-                    <InputCell />
                 </div>
             </div>
         </div>
