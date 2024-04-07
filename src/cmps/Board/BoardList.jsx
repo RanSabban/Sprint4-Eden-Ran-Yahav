@@ -17,29 +17,29 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
             if (inputRef.current && !inputRef.current.contains(event.target)) {
                 setIsEdit(false)
                 setIsShown(false)
-    
+
                 if (editedTitle.trim() !== "") {
                     onUpdateBoard({ ...board, title: editedTitle })
                 }
             }
         }
-    
+
         document.addEventListener("mousedown", handleClickOutside)
-    
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [editedTitle, board, onUpdateBoard])
-    
+
     const handleOutsideClick = (event) => {
         if (isShown && !event.target.closest(".actions-border-side")) {
             setIsShown(false)
         }
     }
-    
+
     useEffect(() => {
         document.addEventListener("mousedown", handleOutsideClick)
-    
+
         return () => {
             document.removeEventListener("mousedown", handleOutsideClick)
         }
@@ -134,7 +134,9 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
     )
 }
 
-export function BoardList({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
+export function BoardList({ onAddBoard, onRemoveBoard, onUpdateBoard }) {
+    const boards = useSelector(storeState => storeState.boardModule.boards)
+ 
     return (
         <section className="board-list">
             {boards.map((board) => (

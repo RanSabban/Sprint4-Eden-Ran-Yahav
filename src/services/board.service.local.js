@@ -16,7 +16,8 @@ export const boardService = {
     addGroup,
     removeGroup,
     updateCell,
-    updateTask
+    updateTask,
+    dragAndDropGroup
 }
 window.cs = boardService
 
@@ -1381,6 +1382,29 @@ async function updateTask(taskToUpdate, groupId) {
     })
     console.log(updatedBoards);
     _save(STORAGE_KEY, updatedBoards)
+}
+
+async function dragAndDropGroup(source,destination,boardId) {
+    const board = await getById(boardId)
+    try {
+        console.log(source,destination,boardId);
+        // const groupToCut = board.groups[source.index]
+        const groupToCut = board.groups.find((group,idx) => idx === source.index)
+        board.groups.splice(source.index, 1);
+        board.groups.splice(destination.index, 0, groupToCut);
+        save(board)
+        return board
+    }
+    // const boardToUpdate =
+    catch (err) {
+
+    } finally {
+        console.log(board);
+    }
+}
+
+async function dragAndDropTask(source,destination,boardId) {
+
 }
 
 // PRIVATE FUNCS

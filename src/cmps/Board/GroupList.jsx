@@ -8,9 +8,12 @@ import { removeGroup } from "../../store/board.actions";
 import { AddSmall, Delete, Edit, Favorite, Moon } from "monday-ui-react-core/icons";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { GroupPreview } from "./GroupPreview";
+import { useSelector } from "react-redux";
 
 
-export function GroupList({ clmTypes, groups, onAddTask, boardType, boardId }) {
+export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
+
+    const groups = useSelector(storeState => storeState.boardModule.board.groups)
 
     async function onRemoveGroup(groupId) {
         try {

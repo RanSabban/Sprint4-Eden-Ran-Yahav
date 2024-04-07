@@ -19,7 +19,6 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
 
     function onEmojiInput(ev, emoji) {
         setChosenEmoji(emoji)
-
     }
 
     function onRenameBoard(newTitle) {

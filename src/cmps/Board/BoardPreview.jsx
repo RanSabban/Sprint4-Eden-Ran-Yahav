@@ -1,7 +1,7 @@
 
 import { DragDropContext } from "react-beautiful-dnd";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-import { addTask, loadBoard } from "../../store/board.actions";
+import { addTask, dragAndDropGroup, dragAndDropTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
@@ -27,26 +27,47 @@ export function BoardPreview({ board }) {
 
     async function handleOnDragEnd(result) {
         if (!result.destination) return
-        const { destination, source, draggableId } = result
-        const startIdx = currBoard.groups.find(group => group._id === source.droppableId)
-        const finishIdx = currBoard.groups.find(group => group._id === destination.droppableId)
+        // const { destination, source, draggableId } = result
+        // console.log(destination,source);
+        // const startIdx = currBoard.groups.find(group => group._id === source.droppableId)
+        // const finishIdx = currBoard.groups.find(group => group._id === destination.droppableId)
 
-        const startTasks = [...startIdx.tasks]
-        startTasks.splice(source.index, 1)
-        const newStart = { ...startIdx, tasks: startTasks }
-        const task = startIdx.tasks.find(task => task.id === draggableId)
-        const finishTasks = [...finishIdx.tasks]
-        finishTasks.splice(destination.index, 0, task)
-        const newFinish = { ...finishIdx, tasks: finishTasks }
-        const newGroups = currBoard.groups.map(group => {
-            if (group.id === startIdx.id) return newStart
-            if (group.id === finishIdx.id) return newFinish
-            return group
-        })
-        const newBoard = { ...currBoard, groups: newGroups }
-        console.log("result",source, finishTasks);
-        await updateBoardOptimistic('board', currBoard._id, null, null, { key: 'groups', value: newGroups }, newBoard)
+        // if (source.index !== destination.index) {
+        //     const groups = board?.groups || [];
+        //     const newGroupsOrder = Array.from(groups);
+        //     const [reorderedGroup] = newGroupsOrder.splice(source.index, 1);
+        //     newGroupsOrder.splice(destination.index, 0, reorderedGroup);
 
+        // }
+        // const startTasks = [...startIdx.tasks]
+        // startTasks.splice(source.index, 1)
+        // const newStart = { ...startIdx, tasks: startTasks }
+        // const task = startIdx.tasks.find(task => task.id === draggableId)
+        // const finishTasks = [...finishIdx.tasks]
+        // finishTasks.splice(destination.index, 0, task)
+        // const newFinish = { ...finishIdx, tasks: finishTasks }
+        // const newGroups = currBoard.groups.map(group => {
+        //     if (group.id === startIdx.id) return newStart
+        //     if (group.id === finishIdx.id) return newFinish
+        //     return group
+        // })
+        // const newBoard = { ...currBoard, groups: newGroups }
+        // console.log("result",result.destination);
+
+        const { destination, source } = result
+        try {
+            if (destination.droppableId === source.droppableId)  {
+                dragAndDropTask(source,destination,board._id)
+                showSuccessMsg('Tasks swiped!')
+            } else {
+                dragAndDropGroup(source,destination, board._id)
+                showSuccessMsg('Tasks swiped!')
+            }
+        } catch (err) {
+            console.log('Error drag and drop', err);
+            showErrorMsg('Cannot swipe sorry AVATAR!!!')
+        }
+        console.log(destination, source);
     }
 
 
