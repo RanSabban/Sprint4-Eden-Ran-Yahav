@@ -1,14 +1,30 @@
-// import { InviteIcon } from "../../services/svg.service";
-
-// import { Tooltip } from "@mui/material";
 import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core";
 import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
 import { BoardFilter } from "./BoardFilter";
+import { boardService } from "../../services/board.service.local";
+import { updateBoard } from "../../store/board.actions";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 
-export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, boardId }) {
+export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) {
+    // const [boardTitle, setBoardTitle] = useState(board.title)
+    const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
 
     const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'
+
+    // const board = boardService.getById(boardId)
+    console.log("$$$$$$$$$", boardTitle);
+
+    function onRenameBoard(newTitle) {
+        try {
+            board.title = newTitle
+            updateBoard(board)
+        }
+        catch (err) {
+
+        }
+    }
 
     return (
         <section className="board-header-wrapper">
@@ -23,9 +39,9 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, boardId }
 
                                 <EditableHeading
                                     type={EditableHeading.types.h1}
-                                    value='Demo'
+                                    value={boardTitle}
                                     isEditMode={"true"}
-                                    on
+                                    onFinishEditing={onRenameBoard}
                                 />
                             </Tooltip>
 
@@ -121,7 +137,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, boardId }
                 <div className="board-header-bottom flex align-center justify-between">
                     <div className="board-header-nav flex">
                         <TabList
-                                style={{marginBottom: "16px"}}
+                            style={{ marginBottom: "16px" }}
                             size="sm">
                             <Tooltip content='Main Table' animationType="expand">
                                 <Tab
@@ -130,11 +146,12 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, boardId }
                                     iconSide="left"
                                 // size={}
                                 >
-                                    <Home style={{ height: "16px", marginRight: "4px", marginLeft: "-4px" }} />
+                                    <Home style={{ height: "16px", marginRight: "4px", marginLeft: "-4px" }} className="main-table-box" />
                                     Main Table
                                 </Tab>
                             </Tooltip>
                         </TabList>
+
                         <Tooltip content='Add view' animationType="expand" position="right">
                             <Button
                                 className="btn-add"
@@ -183,10 +200,9 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, boardId }
                     </div>
 
                 </div>
-                <BoardFilter onAddGroup={onAddGroup} boardId={boardId}/>
+                <BoardFilter onAddGroup={onAddGroup} board={board} />
 
             </div>
-            {/* <BoardFilter /> */}
         </section>
     )
 }

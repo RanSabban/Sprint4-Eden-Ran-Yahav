@@ -31,6 +31,13 @@
     }
 }
 
+.separator {
+    background-color: $clr-border;
+    height: em(22px);
+    margin-right: em(4px);
+    width: em(1px);
+}
+
 // Media helpers
 
 .square-ratio {
