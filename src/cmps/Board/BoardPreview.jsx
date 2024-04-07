@@ -5,8 +5,10 @@ import { addTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
+import { useSelector } from "react-redux";
 
 export function BoardPreview({ board }) {
+    const currBoard = useSelector(state => state.boardModule.board)
 
     const groups = board.groups
     const clmTypes = board.clmTypes
@@ -22,16 +24,34 @@ export function BoardPreview({ board }) {
             showErrorMsg('Cannot add task')
         }
     }
-    function handleOnDragEnd(result) {
-        if (!result.destination) return
-        const { source, destination } = result
-        if (source.index !== destination.index) {
-            const groups = board?.groups || [];
-            const newGroupsOrder = Array.from(groups);
-            const [reorderedGroup] = newGroupsOrder.splice(source.index, 1);
-            newGroupsOrder.splice(destination.index, 0, reorderedGroup);
 
-        }
+    async function handleOnDragEnd(result) {
+        if (!result.destination) return
+        const { destination, source, draggableId } = result
+        const startIdx = currBoard.groups.find(group => group._id === source.droppableId)
+        const finishIdx = currBoard.groups.find(group => group._id === destination.droppableId)
+
+        // if (source.index !== destination.index) {
+        //     const groups = board?.groups || [];
+        //     const newGroupsOrder = Array.from(groups);
+        //     const [reorderedGroup] = newGroupsOrder.splice(source.index, 1);
+        //     newGroupsOrder.splice(destination.index, 0, reorderedGroup);
+
+        // }
+        const startTasks = [...startIdx.tasks]
+        startTasks.splice(source.index, 1)
+        const newStart = { ...startIdx, tasks: startTasks }
+        const task = startIdx.tasks.find(task => task.id === draggableId)
+        const finishTasks = [...finishIdx.tasks]
+        finishTasks.splice(destination.index, 0, task)
+        const newFinish = { ...finishIdx, tasks: finishTasks }
+        const newGroups = currBoard.groups.map(group => {
+            if (group.id === startIdx.id) return newStart
+            if (group.id === finishIdx.id) return newFinish
+            return group
+        })
+        const newBoard = { ...currBoard, groups: newGroups }
+        console.log("result",result.destination);
     }
 
 

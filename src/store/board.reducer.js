@@ -12,13 +12,17 @@ export const SET_CURRENT_BOARD = 'SET_CURRENT_BOARD'
 export const ADD_GROUP = 'ADD_GROUP'
 export const ADD_TASK = 'ADD_TASK'
 export const REMOVE_GROUP = 'REMOVE_GROUP'
+export const SET_IS_LOADING = 'SET_IS_LOADING'
+
 
 const initialState = {
     boards: null,
     board: null,
     groups: null,
     clmTypes: null,
-    lastRemovedBoard: null
+    lastRemovedBoard: null,
+    isLoading: false
+
 }
 
 export function boardReducer(state = initialState, action) {
@@ -26,16 +30,16 @@ export function boardReducer(state = initialState, action) {
     switch (action.type) {
         case SET_BOARDS:
             return { ...state, boards: action.boards }
-           
+
         case REMOVE_BOARD:
             return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
-           
+
         case ADD_BOARD:
             return { ...state, boards: [...state.boards, action.board] }
-           
+
         case UPDATE_BOARD:
             return { ...state, boards: state.boards.map(board => (board._id === action.board._id) ? action.board : board) }
-           
+
         case UNDO_REMOVE_BOARD:
             if (state.lastRemovedBoard) {
                 newState = { ...state, boards: [...state.boards, state.lastRemovedBoard], lastRemovedBoard: null }
@@ -64,21 +68,23 @@ export function boardReducer(state = initialState, action) {
             };
         case ADD_GROUP:
             return {
-                ...state, 
+                ...state,
                 board: {
-                    ...state.board, 
-                    groups: [...state.board.groups,action.group]
+                    ...state.board,
+                    groups: [...state.board.groups, action.group]
                 }
             }
-        case REMOVE_GROUP: 
+        case REMOVE_GROUP:
             return {
-                ...state, 
+                ...state,
                 board: {
-                    ...state.board, 
+                    ...state.board,
                     groups: state.board.groups.filter(group => group._id !== action.groupId)
                 }
             }
 
+        case SET_IS_LOADING:
+            return { ...state, isLoading: action.isLoading }
 
 
 
