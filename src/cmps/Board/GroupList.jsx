@@ -1,6 +1,6 @@
 import { RenderHeaders } from "./RenderHeaders";
 import { TaskList } from "./TaskList";
-import { Menu, MenuButton, MenuItem } from "monday-ui-react-core";
+import { Checkbox, Menu, MenuButton, MenuItem } from "monday-ui-react-core";
 import { Button } from "monday-ui-react-core"
 import { addGroup, addTask } from "../../store/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
@@ -35,7 +35,7 @@ export function GroupList({ clmTypes, groups, onAddTask, boardType, boardId }) {
 
     return <section className="group-list">
         {groups.map((group) => {
-            return (<section className="group-item" key={group._id}>
+            return (<section className="group-card" key={group._id}>
                 <section className="group-header">
                     <MenuButton>
                         <Menu id="menu" size={Menu.sizes.LARGE}>
@@ -43,14 +43,21 @@ export function GroupList({ clmTypes, groups, onAddTask, boardType, boardId }) {
                             <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveGroup(group._id)} />
                         </Menu>
                     </MenuButton>
+
                     <span className="group-title">{group.title}</span>
                 </section>
-                <section className="header-items">
-                    <div className='dyn-cell header-item'>{boardType}</div>
-                    <RenderHeaders clmTypes={clmTypes} />
+                <section className="group-container">
+                    <section className="header-items">
+                        <div className='dyn-cell checkbox-header-container'>
+                            <Checkbox />
+                        </div>
+                        <div className='dyn-cell header-item'>{boardType}</div>
+                        <RenderHeaders clmTypes={clmTypes} />
+                    </section>
+                    <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
                 </section>
-                <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
-            </section>)
+            </section>
+            )
         })}
 
     </section >

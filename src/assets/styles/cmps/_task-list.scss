@@ -1,12 +1,13 @@
 .list-item {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 350px 150px 150px repeat(auto-fill, 100px);
+    grid-template-columns: 36px 350px 150px 150px 100px 200px repeat(auto-fill, 100px);
     border: 1px solid $clr-border;
     border-top: none;
     height: 2.25em;
     align-items: center;
     text-align: center;
+    border-left: 0.4em solid $clr-label-3;
 
     .dyn-cell {
         align-self: center;
@@ -17,15 +18,52 @@
         border-right: 1px solid $clr-border;
         width: 100px;
     }
+
     .members {
         display: grid;
-        justify-items  : center;
+        justify-items: center;
     }
-    .status, .priority {
+
+    .status,
+    .priority {
         color: $clr6;
     }
+
     .dyn-cell.title div {
         margin-inline-start: 10px;
     }
-}
 
+    &.add-task {
+        border-bottom-left-radius: 0.3em;
+    }
+
+    &.add-task div {
+        grid-column: 2;
+        padding-left: 0.9em;
+    }
+
+    .dyn-cell.checkbox-container {
+        display: grid;
+        justify-items: center;
+        width: 36px;
+    }
+
+    .timeline-container {
+        width: 100%; 
+        background-color: gray;
+        height: 20px;
+        border-radius: 1em;
+        position: relative;
+    }
+
+    .timline-inside {
+        background-color: yellowgreen;
+        height: 20px;
+        display: flex;
+        position: absolute;
+    }
+
+    .timline-inside {
+        justify-content: space-between;
+    }
+}
