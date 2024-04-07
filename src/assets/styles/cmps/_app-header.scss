@@ -3,7 +3,7 @@ header {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     height: em(48px);
-   
+
     column-gap: 12px;
     overflow: hidden;
     margin-left: 24px;
@@ -11,7 +11,6 @@ header {
     align-items: center;
     justify-content: space-between;
     // background-color: $;
-
 
     .logo {
         position: relative;
@@ -22,8 +21,6 @@ header {
             object-fit: contain;
             height: 100%;
         }
-
-
     }
 
     .nav-container {
@@ -33,34 +30,5 @@ header {
         align-items: center;
         align-self: center;
         align-items: center;
-
     }
-
-
-
-    // .user-info .btn-link {
-    //     color: $clr2;
-    // }
-
-    // nav {
-    //     font-size: .8em;
-    //     // background-color: $clr5;
-    //     padding: 5px;
-
-    // }
-
-    // nav a:first-child {
-    //     margin-right: 30px;
-    // }
-
-    // nav a:not(:first-child) {
-    //     border-top: 1px solid $clr1;
-    //     padding: 0 5px;
-    //     margin: 10px;
-    // }
-
-    // nav .active {
-    //     color: $clr1;
-    // }
-
 }

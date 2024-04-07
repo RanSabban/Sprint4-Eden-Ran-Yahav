@@ -93,6 +93,8 @@ export function AppHeader() {
                     </Button>
                 </Tooltip>
 
+                <div className="separator"></div>
+
                 <Tooltip content='Help' animationType="expand">
                     <Button
                         className="btn"

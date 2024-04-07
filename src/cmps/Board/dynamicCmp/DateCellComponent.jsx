@@ -6,8 +6,6 @@ export function DateCellComponent({clmType,cell}) {
         const date = dayjs(cell.date).format('DD MMM');
         return date
     }
-    
-    console.log(dayjs());
 
     return (
         <span className="dyn-cell date">{getCellDate()}</span>

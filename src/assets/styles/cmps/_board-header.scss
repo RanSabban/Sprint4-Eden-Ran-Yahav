@@ -76,13 +76,20 @@
                     padding-left: 8px;
                     padding-right: 8px;
                     // margin-bottom: 2px;
+                    &:not(:hover)::after {
+                        content: "";
+                        display: block;
+                        height: 16px;
+                        width: 100%; 
+                        border-right: 1px solid $clr-border;
+                        position: absolute;
+                        // bottom: 0; 
+                        // left: 0;
+                    }
                 }
             }
          
         }
     }
 
-}
-.main-table-tab{
-    padding-top: -10px;
 }
