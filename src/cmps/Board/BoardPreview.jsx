@@ -27,11 +27,6 @@ export function BoardPreview({ board }) {
     if (!board) return <div>LOADING</div>
     return (
         <section className="board-preview">
-            {/* <DialogContentContainer className={''}>
-                <DatePicker data-testid="date-picker" date={1589983468418} onPickDate={() => ('')} />
-            </DialogContentContainer> */}
-            {/* <DatePicker data-testid="date-picker" date={1589983468418} onPickDate={ev => console.log(ev)}/> */}
-            
             <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} boardType = {board.type} boardId ={board._id} />
         </section>
 

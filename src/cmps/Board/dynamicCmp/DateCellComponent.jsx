@@ -11,7 +11,3 @@ export function DateCellComponent({clmType,cell}) {
         <span className="dyn-cell date">{getCellDate()}</span>
     )
 }
-
-// <DialogContentContainer className={styles.datepickerDialogContentContainer}>
-//         <DatePicker data-testid="date-picker" date={date} onPickDate={d => setDate(d)} />
-//       </DialogContentContainer>
