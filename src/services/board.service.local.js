@@ -588,7 +588,7 @@ const gBoards = [
             {
                 "_id": "c111",
                 "type": "status",
-                "title": "Status",
+                "title": "Stage",
                 "data": [
                     { "id": "l205", "title": "Planning", "color": "#f2d600" },
                     { "id": "l206", "title": "Design", "color": "#ff9f1a" },
@@ -612,7 +612,7 @@ const gBoards = [
             {
                 "_id": "c112",
                 "type": "members",
-                "title": "Assigned To",
+                "title": "Members",
                 "data": [
                     { "_id": "EtzD1", "fullname": "Eden Gilady", "imgUrl": "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195" },
                     { "_id": "EtzD2", "fullname": "Yahav Ganon", "imgUrl": "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081" },
@@ -628,8 +628,8 @@ const gBoards = [
                     { "_id": "sdf124", "file": "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png" }
                 ]
             },
-            { "_id": "c1145", "type": "txt", "title": "Free text" },
-            { "_id": "c115", "type": "date", "title": "Date" }
+            { "_id": "c1145", "type": "txt", "title": "Notes" },
+            { "_id": "c115", "type": "date", "title": "Due Date" }
         ],
         "groups": [
             {
