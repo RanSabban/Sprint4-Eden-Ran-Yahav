@@ -13,7 +13,7 @@
         color: #323338;
         text-decoration: none;
         display: flex;
-        padding: 12px 40px 6px 0px;
+        padding: 5px 40px 6px 4px;
     }
 
     .actions-sidebar-upper:hover {
@@ -28,7 +28,8 @@
         color: #323338;
         text-decoration: none;
         display: flex;
-        padding: 12px 40px 8px 0px;
+        // padding: 12px 40px 8px 0px;
+        padding: 0.3em;
     }
 
     .upper-actions {
@@ -52,13 +53,13 @@
         margin-top: 1em;
     }
 
-    .sidebar-workspace-second{
+    .sidebar-workspace-second {
         display: flex;
         justify-content: space-between;
         margin-bottom: 1em;
     }
 
-    .sidebar-workspace-third{
+    .sidebar-workspace-third {
         display: flex;
         justify-content: space-between;
         margin-bottom: 1em;
@@ -98,16 +99,17 @@
         display: flex;
         font-weight: 500;
         color: #fff;
-        padding: 0.3em;
+        padding: 0.25em;
         border-radius: 4px;
         text-align: start;
         height: 1.5em;
+        font-size: 14px;
     }
 
     .house-svg {
         position: absolute;
         bottom: -11px;
-        left: 16.5px;
+        left: 12.5px;
     }
 
     .main-workspace {
