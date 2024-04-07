@@ -1151,52 +1151,38 @@ function getEmptyBoard() {
     }
 }
 
-function getEmptyTask() {
+async function getEmptyTask(groupId,boardId) {
+
+    const board = await getById(boardId)
+    const { clmTypes } = board
+    console.log(clmTypes);
+    const cells = clmTypes.map(clmType => {
+        if (clmType.type === 'status' || clmType.type === 'priority') {
+            return {_id: clmType._id, type: clmType.type, dataId: clmType.data[0].id}
+        }
+        if (clmType.type === 'members') {
+            return {_id: clmType._id, type: 'members', dataId: clmType.data[0]._id}
+        }
+        if (clmType.type === 'timelines') {
+            return {_id: clmType._id, type: 'timelines', dataId: 'sdf123'}
+        }
+        if (clmType.type === 'files') {
+            return {_id: clmType._id, type: 'files'}
+        }
+        if (clmType.type === 'txt') {
+            return {_id: clmType._id, type:'txt', txt: ''}
+        }
+        if (clmType.type === 'date') {
+            return { _id: clmType._id, type: 'date', date: Date.now()}
+        }
+        if (clmType.type === 'updates') {
+            return { _id: clmType._id, type: 'updates', dataId: '1478'}
+        }
+    })
     return {
         _id: utilService.makeId(),
-        title: "Task 1",
-        cells: [
-            {
-                _id: "c111",
-                type: "status",
-                dataId: "l103"
-            },
-            {
-                _id: "c116",
-                type: "priority",
-                dataId: "l201"
-            },
-            {
-                _id: "c112",
-                type: "members",
-                dataId: ["EtzD1"]
-            },
-            {
-                _id: "c113",
-                type: "timelines",
-                dataId: "sdf123"
-            },
-            {
-                _id: "c114",
-                type: "files",
-                dataId: "sdf124"
-            },
-            {
-                _id: "c1145",
-                type: "txt",
-                txt: "puki"
-            },
-            {
-                _id: "c115",
-                type: "date",
-                date: 1589983468418
-            },
-            {
-                _id: "c116",
-                type: "updates",
-                dataId: "1478"
-            }
-        ]
+        title: "New task",
+        cells: cells
     }
 }
 
@@ -1243,7 +1229,7 @@ async function addTask(groupId, task) {
         }))
     })
     console.log(boards);
-    _save(STORAGE_KEY, boards)
+    return _save(STORAGE_KEY, boards)
 }
 
 async function updateCell(updatedCell, taskId, groupId) {
@@ -1352,6 +1338,52 @@ function _save(entityType, entities) {
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
+
+
+// EMPTY CELL TEMPLATE:
+
+// cells: [
+//     {
+//         _id: "c111",
+//         type: "status",
+//         dataId: "l103"
+//     },
+//     {
+//         _id: "c116",
+//         type: "priority",
+//         dataId: "l201"
+//     },
+//     {
+//         _id: "c112",
+//         type: "members",
+//         dataId: ["EtzD1"]
+//     },
+//     {
+//         _id: "c113",
+//         type: "timelines",
+//         dataId: "sdf123"
+//     },
+//     {
+//         _id: "c114",
+//         type: "files",
+//         dataId: "sdf124"
+//     },
+//     {
+//         _id: "c1145",
+//         type: "txt",
+//         txt: "puki"
+//     },
+//     {
+//         _id: "c115",
+//         type: "date",
+//         date: 1589983468418
+//     },
+//     {
+//         _id: "c116",
+//         type: "updates",
+//         dataId: "1478"
+//     }
+// ]
 
 
 

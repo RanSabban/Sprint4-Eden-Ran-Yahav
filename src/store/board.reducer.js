@@ -49,6 +49,7 @@ export function boardReducer(state = initialState, action) {
 
         case ADD_TASK:
             const { groupId, task } = action.payload;
+            console.log(groupId);
 
             return {
                 ...state,
