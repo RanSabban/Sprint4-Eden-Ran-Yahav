@@ -21,6 +21,7 @@ export function TaskPreview({ task, onUpdateCell }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const [cellToEdit, setCellToEdit] = useState('')
+    const [labels, setLabels] = useState([])
 
     const [modalInfo, setModalInfo] = useState({ visible: false, top: 0, left: 0, cellId: null });
 
@@ -33,11 +34,21 @@ export function TaskPreview({ task, onUpdateCell }) {
     //         cellId
     //     })
     // }
+    // console.log(clmTypes);
+    async function onChange(cell) {
+        // console.log(cell);
+        await setCellToEdit(cell)
+        try {
+            // console.log("cellToEdit", cellToEdit)
+            const currClmType = getClmType(cellToEdit._id)
+            const labelsList = currClmType.data
+            await setLabels(labelsList)
+            // console.log("cellToEdit", labels)
+        }
+        catch (err) {
+            console.log(err);
+        }
 
-    function onChange(cell){
-        console.log(cell);
-        setCellToEdit(cell)
-        console.log(cellToEdit);
     }
 
     const { cells } = task
@@ -67,7 +78,8 @@ export function TaskPreview({ task, onUpdateCell }) {
                 <DynamicCmp key={idx}
                     cmpType={cell.type}
                     onChange={onChange}
-                    // setCellToEdit={setCellToEdit}
+                    labels={labels}
+                    cellToEdit={cellToEdit}
                     clmType={getClmType(cell._id)}
                     cell={cell}
                     onUpdateCell={onUpdateCell}
@@ -75,9 +87,12 @@ export function TaskPreview({ task, onUpdateCell }) {
                 />
 
 
+
             ))
 
         }
+
+
 
     </>
 
