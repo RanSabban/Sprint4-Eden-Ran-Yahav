@@ -15,7 +15,8 @@ export const boardService = {
     getEmptyTask,
     addTask,
     addGroup,
-    removeGroup
+    removeGroup,
+    updateCell
 }
 window.cs = boardService
 
@@ -233,7 +234,27 @@ const gBoards = [
                             fullname: "Ran Sabban",
                             imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
                         }
-                    }
+                    },
+                    {
+                        _id: "c105",
+                        title: "Enhance UI/UX",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l102" }, // Working on it
+                            { _id: "c116", type: "priority", dataId: "l203" }, // Medium
+                            { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Review latest design trends" },
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD2",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    },
+
                 ]
             },
             {
@@ -343,6 +364,71 @@ const gBoards = [
                             imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
                         }
                     }
+                ]
+            },
+            {
+                _id: "g103",
+                title: "Group 3",
+                archivedAt: null,
+                tasks: [
+                    {
+                        _id: "c104",
+                        title: "New Task 1",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l101" }, // Done
+                            { _id: "c116", type: "priority", dataId: "l204" }, // Low
+                            { _id: "c112", type: "members", dataId: ["EtzD1"] }, // Eden Gilady
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Initial planning" },
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "456" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD1",
+                            fullname: "Eden Gilady",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                        }
+                    },
+                    {
+                        _id: "c106",
+                        title: "Implement Backend Logic",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l102" }, // Working on it
+                            { _id: "c116", type: "priority", dataId: "l203" }, // Medium
+                            { _id: "c112", type: "members", dataId: ["EtzD3"] }, // Ran Sabban
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Setup initial server architecture" },
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD3",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                        }
+                    },
+                    // Task 3
+                    {
+                        _id: "c107",
+                        title: "QA Testing",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Will do
+                            { _id: "c116", type: "priority", dataId: "l202" }, // High
+                            { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Define test cases for new features" },
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD4",
+                            fullname: "Mor Marzan",
+                            imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                        }
+                    },
                 ]
             }
         ]
@@ -677,6 +763,42 @@ async function addTask(groupId,task) {
     })
     console.log(boards);
     _save(STORAGE_KEY, boards)
+}
+
+async function updateCell(updatedCell,taskId,groupId) {
+    const boards = await storageService.query(STORAGE_KEY)
+    const updatedBoards = boards.map(board => {
+        // No changes to the board itself, but iterate over its groups
+        return {
+            ...board,
+            groups: board.groups.map(group => {
+                // Check if this is the group we're modifying
+                if (group._id === groupId) {
+                    return {
+                        ...group,
+                        tasks: group.tasks.map(task => {
+                            // Check if this is the task we're modifying
+                            if (task._id === taskId) {
+                                return {
+                                    ...task,
+                                    cells: task.cells.map(cell => {
+                                        // Check if this is the cell we're updating
+                                        if (cell._id === updatedCell._id) {
+                                            return updatedCell; // Use the updated cell
+                                        }
+                                        return cell; // Otherwise, return the cell unchanged
+                                    })
+                                };
+                            }
+                            return task; // Return tasks that aren't being updated unchanged
+                        })
+                    };
+                }
+                return group; // Return groups that aren't being updated unchanged
+            })
+        };
+    });
+    _save(STORAGE_KEY, updatedBoards)
 }
 
 function getEmptyGroup() {

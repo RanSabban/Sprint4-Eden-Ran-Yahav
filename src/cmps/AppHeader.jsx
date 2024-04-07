@@ -5,7 +5,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
 import { Help, Inbox, Invite, Notifications, Search } from 'monday-ui-react-core/icons'
-import { Avatar, Button } from 'monday-ui-react-core'
+import { Avatar, Badge, Button } from 'monday-ui-react-core'
 import { Tooltip } from '@mui/material'
 
 export function AppHeader() {
@@ -47,13 +47,16 @@ export function AppHeader() {
 
 
                 <Tooltip content='Notifications' animationType="expand">
+
                     <Button
                         className="btn"
                         kind="tertiary"
                         onClick={() => console.log('m-list')}
                         size="sm"
                     >
-                        <Notifications />
+                    <Badge alignment={Badge.alignments.CIRCULAR}>
+                            <Notifications className='flex' />
+                        </Badge>
                     </Button>
                 </Tooltip>
 
@@ -110,7 +113,7 @@ export function AppHeader() {
                     >
                         <Avatar size={Avatar.sizes.MEDIUM}
                             src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
-                            border="none"
+                            withoutBorder
                             type={Avatar.types.IMG}
                             ariaLabel="Eden Gilady" />
                     </Button>

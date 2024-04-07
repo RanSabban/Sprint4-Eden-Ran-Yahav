@@ -1,7 +1,7 @@
-export function StatusCellComponent({ ClmType, cell }) {
+export function StatusCellComponent({ clmType, cell }) {
 
-    // console.log(ClmType, cell);
-    const { data } = ClmType[0]
+    // console.log(clmType, cell);
+    const { data } = clmType[0]
 
     function getCellTxt() {
         // console.log(data);
@@ -24,6 +24,8 @@ export function StatusCellComponent({ ClmType, cell }) {
     }
 
     return (
-        <span className="dyn-cell status" style={{backgroundColor: getCellColor(),height: '2.25em'}}>{getCellTxt()}</span>
+        <div style={{backgroundColor: getCellColor(),height: '2.25em', width: '100%'}} className="dyn-cell status">
+            <span className="status-txt">{getCellTxt()}</span>
+        </div>
     )
 }

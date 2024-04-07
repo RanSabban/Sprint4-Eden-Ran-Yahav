@@ -1,17 +1,18 @@
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText } from "monday-ui-react-core";
 
-export function InputCell() {
+export function InputCell({ txt, onUpdateInput, style }) {
 
-    function handleInput(ev) {
-        console.log(ev)
-
+    function handleInput(newTxt) {
+        onUpdateInput(newTxt)
     }
 
     return (
         <EditableText
             type="text2"
             placeholder="+Add item"
-            onChange={(value) => handleInput(value)}
+            onChange={(newTxt) => handleInput(newTxt)}
+            value={txt}
+            style={style}
         />
     )
 }
