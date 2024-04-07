@@ -1,5 +1,3 @@
-import { boardService } from "../services/board.service.local"
-
 export const SET_BOARDS = 'SET_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
@@ -13,7 +11,8 @@ export const ADD_GROUP = 'ADD_GROUP'
 export const ADD_TASK = 'ADD_TASK'
 export const REMOVE_GROUP = 'REMOVE_GROUP'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
-
+export const DROP_TASK = 'DROP_TASK'
+export const DROP_GROUP = 'DROP_GROUP'
 
 const initialState = {
     boards: null,
@@ -22,7 +21,6 @@ const initialState = {
     clmTypes: null,
     lastRemovedBoard: null,
     isLoading: false
-
 }
 
 export function boardReducer(state = initialState, action) {
@@ -86,9 +84,44 @@ export function boardReducer(state = initialState, action) {
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
+        case DROP_TASK: {
+            const { sourceGroupId, sourceTaskIndex, destinationGroupId, destinationTaskIndex } = action.payload;
+            const boardCopy = JSON.parse(JSON.stringify(state.board)); // Deep copy to avoid direct state mutation
 
+            // Find source and destination groups
+            const sourceGroup = boardCopy.groups.find(group => group._id === sourceGroupId);
+            const destinationGroup = boardCopy.groups.find(group => group._id === destinationGroupId);
 
-        // case SET_CURRENT_CLMTYPES:
+            if (!sourceGroup || !destinationGroup) {
+                console.error('Source or destination group not found');
+                return state; // Return current state if groups are not found
+            }
+
+            // Remove the task from the source group
+            const [movedTask] = sourceGroup.tasks.splice(sourceTaskIndex, 1);
+
+            // Insert the task into the destination group
+            destinationGroup.tasks.splice(destinationTaskIndex, 0, movedTask);
+
+            return {
+                ...state,
+                board: boardCopy
+            };
+        }
+
+        case DROP_GROUP:
+            const { sourceIndex, destinationIndex } = action.payload
+            const newGroups = Array.from(state.board.groups)
+            const [removedGroup] = newGroups.splice(sourceIndex, 1)
+            newGroups.splice(destinationIndex, 0, removedGroup)
+
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: newGroups
+                }
+            }
         default:
     }
     return newState
