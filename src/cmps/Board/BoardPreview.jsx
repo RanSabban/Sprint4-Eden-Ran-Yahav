@@ -27,39 +27,14 @@ export function BoardPreview({ board }) {
 
     async function handleOnDragEnd(result) {
         if (!result.destination) return
-        // const { destination, source, draggableId } = result
-        // console.log(destination,source);
-        // const startIdx = currBoard.groups.find(group => group._id === source.droppableId)
-        // const finishIdx = currBoard.groups.find(group => group._id === destination.droppableId)
 
-        // if (source.index !== destination.index) {
-        //     const groups = board?.groups || [];
-        //     const newGroupsOrder = Array.from(groups);
-        //     const [reorderedGroup] = newGroupsOrder.splice(source.index, 1);
-        //     newGroupsOrder.splice(destination.index, 0, reorderedGroup);
-
-        // }
-        // const startTasks = [...startIdx.tasks]
-        // startTasks.splice(source.index, 1)
-        // const newStart = { ...startIdx, tasks: startTasks }
-        // const task = startIdx.tasks.find(task => task.id === draggableId)
-        // const finishTasks = [...finishIdx.tasks]
-        // finishTasks.splice(destination.index, 0, task)
-        // const newFinish = { ...finishIdx, tasks: finishTasks }
-        // const newGroups = currBoard.groups.map(group => {
-        //     if (group.id === startIdx.id) return newStart
-        //     if (group.id === finishIdx.id) return newFinish
-        //     return group
-        // })
-        // const newBoard = { ...currBoard, groups: newGroups }
-        // console.log("result",result.destination);
-
-        const { destination, source } = result
+        const { destination, source , type} = result
+        console.log(type);
         try {
-            if (destination.droppableId === source.droppableId)  {
+            if (type=== 'TASK')  {
                 dragAndDropTask(source,destination,board._id)
                 showSuccessMsg('Tasks swiped!')
-            } else {
+            } else if (type === 'GROUP') {
                 dragAndDropGroup(source,destination, board._id)
                 showSuccessMsg('Tasks swiped!')
             }

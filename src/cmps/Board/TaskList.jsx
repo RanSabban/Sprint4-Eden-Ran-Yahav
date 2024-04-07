@@ -44,7 +44,7 @@ export function TaskList({ groupId, onAddTask }) {
 
 
     return (
-        <Droppable droppableId={groupId}>
+        <Droppable droppableId={groupId} type="TASK">
             {(provided) => (
                 <div
                     className="task-list"
@@ -52,7 +52,7 @@ export function TaskList({ groupId, onAddTask }) {
                     ref={provided.innerRef}
                 >
                     {tasks.map((task, index) => (
-                        <Draggable key={task._id} draggableId={String(task._id)} index={index}>
+                        <Draggable key={task._id} draggableId={String(task._id)} index={index} >
                             {(provided) => (
                                 <div
                                     ref={provided.innerRef}
