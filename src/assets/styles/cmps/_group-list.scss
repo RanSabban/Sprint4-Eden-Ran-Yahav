@@ -26,4 +26,17 @@
         font-size: 1.125em;
         margin-right: 7px;
     }
+    .group-header{
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+        align-items: center;
+    }
+    .group-header button {
+        opacity: 0;
+        transition: 0.3s;
+    }
+    .group-header:hover button{
+        opacity: 1;
+    }
 }
