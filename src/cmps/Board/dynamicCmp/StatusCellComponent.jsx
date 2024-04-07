@@ -4,7 +4,7 @@ export function StatusCellComponent({ clmType, cell }) {
 
     const [isOpen, setIsOpen] = useState(false)
     // console.log(clmType, cell);
-    const { data } = clmType[0]
+    const { data } = clmType
 
     function getCellTxt() {
         const item = data.find(item => item.id === cell.dataId)
