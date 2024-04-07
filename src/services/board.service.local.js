@@ -25,6 +25,7 @@ const gBoards = [
     {
         _id: "b101",
         title: "Robot dev proj",
+        type: 'item',
         isStarred: false,
         archivedAt: 1589983468418,
         createdBy: {
@@ -531,7 +532,7 @@ const gBoards = [
                     },
                     // Task 3
                     {
-                        _id: "c107",
+                        _id: "c153",
                         title: "Build controllers",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l101" }, // Done
@@ -539,7 +540,7 @@ const gBoards = [
                             { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
                             { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
-                            { _id: "c1145", type: "txt", txt: "Responsive & Flexible" },
+                            { _id: "c1145", type: "txt", txt: "Efficient" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
                             { _id: "c116", type: "updates", dataId: "8965" } // Example update
                         ],
@@ -550,27 +551,8 @@ const gBoards = [
                         }
                     },
                     {
-                        _id: "c137",
-                        title: "Sign in page",
-                        cells: [
-                            { _id: "c111", type: "status", dataId: "l100" }, // Will do
-                            { _id: "c116", type: "priority", dataId: "l204" }, // High
-                            { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
-                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
-                            { _id: "c1145", type: "txt", txt: "Bonus feature" },
-                            { _id: "c115", type: "date", date: 1722419175369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
-                        ],
-                        createdBy: {
-                            _id: "EtzD4",
-                            fullname: "Mor Marzan",
-                            imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
-                        }
-                    },
-                    {
-                        _id: "c138",
-                        title: "Build Service API",
+                        _id: "c154",
+                        title: "Build atlas basic data",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l100" }, // Will do
                             { _id: "c116", type: "priority", dataId: "l201" }, // High
@@ -591,8 +573,139 @@ const gBoards = [
             }
         ]
     },
-
-
+    {
+        "_id": "b102",
+        "title": "Web Development Roadmap",
+        type: 'project',
+        "isStarred": true,
+        "archivedAt": null,
+        "createdBy": {
+            "_id": "EtzD2",
+            "fullname": "Yahav Ganon",
+            "imgUrl": "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+        },
+        "clmTypes": [
+            {
+                "_id": "c111",
+                "type": "status",
+                "title": "Status",
+                "data": [
+                    { "id": "l205", "title": "Planning", "color": "#f2d600" },
+                    { "id": "l206", "title": "Design", "color": "#ff9f1a" },
+                    { "id": "l207", "title": "Development", "color": "#eb5a46" },
+                    { "id": "l208", "title": "Testing", "color": "#c377e0" },
+                    { "id": "l209", "title": "Deployment", "color": "#0079bf" },
+                    { "id": "l210", "title": "Completed", "color": "#00c875" }
+                ]
+            },
+            {
+                "_id": "c117",
+                "type": "priority",
+                "title": "Priority",
+                "data": [
+                    { "id": "l211", "title": "Urgent", "color": "#eb5a46" },
+                    { "id": "l212", "title": "High", "color": "#ff9f1a" },
+                    { "id": "l213", "title": "Medium", "color": "#f2d600" },
+                    { "id": "l214", "title": "Low", "color": "#c4c4c4" }
+                ]
+            },
+            {
+                "_id": "c112",
+                "type": "members",
+                "title": "Assigned To",
+                "data": [
+                    { "_id": "EtzD1", "fullname": "Eden Gilady", "imgUrl": "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195" },
+                    { "_id": "EtzD2", "fullname": "Yahav Ganon", "imgUrl": "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081" },
+                    { "_id": "EtzD3", "fullname": "Ran Sabban", "imgUrl": "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830" },
+                    { "_id": "EtzD4", "fullname": "Mor Marzan", "imgUrl": "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512" }
+                ]
+            },
+            {
+                "_id": "c114",
+                "type": "files",
+                "title": "Files",
+                "data": [
+                    { "_id": "sdf124", "file": "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png" }
+                ]
+            },
+            { "_id": "c1145", "type": "txt", "title": "Free text" },
+            { "_id": "c115", "type": "date", "title": "Date" }
+        ],
+        "groups": [
+            {
+                "_id": "g201",
+                "title": "Part 1: Planning and Design",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c201",
+                        "title": "Define Project Scope",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l205" },
+                            { "_id": "c117", "type": "priority", "dataId": "l212" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD1"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Document the project's high-level scope." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() }
+                        ]
+                    },
+                    {
+                        "_id": "c202",
+                        "title": "UI/UX Design Mockups",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l206" },
+                            { "_id": "c117", "type": "priority", "dataId": "l213" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD2", "EtzD4"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Complete initial design drafts for review." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() + 86400000 * 7 } // Plus 7 days
+                        ]
+                    },
+                    // Additional tasks...
+                ]
+            },
+            {
+                "_id": "g202",
+                "title": "Part 2: Development",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c203",
+                        "title": "Frontend Development",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l207" },
+                            { "_id": "c117", "type": "priority", "dataId": "l211" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD3"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Develop the user interface based on approved designs." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() + 86400000 * 14 } // Plus 14 days
+                        ]
+                    },
+                    // Additional tasks...
+                ]
+            },
+            {
+                "_id": "g203",
+                "title": "Part 3: Testing and Deployment",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c204",
+                        "title": "Quality Assurance Testing",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l208" },
+                            { "_id": "c117", "type": "priority", "dataId": "l213" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD4", "EtzD1"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Conduct comprehensive testing across all major browsers and devices." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() + 86400000 * 21 } // Plus 21 days
+                        ]
+                    },
+                    // Additional tasks...
+                ]
+            }
+        ]
+    }
 ]
 
 // const gBoards = [
@@ -806,7 +919,6 @@ async function save(board) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
         // Later, owner is set by the backend
-        console.log('hey from save from local', board)
         // board.owner = userService.getLoggedinUser(),
         savedBoard = await storageService.post(STORAGE_KEY, board)
     }
@@ -831,57 +943,246 @@ async function addBoardMsg(boardId, txt) {
 
 function getEmptyBoard() {
     return {
-       
-    }
-}
-
-function getEmptyTask() {
-    return {
-        _id: utilService.makeId(),
-        title: "Task 1",
-        cells: [
+        title: "New Board",
+        isStarred: false,
+        type: 'item',
+        archivedAt: null,
+        createdBy: {
+            _id: "EtzD1",
+            fullname: "Puki Norma",
+            imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+        }, 
+        clmTypes: [
             {
                 _id: "c111",
                 type: "status",
-                dataId: "l103"
-            },
-            {
-                _id: "c116",
-                type: "priority",
-                dataId: "l201"
+                title: "Status",
+                data: [
+                    {
+                        id: "l102",
+                        title: "Working on it",
+                        color: "#fdab3d"
+                    },
+                    {
+                        id: "l103",
+                        title: "Stuck",
+                        color: "#df2f4a"
+                    },
+                    {
+                        id: "l101",
+                        title: "Done",
+                        color: "#00c875"
+                    },
+                    {
+                        title: 'Will do',
+                        id: "l100",
+                        color: "#c4c4c4"
+                    }
+                ]
             },
             {
                 _id: "c112",
                 type: "members",
-                dataId: ["EtzD1"]
-            },
-            {
-                _id: "c113",
-                type: "timelines",
-                dataId: "sdf123"
-            },
-            {
-                _id: "c114",
-                type: "files",
-                dataId: "sdf124"
-            },
-            {
-                _id: "c1145",
-                type: "txt",
-                txt: "puki"
+                title: "Assigned To",
+                data: [
+                    {
+                        _id: "EtzD1",
+                        fullname: "Eden Gilady",
+                        imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                    },
+                    {
+                        _id: "EtzD2",
+                        fullname: "Yahav Ganon",
+                        imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                    },
+                    {
+                        _id: "EtzD3",
+                        fullname: "Ran Sabban",
+                        imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                    },
+                    {
+                        _id: "EtzD4",
+                        fullname: "Mor Marzan",
+                        imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                    }
+                ]
             },
             {
                 _id: "c115",
                 type: "date",
-                date: 1589983468418
+                title: "Date"
+            }
+        ],
+        groups: [
+            {
+                _id: utilService.makeId(),
+                title: "Group Title",
+                archivedAt: null,
+                tasks: [
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 1",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l102"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD1"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u102",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                        }
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 2",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l101"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD1"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            },
+                        ],
+                        createdBy: {
+                            _id: "u102",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                        }
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 3",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Working on it
+                            { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                        ],
+                        createdBy: {
+                            _id: "EtzD2",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    },
+
+                ]
             },
             {
-                _id: "c116",
-                type: "updates",
-                dataId: "1478"
-            }
-        ]
+                _id: utilService.makeId(),
+                title: "Group title",
+                archivedAt: null,
+                tasks: [
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 4",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l100"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD2"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u103",
+                            fullname: "Eden Gilady",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                        }
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 5",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l100"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD3"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u104",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    }
+                ]
+            },]
+    }
 }
+
+async function getEmptyTask(groupId,boardId) {
+
+    const board = await getById(boardId)
+    const { clmTypes } = board
+    console.log(clmTypes);
+    const cells = clmTypes.map(clmType => {
+        if (clmType.type === 'status' || clmType.type === 'priority') {
+            return {_id: clmType._id, type: clmType.type, dataId: clmType.data[0].id}
+        }
+        if (clmType.type === 'members') {
+            return {_id: clmType._id, type: 'members', dataId: clmType.data[0]._id}
+        }
+        if (clmType.type === 'timelines') {
+            return {_id: clmType._id, type: 'timelines', dataId: 'sdf123'}
+        }
+        if (clmType.type === 'files') {
+            return {_id: clmType._id, type: 'files'}
+        }
+        if (clmType.type === 'txt') {
+            return {_id: clmType._id, type:'txt', txt: ''}
+        }
+        if (clmType.type === 'date') {
+            return { _id: clmType._id, type: 'date', date: Date.now()}
+        }
+        if (clmType.type === 'updates') {
+            return { _id: clmType._id, type: 'updates', dataId: '1478'}
+        }
+    })
+    return {
+        _id: utilService.makeId(),
+        title: "New task",
+        cells: cells
+    }
 }
 
 function getById(boardId) {
@@ -920,7 +1221,7 @@ async function addTask(groupId,task) {
         }))
     })
     console.log(boards);
-    _save(STORAGE_KEY, boards)
+    return _save(STORAGE_KEY, boards)
 }
 
 async function updateCell(updatedCell,taskId,groupId) {
@@ -1028,4 +1329,54 @@ function _save(entityType, entities) {
 }
 
 // TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
+// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
+
+
+// EMPTY CELL TEMPLATE:
+
+// cells: [
+//     {
+//         _id: "c111",
+//         type: "status",
+//         dataId: "l103"
+//     },
+//     {
+//         _id: "c116",
+//         type: "priority",
+//         dataId: "l201"
+//     },
+//     {
+//         _id: "c112",
+//         type: "members",
+//         dataId: ["EtzD1"]
+//     },
+//     {
+//         _id: "c113",
+//         type: "timelines",
+//         dataId: "sdf123"
+//     },
+//     {
+//         _id: "c114",
+//         type: "files",
+//         dataId: "sdf124"
+//     },
+//     {
+//         _id: "c1145",
+//         type: "txt",
+//         txt: "puki"
+//     },
+//     {
+//         _id: "c115",
+//         type: "date",
+//         date: 1589983468418
+//     },
+//     {
+//         _id: "c116",
+//         type: "updates",
+//         dataId: "1478"
+//     }
+// ]
+
+
+
+

@@ -17,7 +17,7 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
 
     useEffect(() => {
         if (boardId) loadBoard(boardId)
-    }, [])
+    }, [boardId])
 
     if (!board) return <div>LOADING BRO</div>
     return (

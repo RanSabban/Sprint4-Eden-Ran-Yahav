@@ -126,15 +126,17 @@ export async function removeGroup(groupId) {
     }
 }
 
-export async function addTask(groupId) {
+export async function addTask(groupId,boardId) {
     try {
-        const task = boardService.getEmptyTask()
+        const task = await boardService.getEmptyTask(groupId,boardId)
         await boardService.addTask(groupId, task)
 
         store.dispatch({
             type: ADD_TASK,
-            groupId,
-            task
+            payload: {
+                groupId,
+                task
+            }
         })
 
     }

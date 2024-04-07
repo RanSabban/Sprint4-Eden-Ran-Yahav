@@ -42,7 +42,7 @@ export function TaskPreview({ task, onUpdateTask }) {
 
     const { cells } = task
     function getClmType(cellId) {
-        const clmToReturn = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn._id === cellId))
+        const clmToReturn = clmTypes.find(clmTypeToReturn => (clmTypeToReturn._id === cellId))
         return clmToReturn
     }
 
