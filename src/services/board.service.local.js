@@ -26,6 +26,7 @@ const gBoards = [
     {
         _id: "b101",
         title: "Robot dev proj",
+        type: 'item',
         isStarred: false,
         archivedAt: 1589983468418,
         createdBy: {
@@ -573,7 +574,139 @@ const gBoards = [
             }
         ]
     },
-
+    {
+        "_id": "b102",
+        "title": "Web Development Roadmap",
+        type: 'project',
+        "isStarred": true,
+        "archivedAt": null,
+        "createdBy": {
+            "_id": "EtzD2",
+            "fullname": "Yahav Ganon",
+            "imgUrl": "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+        },
+        "clmTypes": [
+            {
+                "_id": "c111",
+                "type": "status",
+                "title": "Status",
+                "data": [
+                    { "id": "l205", "title": "Planning", "color": "#f2d600" },
+                    { "id": "l206", "title": "Design", "color": "#ff9f1a" },
+                    { "id": "l207", "title": "Development", "color": "#eb5a46" },
+                    { "id": "l208", "title": "Testing", "color": "#c377e0" },
+                    { "id": "l209", "title": "Deployment", "color": "#0079bf" },
+                    { "id": "l210", "title": "Completed", "color": "#00c875" }
+                ]
+            },
+            {
+                "_id": "c117",
+                "type": "priority",
+                "title": "Priority",
+                "data": [
+                    { "id": "l211", "title": "Urgent", "color": "#eb5a46" },
+                    { "id": "l212", "title": "High", "color": "#ff9f1a" },
+                    { "id": "l213", "title": "Medium", "color": "#f2d600" },
+                    { "id": "l214", "title": "Low", "color": "#c4c4c4" }
+                ]
+            },
+            {
+                "_id": "c112",
+                "type": "members",
+                "title": "Assigned To",
+                "data": [
+                    { "_id": "EtzD1", "fullname": "Eden Gilady", "imgUrl": "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195" },
+                    { "_id": "EtzD2", "fullname": "Yahav Ganon", "imgUrl": "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081" },
+                    { "_id": "EtzD3", "fullname": "Ran Sabban", "imgUrl": "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830" },
+                    { "_id": "EtzD4", "fullname": "Mor Marzan", "imgUrl": "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512" }
+                ]
+            },
+            {
+                "_id": "c114",
+                "type": "files",
+                "title": "Files",
+                "data": [
+                    { "_id": "sdf124", "file": "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png" }
+                ]
+            },
+            { "_id": "c1145", "type": "txt", "title": "Free text" },
+            { "_id": "c115", "type": "date", "title": "Date" }
+        ],
+        "groups": [
+            {
+                "_id": "g201",
+                "title": "Part 1: Planning and Design",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c201",
+                        "title": "Define Project Scope",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l205" },
+                            { "_id": "c117", "type": "priority", "dataId": "l212" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD1"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Document the project's high-level scope." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() }
+                        ]
+                    },
+                    {
+                        "_id": "c202",
+                        "title": "UI/UX Design Mockups",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l206" },
+                            { "_id": "c117", "type": "priority", "dataId": "l213" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD2", "EtzD4"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Complete initial design drafts for review." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() + 86400000 * 7 } // Plus 7 days
+                        ]
+                    },
+                    // Additional tasks...
+                ]
+            },
+            {
+                "_id": "g202",
+                "title": "Part 2: Development",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c203",
+                        "title": "Frontend Development",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l207" },
+                            { "_id": "c117", "type": "priority", "dataId": "l211" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD3"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Develop the user interface based on approved designs." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() + 86400000 * 14 } // Plus 14 days
+                        ]
+                    },
+                    // Additional tasks...
+                ]
+            },
+            {
+                "_id": "g203",
+                "title": "Part 3: Testing and Deployment",
+                "archivedAt": null,
+                "tasks": [
+                    {
+                        "_id": "c204",
+                        "title": "Quality Assurance Testing",
+                        "cells": [
+                            { "_id": "c111", "type": "status", "dataId": "l208" },
+                            { "_id": "c117", "type": "priority", "dataId": "l213" },
+                            { "_id": "c112", "type": "members", "dataId": ["EtzD4", "EtzD1"] },
+                            { "_id": "c114", "type": "files", "dataId": "sdf124" },
+                            { "_id": "c1145", "type": "txt", "txt": "Conduct comprehensive testing across all major browsers and devices." },
+                            { "_id": "c115", "type": "date", "date": new Date().getTime() + 86400000 * 21 } // Plus 21 days
+                        ]
+                    },
+                    // Additional tasks...
+                ]
+            }
+        ]
+    }
 
 ]
 

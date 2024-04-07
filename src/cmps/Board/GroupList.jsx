@@ -9,7 +9,7 @@ import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { removeGroup } from "../../store/board.actions";
 
 
-export function GroupList({ clmTypes, groups, onAddTask }) {
+export function GroupList({ clmTypes, groups, onAddTask , boardType }) {
 
     async function onRemoveGroup(groupId) {
         try {
@@ -29,7 +29,7 @@ export function GroupList({ clmTypes, groups, onAddTask }) {
                 <Button onClick={() => onRemoveGroup(group._id)}>X</Button>
                 {/* <Table> */}
                 <section className="header-items">
-                    <div className='dyn-cell header-item'>Item</div>
+                    <div className='dyn-cell header-item'>{boardType}</div>
                     <RenderHeaders clmTypes={clmTypes} />
                 </section>
                 <TaskList tasks={group.tasks} groupId = {group._id} />
