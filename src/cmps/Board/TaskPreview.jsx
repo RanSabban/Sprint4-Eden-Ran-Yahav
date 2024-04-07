@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 
 
-export function TaskPreview({ task, onUpdateTask }) {
+export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const [cellToEdit, setCellToEdit] = useState('')
@@ -48,9 +48,15 @@ export function TaskPreview({ task, onUpdateTask }) {
         return clmToReturn
     }
 
+    function onUpdateTitle(newTxt){
+        const taskToUpdate = task
+        task.title = newTxt
+        onUpdateTask(taskToUpdate)
+    }
+
     return (<>
         <div className='title-container'>
-            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateTask={onUpdateTask} style={{ marginLeft: '5px' }} /></span>
+            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
             <Button
                 className="btn-message"
                 kind="tertiary"
@@ -69,7 +75,7 @@ export function TaskPreview({ task, onUpdateTask }) {
                     cellToEdit={cellToEdit}
                     clmType={getClmType(cell._id)}
                     cell={cell}
-                    onUpdateTask={onUpdateTask}
+                    onUpdateCell={onUpdateCell}
                     taskId={task._id}
                     onClick={openDynModal}
                 />
@@ -114,3 +120,4 @@ function DynamicCmp(props) {
 
 
 
+ 
