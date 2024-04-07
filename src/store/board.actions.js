@@ -162,9 +162,9 @@ export async function updateCell(cell,taskId,groupId) {
     }
 }
 
-export async function updateTask(task) {
+export async function updateTask(task,groupId) {
     try {
-        
+        boardService.updateTask(task,groupId)
     } catch (err) {
         console.log('Error update task', err);
     }

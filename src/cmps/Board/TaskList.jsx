@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { TaskPreview } from './TaskPreview'
-import { updateCell } from '../../store/board.actions';
+import { updateCell, updateTask } from '../../store/board.actions';
 import { useParams } from 'react-router';
 
 
@@ -20,13 +20,20 @@ export function TaskList({ groupId }) {
         }
     }
     
+    async function onUpdateTask(task) {
+        try {
+            updateTask(task,groupId)
+        } catch (err) {
+            console.log('Error update task', err);
+        }
+    }
         
 
     return (<>
         {
             tasks.map(task => (
                 <div className='list-item' key={task._id}>
-                    <TaskPreview task={task} onUpdateCell={onUpdateCell} />
+                    <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} />
                 </div>
             ))
         }

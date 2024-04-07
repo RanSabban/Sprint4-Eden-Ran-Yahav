@@ -15,7 +15,8 @@ export const boardService = {
     addTask,
     addGroup,
     removeGroup,
-    updateCell
+    updateCell,
+    updateTask
 }
 window.cs = boardService
 
@@ -1322,9 +1323,30 @@ function getEmptyGroup() {
     }
 }
 
-async function updateTask() {
-    // const boards = await storageService.query(STORAGE_KEY)
-    // const updatedBoards = boards.
+async function updateTask(taskToUpdate,groupId) {
+    console.log(taskToUpdate,groupId);
+    const boards = await storageService.query(STORAGE_KEY)
+    const updatedBoards = boards.map(board => {
+        return {
+            ...board, 
+            groups: board.groups.map(group => {
+                if (group._id === groupId) {
+                    return {
+                        ...group, 
+                        tasks: group.tasks.map(task => {
+                            if (task._id === taskToUpdate._id){
+                                return taskToUpdate
+                            }
+                            return task
+                        })
+                    }
+                }
+                return group
+            })
+        }
+    })
+    console.log(updatedBoards);
+    _save(STORAGE_KEY, updatedBoards)
 }
 
 // PRIVATE FUNCS

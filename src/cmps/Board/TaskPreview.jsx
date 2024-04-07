@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 
 
-export function TaskPreview({ task, onUpdateCell }) {
+export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const [cellToEdit, setCellToEdit] = useState('')
@@ -58,7 +58,9 @@ export function TaskPreview({ task, onUpdateCell }) {
     }
 
     function onUpdateTitle(newTxt){
-        // task.title = newTxt
+        const taskToUpdate = task
+        task.title = newTxt
+        onUpdateTask(taskToUpdate)
     }
 
     return (<>
