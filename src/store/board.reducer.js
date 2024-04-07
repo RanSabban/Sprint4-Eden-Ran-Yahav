@@ -88,11 +88,30 @@ export function boardReducer(state = initialState, action) {
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
-        case DROP_TASK:
+        case DROP_TASK: {
+            const { sourceGroupId, sourceTaskIndex, destinationGroupId, destinationTaskIndex } = action.payload;
+            const boardCopy = JSON.parse(JSON.stringify(state.board)); // Deep copy to avoid direct state mutation
+
+            // Find source and destination groups
+            const sourceGroup = boardCopy.groups.find(group => group._id === sourceGroupId);
+            const destinationGroup = boardCopy.groups.find(group => group._id === destinationGroupId);
+
+            if (!sourceGroup || !destinationGroup) {
+                console.error('Source or destination group not found');
+                return state; // Return current state if groups are not found
+            }
+
+            // Remove the task from the source group
+            const [movedTask] = sourceGroup.tasks.splice(sourceTaskIndex, 1);
+
+            // Insert the task into the destination group
+            destinationGroup.tasks.splice(destinationTaskIndex, 0, movedTask);
+
             return {
                 ...state,
-
-            }
+                board: boardCopy
+            };
+        }
 
         case DROP_GROUP:
             const { sourceIndex, destinationIndex } = action.payload

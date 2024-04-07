@@ -2,7 +2,7 @@ import { boardService } from '../services/board.service.local.js'
 import { userService } from '../services/user.service.js'
 import { store } from '../store/store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP } from './board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK } from './board.reducer.js'
 import { SET_SCORE } from './user.reducer.js'
 
 // Action Creators:
@@ -166,13 +166,32 @@ export async function updateCell(cell, taskId, groupId) {
 export async function updateTask(task, groupId) {
     try {
         const board = boardService.updateTask(task, groupId)
-        store.dispatch
+        // store.dispatch
     } catch (err) {
         console.log('Error update task', err);
     }
 }
 
 export async function dragAndDropTask(source, destination, boardId) {
+    try {
+        
+        store.dispatch({
+            type: DROP_TASK,
+            payload: {
+                sourceGroupId: source.droppableId,
+                sourceTaskIndex: source.index,
+                destinationGroupId: destination.droppableId,
+                destinationTaskIndex: destination.index
+            }
+
+        })
+        const group = await boardService.dragAndDropTask(source, destination, boardId)
+    } catch (err) {
+
+    }
+}
+
+export async function dragAndDropGroup(source, destination, boardId) {
     try {
         console.log(source, destination, boardId);
         store.dispatch({
@@ -187,14 +206,6 @@ export async function dragAndDropTask(source, destination, boardId) {
         //     type: SET_CURRENT_BOARD,
         //         board
         //    })
-
-    } catch (err) {
-
-    }
-}
-
-export async function dragAndDropGroup() {
-    try {
 
     } catch (err) {
 

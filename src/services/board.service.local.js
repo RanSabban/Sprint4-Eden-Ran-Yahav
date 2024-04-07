@@ -17,7 +17,8 @@ export const boardService = {
     removeGroup,
     updateCell,
     updateTask,
-    dragAndDropGroup
+    dragAndDropGroup,
+    dragAndDropTask
 }
 window.cs = boardService
 
@@ -1384,12 +1385,12 @@ async function updateTask(taskToUpdate, groupId) {
     _save(STORAGE_KEY, updatedBoards)
 }
 
-async function dragAndDropGroup(source,destination,boardId) {
+async function dragAndDropGroup(source, destination, boardId) {
     const board = await getById(boardId)
     try {
-        console.log(source,destination,boardId);
+        console.log(source, destination, boardId);
         // const groupToCut = board.groups[source.index]
-        const groupToCut = board.groups.find((group,idx) => idx === source.index)
+        const groupToCut = board.groups.find((group, idx) => idx === source.index)
         board.groups.splice(source.index, 1);
         board.groups.splice(destination.index, 0, groupToCut);
         save(board)
@@ -1403,8 +1404,41 @@ async function dragAndDropGroup(source,destination,boardId) {
     }
 }
 
-async function dragAndDropTask(source,destination,boardId) {
+async function dragAndDropTask(source, destination, boardId) {
+    const board = await getById(boardId)
+    try {
+        console.log('Dragging task from', source, 'to', destination)
 
+        // Extract the relevant data from the source and destination payloads
+        // const { groupId: sourceGroupId, index: sourceTaskIndex } = source
+        const sourceGroupId = source.droppableId
+        const sourceTaskIndex = source.index
+        const destinationGroupId = destination.droppableId
+        const destinationTaskIndex = destination.index
+        // const { groupId: destinationGroupId, index: destinationTaskIndex } = destination
+
+        const sourceGroup = board.groups.find(group => group._id === sourceGroupId)
+        const destinationGroup = board.groups.find(group => group._id === destinationGroupId)
+        console.log(sourceGroup,destinationGroup);
+        // If we can't find the groups, we should not continue
+        if (!sourceGroup || !destinationGroup) {
+            throw new Error('Group not found.')
+        }
+
+        // Remove the task from the source group
+        const [taskToMove] = sourceGroup.tasks.splice(sourceTaskIndex, 1)
+
+        // If we're moving within the same group, destinationGroup is the same as sourceGroup
+        destinationGroup.tasks.splice(destinationTaskIndex, 0, taskToMove)
+
+        // Persist the updated board
+        await save(board);
+        console.log('Task moved successfully.');
+
+        return board;
+    } catch (err) {
+        console.error('Error moving task:', err);
+    }
 }
 
 // PRIVATE FUNCS
