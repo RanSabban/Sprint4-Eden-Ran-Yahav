@@ -83,6 +83,8 @@
         margin-right: 1em;
         gap: 1px;
         word-break: keep-all;
+        white-space: nowrap;
+        font-weight: 600;
     }
 
     .close-sidebar-btn {
@@ -126,6 +128,9 @@
         border-radius: 8px;
         padding: 8px;
         white-space: nowrap;
+        display: flex;
+        flex-direction: column;
+        place-items: center;
     }
 
     .favorites {

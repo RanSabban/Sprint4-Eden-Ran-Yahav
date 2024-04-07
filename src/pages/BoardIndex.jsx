@@ -42,9 +42,10 @@ export function BoardIndex() {
     }
 
     async function onUpdateBoard(board) {
-        console.log('rannn', board)
+
         try {
             const savedBoard = await updateBoard(board)
+            loadBoards()
             showSuccessMsg(`Board updated`)
         } catch (err) {
             showErrorMsg('Cannot update board')

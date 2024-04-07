@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { NavLink } from "react-router-dom"
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
 import { BoardListPreview } from "./BoardListPreview"
+import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText } from "monday-ui-react-core";
 
 function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const [isEdit, setIsEdit] = useState(false)
@@ -87,7 +88,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
             key={board._id}
         >
             <div className="board-list-prev">
-                <SidePrevSvg />
+                <Tooltip content="This board is public, visible to all team members" animationType="expand" ><SidePrevSvg /></Tooltip>
                 {!isEdit && <BoardListPreview board={board} />}
                 {!isEdit && (
                     <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
