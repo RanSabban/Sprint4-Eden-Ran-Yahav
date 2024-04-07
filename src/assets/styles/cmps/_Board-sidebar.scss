@@ -7,14 +7,24 @@
     transition: 0.2s;
 
     .actions-sidebar-upper {
-        line-height: 20px;
+        // line-height: 19px;
         font-size: 14px;
         text-align: start;
         color: #323338;
         text-decoration: none;
         display: flex;
-        gap: 1em;
         padding: 12px 40px 1px 0px;
+    }
+
+    .upper-actions {
+        border-bottom: 1px solid #d0d4e4;
+        display: flex;
+        flex-direction: column;
+        // gap: 2px;
+        // padding-left: 12px;
+        padding-right: 12px;
+        padding-block: 12px;
+        width: 100%;
     }
 
     .home-sidebar {
@@ -23,6 +33,19 @@
     }
 
     .sidebar-workspace {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+    }
+
+    .sidebar-workspace-second{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+    }
+
+    .sidebar-workspace-third{
         display: flex;
         justify-content: space-between;
         margin-bottom: 1em;
@@ -99,7 +122,9 @@
     }
 
     .actions-sidebar-upper:hover {
-        background-color: #eceff8;
+        background-color: rgba(103, 104, 121, 10%);
+        width: 16.4em;
+        border-radius: 4px;
     }
 
     .input-sidebar {
@@ -119,8 +144,8 @@
         left: -13em;
         top: -1.5em;
     }
-    
-    .actions-workspace{
+
+    .actions-workspace {
         position: absolute;
         top: 290px;
         background-color: #fff;
