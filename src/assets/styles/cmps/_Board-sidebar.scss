@@ -13,7 +13,7 @@
         color: #323338;
         text-decoration: none;
         display: flex;
-        padding: 12px 40px 1px 0px;
+        padding: 12px 40px 6px 0px;
     }
 
     .actions-sidebar-upper:hover {
@@ -28,7 +28,7 @@
         color: #323338;
         text-decoration: none;
         display: flex;
-        padding: 12px 40px 5px 0px;
+        padding: 12px 40px 8px 0px;
     }
 
     .upper-actions {
@@ -184,6 +184,8 @@
 }
 
 .board-sidebar:hover {
+    // z-index: 35;
+    // position: absolute;
 
     .close-sidebar-btn {
         display: block;

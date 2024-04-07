@@ -27,7 +27,6 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
         <>
             <div className="main-wrapper">
                 <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
-
                 <section className="board-details">
                     <BoardPreview
                         onAddGroup={onAddGroup}

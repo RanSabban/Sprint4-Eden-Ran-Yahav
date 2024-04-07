@@ -3,12 +3,16 @@ import { TaskPreview } from './TaskPreview'
 import { updateCell, updateTask } from '../../store/board.actions'
 import { useParams } from 'react-router'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { InputCell } from './reusableCmps/InputCell';
+import { useState } from 'react';
 
 
-export function TaskList({ groupId }) {
+export function TaskList({ groupId , onAddTask }) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
+
+    const [isClear,setIsClear] = useState(false)
 
     const { boardId } = useParams()
 
@@ -27,6 +31,15 @@ export function TaskList({ groupId }) {
         } catch (err) {
             console.log('Error update task', err)
         }
+    }
+
+    function onAddTaskFromList(taskTitle) {
+        onAddTask(groupId,taskTitle)
+        setIsClear(true)
+    }
+
+    function onAddTaskComplete() {
+        setIsClear(flase)
     }
 
 
@@ -55,6 +68,9 @@ export function TaskList({ groupId }) {
                     {provided.placeholder}
                 </div>
             )}
-        </Droppable>
+            <div className='list-item add-task' style={{opacity: '0.7'}}>
+            <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete}   />
+        </div>
+    </Droppable>
     )
 }
