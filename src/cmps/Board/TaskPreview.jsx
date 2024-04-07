@@ -38,7 +38,7 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
 
     }
 
-    function openDynModal(clmType){
+    function openDynModal(clmType) {
         console.log("almost");
     }
 
@@ -48,7 +48,7 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
         return clmToReturn
     }
 
-    function onUpdateTitle(newTxt){
+    function onUpdateTitle(newTxt) {
         const taskToUpdate = task
         task.title = newTxt
         onUpdateTask(taskToUpdate)
@@ -65,6 +65,8 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
                 <Update />
             </Button>
         </div>
+
+        
         {
             cells.map((cell, idx) => (
 
@@ -79,17 +81,9 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
                     taskId={task._id}
                     onClick={openDynModal}
                 />
-
-
-
             ))
-
         }
-
-
-
     </>
-
     )
 }
 
@@ -120,4 +114,3 @@ function DynamicCmp(props) {
 
 
 
- 

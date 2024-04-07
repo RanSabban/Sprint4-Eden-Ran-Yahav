@@ -1,5 +1,5 @@
 
-import { Button } from "@mui/material";
+import { DragDropContext } from "react-beautiful-dnd";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { addTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
@@ -14,7 +14,7 @@ export function BoardPreview({ board }) {
     async function onAddTask(groupId) {
         try {
             console.log(groupId);
-            await addTask(groupId,board._id)
+            await addTask(groupId, board._id)
             showSuccessMsg('Task Added')
         }
         catch (err) {
@@ -22,13 +22,35 @@ export function BoardPreview({ board }) {
             showErrorMsg('Cannot add task')
         }
     }
+    function handleOnDragEnd(result) {
+        if (!result.destination) return
+        const { source, destination } = result
+        if (source.index !== destination.index) {
+            const groups = board?.groups || [];
+            const newGroupsOrder = Array.from(groups);
+            const [reorderedGroup] = newGroupsOrder.splice(source.index, 1);
+            newGroupsOrder.splice(destination.index, 0, reorderedGroup);
+
+        }
+    }
 
 
     if (!board) return <div>LOADING</div>
     return (
+
+
         <section className="board-preview">
-            <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} boardType = {board.type} boardId ={board._id} />
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+                <GroupList
+                    clmTypes={clmTypes}
+                    groups={groups}
+                    onAddTask={onAddTask}
+                    boardType={board.type}
+                    boardId={board._id} />
+            </DragDropContext>
+
         </section>
+
 
     )
 }

@@ -154,7 +154,7 @@ const gBoards = [
                 title: "Date"
             },
             {
-                _id: "c116",
+                _id: "c1118",
                 type: "updates",
                 title: "Last Updated",
                 data: [
@@ -225,7 +225,7 @@ const gBoards = [
                                 date: 1706953308365
                             },
                             {
-                                _id: "c116",
+                                _id: "c1118",
                                 type: "updates",
                                 dataId: "1478"
                             }
@@ -247,7 +247,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Add groups paging" },
                             { _id: "c115", type: "date", date: 1709372508365 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD2",
@@ -266,7 +266,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Drag & drop rows" },
                             { _id: "c115", type: "date", date: 1711359708365 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD2",
@@ -321,7 +321,7 @@ const gBoards = [
                                 date: 1712396508365
                             },
                             {
-                                _id: "c116",
+                                _id: "c1118",
                                 type: "updates",
                                 dataId: "456"
                             }
@@ -372,7 +372,7 @@ const gBoards = [
                                 date: 1706694108365
                             },
                             {
-                                _id: "c116",
+                                _id: "c1118",
                                 type: "updates",
                                 dataId: "8965"
                             }
@@ -401,7 +401,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Initial planning" },
                             { _id: "c115", type: "date", date: 1722419175369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "456" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "456" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD1",
@@ -410,7 +410,7 @@ const gBoards = [
                         }
                     },
                     {
-                        _id: "c106",
+                        _id: "c1015",
                         title: "Home page structure & design",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l102" }, // Working on it
@@ -420,7 +420,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Based on Monday.com" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD3",
@@ -440,7 +440,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Responsive & Flexible" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -459,7 +459,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Bonus feature" },
                             { _id: "c115", type: "date", date: 1722419175369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -478,7 +478,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Must do" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -504,7 +504,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Initial planning" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "456" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "456" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD1",
@@ -523,7 +523,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Use node.js" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD3",
@@ -543,7 +543,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Efficient" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -562,7 +562,7 @@ const gBoards = [
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Must do" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",

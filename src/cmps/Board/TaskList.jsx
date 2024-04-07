@@ -1,42 +1,60 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 import { TaskPreview } from './TaskPreview'
-import { updateCell, updateTask } from '../../store/board.actions';
-import { useParams } from 'react-router';
+import { updateCell, updateTask } from '../../store/board.actions'
+import { useParams } from 'react-router'
+import { Draggable, Droppable } from 'react-beautiful-dnd'
 
 
 export function TaskList({ groupId }) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
-    );
+    )
 
-    const {boardId} = useParams()
+    const { boardId } = useParams()
 
-    async function onUpdateCell(cell,taskId) {
-        try { 
-            await updateCell(cell,taskId,groupId)
+    async function onUpdateCell(cell, taskId) {
+        try {
+            await updateCell(cell, taskId, groupId)
         }
         catch (err) {
-            console.log('err update task', err);
+            console.log('err update task', err)
         }
     }
-    
+
     async function onUpdateTask(task) {
         try {
-            updateTask(task,groupId)
+            updateTask(task, groupId)
         } catch (err) {
-            console.log('Error update task', err);
+            console.log('Error update task', err)
         }
     }
-        
 
-    return (<>
-        {
-            tasks.map(task => (
-                <div className='list-item' key={task._id}>
-                    <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} />
+
+    return (
+        <Droppable droppableId={groupId}>
+            {(provided) => (
+                <div
+                    className="task-list"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                >
+                    {tasks.map((task, index) => (
+                        <Draggable key={task._id} draggableId={String(task._id)} index={index}>
+                            {(provided) => (
+                                <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    className='list-item' 
+                                >
+                                    <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} />
+                                </div>
+                            )}
+                        </Draggable>
+                    ))}
+                    {provided.placeholder}
                 </div>
-            ))
-        }
-    </>
+            )}
+        </Droppable>
     )
 }
