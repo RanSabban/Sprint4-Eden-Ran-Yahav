@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { LabelPicker } from "../reusableCmps/LabelPicker"
 
-export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange }) {
+export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange, cellToEdit, labels }) {
     const [isOpen, setIsOpen] = useState(false)
     // console.log(clmType, cell);
     const { data } = clmType
+
+    
 
     function getCellTxt() {
         const item = data.find(item => item.id === cell.dataId)
@@ -13,10 +15,13 @@ export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange }) {
         return title
     }
 
+    // const cellTxt = getCellTxt(cellToEdit)
+    // console.log("cellTXT", cellTxt);
+
     // const currType = clmType.find(clmType._id === cell._id)
     // console.log("clmType", currType)
     // console.log("cell", cell);
-    console.log("clmType", data[0]);
+    // console.log("clmType", clmType);
 
     function getCellColor() {
         const item = data.find(item => item.id === cell.dataId)
@@ -25,20 +30,24 @@ export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange }) {
         return color
     }
 
-    function openLabelPicker() {
+    function toggleLabelPicker() {
         setIsOpen(!isOpen)
         console.log("isOpen", isOpen);
     }
 
     return (
-        <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%' }} className="dyn-cell status">
-            <span className="status-txt"
-                onClick={() => onChange(cell)}
-            >{getCellTxt()}</span>
+        <>
+            <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%' }} className="dyn-cell status">
+                <span className="status-txt"
+                    onClick={() => { onChange(cell); setIsOpen(!isOpen) }}
+                >{getCellTxt()}</span>
 
-            <LabelPicker labels={data[0]} />
+
+                {isOpen && <LabelPicker labels={labels} onClick={setIsOpen}/>}
 
 
-        </div>
+
+            </div>
+        </>
     )
 }

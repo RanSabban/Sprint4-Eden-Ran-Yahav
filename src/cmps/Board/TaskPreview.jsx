@@ -17,27 +17,29 @@ import { useState } from 'react';
 
 
 
-export function TaskPreview({ task, onUpdateTask }) {
+export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const [cellToEdit, setCellToEdit] = useState('')
+    const [labels, setLabels] = useState([])
 
     const [modalInfo, setModalInfo] = useState({ visible: false, top: 0, left: 0, cellId: null });
 
-    // const showModal = (event, cellId) => {
-    //     const rect = event.currentTarget.getBoundingClientRect()
-    //     setModalInfo({
-    //         visible: true,
-    //         top: rect.bottom + window.scrollY,
-    //         left: rect.left + window.scrollX,
-    //         cellId
-    //     })
-    // }
+    async function onChange(cell) {
+        await setCellToEdit(cell)
+        try {
+            const currClmType = getClmType(cellToEdit._id)
+            const labelsList = currClmType.data
+            await setLabels(labelsList)
+        }
+        catch (err) {
+            console.log(err);
+        }
 
-    function onChange(cell){
-        console.log(cell);
-        setCellToEdit(cell)
-        console.log(cellToEdit);
+    }
+
+    function openDynModal(clmType){
+        console.log("almost");
     }
 
     const { cells } = task
@@ -46,9 +48,15 @@ export function TaskPreview({ task, onUpdateTask }) {
         return clmToReturn
     }
 
+    function onUpdateTitle(newTxt){
+        const taskToUpdate = task
+        task.title = newTxt
+        onUpdateTask(taskToUpdate)
+    }
+
     return (<>
         <div className='title-container'>
-            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateTask={onUpdateTask} style={{ marginLeft: '5px' }} /></span>
+            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
             <Button
                 className="btn-message"
                 kind="tertiary"
@@ -63,17 +71,22 @@ export function TaskPreview({ task, onUpdateTask }) {
                 <DynamicCmp key={idx}
                     cmpType={cell.type}
                     onChange={onChange}
-                    // setCellToEdit={setCellToEdit}
+                    labels={labels}
+                    cellToEdit={cellToEdit}
                     clmType={getClmType(cell._id)}
                     cell={cell}
-                    onUpdateTask={onUpdateTask}
+                    onUpdateCell={onUpdateCell}
                     taskId={task._id}
+                    onClick={openDynModal}
                 />
+
 
 
             ))
 
         }
+
+
 
     </>
 
@@ -107,3 +120,4 @@ function DynamicCmp(props) {
 
 
 
+ 

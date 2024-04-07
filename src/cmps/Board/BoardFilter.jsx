@@ -50,7 +50,7 @@ export function BoardFilter({onAddGroup,boardId}) {
                     onBlur={() => toggleIsSearch()}
                     autoFocus
                     debounceRate={200}
-                    iconName={Search}
+                    leftIcon={Search}
                     placeholder="Search"
                     size="small"
                     wrapperClassName="dyn-search"
