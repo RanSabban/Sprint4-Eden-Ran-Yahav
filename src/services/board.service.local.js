@@ -946,6 +946,7 @@ function getEmptyBoard() {
     return {
         title: "New Board",
         isStarred: false,
+        type: 'item',
         archivedAt: null,
         createdBy: {
             _id: "EtzD1",
