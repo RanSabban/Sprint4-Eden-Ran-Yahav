@@ -40,11 +40,13 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
             animationType="expand"><button style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`} onClick={() => setIsOpen2(!isOpen2)}><OpenSidebar /></button> </Tooltip>
         <div style={{ marginLeft: "1em", display: dynClass }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
-
+                <div className="upper-actions">
                 <NavLink className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
-                <NavLink className="actions-sidebar-upper"><MyWork /><div className="home-sidebar">My work</div></NavLink>
+                <NavLink className="actions-sidebar-upper-second"><MyWork /><div className="home-sidebar">My work</div></NavLink>
+                </div>
 
-                <MenuDivider width="110%" />
+
+                {/* <MenuDivider width="110%" /> */}
                 {/* <hr style={{ width: "100%", color: '#e6e9ef' }} /> */}
                 <section className="sidebar-workspace">
                     <div className="main-back">M <Home2 /></div>
@@ -65,8 +67,8 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                     </div>
                 </div>
 
-                <section className="sidebar-workspace">
-                    <section style={{ marginBottom: "0" }} className="sidebar-workspace">
+                <section className="sidebar-workspace-second">
+                    <section style={{ marginBottom: "0" }} className="sidebar-workspace-third">
                         {/* <div style={{ position: "absolute", top: "165px", right: "231px" }}>
                             <SearchTool />
                         </div> */}
