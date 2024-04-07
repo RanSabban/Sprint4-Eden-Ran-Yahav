@@ -95,10 +95,10 @@ export function boardReducer(state = initialState, action) {
             }
 
         case DROP_GROUP:
-            const { sourceIndex, destinationIndex } = action.payload;
-            const newGroups = Array.from(state.board.groups);
-            const [removedGroup] = newGroups.splice(sourceIndex, 1);
-            newGroups.splice(destinationIndex, 0, removedGroup);
+            const { sourceIndex, destinationIndex } = action.payload
+            const newGroups = Array.from(state.board.groups)
+            const [removedGroup] = newGroups.splice(sourceIndex, 1)
+            newGroups.splice(destinationIndex, 0, removedGroup)
 
             return {
                 ...state,
@@ -106,10 +106,7 @@ export function boardReducer(state = initialState, action) {
                     ...state.board,
                     groups: newGroups
                 }
-            };
-
-
-        // case SET_CURRENT_CLMTYPES:
+            }
         default:
     }
     return newState
