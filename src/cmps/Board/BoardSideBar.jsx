@@ -37,7 +37,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
         animationType="expand">
     </Tooltip>
 
-    return (<section style={{ width: dynPad, position: dynScroll}} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    return (<section style={{ width: dynPad, position: dynScroll, zIndex: "35"}} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 
         <Tooltip content='Close navigation ◀'
             animationType="expand"><button style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`} onClick={() => setIsOpen2(!isOpen2)}><OpenSidebar /></button> </Tooltip>
