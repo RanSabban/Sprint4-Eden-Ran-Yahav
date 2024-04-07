@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux'
 import { loadBoard } from "../../store/board.actions"
 import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
+import { LabelPicker } from "./reusableCmps/LabelPicker"
 
 
-export function BoardDetails({ onAddGroup,onRemoveGroup }) {
+export function BoardDetails({ onAddGroup, onRemoveGroup }) {
 
 
     const { boardId } = useParams()
@@ -21,13 +22,15 @@ export function BoardDetails({ onAddGroup,onRemoveGroup }) {
     if (!board) return <div>LOADING BRO</div>
     return (
         <>
-        <div className="main-wrapper">
-            <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board}/>
+        {/* <LabelPicker/> */}
+            <div className="main-wrapper">
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
 
-        <section className="board-details">
-            <BoardPreview  onAddGroup={onAddGroup} onRemoveGroup={onRemoveGroup} board={board} />
-        </section>
-        </div>
+                <section className="board-details">
+                    <BoardPreview onAddGroup={onAddGroup} onRemoveGroup={onRemoveGroup} board={board} />
+                </section>
+                
+            </div>
         </>
     )
 }

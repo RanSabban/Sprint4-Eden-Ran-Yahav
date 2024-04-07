@@ -1,6 +1,6 @@
 export function PriorityCellComponent({clmType, cell}) {
     // console.log(ClmType, cell);
-    const { data } = clmType[0]
+    const { data } = clmType
 
     function getCellTxt() {
         // console.log(data);

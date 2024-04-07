@@ -10,25 +10,45 @@ import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
 import { Button } from 'monday-ui-react-core';
 import { Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
+import { LabelPicker } from './reusableCmps/LabelPicker';
+import { useState } from 'react';
 
 
 
 
 
-export function TaskPreview({ task , onUpdateTask }) {
+export function TaskPreview({ task, onUpdateTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
+    const [cellToEdit, setCellToEdit] = useState('')
 
+    const [modalInfo, setModalInfo] = useState({ visible: false, top: 0, left: 0, cellId: null });
+
+    // const showModal = (event, cellId) => {
+    //     const rect = event.currentTarget.getBoundingClientRect()
+    //     setModalInfo({
+    //         visible: true,
+    //         top: rect.bottom + window.scrollY,
+    //         left: rect.left + window.scrollX,
+    //         cellId
+    //     })
+    // }
+
+    function onChange(cell){
+        console.log(cell);
+        setCellToEdit(cell)
+        console.log(cellToEdit);
+    }
 
     const { cells } = task
     function getClmType(cellId) {
-        const clmToReturn = clmTypes.filter(clmTypeToReturn => (clmTypeToReturn._id === cellId))
+        const clmToReturn = clmTypes.find(clmTypeToReturn => (clmTypeToReturn._id === cellId))
         return clmToReturn
     }
 
     return (<>
         <div className='title-container'>
-            <span style={{ width: '300px'}} className='dyn-cell title'><InputCell txt={task.title} onUpdateTask={onUpdateTask} style={{marginLeft: '5px'}}/></span>
+            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateTask={onUpdateTask} style={{ marginLeft: '5px' }} /></span>
             <Button
                 className="btn-message"
                 kind="tertiary"
@@ -39,15 +59,22 @@ export function TaskPreview({ task , onUpdateTask }) {
         </div>
         {
             cells.map((cell, idx) => (
-                
-                    <DynamicCmp key={idx} cmpType={cell.type}
-                        clmType={getClmType(cell._id)}
-                        cell={cell} onUpdateTask={onUpdateTask} taskId={task._id}
-                    />
-                
+
+                <DynamicCmp key={idx}
+                    cmpType={cell.type}
+                    onChange={onChange}
+                    // setCellToEdit={setCellToEdit}
+                    clmType={getClmType(cell._id)}
+                    cell={cell}
+                    onUpdateTask={onUpdateTask}
+                    taskId={task._id}
+                />
+
 
             ))
+
         }
+
     </>
 
     )

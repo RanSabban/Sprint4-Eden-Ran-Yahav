@@ -13,7 +13,8 @@ export function BoardPreview({ board }) {
 
     async function onAddTask(groupId) {
         try {
-            await addTask(groupId)
+            console.log(groupId);
+            await addTask(groupId,board._id)
             showSuccessMsg('Task Added')
         }
         catch (err) {
@@ -33,6 +34,7 @@ export function BoardPreview({ board }) {
             
             <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} boardType = {board.type} />
         </section>
+
     )
 }
 

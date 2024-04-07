@@ -7,8 +7,8 @@ export function MembersCellComponent({clmType,cell}) {
     // console.log(assignedUsers);
 
     function getUsers(){
-        const clmTypeObj = clmType[0]
-        const users = clmTypeObj.data.filter(user => {
+
+        const users = clmType.data.filter(user => {
             const id = user._id
             // console.log(user);
             for (var i = 0; i < assignedUsers.length; i++) {
