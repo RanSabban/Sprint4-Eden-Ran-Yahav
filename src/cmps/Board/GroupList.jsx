@@ -49,8 +49,7 @@ export function GroupList({ clmTypes, groups, onAddTask, boardType, boardId }) {
                     <div className='dyn-cell header-item'>{boardType}</div>
                     <RenderHeaders clmTypes={clmTypes} />
                 </section>
-                <TaskList tasks={group.tasks} groupId={group._id} />
-                <Button variant="contained" onClick={() => onAddTask(group._id)}>Add task</Button>
+                <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
             </section>)
         })}
 

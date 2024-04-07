@@ -25,11 +25,9 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
         {/* <LabelPicker/> */}
             <div className="main-wrapper">
                 <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
-
                 <section className="board-details">
                     <BoardPreview onAddGroup={onAddGroup} onRemoveGroup={onRemoveGroup} board={board} />
                 </section>
-                
             </div>
         </>
     )
