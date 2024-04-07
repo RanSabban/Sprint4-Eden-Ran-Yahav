@@ -13,6 +13,8 @@ export const ADD_GROUP = 'ADD_GROUP'
 export const ADD_TASK = 'ADD_TASK'
 export const REMOVE_GROUP = 'REMOVE_GROUP'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
+export const DROP_TASK = 'DROP_TASK'
+export const DROP_GROUP = 'DROP_GROUP'
 
 
 const initialState = {
@@ -86,6 +88,25 @@ export function boardReducer(state = initialState, action) {
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
+        case DROP_TASK:
+            return {
+                ...state,
+
+            }
+
+        case DROP_GROUP:
+            const { sourceIndex, destinationIndex } = action.payload;
+            const newGroups = Array.from(state.board.groups);
+            const [removedGroup] = newGroups.splice(sourceIndex, 1);
+            newGroups.splice(destinationIndex, 0, removedGroup);
+
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: newGroups
+                }
+            };
 
 
         // case SET_CURRENT_CLMTYPES:

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export function InputCell({ txt, onUpdateInput, style, isClear, onAddTaskComplete }) {
 
     const [txtToShow, setTxtToShow] = useState(txt)
-    console.log(isClear);
+    // console.log(isClear);
 
     useEffect(() => {
         if (isClear){

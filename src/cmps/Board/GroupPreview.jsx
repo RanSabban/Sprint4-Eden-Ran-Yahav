@@ -16,7 +16,6 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                     className="group-card"
-
                 >
                     <section className="group-header">
                         <MenuButton>
