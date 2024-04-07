@@ -5,6 +5,8 @@
         line-height: 22.5px;
         margin-left: 6px;
         font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
+        word-break: keep-all;
+        white-space: nowrap;
     }
 
     .board-side-preview {
@@ -16,7 +18,8 @@
 
     .board-side-preview:hover {
         background-color: #eceff8;
-        border-radius: 2px;
+        border-radius: 4px;
+        width: 14.2em;
         cursor: pointer;
     }
 

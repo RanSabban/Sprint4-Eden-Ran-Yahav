@@ -7,7 +7,7 @@
     transition: 0.2s;
 
     .actions-sidebar-upper {
-        // line-height: 19px;
+        line-height: 1.5;
         font-size: 14px;
         text-align: start;
         color: #323338;
@@ -16,14 +16,27 @@
         padding: 12px 40px 1px 0px;
     }
 
+    .actions-sidebar-upper:hover {
+        background-color: rgba(103, 104, 121, 10%);
+        width: 14em;
+        border-radius: 4px;
+    }
+
+    .actions-sidebar-upper-second {
+        font-size: 14px;
+        text-align: start;
+        color: #323338;
+        text-decoration: none;
+        display: flex;
+        padding: 12px 40px 5px 0px;
+    }
+
     .upper-actions {
         border-bottom: 1px solid #d0d4e4;
         display: flex;
         flex-direction: column;
-        // gap: 2px;
-        // padding-left: 12px;
-        padding-right: 12px;
-        padding-block: 12px;
+        // padding-right: 12px;
+        padding-block: 10px;
         width: 100%;
     }
 
@@ -100,7 +113,7 @@
     .main-workspace {
         display: flex;
         color: #323338;
-        line-height: 19px;
+        line-height: 24px;
         font-size: 16px;
         text-align: start;
         margin-right: 1em;
@@ -121,7 +134,7 @@
         padding: 0.4em;
     }
 
-    .actions-sidebar-upper:hover {
+    .actions-sidebar-upper-second:hover {
         background-color: rgba(103, 104, 121, 10%);
         width: 16.4em;
         border-radius: 4px;

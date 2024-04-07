@@ -42,7 +42,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <div className="upper-actions">
                 <NavLink className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
-                <NavLink className="actions-sidebar-upper"><MyWork /><div className="home-sidebar">My work</div></NavLink>
+                <NavLink className="actions-sidebar-upper-second"><MyWork /><div className="home-sidebar">My work</div></NavLink>
                 </div>
 
 
