@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom"
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
 import { BoardListPreview } from "./BoardListPreview"
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText } from "monday-ui-react-core";
+import { useSelector } from "react-redux";
+
 
 function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const [isEdit, setIsEdit] = useState(false)

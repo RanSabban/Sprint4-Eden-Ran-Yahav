@@ -1,5 +1,7 @@
 import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core";
 import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
+import EmojiPicker from 'emoji-picker-react';
+
 import { BoardFilter } from "./BoardFilter";
 import { boardService } from "../../services/board.service.local";
 import { updateBoard } from "../../store/board.actions";
@@ -10,11 +12,15 @@ import { useSelector } from "react-redux";
 export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) {
     // const [boardTitle, setBoardTitle] = useState(board.title)
     const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+    const [chosenEmoji, setChosenEmoji] = useState(null)
 
     const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'
 
-    // const board = boardService.getById(boardId)
-    console.log("$$$$$$$$$", boardTitle);
+    function onEmojiInput(ev, emoji) {
+        setChosenEmoji(emoji)
+
+    }
 
     function onRenameBoard(newTitle) {
         try {
@@ -43,7 +49,14 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                                     isEditMode={"true"}
                                     onFinishEditing={onRenameBoard}
                                 />
+
                             </Tooltip>
+                            {/* <Button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                                {chosenEmoji ? chosenEmoji.emoji : "Pick an Emoji"}
+                            </Button>
+                            {showEmojiPicker && (
+                                <EmojiPicker onEmojiClick={onEmojiInput} />
+                            )} */}
 
                             <Tooltip
                                 content='Show board description'
