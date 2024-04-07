@@ -28,7 +28,7 @@ export function TaskPreview({ task , onUpdateTask }) {
 
     return (<>
         <div className='title-container'>
-            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateTask={onUpdateTask}/></span>
+            <span style={{ width: '300px'}} className='dyn-cell title'><InputCell txt={task.title} onUpdateTask={onUpdateTask} style={{marginLeft: '5px'}}/></span>
             <Button
                 className="btn-message"
                 kind="tertiary"

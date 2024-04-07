@@ -4,6 +4,7 @@ import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { addTask, loadBoard } from "../../store/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
+import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
 
 export function BoardPreview({ board }) {
 
@@ -21,20 +22,23 @@ export function BoardPreview({ board }) {
         }
     }
 
-  
+
     if (!board) return <div>LOADING</div>
     return (
         <section className="board-preview">
-            {/* <h2>I am Board Preview</h2> */}
-            {/* <Button  variend="contained" sx={{maxWidth: "75px"}} onClick={() => onAddGroup(board._id)}>Add group</Button> */}
+            {/* <DialogContentContainer className={''}>
+                <DatePicker data-testid="date-picker" date={1589983468418} onPickDate={() => ('')} />
+            </DialogContentContainer> */}
+            {/* <DatePicker data-testid="date-picker" date={1589983468418} onPickDate={ev => console.log(ev)}/> */}
+       
             <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} />
-            {/* <Button variend="contained" onClick={() => onAddGroup()} /> */}
         </section>
     )
 }
 
 
 
+{/* <Button variend="contained" onClick={() => onAddGroup()} /> */ }
 
 
 

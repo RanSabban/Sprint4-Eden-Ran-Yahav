@@ -5,6 +5,7 @@ import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDiv
 import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
 import { BoardFilter } from "./BoardFilter";
 
+
 export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, boardId }) {
 
     const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'

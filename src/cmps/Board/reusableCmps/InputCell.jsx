@@ -1,6 +1,6 @@
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText } from "monday-ui-react-core";
 
-export function InputCell({ txt, onUpdateInput }) {
+export function InputCell({ txt, onUpdateInput, style }) {
 
     function handleInput(newTxt) {
         onUpdateInput(newTxt)
@@ -12,6 +12,7 @@ export function InputCell({ txt, onUpdateInput }) {
             placeholder="+Add item"
             onChange={(newTxt) => handleInput(newTxt)}
             value={txt}
+            style={style}
         />
     )
 }
