@@ -186,7 +186,7 @@ const gBoards = [
                 tasks: [
                     {
                         _id: "c101",
-                        title: "Task 1",
+                        title: "Add filter",
                         cells: [
                             {
                                 _id: "c111",
@@ -254,7 +254,25 @@ const gBoards = [
                             imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
                         }
                     },
-
+                    {
+                        _id: "c106",
+                        title: "Add filter",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l103" }, // Working on it
+                            { _id: "c116", type: "priority", dataId: "l202" }, // Medium
+                            { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Review latest design trends" },
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD2",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    }, 
                 ]
             },
             {
