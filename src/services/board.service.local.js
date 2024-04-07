@@ -707,7 +707,6 @@ const gBoards = [
             }
         ]
     }
-
 ]
 
 // const gBoards = [
@@ -921,7 +920,6 @@ async function save(board) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
         // Later, owner is set by the backend
-        console.log('hey from save from local', board)
         // board.owner = userService.getLoggedinUser(),
         savedBoard = await storageService.post(STORAGE_KEY, board)
     }
@@ -946,7 +944,209 @@ async function addBoardMsg(boardId, txt) {
 
 function getEmptyBoard() {
     return {
+        title: "New Board",
+        isStarred: false,
+        archivedAt: null,
+        createdBy: {
+            _id: "EtzD1",
+            fullname: "Puki Norma",
+            imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+        }, 
+        clmTypes: [
+            {
+                _id: "c111",
+                type: "status",
+                title: "Status",
+                data: [
+                    {
+                        id: "l102",
+                        title: "Working on it",
+                        color: "#fdab3d"
+                    },
+                    {
+                        id: "l103",
+                        title: "Stuck",
+                        color: "#df2f4a"
+                    },
+                    {
+                        id: "l101",
+                        title: "Done",
+                        color: "#00c875"
+                    },
+                    {
+                        title: 'Will do',
+                        id: "l100",
+                        color: "#c4c4c4"
+                    }
+                ]
+            },
+            {
+                _id: "c112",
+                type: "members",
+                title: "Assigned To",
+                data: [
+                    {
+                        _id: "EtzD1",
+                        fullname: "Eden Gilady",
+                        imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                    },
+                    {
+                        _id: "EtzD2",
+                        fullname: "Yahav Ganon",
+                        imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                    },
+                    {
+                        _id: "EtzD3",
+                        fullname: "Ran Sabban",
+                        imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                    },
+                    {
+                        _id: "EtzD4",
+                        fullname: "Mor Marzan",
+                        imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                    }
+                ]
+            },
+            {
+                _id: "c115",
+                type: "date",
+                title: "Date"
+            }
+        ],
+        groups: [
+            {
+                _id: utilService.makeId(),
+                title: "Group Title",
+                archivedAt: null,
+                tasks: [
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 1",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l102"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD1"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u102",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                        }
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 2",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l101"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD1"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            },
+                        ],
+                        createdBy: {
+                            _id: "u102",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                        }
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 3",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Working on it
+                            { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
+                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                        ],
+                        createdBy: {
+                            _id: "EtzD2",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    },
 
+                ]
+            },
+            {
+                _id: utilService.makeId(),
+                title: "Group title",
+                archivedAt: null,
+                tasks: [
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 4",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l100"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD2"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u103",
+                            fullname: "Eden Gilady",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                        }
+                    },
+                    {
+                        _id: utilService.makeId(),
+                        title: "Task 5",
+                        cells: [
+                            {
+                                _id: "c111",
+                                type: "status",
+                                dataId: "l100"
+                            },
+                            {
+                                _id: "c112",
+                                type: "members",
+                                dataId: ["EtzD3"]
+                            },
+                            {
+                                _id: "c115",
+                                type: "date",
+                                date: 1589983468418
+                            }
+                        ],
+                        createdBy: {
+                            _id: "u104",
+                            fullname: "Yahav Ganon",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                        }
+                    }
+                ]
+            },]
     }
 }
 
