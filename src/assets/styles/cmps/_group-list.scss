@@ -5,12 +5,14 @@
     .header-items {
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: 350px 150px 150px repeat(auto-fill, 100px);
+        grid-template-columns: 36px 350px 150px 150px 100px 200px repeat(auto-fill, 100px);
         border: 1px solid $clr-border;
         height: 2.25em;
         align-items: center;
         text-align: center;
         border-right: 1px solid $clr-border;
+        border-left: 0.4em solid $clr-label-3;
+        border-top-left-radius: 0.3em
     }
 
     .header-items .dyn-cell {
@@ -28,9 +30,12 @@
     }
     .group-header{
         display: grid;
+        position: relative;
+        right: 1.8em;
         grid-auto-flow: column;
         justify-content: start;
         align-items: center;
+        color: $clr-label-3;
     }
     .group-header button {
         opacity: 0;
@@ -38,5 +43,9 @@
     }
     .group-header:hover button{
         opacity: 1;
+    }
+    .dyn-cell.checkbox-header-container {
+        display: grid;
+        justify-items: center;
     }
 }

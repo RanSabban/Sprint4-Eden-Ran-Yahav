@@ -10,7 +10,7 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
-    addBoardMsg, 
+    addBoardMsg,
     getEmptyTask,
     addTask,
     addGroup,
@@ -127,8 +127,6 @@ const gBoards = [
                 data: [
                     {
                         _id: "sdf123",
-                        startDate: 1703703751234,
-                        dueDate: 1703703751345
                     }
                 ]
             },
@@ -154,7 +152,7 @@ const gBoards = [
                 title: "Date"
             },
             {
-                _id: "c116",
+                _id: "c1118",
                 type: "updates",
                 title: "Last Updated",
                 data: [
@@ -202,12 +200,13 @@ const gBoards = [
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD1","EtzD3"]
+                                dataId: ["EtzD1", "EtzD3"]
                             },
                             {
                                 _id: "c113",
                                 type: "timelines",
-                                dataId: "sdf123"
+                                startDate: 1684886400000,
+                                endDate: 1688256000000
                             },
                             {
                                 _id: "c114",
@@ -225,7 +224,7 @@ const gBoards = [
                                 date: 1706953308365
                             },
                             {
-                                _id: "c116",
+                                _id: "c1118",
                                 type: "updates",
                                 dataId: "1478"
                             }
@@ -242,12 +241,15 @@ const gBoards = [
                         cells: [
                             { _id: "c111", type: "status", dataId: "l101" }, // Working on it
                             { _id: "c116", type: "priority", dataId: "l202" }, // Medium
-                            { _id: "c112", type: "members", dataId: ["EtzD2","EtzD1"] }, // Yahav Ganon, Eden Gilady
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c112", type: "members", dataId: ["EtzD2", "EtzD1"] }, // Yahav Ganon, Eden Gilady
+                            {
+                                _id: "c113", type: "timelines", startDate: 1685577600000,
+                                endDate: 1688515200000
+                            },
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Add groups paging" },
                             { _id: "c115", type: "date", date: 1709372508365 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD2",
@@ -262,18 +264,21 @@ const gBoards = [
                             { _id: "c111", type: "status", dataId: "l103" }, // Stuck
                             { _id: "c116", type: "priority", dataId: "l202" }, // Medium
                             { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1687219200000,
+                                endDate: 1688601600000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Drag & drop rows" },
                             { _id: "c115", type: "date", date: 1711359708365 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD2",
                             fullname: "Yahav Ganon",
                             imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
                         }
-                    }, 
+                    },
                 ]
             },
             {
@@ -303,7 +308,8 @@ const gBoards = [
                             {
                                 _id: "c113",
                                 type: "timelines",
-                                dataId: "sdf123"
+                                startDate: 1687824000000,
+                                endDate: 1688515200000
                             },
                             {
                                 _id: "c114",
@@ -321,7 +327,7 @@ const gBoards = [
                                 date: 1712396508365
                             },
                             {
-                                _id: "c116",
+                                _id: "c1118",
                                 type: "updates",
                                 dataId: "456"
                             }
@@ -354,7 +360,8 @@ const gBoards = [
                             {
                                 _id: "c113",
                                 type: "timelines",
-                                dataId: "sdf123"
+                                startDate: 1690934400000,
+                                endDate: 1696118400000
                             },
                             {
                                 _id: "c114",
@@ -372,7 +379,7 @@ const gBoards = [
                                 date: 1706694108365
                             },
                             {
-                                _id: "c116",
+                                _id: "c1118",
                                 type: "updates",
                                 dataId: "8965"
                             }
@@ -397,11 +404,14 @@ const gBoards = [
                             { _id: "c111", type: "status", dataId: "l101" }, // Done
                             { _id: "c116", type: "priority", dataId: "l202" }, // Low
                             { _id: "c112", type: "members", dataId: ["EtzD1"] }, // Eden Gilady
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1693526400000,
+                                endDate: 1694908800000
+                            },
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Initial planning" },
                             { _id: "c115", type: "date", date: 1722419175369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "456" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "456" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD1",
@@ -410,17 +420,20 @@ const gBoards = [
                         }
                     },
                     {
-                        _id: "c106",
+                        _id: "c1015",
                         title: "Home page structure & design",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l102" }, // Working on it
                             { _id: "c116", type: "priority", dataId: "l204" }, // Medium
                             { _id: "c112", type: "members", dataId: ["EtzD3"] }, // Ran Sabban
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1696809600000,
+                                endDate: 1699228800000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Based on Monday.com" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD3",
@@ -436,11 +449,14 @@ const gBoards = [
                             { _id: "c111", type: "status", dataId: "l101" }, // Will do
                             { _id: "c116", type: "priority", dataId: "l202" }, // High
                             { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1697155200000,
+                                endDate: 1700006400000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Responsive & Flexible" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -455,11 +471,14 @@ const gBoards = [
                             { _id: "c111", type: "status", dataId: "l100" }, // Will do
                             { _id: "c116", type: "priority", dataId: "l204" }, // High
                             { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1706745600000,
+                                endDate: 1707091200000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Bonus feature" },
                             { _id: "c115", type: "date", date: 1722419175369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -473,12 +492,15 @@ const gBoards = [
                         cells: [
                             { _id: "c111", type: "status", dataId: "l100" }, // Will do
                             { _id: "c116", type: "priority", dataId: "l201" }, // High
-                            { _id: "c112", type: "members", dataId: ["EtzD3","EtzD2"] }, // 
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c112", type: "members", dataId: ["EtzD3", "EtzD2"] }, // 
+                            {
+                                _id: "c113", type: "timelines", startDate: 1707004800000,
+                                endDate: 1711584000000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Must do" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -500,11 +522,14 @@ const gBoards = [
                             { _id: "c111", type: "status", dataId: "l101" }, // Done
                             { _id: "c116", type: "priority", dataId: "l201" }, // Low
                             { _id: "c112", type: "members", dataId: ["EtzD1"] }, // Eden Gilady
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1684886400000,
+                                endDate: 1688256000000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Initial planning" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "456" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "456" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD1",
@@ -518,12 +543,15 @@ const gBoards = [
                         cells: [
                             { _id: "c111", type: "status", dataId: "l100" }, // Working on it
                             { _id: "c116", type: "priority", dataId: "l204" }, // Medium
-                            { _id: "c112", type: "members", dataId: ["EtzD3","EtzD1"] }, // Ran Sabban
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c112", type: "members", dataId: ["EtzD3", "EtzD1"] }, // Ran Sabban
+                            {
+                                _id: "c113", type: "timelines", startDate: 1685577600000,
+                                endDate: 1688515200000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Use node.js" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD3",
@@ -539,11 +567,14 @@ const gBoards = [
                             { _id: "c111", type: "status", dataId: "l101" }, // Done
                             { _id: "c116", type: "priority", dataId: "l202" }, // High
                             { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            {
+                                _id: "c113", type: "timelines", startDate: 1687219200000,
+                                endDate: 1688601600000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Efficient" },
                             { _id: "c115", type: "date", date: 1722937575369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -557,12 +588,15 @@ const gBoards = [
                         cells: [
                             { _id: "c111", type: "status", dataId: "l100" }, // Will do
                             { _id: "c116", type: "priority", dataId: "l201" }, // High
-                            { _id: "c112", type: "members", dataId: ["EtzD3","EtzD2"] }, // 
-                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c112", type: "members", dataId: ["EtzD3", "EtzD2"] }, // 
+                            {
+                                _id: "c113", type: "timelines", startDate: 1687824000000,
+                                endDate: 1688515200000
+                            }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Must do" },
                             { _id: "c115", type: "date", date: 1721295975369 }, // Example date
-                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                            { _id: "c1118", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {
                             _id: "EtzD4",
@@ -952,7 +986,7 @@ function getEmptyBoard() {
             _id: "EtzD1",
             fullname: "Puki Norma",
             imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-        }, 
+        },
         clmTypes: [
             {
                 _id: "c111",
@@ -1151,32 +1185,32 @@ function getEmptyBoard() {
     }
 }
 
-async function getEmptyTask(groupId,boardId) {
+async function getEmptyTask(groupId, boardId) {
 
     const board = await getById(boardId)
     const { clmTypes } = board
     console.log(clmTypes);
     const cells = clmTypes.map(clmType => {
         if (clmType.type === 'status' || clmType.type === 'priority') {
-            return {_id: clmType._id, type: clmType.type, dataId: clmType.data[0].id}
+            return { _id: clmType._id, type: clmType.type, dataId: clmType.data[0].id }
         }
         if (clmType.type === 'members') {
-            return {_id: clmType._id, type: 'members', dataId: clmType.data[0]._id}
+            return { _id: clmType._id, type: 'members', dataId: clmType.data[0]._id }
         }
         if (clmType.type === 'timelines') {
-            return {_id: clmType._id, type: 'timelines', dataId: 'sdf123'}
+            return { _id: clmType._id, type: 'timelines', startDate: 0, endDate: 0 }
         }
         if (clmType.type === 'files') {
-            return {_id: clmType._id, type: 'files'}
+            return { _id: clmType._id, type: 'files' }
         }
         if (clmType.type === 'txt') {
-            return {_id: clmType._id, type:'txt', txt: ''}
+            return { _id: clmType._id, type: 'txt', txt: '' }
         }
         if (clmType.type === 'date') {
-            return { _id: clmType._id, type: 'date', date: Date.now()}
+            return { _id: clmType._id, type: 'date', date: Date.now() }
         }
         if (clmType.type === 'updates') {
-            return { _id: clmType._id, type: 'updates', dataId: '1478'}
+            return { _id: clmType._id, type: 'updates', dataId: '1478' }
         }
     })
     return {
@@ -1197,22 +1231,22 @@ async function addGroup(boardId) {
     board.groups.push(group)
     console.log(board);
     await save(board)
-    console.log(group,board);
+    console.log(group, board);
     return group
 }
 
 async function removeGroup(groupId) {
     console.log(groupId);
-    const boards = await storageService.query(STORAGE_KEY) 
+    const boards = await storageService.query(STORAGE_KEY)
     const boardsToReturn = boards.map((board) => ({
         ...board, groups: board.groups.filter(group => group._id !== groupId)
     }))
     console.log(boardsToReturn);
-    _save(STORAGE_KEY,boardsToReturn)
+    _save(STORAGE_KEY, boardsToReturn)
 }
 
-async function addTask(groupId,task) {
-    console.log(groupId,task);
+async function addTask(groupId, task) {
+    console.log(groupId, task);
     const boards = await storageService.query(STORAGE_KEY)
     boards.map(board => {
         return board.groups.map((group => {
@@ -1225,7 +1259,7 @@ async function addTask(groupId,task) {
     return _save(STORAGE_KEY, boards)
 }
 
-async function updateCell(updatedCell,taskId,groupId) {
+async function updateCell(updatedCell, taskId, groupId) {
     const boards = await storageService.query(STORAGE_KEY)
     const updatedBoards = boards.map(board => {
         // No changes to the board itself, but iterate over its groups
@@ -1312,29 +1346,29 @@ function getEmptyGroup() {
             //             type: "updates",
             //             dataId: "1478"
             //         }
-                ],
-                createdBy: {
-                    _id: "u102",
-                    fullname: "Ran Sabban",
-                    imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
-                }
-            
-        
+        ],
+        createdBy: {
+            _id: "u102",
+            fullname: "Ran Sabban",
+            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+        }
+
+
     }
 }
 
-async function updateTask(taskToUpdate,groupId) {
-    console.log(taskToUpdate,groupId);
+async function updateTask(taskToUpdate, groupId) {
+    console.log(taskToUpdate, groupId);
     const boards = await storageService.query(STORAGE_KEY)
     const updatedBoards = boards.map(board => {
         return {
-            ...board, 
+            ...board,
             groups: board.groups.map(group => {
                 if (group._id === groupId) {
                     return {
-                        ...group, 
+                        ...group,
                         tasks: group.tasks.map(task => {
-                            if (task._id === taskToUpdate._id){
+                            if (task._id === taskToUpdate._id) {
                                 return taskToUpdate
                             }
                             return task

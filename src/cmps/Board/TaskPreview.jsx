@@ -7,7 +7,7 @@ import { TextCellComponent } from './dynamicCmp/TextCellComponent';
 import { LastUpdatedComponent } from './dynamicCmp/LastUpdatedComponent'
 import { FilesComponent } from './dynamicCmp/FilesComponent';
 import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
-import { Button } from 'monday-ui-react-core';
+import { Button, Checkbox } from 'monday-ui-react-core';
 import { Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
@@ -38,7 +38,7 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
 
     }
 
-    function openDynModal(clmType){
+    function openDynModal(clmType) {
         console.log("almost");
     }
 
@@ -48,13 +48,16 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
         return clmToReturn
     }
 
-    function onUpdateTitle(newTxt){
+    function onUpdateTitle(newTxt) {
         const taskToUpdate = task
         task.title = newTxt
         onUpdateTask(taskToUpdate)
     }
 
     return (<>
+        <div className='dyn-cell checkbox-container'>
+            <Checkbox />
+        </div>
         <div className='title-container'>
             <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
             <Button
@@ -65,6 +68,8 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
                 <Update />
             </Button>
         </div>
+
+        
         {
             cells.map((cell, idx) => (
 
@@ -79,17 +84,9 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
                     taskId={task._id}
                     onClick={openDynModal}
                 />
-
-
-
             ))
-
         }
-
-
-
     </>
-
     )
 }
 
@@ -120,4 +117,3 @@ function DynamicCmp(props) {
 
 
 
- 

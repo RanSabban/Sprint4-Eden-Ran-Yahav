@@ -28,6 +28,9 @@
     grid-column: 2;
 
 }
+.scrollable-container {
+    overflow: auto;
+}
 
 .board-details {
     grid-row: 1;
