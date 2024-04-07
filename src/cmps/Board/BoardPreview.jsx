@@ -71,7 +71,7 @@ export function BoardPreview({ board }) {
     }
 
 
-    if (!board) return <div>LOADING</div>
+    if (!groups) return <div>LOADING</div>
     return (
 
 

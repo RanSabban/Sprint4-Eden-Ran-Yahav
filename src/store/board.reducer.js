@@ -1,5 +1,3 @@
-import { boardService } from "../services/board.service.local"
-
 export const SET_BOARDS = 'SET_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
@@ -16,7 +14,6 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const DROP_TASK = 'DROP_TASK'
 export const DROP_GROUP = 'DROP_GROUP'
 
-
 const initialState = {
     boards: null,
     board: null,
@@ -24,7 +21,6 @@ const initialState = {
     clmTypes: null,
     lastRemovedBoard: null,
     isLoading: false
-
 }
 
 export function boardReducer(state = initialState, action) {
