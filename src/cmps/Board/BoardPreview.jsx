@@ -14,11 +14,7 @@ export function BoardPreview({ board }) {
     async function onAddTask(groupId,taskTitle) {
         try {
             console.log(groupId);
-<<<<<<< HEAD
-            await addTask(groupId, board._id)
-=======
             await addTask(groupId,board._id,taskTitle)
->>>>>>> d0db9fc4c09cdc3dceb1ba2762460196ebc3fe75
             showSuccessMsg('Task Added')
         }
         catch (err) {

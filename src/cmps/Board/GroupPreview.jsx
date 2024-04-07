@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd'
-import { Menu, MenuButton, MenuItem, Button,Checkbox } from 'monday-ui-react-core';
+import { Menu, MenuButton, MenuItem, Button, Checkbox } from 'monday-ui-react-core';
 import { AddSmall, Delete } from 'monday-ui-react-core/icons';
 import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
@@ -27,6 +27,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         </MenuButton>
                         <span className="group-title">{group.title}</span>
                     </section>
+                    <section className="group-container">
                     <section className="header-items">
                         <div className='dyn-cell checkbox-header-container'>
                             <Checkbox />
@@ -34,9 +35,8 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         <div className='dyn-cell header-item'>{boardType}</div>
                         <RenderHeaders clmTypes={clmTypes} />
                     </section>
-
                     <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
-                    <Button variant="primary" onClick={() => onAddTask(group._id)}>Add task</Button>
+                </section>
                 </li>
             )}
         </Draggable>

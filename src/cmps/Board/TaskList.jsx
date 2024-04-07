@@ -7,12 +7,12 @@ import { InputCell } from './reusableCmps/InputCell';
 import { useState } from 'react';
 
 
-export function TaskList({ groupId , onAddTask }) {
+export function TaskList({ groupId, onAddTask }) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
 
-    const [isClear,setIsClear] = useState(false)
+    const [isClear, setIsClear] = useState(false)
 
     const { boardId } = useParams()
 
@@ -34,7 +34,7 @@ export function TaskList({ groupId , onAddTask }) {
     }
 
     function onAddTaskFromList(taskTitle) {
-        onAddTask(groupId,taskTitle)
+        onAddTask(groupId, taskTitle)
         setIsClear(true)
     }
 
@@ -58,7 +58,7 @@ export function TaskList({ groupId , onAddTask }) {
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
-                                    className='list-item' 
+                                    className='list-item'
                                 >
                                     <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} />
                                 </div>
@@ -66,11 +66,11 @@ export function TaskList({ groupId , onAddTask }) {
                         </Draggable>
                     ))}
                     {provided.placeholder}
+                    <div className='list-item add-task' style={{ opacity: '0.7' }}>
+                        <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
+                    </div>
                 </div>
             )}
-            <div className='list-item add-task' style={{opacity: '0.7'}}>
-            <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete}   />
-        </div>
-    </Droppable>
+        </Droppable>
     )
 }
