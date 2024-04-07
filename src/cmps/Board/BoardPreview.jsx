@@ -13,10 +13,10 @@ export function BoardPreview({ board }) {
     const groups = board.groups
     const clmTypes = board.clmTypes
 
-    async function onAddTask(groupId,taskTitle) {
+    async function onAddTask(groupId, taskTitle) {
         try {
             console.log(groupId);
-            await addTask(groupId,board._id,taskTitle)
+            await addTask(groupId, board._id, taskTitle)
             showSuccessMsg('Task Added')
         }
         catch (err) {
@@ -31,13 +31,6 @@ export function BoardPreview({ board }) {
         const startIdx = currBoard.groups.find(group => group._id === source.droppableId)
         const finishIdx = currBoard.groups.find(group => group._id === destination.droppableId)
 
-        // if (source.index !== destination.index) {
-        //     const groups = board?.groups || [];
-        //     const newGroupsOrder = Array.from(groups);
-        //     const [reorderedGroup] = newGroupsOrder.splice(source.index, 1);
-        //     newGroupsOrder.splice(destination.index, 0, reorderedGroup);
-
-        // }
         const startTasks = [...startIdx.tasks]
         startTasks.splice(source.index, 1)
         const newStart = { ...startIdx, tasks: startTasks }
@@ -51,7 +44,9 @@ export function BoardPreview({ board }) {
             return group
         })
         const newBoard = { ...currBoard, groups: newGroups }
-        console.log("result",result.destination);
+        console.log("result",source, finishTasks);
+        await updateBoardOptimistic('board', currBoard._id, null, null, { key: 'groups', value: newGroups }, newBoard)
+
     }
 
 
