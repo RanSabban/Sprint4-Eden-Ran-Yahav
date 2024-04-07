@@ -49,8 +49,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
                         {...provided.droppableProps}
                         ref={provided.innerRef}>
                         {groups.map((group, index) => (
-
-
                             <GroupPreview
                                 boardId={boardId}
                                 group={group}
@@ -61,7 +59,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
                                 onRemoveGroup={onRemoveGroup}
                                 onAddTask={onAddTask}
                             />
-
                         ))}
                         {provided.placeholder}
                     </ul>

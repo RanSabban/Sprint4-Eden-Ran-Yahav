@@ -9,7 +9,8 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
 
     return (
 
-        <Draggable draggableId={String(group._id)} index={index}>
+        <Draggable key={group._id} draggableId={group._id.toString()} index={index}>
+
             {(provided) => (
                 <li
                     {...provided.draggableProps}
@@ -27,17 +28,18 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         <span className="group-title">{group.title}</span>
                     </section>
                     <section className="group-container">
-                    <section className="header-items">
-                        <div className='dyn-cell checkbox-header-container'>
-                            <Checkbox />
-                        </div>
-                        <div className='dyn-cell header-item'>{boardType}</div>
-                        <RenderHeaders clmTypes={clmTypes} />
+                        <section className="header-items">
+                            <div className='dyn-cell checkbox-header-container'>
+                                <Checkbox />
+                            </div>
+                            <div className='dyn-cell header-item'>{boardType}</div>
+                            <RenderHeaders clmTypes={clmTypes} />
+                        </section>
+                        <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
                     </section>
-                    <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
-                </section>
                 </li>
             )}
         </Draggable>
     )
 }
+
