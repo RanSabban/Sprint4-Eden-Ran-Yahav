@@ -181,7 +181,7 @@ const gBoards = [
         groups: [
             {
                 _id: "g101",
-                title: "Group 1",
+                title: "Features",
                 archivedAt: null,
                 tasks: [
                     {
@@ -191,17 +191,17 @@ const gBoards = [
                             {
                                 _id: "c111",
                                 type: "status",
-                                dataId: "l103"
+                                dataId: "l102"
                             },
                             {
                                 _id: "c116",
                                 type: "priority",
-                                dataId: "l201"
+                                dataId: "l203"
                             },
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD1"]
+                                dataId: ["EtzD1","EtzD3"]
                             },
                             {
                                 _id: "c113",
@@ -221,7 +221,7 @@ const gBoards = [
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: 1706953308365
                             },
                             {
                                 _id: "c116",
@@ -237,15 +237,15 @@ const gBoards = [
                     },
                     {
                         _id: "c105",
-                        title: "Enhance UI/UX",
+                        title: "Add paging",
                         cells: [
-                            { _id: "c111", type: "status", dataId: "l102" }, // Working on it
-                            { _id: "c116", type: "priority", dataId: "l203" }, // Medium
-                            { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
+                            { _id: "c111", type: "status", dataId: "l101" }, // Working on it
+                            { _id: "c116", type: "priority", dataId: "l202" }, // Medium
+                            { _id: "c112", type: "members", dataId: ["EtzD2","EtzD1"] }, // Yahav Ganon, Eden Gilady
                             { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
-                            { _id: "c1145", type: "txt", txt: "Review latest design trends" },
-                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c1145", type: "txt", txt: "Add groups paging" },
+                            { _id: "c115", type: "date", date: 1709372508365 }, // Example date
                             { _id: "c116", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
@@ -256,15 +256,15 @@ const gBoards = [
                     },
                     {
                         _id: "c106",
-                        title: "Add filter",
+                        title: "Add drog & drop",
                         cells: [
-                            { _id: "c111", type: "status", dataId: "l103" }, // Working on it
+                            { _id: "c111", type: "status", dataId: "l103" }, // Stuck
                             { _id: "c116", type: "priority", dataId: "l202" }, // Medium
                             { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
                             { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
-                            { _id: "c1145", type: "txt", txt: "Review latest design trends" },
-                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c1145", type: "txt", txt: "Drag & drop rows" },
+                            { _id: "c115", type: "date", date: 1711359708365 }, // Example date
                             { _id: "c116", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
@@ -277,27 +277,27 @@ const gBoards = [
             },
             {
                 _id: "g102",
-                title: "Group 2",
+                title: "Bugs",
                 archivedAt: null,
                 tasks: [
                     {
                         _id: "c102",
-                        title: "Task 2",
+                        title: "Logo shrinks on home page",
                         cells: [
                             {
                                 _id: "c111",
                                 type: "status",
-                                dataId: "l102"
+                                dataId: "l101"
                             },
                             {
                                 _id: "c116",
                                 type: "priority",
-                                dataId: "l201"
+                                dataId: "l200"
                             },
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD2"]
+                                dataId: ["EtzD3"]
                             },
                             {
                                 _id: "c113",
@@ -312,12 +312,12 @@ const gBoards = [
                             {
                                 _id: "c1145",
                                 type: "txt",
-                                txt: "Important notes here"
+                                txt: "Use Scss"
                             },
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: 1712396508365
                             },
                             {
                                 _id: "c116",
@@ -333,7 +333,7 @@ const gBoards = [
                     },
                     {
                         _id: "c103",
-                        title: "Task 3",
+                        title: "Origin group closes on D&D",
                         cells: [
                             {
                                 _id: "c111",
@@ -368,7 +368,7 @@ const gBoards = [
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: 1706694108365
                             },
                             {
                                 _id: "c116",
@@ -386,20 +386,20 @@ const gBoards = [
             },
             {
                 _id: "g103",
-                title: "Group 3",
+                title: "Frontend",
                 archivedAt: null,
                 tasks: [
                     {
                         _id: "c104",
-                        title: "New Task 1",
+                        title: "Structure based on monday app",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l101" }, // Done
-                            { _id: "c116", type: "priority", dataId: "l204" }, // Low
+                            { _id: "c116", type: "priority", dataId: "l202" }, // Low
                             { _id: "c112", type: "members", dataId: ["EtzD1"] }, // Eden Gilady
                             { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
                             { _id: "c1145", type: "txt", txt: "Initial planning" },
-                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c115", type: "date", date: 1722419175369 }, // Example date
                             { _id: "c116", type: "updates", dataId: "456" } // Example update
                         ],
                         createdBy: {
@@ -410,15 +410,15 @@ const gBoards = [
                     },
                     {
                         _id: "c106",
-                        title: "Implement Backend Logic",
+                        title: "Home page structure & design",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l102" }, // Working on it
-                            { _id: "c116", type: "priority", dataId: "l203" }, // Medium
+                            { _id: "c116", type: "priority", dataId: "l204" }, // Medium
                             { _id: "c112", type: "members", dataId: ["EtzD3"] }, // Ran Sabban
                             { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
-                            { _id: "c1145", type: "txt", txt: "Setup initial server architecture" },
-                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c1145", type: "txt", txt: "Based on Monday.com" },
+                            { _id: "c115", type: "date", date: 1721295975369 }, // Example date
                             { _id: "c116", type: "updates", dataId: "1478" } // Example update
                         ],
                         createdBy: {
@@ -430,15 +430,137 @@ const gBoards = [
                     // Task 3
                     {
                         _id: "c107",
-                        title: "QA Testing",
+                        title: "Add side nav bar",
                         cells: [
-                            { _id: "c111", type: "status", dataId: "l100" }, // Will do
+                            { _id: "c111", type: "status", dataId: "l101" }, // Will do
                             { _id: "c116", type: "priority", dataId: "l202" }, // High
                             { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
                             { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
                             { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
-                            { _id: "c1145", type: "txt", txt: "Define test cases for new features" },
-                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c1145", type: "txt", txt: "Responsive & Flexible" },
+                            { _id: "c115", type: "date", date: 1722937575369 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD4",
+                            fullname: "Mor Marzan",
+                            imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                        }
+                    },
+                    {
+                        _id: "c137",
+                        title: "Sign in page",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Will do
+                            { _id: "c116", type: "priority", dataId: "l204" }, // High
+                            { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Bonus feature" },
+                            { _id: "c115", type: "date", date: 1722419175369 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD4",
+                            fullname: "Mor Marzan",
+                            imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                        }
+                    },
+                    {
+                        _id: "c138",
+                        title: "Build Service API",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Will do
+                            { _id: "c116", type: "priority", dataId: "l201" }, // High
+                            { _id: "c112", type: "members", dataId: ["EtzD3","EtzD2"] }, // 
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Must do" },
+                            { _id: "c115", type: "date", date: 1721295975369 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD4",
+                            fullname: "Mor Marzan",
+                            imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                        }
+                    },
+                ]
+            },
+            {
+                _id: "g104",
+                title: "Backend",
+                archivedAt: null,
+                tasks: [
+                    {
+                        _id: "c151",
+                        title: "Build basic server",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l101" }, // Done
+                            { _id: "c116", type: "priority", dataId: "l201" }, // Low
+                            { _id: "c112", type: "members", dataId: ["EtzD1"] }, // Eden Gilady
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Initial planning" },
+                            { _id: "c115", type: "date", date: 1722937575369 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "456" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD1",
+                            fullname: "Eden Gilady",
+                            imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
+                        }
+                    },
+                    {
+                        _id: "c152",
+                        title: "Build services",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Working on it
+                            { _id: "c116", type: "priority", dataId: "l204" }, // Medium
+                            { _id: "c112", type: "members", dataId: ["EtzD3","EtzD1"] }, // Ran Sabban
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Use node.js" },
+                            { _id: "c115", type: "date", date: 1721295975369 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "1478" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD3",
+                            fullname: "Ran Sabban",
+                            imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
+                        }
+                    },
+                    // Task 3
+                    {
+                        _id: "c153",
+                        title: "Build controllers",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l101" }, // Done
+                            { _id: "c116", type: "priority", dataId: "l202" }, // High
+                            { _id: "c112", type: "members", dataId: ["EtzD4"] }, // Mor Marzan
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Efficient" },
+                            { _id: "c115", type: "date", date: 1722937575369 }, // Example date
+                            { _id: "c116", type: "updates", dataId: "8965" } // Example update
+                        ],
+                        createdBy: {
+                            _id: "EtzD4",
+                            fullname: "Mor Marzan",
+                            imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
+                        }
+                    },
+                    {
+                        _id: "c154",
+                        title: "Build atlas basic data",
+                        cells: [
+                            { _id: "c111", type: "status", dataId: "l100" }, // Will do
+                            { _id: "c116", type: "priority", dataId: "l201" }, // High
+                            { _id: "c112", type: "members", dataId: ["EtzD3","EtzD2"] }, // 
+                            { _id: "c113", type: "timelines", dataId: "sdf123" }, // Example timeline
+                            { _id: "c114", type: "files", dataId: "sdf124" }, // Example file
+                            { _id: "c1145", type: "txt", txt: "Must do" },
+                            { _id: "c115", type: "date", date: 1721295975369 }, // Example date
                             { _id: "c116", type: "updates", dataId: "8965" } // Example update
                         ],
                         createdBy: {

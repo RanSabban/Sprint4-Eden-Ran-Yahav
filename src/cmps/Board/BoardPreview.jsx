@@ -30,7 +30,7 @@ export function BoardPreview({ board }) {
                 <DatePicker data-testid="date-picker" date={1589983468418} onPickDate={() => ('')} />
             </DialogContentContainer> */}
             {/* <DatePicker data-testid="date-picker" date={1589983468418} onPickDate={ev => console.log(ev)}/> */}
-       
+            
             <GroupList clmTypes={clmTypes} groups={groups} onAddTask={onAddTask} />
         </section>
     )
