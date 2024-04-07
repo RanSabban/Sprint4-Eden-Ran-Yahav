@@ -25,30 +25,21 @@ export function TaskPreview({ task, onUpdateTask }) {
 
     const [modalInfo, setModalInfo] = useState({ visible: false, top: 0, left: 0, cellId: null });
 
-    // const showModal = (event, cellId) => {
-    //     const rect = event.currentTarget.getBoundingClientRect()
-    //     setModalInfo({
-    //         visible: true,
-    //         top: rect.bottom + window.scrollY,
-    //         left: rect.left + window.scrollX,
-    //         cellId
-    //     })
-    // }
-    // console.log(clmTypes);
     async function onChange(cell) {
-        // console.log(cell);
         await setCellToEdit(cell)
         try {
-            // console.log("cellToEdit", cellToEdit)
             const currClmType = getClmType(cellToEdit._id)
             const labelsList = currClmType.data
             await setLabels(labelsList)
-            // console.log("cellToEdit", labels)
         }
         catch (err) {
             console.log(err);
         }
 
+    }
+
+    function openDynModal(clmType){
+        console.log("almost");
     }
 
     const { cells } = task
@@ -80,6 +71,7 @@ export function TaskPreview({ task, onUpdateTask }) {
                     cell={cell}
                     onUpdateTask={onUpdateTask}
                     taskId={task._id}
+                    onClick={openDynModal}
                 />
 
 

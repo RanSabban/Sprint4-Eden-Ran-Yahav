@@ -43,7 +43,7 @@ export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange, cel
                 >{getCellTxt()}</span>
 
 
-                {isOpen && <LabelPicker labels={labels}/>}
+                {isOpen && <LabelPicker labels={labels} onClick={setIsOpen}/>}
 
 
 
