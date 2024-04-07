@@ -50,7 +50,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
                 <section className="sidebar-workspace">
                     <div className="main-back">M <Home2 /></div>
-                    <Tooltip content="Main workspace" animationType="expand" > <div className="main-workspace">Main workspace <span style={{lineHeight: "2.5em"}} onClick={() => setIsWorkspace(!isWorkspace)}><OpenWorkSpace /></span></div> </Tooltip>
+                    <Tooltip content="Main workspace" animationType="expand" > <div className="main-workspace">Main workspace <span style={{ght: "2.5em"}} onClick={() => setIsWorkspace(!isWorkspace)}><OpenWorkSpace /></span></div> </Tooltip>
                     <button className="three-points"><ThreePoints /></button>
                 </section>
 
