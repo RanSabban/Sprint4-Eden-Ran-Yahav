@@ -162,6 +162,14 @@ export async function updateCell(cell,taskId,groupId) {
     }
 }
 
+export async function updateTask(task) {
+    try {
+        
+    } catch (err) {
+        console.log('Error update task', err);
+    }
+}
+
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {

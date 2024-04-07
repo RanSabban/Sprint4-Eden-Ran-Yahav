@@ -1322,6 +1322,11 @@ function getEmptyGroup() {
     }
 }
 
+async function updateTask() {
+    // const boards = await storageService.query(STORAGE_KEY)
+    // const updatedBoards = boards.
+}
+
 // PRIVATE FUNCS
 
 function _save(entityType, entities) {
