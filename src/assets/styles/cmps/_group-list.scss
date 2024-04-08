@@ -15,6 +15,10 @@
         border-top-left-radius: 0.3em
     }
 
+    & > *{
+        grid-template-columns: subgrid;
+    }
+
     .header-items .dyn-cell {
         border-right: 1px solid $clr-border;
         height: 2.25em;
@@ -48,4 +52,5 @@
         display: grid;
         justify-items: center;
     }
+
 }

@@ -101,7 +101,7 @@ export async function addGroup(boardId) {
     try {
         // const board = await boardService.getById(boardId)
         // console.log('Boards from DB:', board)
-        const group = boardService.addGroup(boardId)
+        const group = await boardService.addGroup(boardId)
         console.log(group);
         store.dispatch({
             type: ADD_GROUP,

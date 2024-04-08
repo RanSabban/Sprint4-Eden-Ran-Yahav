@@ -28,6 +28,8 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
 
     async function onAddGroup() {
         try {
+            console.log('here');
+            console.log(boardId);
             const group = await addGroup(boardId)
             console.log(group);
             showSuccessMsg('Group added')

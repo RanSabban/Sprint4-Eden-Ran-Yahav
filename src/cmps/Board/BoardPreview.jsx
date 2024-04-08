@@ -7,7 +7,7 @@ import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
 import { useSelector } from "react-redux";
 
-export function BoardPreview({ board }) {
+export function BoardPreview({ board, onAddGroup }) {
     const currBoard = useSelector(state => state.boardModule.board)
 
     const groups = board.groups
@@ -57,7 +57,8 @@ export function BoardPreview({ board }) {
                     groups={groups}
                     onAddTask={onAddTask}
                     boardType={board.type}
-                    boardId={board._id} />
+                    boardId={board._id}
+                    onAddGroup={onAddGroup} />
             </DragDropContext>
 
         </section>

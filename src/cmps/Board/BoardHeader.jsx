@@ -212,7 +212,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                     </div>
 
                 </div>
-                <BoardFilter onAddGroup={onAddGroup} board={board} />
+                <BoardFilter onAddGroup={onAddGroup} boardId={board._id} />
 
             </div>
         </section>
