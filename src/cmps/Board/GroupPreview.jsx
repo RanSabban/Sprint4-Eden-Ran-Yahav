@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd'
-import { Menu, MenuButton, MenuItem, Button, Checkbox } from 'monday-ui-react-core';
+import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading } from 'monday-ui-react-core';
 import { AddSmall, Delete } from 'monday-ui-react-core/icons';
 import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
@@ -25,7 +25,17 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                                 <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveGroup(group._id)} />
                             </Menu>
                         </MenuButton>
-                        <span className="group-title">{group.title}</span>
+                        <Tooltip content="Click to Edit"
+                            animationType="expand">
+                            <EditableHeading
+                                type={EditableHeading.types.h3}
+                                weight={"normal"}
+                                value={group.title}
+                                isEditMode={"true"}
+                                id='editable-header'
+
+                            />
+                        </Tooltip>
                     </section>
                     <section className="group-container">
                         <section className="header-items">

@@ -46,7 +46,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                                     type={EditableHeading.types.h1}
                                     value={boardTitle}
                                     isEditMode={"true"}
-                                    onFinishEditing={onRenameBoard}
+                                    // onFinishEditing={onRenameBoard}
                                 />
 
                             </Tooltip>
