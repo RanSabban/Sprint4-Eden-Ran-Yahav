@@ -2,7 +2,7 @@ import { boardService } from '../../services/board.service.local.js'
 import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK , REMOVE_TASK, SET_LABEL_MODAL} from '../reducers/board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK , REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL} from '../reducers/board.reducer.js'
 import { SET_SCORE } from '../reducers/user.reducer.js'
 
 // Action Creators:
@@ -169,11 +169,10 @@ export async function updateCell(cell, taskId, groupId) {
         console.log(cell, taskId, groupId);
         boardService.updateCell(cell, taskId, groupId)
 
-        // store.dispatch({
-        //     type: ADD_TASK,
-        //     groupId,
-        //     task
-        // })
+        store.dispatch({
+            type: UPDATE_CELL,
+            cell, taskId
+        })
 
     }
     catch (err) {
@@ -230,12 +229,26 @@ export async function dragAndDropGroup(source, destination, boardId) {
     }
 }
 
-export async function onOpenModalLabel(ev,clmType,cell,task,isOpen){
+export async function onOpenModalLabel(target,clmType,cell,task,callBackFunc){
     try {
+        console.log(target);
         store.dispatch({
             type: SET_LABEL_MODAL,
             payload: {
-                ev,clmType,cell,task,isOpen
+                target,clmType,cell,task, isOpen: true, callBackFunc
+            }
+        })
+    } catch (err) {
+        console.log('Error open moadl', err);
+    }
+}
+
+export async function onHideModalLabel(){
+    try {
+        store.dispatch({
+            type: HIDE_LABEL_MODAL,
+            payload: {
+                isOpen: false
             }
         })
     } catch (err) {

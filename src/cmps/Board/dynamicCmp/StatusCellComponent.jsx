@@ -15,14 +15,6 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel }) {
         return title
     }
 
-    // const cellTxt = getCellTxt(cellToEdit)
-    // console.log("cellTXT", cellTxt);
-
-    // const currType = clmType.find(clmType._id === cell._id)
-    // console.log("clmType", currType)
-    // console.log("cell", cell);
-    // console.log("clmType", clmType);
-
     function getCellColor() {
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'red'
@@ -37,15 +29,12 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel }) {
 
     return (
         <>
-            <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%' }} className="dyn-cell status">
+            <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%', cursor: 'pointer' }} className="dyn-cell status"
+             onClick={(ev) => onClickLabel(ev.target,clmType,cell)}
+            >
                 <span className="status-txt"
-                    onClick={(ev) => onClickLabel(ev,clmType,cell)}
+                   
                 >{getCellTxt()}</span>
-
-
-
-
-
             </div>
         </>
     )
