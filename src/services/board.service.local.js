@@ -29,6 +29,7 @@ const gBoards = [
     {
         _id: "b101",
         title: "Robot dev proj",
+        groupColor:"#7e3b8a",
         type: 'item',
         isStarred: false,
         archivedAt: 1589983468418,
@@ -184,6 +185,7 @@ const gBoards = [
             {
                 _id: "g101",
                 title: "Features",
+                groupColor: "#7e3b8a;",
                 archivedAt: null,
                 tasks: [
                     {
@@ -287,6 +289,7 @@ const gBoards = [
             {
                 _id: "g102",
                 title: "Bugs",
+                groupColor:"#ffca00",
                 archivedAt: null,
                 tasks: [
                     {
@@ -398,6 +401,7 @@ const gBoards = [
             {
                 _id: "g103",
                 title: "Frontend",
+                groupColor:"#ffca00",
                 archivedAt: null,
                 tasks: [
                     {
@@ -516,6 +520,7 @@ const gBoards = [
             {
                 _id: "g104",
                 title: "Backend",
+                groupColor: "#175a63",
                 archivedAt: null,
                 tasks: [
                     {
@@ -1055,6 +1060,7 @@ function getEmptyBoard() {
             {
                 _id: utilService.makeId(),
                 title: "Group Title",
+                groupColor: utilService.getPrettyRandomColor(),
                 archivedAt: null,
                 tasks: [
                     {
@@ -1129,6 +1135,7 @@ function getEmptyBoard() {
             {
                 _id: utilService.makeId(),
                 title: "Group title",
+                groupColor: utilService.getPrettyRandomColor(),
                 archivedAt: null,
                 tasks: [
                     {
@@ -1309,6 +1316,7 @@ function getEmptyGroup() {
     return {
         _id: utilService.makeId(),
         title: "Puki",
+        groupColor: utilService.getPrettyRandomColor(),
         archivedAt: null,
         tasks: [
             {

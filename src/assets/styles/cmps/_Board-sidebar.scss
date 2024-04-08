@@ -62,7 +62,6 @@
     .sidebar-workspace-third {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1em;
     }
 
     .plus-button {
@@ -182,17 +181,24 @@
         }
     }
 
+    &.close-sidebar {
+        width: 30px;
+    }
+
+    &.open-sidebar {
+        width: 255px;
+    }
+
 
 }
 
 .board-sidebar:hover {
-    // z-index: 35;
+    width: 255px;
+    z-index: 35;
+    // box-shadow: 0 6px 20px #0003;
     // position: absolute;
 
     .close-sidebar-btn {
         display: block;
     }
-
-
-
 }

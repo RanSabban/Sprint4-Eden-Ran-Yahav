@@ -95,7 +95,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
             key={board._id}
         >
             <div className="board-list-prev">
-                <Tooltip content="This board is public, visible to all team members" animationType="expand" ><SidePrevSvg /></Tooltip>
+                <Tooltip zIndex='100' position="right" content="This board is public, visible to all team members" animationType="expand" ><SidePrevSvg /></Tooltip>
                 {!isEdit && <BoardListPreview board={board} />}
                 {!isEdit && (
                     <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
