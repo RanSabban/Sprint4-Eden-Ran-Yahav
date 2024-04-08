@@ -1,50 +1,84 @@
-.dyn-cell {
-    position: relative;
-    user-select: none;
+.label-picker-container {
+    position: absolute;
+    background-color: white;
+    width: 200px;
+    display: grid;
+    justify-content: center;
     cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    height: max-content;
+    border-radius: 0.6em;
 
-    .label-picker-container {
-        display: flex;
-        justify-content: center;
-        transition: width .1s;
-        pointer-events: none;
-        z-index: 9999;
-        position: absolute;
+    ul {
+        display: grid;
+        
+    }
 
-        .label-picker-content {
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-            -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-            -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    li {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        color: white;
+        border-radius: 0.2em;
+        margin-bottom: 7px;
+    }
 
-            align-items: center;
-            padding: 16px 24px 8px;
-            border-radius: 8px;
-            background-color: $bgc-main;
-            // height: 400px;
-            max-width: 200px;
-
-
-            // inset: 0px auto auto 0px;
-            // transform: translate(928px, 369.333px, 0px);
-            // overflow-x: auto;
-            // overflow-y: hidden;
-
-            .label {
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: em(2px);
-                margin-bottom: 8px;
-                padding: 0 em(4px);
-                height: em(32px);
-                width: em(152px);
-                transition: transform .1s ease-in-out, opacity .1s ease-in-out;
-
-                // &:hover {
-
-                // }
-            }
-        }
+    li:hover {
+        opacity: 0.85;
     }
 }
+
+
+
+
+// .dyn-cell {
+//     position: relative;
+//     user-select: none;
+//     cursor: pointer;
+
+//     .label-picker-container {
+//         display: flex;
+//         justify-content: center;
+//         transition: width .1s;
+//         pointer-events: none;
+//         z-index: 9999;
+//         position: absolute;
+
+//         .label-picker-content {
+//             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+//             -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+//             -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+
+//             align-items: center;
+//             padding: 16px 24px 8px;
+//             border-radius: 8px;
+//             background-color: $bgc-main;
+//             // height: 400px;
+//             max-width: 200px;
+
+
+//             // inset: 0px auto auto 0px;
+//             // transform: translate(928px, 369.333px, 0px);
+//             // overflow-x: auto;
+//             // overflow-y: hidden;
+
+//             // .label {
+//             //     cursor: pointer;
+//             //     display: flex;
+//             //     align-items: center;
+//             //     justify-content: center;
+//             //     border-radius: em(2px);
+//             //     margin-bottom: 8px;
+//             //     padding: 0 em(4px);
+//             //     height: em(32px);
+//             //     width: em(152px);
+//             //     transition: transform .1s ease-in-out, opacity .1s ease-in-out;
+
+//                 // &:hover {
+
+//                 // }
+//             }
+//         }
+//     }

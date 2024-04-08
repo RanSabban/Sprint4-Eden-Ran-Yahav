@@ -6,6 +6,8 @@ import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
 import { useSelector } from "react-redux";
+import { LabelPicker } from "./reusableCmps/LabelPicker";
+
 
 export function BoardPreview({ board, onAddGroup }) {
     const currBoard = useSelector(state => state.boardModule.board)
@@ -59,6 +61,7 @@ export function BoardPreview({ board, onAddGroup }) {
                     boardType={board.type}
                     boardId={board._id}
                     onAddGroup={onAddGroup} />
+                    <LabelPicker />
             </DragDropContext>
 
         </section>

@@ -12,6 +12,7 @@ import { AddSmall, Delete, Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
+import { onOpenModalLabel } from '../../store/actions/board.actions';
 
 
 
@@ -20,17 +21,12 @@ import { useState } from 'react';
 export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
-    const [cellToEdit, setCellToEdit] = useState('')
-    const [labels, setLabels] = useState([])
-
-    const [modalInfo, setModalInfo] = useState({ visible: false, top: 0, left: 0, cellId: null });
+    const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
+    const [isLabelOpen,setIsLabelOpen] = useState(false)
 
     async function onChange(cell) {
-        await setCellToEdit(cell)
         try {
-            const currClmType = getClmType(cellToEdit._id)
             const labelsList = currClmType.data
-            await setLabels(labelsList)
         }
         catch (err) {
             console.log(err);
@@ -52,6 +48,14 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) 
         const taskToUpdate = task
         task.title = newTxt
         onUpdateTask(taskToUpdate)
+    }
+
+    async function onClickLabel(ev,clmType,cell) {
+        try {
+            onOpenModalLabel(ev,clmType,cell,task,true)
+        } catch (err) {
+
+        }
     }
 
     return (<>
@@ -84,13 +88,12 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) 
                 <DynamicCmp key={idx}
                     cmpType={cell.type}
                     onChange={onChange}
-                    labels={labels}
-                    cellToEdit={cellToEdit}
                     clmType={getClmType(cell._id)}
                     cell={cell}
                     onUpdateCell={onUpdateCell}
                     taskId={task._id}
                     onClick={openDynModal}
+                    onClickLabel={onClickLabel}
                 />
             ))
         }

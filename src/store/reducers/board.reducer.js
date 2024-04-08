@@ -14,6 +14,7 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const DROP_TASK = 'DROP_TASK'
 export const DROP_GROUP = 'DROP_GROUP'
 export const REMOVE_TASK = 'REMOVE_TASK'
+export const SET_LABEL_MODAL = 'SET_LABEL_MODAL'
 
 const initialState = {
     boards: null,
@@ -21,7 +22,8 @@ const initialState = {
     groups: null,
     clmTypes: null,
     lastRemovedBoard: null,
-    isLoading: false
+    isLoading: false,
+    modalProps: { isModalLabelOpen: false }
 }
 
 export function boardReducer(state = initialState, action) {
@@ -50,6 +52,15 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, board: action.board, groups: groups, clmTypes: clmTypes }
             break
 
+
+        case SET_LABEL_MODAL: {
+            const { ev, clmType, cell, task, isOpen } = action.payload
+            newState = {
+                ...state,
+                modalProps: {ev,clmType,cell,task, isModalLabelOpen: isOpen}
+            }
+            break
+        }
         case ADD_TASK:
             const { groupId, task } = action.payload;
             console.log(groupId);
@@ -71,10 +82,10 @@ export function boardReducer(state = initialState, action) {
             return {
                 ...state,
                 board: {
-                    ...state.board, 
+                    ...state.board,
                     groups: state.board.groups.map(group =>
                         group._id === groupId
-                            ? { ...group, tasks: group.tasks.filter(task => task._id !== taskId) } 
+                            ? { ...group, tasks: group.tasks.filter(task => task._id !== taskId) }
                             : group
                     ),
                 },

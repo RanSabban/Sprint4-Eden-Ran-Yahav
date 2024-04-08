@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { LabelPicker } from "../reusableCmps/LabelPicker"
 
-export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange, cellToEdit, labels }) {
+export function StatusCellComponent({ clmType, cell, onChange, onClickLabel }) {
     const [isOpen, setIsOpen] = useState(false)
     // console.log(clmType, cell);
     const { data } = clmType
@@ -39,7 +39,7 @@ export function StatusCellComponent({ clmType, cell, onUpdateTask, onChange, cel
         <>
             <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%' }} className="dyn-cell status">
                 <span className="status-txt"
-                    onClick={() => { onChange(cell); setIsOpen(!isOpen) }}
+                    onClick={(ev) => onClickLabel(ev,clmType,cell)}
                 >{getCellTxt()}</span>
 
 
