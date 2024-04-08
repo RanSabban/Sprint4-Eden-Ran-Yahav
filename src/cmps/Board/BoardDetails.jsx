@@ -23,6 +23,7 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
    
 
     if (!board) return <div>LOADING BRO</div>
+    if (!board) return <div>LOADING BRO</div>
     return (
         <>
             <div className="main-wrapper">
