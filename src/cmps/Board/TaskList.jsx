@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { TaskPreview } from './TaskPreview'
-import { updateCell, updateTask } from '../../store/board.actions'
+import { removeTask, updateCell, updateTask } from '../../store/actions/board.actions'
 import { useParams } from 'react-router'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { InputCell } from './reusableCmps/InputCell';
@@ -33,6 +33,15 @@ export function TaskList({ groupId, onAddTask }) {
         }
     }
 
+    async function onRemoveTask(taskId) {
+        console.log(taskId,groupId,boardId);
+        try {
+            removeTask(taskId,groupId,boardId)
+        } catch (err) {
+            console.log('Error remove task', err);
+        }
+    }
+
     function onAddTaskFromList(taskTitle) {
         onAddTask(groupId, taskTitle)
         setIsClear(true)
@@ -52,25 +61,27 @@ export function TaskList({ groupId, onAddTask }) {
                     ref={provided.innerRef}
                 >
                     {tasks.map((task, index) => (
+
                         <Draggable key={task._id} draggableId={String(task._id)} index={index} >
-                            {(provided) => (
+                            {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
-                                    className='list-item'
+                                    className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
-                                    <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} />
-                                </div>
-                            )}
-                        </Draggable>
-                    ))}
-                    {provided.placeholder}
-                    <div className='list-item add-task' style={{ opacity: '0.7' }}>
-                        <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
-                    </div>
-                </div>
-            )}
-        </Droppable>
+                            <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} onRemoveTask={onRemoveTask} />
+                        </div>
+                    )}
+                </Draggable>
+            ))}
+            {provided.placeholder}
+            <div className='list-item add-task' style={{ opacity: '0.7' }}>
+                <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
+            </div>
+        </div>
+    )
+}
+        </Droppable >
     )
 }

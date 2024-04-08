@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { useSelector } from 'react-redux'
 
-import { loadBoard } from "../../store/board.actions"
+import { loadBoard } from "../../store/actions/board.actions"
 import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
 import { LabelPicker } from "./reusableCmps/LabelPicker"
@@ -13,7 +13,6 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
 
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
-    // const isLoading = useSelector(storeState => storeState.isLoading)
     const [isCollapsed, setIsCollapsed] = useState(false)
     
 
@@ -23,6 +22,7 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
 
    
 
+    if (!board) return <div>LOADING BRO</div>
     if (!board) return <div>LOADING BRO</div>
     return (
         <>

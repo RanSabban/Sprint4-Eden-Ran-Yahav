@@ -2,9 +2,9 @@ import { RenderHeaders } from "./RenderHeaders";
 import { TaskList } from "./TaskList";
 import { Menu, MenuButton, MenuItem } from "monday-ui-react-core";
 import { Button } from "monday-ui-react-core"
-import { addGroup, addTask } from "../../store/board.actions";
+import { addGroup, addTask } from "../../store/actions/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-import { removeGroup } from "../../store/board.actions";
+import { removeGroup } from "../../store/actions/board.actions";
 import { AddSmall, Delete, Edit, Favorite, Moon } from "monday-ui-react-core/icons";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { GroupPreview } from "./GroupPreview";
@@ -28,6 +28,8 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
 
     async function onAddGroup() {
         try {
+            console.log('here');
+            console.log(boardId);
             const group = await addGroup(boardId)
             console.log(group);
             showSuccessMsg('Group added')

@@ -2,6 +2,10 @@
     display: grid;
     row-gap: 2em;
 
+    >* {
+        background-color: $bgc-main;
+    }
+
     .header-items {
         display: grid;
         grid-auto-flow: column;
@@ -13,6 +17,10 @@
         border-right: 1px solid $clr-border;
         border-left: 0.4em solid $clr-label-3;
         border-top-left-radius: 0.3em
+    }
+
+    & > *{
+        grid-template-columns: subgrid;
     }
 
     .header-items .dyn-cell {
@@ -28,7 +36,8 @@
         font-size: 1.125em;
         margin-right: 7px;
     }
-    .group-header{
+
+    .group-header {
         display: grid;
         position: relative;
         right: 1.8em;
@@ -36,16 +45,33 @@
         justify-content: start;
         align-items: center;
         color: $clr-label-3;
+
+        .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8 {
+            font-family: poppins-medium;
+            font-size: 18px !important;
+        }
     }
+
     .group-header button {
         opacity: 0;
         transition: 0.3s;
     }
-    .group-header:hover button{
+
+    .group-header:hover button {
         opacity: 1;
+    }
+
+    .wrapper_3963731b0e{
+        justify-self: center;
+        position: relative;
+        display: grid;
+        align-items: center;
+        width: fit-content;
+        height: min-content;
     }
     .dyn-cell.checkbox-header-container {
         display: grid;
         justify-items: center;
     }
+
 }

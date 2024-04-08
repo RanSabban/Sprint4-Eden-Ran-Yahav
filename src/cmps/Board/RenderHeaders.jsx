@@ -11,7 +11,7 @@ export function RenderHeaders({clmTypes}) {
         
         <>
             {clmTypes.map((clmType,idx) => (
-                <div className='dyn-cell header-item' key={idx}>{clmType.title}</div> 
+                <span className='dyn-cell header-item' key={idx}>{clmType.title}</span> 
             ))}
         </>
 

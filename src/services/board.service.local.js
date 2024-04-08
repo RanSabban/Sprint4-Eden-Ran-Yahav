@@ -18,7 +18,8 @@ export const boardService = {
     updateCell,
     updateTask,
     dragAndDropGroup,
-    dragAndDropTask
+    dragAndDropTask,
+    removeTask
 }
 window.cs = boardService
 
@@ -1227,14 +1228,20 @@ function getById(boardId) {
 }
 
 async function addGroup(boardId) {
+    console.log(boardId);
     const board = await getById(boardId)
-    console.log(board);
-    const group = getEmptyGroup()
-    board.groups.push(group)
-    console.log(board);
-    await save(board)
-    console.log(group, board);
-    return group
+    try {
+        console.log(board);
+        const group = getEmptyGroup()
+        board.groups.push(group)
+        console.log(board);
+        await save(board)
+        console.log(group, board);
+        return group
+    } catch (err) {
+        console.log('cannot add group');
+    }
+ 
 }
 
 async function removeGroup(groupId) {
@@ -1304,60 +1311,60 @@ function getEmptyGroup() {
         title: "Puki",
         archivedAt: null,
         tasks: [
-            // {
-            //     _id: "c101",
-            //     title: "Task 1",
-            //     cells: [
-            //         {
-            //             _id: "c111",
-            //             type: "status",
-            //             dataId: "l103"
-            //         },
-            //         {
-            //             _id: "c116",
-            //             type: "priority",
-            //             dataId: "l201"
-            //         },
-            //         {
-            //             _id: "c112",
-            //             type: "members",
-            //             dataId: ["EtzD1"]
-            //         },
-            //         {
-            //             _id: "c113",
-            //             type: "timelines",
-            //             dataId: "sdf123"
-            //         },
-            //         {
-            //             _id: "c114",
-            //             type: "files",
-            //             dataId: "sdf124"
-            //         },
-            //         {
-            //             _id: "c1145",
-            //             type: "txt",
-            //             txt: "puki"
-            //         },
-            //         {
-            //             _id: "c115",
-            //             type: "date",
-            //             date: 1589983468418
-            //         },
-            //         {
-            //             _id: "c116",
-            //             type: "updates",
-            //             dataId: "1478"
-            //         }
+            {
+                _id: "c101",
+                title: "Task 1",
+                cells: [
+                    // {
+                    //     _id: "c111",
+                    //     type: "status",
+                    //     dataId: "l103"
+                    // },
+                    // {
+                    //     _id: "c116",
+                    //     type: "priority",
+                    //     dataId: "l201"
+                    // },
+                    // {
+                    //     _id: "c112",
+                    //     type: "members",
+                    //     dataId: ["EtzD1"]
+                    // },
+                    // {
+                    //     _id: "c113",
+                    //     type: "timelines",
+                    //     dataId: "sdf123"
+                    // },
+                    // {
+                    //     _id: "c114",
+                    //     type: "files",
+                    //     dataId: "sdf124"
+                    // },
+                    // {
+                    //     _id: "c1145",
+                    //     type: "txt",
+                    //     txt: "puki"
+                    // },
+                    // {
+                    //     _id: "c115",
+                    //     type: "date",
+                    //     date: 1589983468418
+                    // },
+                    // {
+                    //     _id: "c116",
+                    //     type: "updates",
+                    //     dataId: "1478"
+                    // },
         ],
         createdBy: {
             _id: "u102",
             fullname: "Ran Sabban",
             imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
         }
+    
 
-
-    }
-}
+    }]
+}}
 
 async function updateTask(taskToUpdate, groupId) {
     console.log(taskToUpdate, groupId);
@@ -1383,6 +1390,20 @@ async function updateTask(taskToUpdate, groupId) {
     })
     console.log(updatedBoards);
     _save(STORAGE_KEY, updatedBoards)
+}
+
+async function removeTask(taskId,groupId,boardId) {
+    const board = await getById(boardId) 
+    const boardToUpdate = {...board, groups: board.groups.map(group => {
+        if (group._id === groupId){
+            return {
+                ...group, 
+                tasks: group.tasks.filter(task => task._id !== taskId)
+            }
+        }
+        return group
+    })}
+    save(boardToUpdate)
 }
 
 async function dragAndDropGroup(source, destination, boardId) {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadBoards, addBoard, updateBoard, removeBoard, addGroup } from '../store/board.actions.js'
+import { loadBoards, addBoard, updateBoard, removeBoard, addGroup } from '../store/actions/board.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
