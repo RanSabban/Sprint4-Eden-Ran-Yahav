@@ -28,6 +28,10 @@
         // border-left: 1px solid $clr-border;
         border-right: 1px solid $clr-border;
         // width: 100px;
+
+        &:not(:first-child){
+            justify-items: center;
+        }
     }
 
     .members {
