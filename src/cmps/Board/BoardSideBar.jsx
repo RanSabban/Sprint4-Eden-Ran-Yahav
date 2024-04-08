@@ -81,7 +81,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                             size="Search.sizes.MEDIUM"
                             // width="11.6em"
                             // height="2em"
-                            placeholder="Search"
+                            placeholder="   Search"
                             wrapperClassName="monday-storybook-search_size"
                         />
 

@@ -29,7 +29,6 @@ const gBoards = [
     {
         _id: "b101",
         title: "Robot dev proj",
-        groupColor:"#7e3b8a",
         type: 'item',
         isStarred: false,
         archivedAt: 1589983468418,
@@ -185,7 +184,7 @@ const gBoards = [
             {
                 _id: "g101",
                 title: "Features",
-                groupColor: "#7e3b8a;",
+                groupColor: "#ba3354",
                 archivedAt: null,
                 tasks: [
                     {
@@ -401,7 +400,7 @@ const gBoards = [
             {
                 _id: "g103",
                 title: "Frontend",
-                groupColor:"#ffca00",
+                groupColor:"#579bfc",
                 archivedAt: null,
                 tasks: [
                     {
@@ -619,7 +618,7 @@ const gBoards = [
     {
         "_id": "b102",
         "title": "Web Development Roadmap",
-        type: 'project',
+        "type": 'project',
         "isStarred": true,
         "archivedAt": null,
         "createdBy": {
@@ -678,6 +677,7 @@ const gBoards = [
             {
                 "_id": "g201",
                 "title": "Part 1: Planning and Design",
+                "groupColor": "#faa1f1",
                 "archivedAt": null,
                 "tasks": [
                     {
@@ -710,6 +710,7 @@ const gBoards = [
             {
                 "_id": "g202",
                 "title": "Part 2: Development",
+                "groupColor": "#7f5348",
                 "archivedAt": null,
                 "tasks": [
                     {
@@ -730,6 +731,7 @@ const gBoards = [
             {
                 "_id": "g203",
                 "title": "Part 3: Testing and Deployment",
+                "groupColor": "#9dd327",
                 "archivedAt": null,
                 "tasks": [
                     {
@@ -750,6 +752,7 @@ const gBoards = [
         ]
     }
 ]
+
 
 // const gBoards = [
 //     {
@@ -1278,33 +1281,29 @@ async function addTask(groupId, task) {
 async function updateCell(updatedCell, taskId, groupId) {
     const boards = await storageService.query(STORAGE_KEY)
     const updatedBoards = boards.map(board => {
-        // No changes to the board itself, but iterate over its groups
         return {
             ...board,
             groups: board.groups.map(group => {
-                // Check if this is the group we're modifying
                 if (group._id === groupId) {
                     return {
                         ...group,
                         tasks: group.tasks.map(task => {
-                            // Check if this is the task we're modifying
                             if (task._id === taskId) {
                                 return {
                                     ...task,
                                     cells: task.cells.map(cell => {
-                                        // Check if this is the cell we're updating
                                         if (cell._id === updatedCell._id) {
-                                            return updatedCell; // Use the updated cell
+                                            return updatedCell; 
                                         }
-                                        return cell; // Otherwise, return the cell unchanged
+                                        return cell; 
                                     })
                                 };
                             }
-                            return task; // Return tasks that aren't being updated unchanged
+                            return task; 
                         })
                     };
                 }
-                return group; // Return groups that aren't being updated unchanged
+                return group; 
             })
         };
     });

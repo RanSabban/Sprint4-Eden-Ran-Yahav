@@ -15,8 +15,8 @@
         align-items: center;
         text-align: center;
         border-right: 1px solid $clr-border;
-        border-left: 0.4em solid $clr-label-3;
-        border-top-left-radius: 0.3em
+        // border-left: 0.4em solid $clr-label-3;
+        // border-top-left-radius: 0.3em
     }
 
     & > *{
@@ -44,7 +44,7 @@
         grid-auto-flow: column;
         justify-content: start;
         align-items: center;
-        color: $clr-label-3;
+        // color: $clr-label-3;
 
         .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8 {
             font-family: poppins-medium;

@@ -7,7 +7,7 @@ import { InputCell } from './reusableCmps/InputCell';
 import { useState } from 'react';
 
 
-export function TaskList({ groupId, onAddTask }) {
+export function TaskList({ groupId, onAddTask, groupColor}) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
@@ -68,6 +68,7 @@ export function TaskList({ groupId, onAddTask }) {
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+                                    
                                     className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
                             <TaskPreview task={task} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} onRemoveTask={onRemoveTask} />

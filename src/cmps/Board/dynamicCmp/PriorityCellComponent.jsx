@@ -1,14 +1,17 @@
-export function PriorityCellComponent({clmType, cell}) {
-    // console.log(ClmType, cell);
+import { useState } from "react"
+import { LabelPicker } from "../reusableCmps/LabelPicker"
+
+export function PriorityCellComponent({ clmType, cell, onChange, onClickLabel }) {
+    const [isOpen, setIsOpen] = useState(false)
+    // console.log(clmType, cell);
     const { data } = clmType
 
+    
+
     function getCellTxt() {
-        // console.log(data);
         const item = data.find(item => item.id === cell.dataId)
-        // console.log(item,data);
-        if (!item) return 'data prob?'
-        const title = item.title
-        // console.log(title);
+        if (!item) return 'puki wrongico'
+        const title = item.title || 'puki wrongico'
         return title
     }
 
@@ -16,14 +19,23 @@ export function PriorityCellComponent({clmType, cell}) {
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'red'
         const color = item.color
-        // console.log(color);
         return color
-        
+    }
+
+    function toggleLabelPicker() {
+        setIsOpen(!isOpen)
+        console.log("isOpen", isOpen);
     }
 
     return (
-        <div style={{backgroundColor: getCellColor(),height: '2.25em', width: '100%'}} className="dyn-cell priority">
-        <span className="priority-txt">{getCellTxt()}</span>
-    </div>    )
+        <>
+            <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%', cursor: 'pointer' }} className="dyn-cell priority"
+             onClick={(ev) => onClickLabel(ev.target,clmType,cell)}
+            >
+                <span className="priority-txt"
+                   
+                >{getCellTxt()}</span>
+            </div>
+        </>
+    )
 }
-
