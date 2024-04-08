@@ -13,7 +13,7 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
 
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
-    const isLoading = useSelector(storeState => storeState.isLoading)
+    // const isLoading = useSelector(storeState => storeState.isLoading)
     const [isCollapsed, setIsCollapsed] = useState(false)
     
 
@@ -23,7 +23,7 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
 
    
 
-    // if (isLoading) return <div>LOADING BRO</div>
+    if (!board) return <div>LOADING BRO</div>
     return (
         <>
             <div className="main-wrapper">
