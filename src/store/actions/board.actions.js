@@ -2,7 +2,7 @@ import { boardService } from '../../services/board.service.local.js'
 import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK , REMOVE_TASK} from '../reducers/board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK , REMOVE_TASK, SET_LABEL_MODAL} from '../reducers/board.reducer.js'
 import { SET_SCORE } from '../reducers/user.reducer.js'
 
 // Action Creators:
@@ -227,6 +227,19 @@ export async function dragAndDropGroup(source, destination, boardId) {
 
     } catch (err) {
 
+    }
+}
+
+export async function onOpenModalLabel(ev,clmType,cell,task,isOpen){
+    try {
+        store.dispatch({
+            type: SET_LABEL_MODAL,
+            payload: {
+                ev,clmType,cell,task,isOpen
+            }
+        })
+    } catch (err) {
+        console.log('Error open moadl', err);
     }
 }
 
