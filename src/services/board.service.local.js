@@ -29,7 +29,6 @@ const gBoards = [
     {
         _id: "b101",
         title: "Robot dev proj",
-        groupColor:"#7e3b8a",
         type: 'item',
         isStarred: false,
         archivedAt: 1589983468418,
@@ -185,7 +184,7 @@ const gBoards = [
             {
                 _id: "g101",
                 title: "Features",
-                groupColor: "#7e3b8a;",
+                groupColor: "#ba3354",
                 archivedAt: null,
                 tasks: [
                     {
@@ -401,7 +400,7 @@ const gBoards = [
             {
                 _id: "g103",
                 title: "Frontend",
-                groupColor:"#ffca00",
+                groupColor:"#579bfc",
                 archivedAt: null,
                 tasks: [
                     {
@@ -619,7 +618,7 @@ const gBoards = [
     {
         "_id": "b102",
         "title": "Web Development Roadmap",
-        type: 'project',
+        "type": 'project',
         "isStarred": true,
         "archivedAt": null,
         "createdBy": {
@@ -678,6 +677,7 @@ const gBoards = [
             {
                 "_id": "g201",
                 "title": "Part 1: Planning and Design",
+                "groupColor": "#faa1f1",
                 "archivedAt": null,
                 "tasks": [
                     {
@@ -710,6 +710,7 @@ const gBoards = [
             {
                 "_id": "g202",
                 "title": "Part 2: Development",
+                "groupColor": "#7f5348",
                 "archivedAt": null,
                 "tasks": [
                     {
@@ -730,6 +731,7 @@ const gBoards = [
             {
                 "_id": "g203",
                 "title": "Part 3: Testing and Deployment",
+                "groupColor": "#9dd327",
                 "archivedAt": null,
                 "tasks": [
                     {
@@ -750,6 +752,7 @@ const gBoards = [
         ]
     }
 ]
+
 
 // const gBoards = [
 //     {

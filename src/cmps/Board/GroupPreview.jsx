@@ -28,6 +28,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         <Tooltip content="Click to Edit"
                             animationType="expand">
                             <EditableHeading
+                                style={{ color: group.groupColor }}
                                 type={EditableHeading.types.h3}
                                 weight={"normal"}
                                 value={group.title}
@@ -37,7 +38,10 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             />
                         </Tooltip>
                     </section>
-                    <section className="group-container">
+                    <section style={{
+                        borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em"
+                        , borderBottomLeftRadius: "0.3em"
+                    }} className="group-container">
                         <section className="header-items">
                             <div className='dyn-cell checkbox-header-container'>
                                 <Checkbox />
@@ -45,7 +49,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             <div className='dyn-cell header-item'>{boardType}</div>
                             <RenderHeaders clmTypes={clmTypes} />
                         </section>
-                        <TaskList tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
+                        <TaskList groupColor={group.groupColor} tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
                     </section>
                 </li>
             )}
