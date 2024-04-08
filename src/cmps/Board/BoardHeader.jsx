@@ -4,7 +4,7 @@ import EmojiPicker from 'emoji-picker-react';
 
 import { BoardFilter } from "./BoardFilter";
 import { boardService } from "../../services/board.service.local";
-import { updateBoard } from "../../store/board.actions";
+import { updateBoard } from "../../store/actions/board.actions";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -46,7 +46,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                                     type={EditableHeading.types.h1}
                                     value={boardTitle}
                                     isEditMode={"true"}
-                                    // onFinishEditing={onRenameBoard}
+                                    onFinishEditing={onRenameBoard}
                                 />
 
                             </Tooltip>

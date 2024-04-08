@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from 'redux'
 
-import { boardReducer } from './board.reducer.js'
-import { userReducer } from './user.reducer.js'
-import { reviewReducer } from './review.reducer'
-import { systemReducer } from './system.reducer'
+import { boardReducer } from './reducers/board.reducer.js'
+import { userReducer } from './reducers/user.reducer.js'
+import { reviewReducer } from './reducers/review.reducer.js'
+import { systemReducer } from './reducers/system.reducer.js'
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,

@@ -8,6 +8,16 @@
     align-items: center;
     text-align: center;
     border-left: 0.4em solid $clr-label-3;
+    
+    &:hover {
+        background-color: rgba(245, 246, 248, 0.97);
+    }
+    
+    &.drag {
+        background-color: $bgc-main;
+        rotate: 1deg;
+        opacity:60%;
+    }
 
     .dyn-cell {
         align-self: center;

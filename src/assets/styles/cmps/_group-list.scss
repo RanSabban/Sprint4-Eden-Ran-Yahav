@@ -2,6 +2,10 @@
     display: grid;
     row-gap: 2em;
 
+    >* {
+        background-color: $bgc-main;
+    }
+
     .header-items {
         display: grid;
         grid-auto-flow: column;
@@ -38,7 +42,7 @@
         align-items: center;
         color: $clr-label-3;
 
-        .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8  {
+        .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8 {
             font-family: poppins-medium;
             font-size: 18px !important;
         }
@@ -53,6 +57,14 @@
         opacity: 1;
     }
 
+    .wrapper_3963731b0e{
+        justify-self: center;
+        position: relative;
+        display: grid;
+        align-items: center;
+        width: fit-content;
+        height: min-content;
+    }
     .dyn-cell.checkbox-header-container {
         display: grid;
         justify-items: center;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { useSelector } from 'react-redux'
 
-import { loadBoard } from "../../store/board.actions"
+import { loadBoard } from "../../store/actions/board.actions"
 import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
 import { LabelPicker } from "./reusableCmps/LabelPicker"

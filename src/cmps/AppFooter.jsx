@@ -9,11 +9,7 @@ export function AppFooter() {
 
     return (     <UserMsg />
         // <footer className="app-footer">
-        //     <p>
-        //         coffeerights - count:
-        //     </p>
 
-        
         // </footer>
     )
 }
