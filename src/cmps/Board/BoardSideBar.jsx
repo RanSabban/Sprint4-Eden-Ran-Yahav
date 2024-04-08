@@ -79,8 +79,6 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
                         <Search
                             size="Search.sizes.MEDIUM"
-                            width="1em"
-
                             // width="11.6em"
                             // height="2em"
                             placeholder="Search"
