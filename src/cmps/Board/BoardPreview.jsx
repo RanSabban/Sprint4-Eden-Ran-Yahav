@@ -1,7 +1,7 @@
 
 import { DragDropContext } from "react-beautiful-dnd";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-import { addTask, dragAndDropGroup, dragAndDropTask, loadBoard } from "../../store/board.actions";
+import { addTask, dragAndDropGroup, dragAndDropTask, loadBoard } from "../../store/actions/board.actions";
 import { GroupList } from "./GroupList";
 import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
@@ -46,7 +46,7 @@ export function BoardPreview({ board, onAddGroup }) {
     }
 
 
-    if (!board) return <div>LOADING</div>
+    if (!groups) return <div>LOADING</div>
     return (
 
 

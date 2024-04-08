@@ -101,24 +101,24 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
             {!isEdit && (
                 <div>
                     <div style={{ display: isShown ? "block" : "none" }} className={`actions-border-side`}>
-                        <div onClick={openInNewTab} style={{ lineHeight: "20px" }} className="action-side">
+                        <div onClick={openInNewTab} style={{ lineheight: "20px" }} className="action-side">
                             <NewTab />
                             <p>Open Board in New Tab</p>
                         </div>
                         <hr style={{ width: '100%', color: "#323338" }} />
-                        <div onClick={removeBoard} style={{ lineHeight: "20px" }} className="action-side">
+                        <div onClick={removeBoard} style={{ lineheight: "20px" }} className="action-side">
                             <DeleteSvg />
                             <p>Delete</p>
                         </div>
-                        <div onClick={changeBoardName} style={{ lineHeight: "20px" }} className="action-side">
+                        <div onClick={changeBoardName} style={{ lineheight: "20px" }} className="action-side">
                             <RenameSvg />
                             <p>Rename Board</p>
                         </div>
-                        <div onClick={duplicateBoard} style={{ lineHeight: "20px" }} className="action-side">
+                        <div onClick={duplicateBoard} style={{ lineheight: "20px" }} className="action-side">
                             <DuplicateSvg />
                             <p>Duplicate Board</p>
                         </div>
-                        <div onClick={addToFavorites} style={{ lineHeight: "20px" }} className="action-side">
+                        <div onClick={addToFavorites} style={{ lineheight: "20px" }} className="action-side">
                             <FavoritesSvg />
                             {board.isStarred ? <p>Remove from favorites</p> : <p>Add to favorites</p>}
                         </div>

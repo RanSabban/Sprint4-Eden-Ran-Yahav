@@ -10,45 +10,71 @@ export function TimelinesComponent({ cell }) {
     //     return durationDays;
     // }
 
-    // Format dates for display
-    // const formatDisplayDate = (date) => {
-    //     return new Date(date).toLocaleDateString();
-    // }
+    function formatDisplayDate(startDate, endDate) {
+        const start = dayjs(startDate);
+        const end = dayjs(endDate);
 
-    function formatDisplayDate(date) {
-        const newDate = dayjs(date).format('DD MMM');
-        return newDate
+        let formattedDate;
+        if (start.month() === end.month()) {
+            formattedDate = `${start.format('D')} - ${end.format('D MMM')}`;
+        } else {
+            formattedDate = `${start.format('D MMM')} - ${end.format('D MMM')}`;
+        }
+        return formattedDate;
     }
-
     // getPercentage()
+
+    // function getPercentage() {
+    //     const now = dayjs()
+    //     const start = dayjs(cell.startDate)
+    //     const end = dayjs(cell.endDate)
+    //     // console.log(durationPerc);
+    //     if (now.isBefore(start)) {
+    //         return '0%'
+    //     } else if (now.isAfter(end)) {
+    //         return '100%'
+    //     }
+
+    //     const totalDuration = end.diff(start, 'day')
+    //     const elapsedDuration = now.diff(start, 'day')
+    //     const percentage = (elapsedDuration / totalDuration) * 100
+    //     console.log(percentage);
+    //     return `${percentage}%`
+    // }
 
     function getPercentage() {
         const now = dayjs()
         const start = dayjs(cell.startDate)
         const end = dayjs(cell.endDate)
-        // console.log(durationPerc);
         if (now.isBefore(start)) {
-            return '0%'
+            return '0%';
         } else if (now.isAfter(end)) {
-            return '100%'
+            return '100%';
         }
 
         const totalDuration = end.diff(start, 'day')
         const elapsedDuration = now.diff(start, 'day')
         const percentage = (elapsedDuration / totalDuration) * 100
-        // const durationPerc = Math.floor(difference / (1000 * 60 * 60 * 24))
-        console.log(percentage);
-        return `${percentage}%`
+        console.log(percentage.toFixed(2))
+        return `${percentage.toFixed(2)}%`
     }
+    // const elapsedTime = getDoneTodosPercent()
 
 
     return (
+        <div className="dyn-cell">
+
         <section className="timeline-container">
-            <span className="timeline-date-txt-start">{formatDisplayDate(cell.startDate)} </span> <span>{formatDisplayDate(cell.endDate)}</span>
-            {/* <div style={{
-                width: getPercentage()}}
-                className="timline-inside">
-            </div> */}
+          <div className="progress-bar-container">
+            <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
+            
+            {/* <div className="progress-bar" style={{ width: getPercentage(cell.startDate, cell.endDate) }}></div> */}
+            <div className="progress-bar" style={{ width: "50%" }}></div>
+          </div>
         </section>
-    );
-};
+        </div>
+      )
+      
+
+}
+
