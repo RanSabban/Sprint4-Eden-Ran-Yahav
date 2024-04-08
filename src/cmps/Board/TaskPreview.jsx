@@ -7,8 +7,8 @@ import { TextCellComponent } from './dynamicCmp/TextCellComponent';
 import { LastUpdatedComponent } from './dynamicCmp/LastUpdatedComponent'
 import { FilesComponent } from './dynamicCmp/FilesComponent';
 import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
-import { Button, Checkbox } from 'monday-ui-react-core';
-import { Update } from 'monday-ui-react-core/icons';
+import { Button, Checkbox, Menu, MenuButton, MenuItem } from 'monday-ui-react-core';
+import { AddSmall, Delete, Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 
 
-export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
+export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const [cellToEdit, setCellToEdit] = useState('')
@@ -55,6 +55,14 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
     }
 
     return (<>
+        <section style={{ position: 'absolute' }} className="task-actions">
+            <MenuButton size='XS' >
+                <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
+                    {/* <MenuItem icon={AddSmall} title="Add group"/> */}
+                    <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)}/>
+                </Menu>
+            </MenuButton>
+        </section>
         <div className='dyn-cell checkbox-container'>
             <Checkbox />
         </div>
@@ -69,7 +77,7 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask }) {
             </Button>
         </div>
 
-        
+
         {
             cells.map((cell, idx) => (
 

@@ -18,7 +18,8 @@ export const boardService = {
     updateCell,
     updateTask,
     dragAndDropGroup,
-    dragAndDropTask
+    dragAndDropTask,
+    removeTask
 }
 window.cs = boardService
 
@@ -1389,6 +1390,20 @@ async function updateTask(taskToUpdate, groupId) {
     })
     console.log(updatedBoards);
     _save(STORAGE_KEY, updatedBoards)
+}
+
+async function removeTask(taskId,groupId,boardId) {
+    const board = await getById(boardId) 
+    const boardToUpdate = {...board, groups: board.groups.map(group => {
+        if (group._id === groupId){
+            return {
+                ...group, 
+                tasks: group.tasks.filter(task => task._id !== taskId)
+            }
+        }
+        return group
+    })}
+    save(boardToUpdate)
 }
 
 async function dragAndDropGroup(source, destination, boardId) {

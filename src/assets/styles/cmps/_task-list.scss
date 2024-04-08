@@ -68,9 +68,9 @@
         text-align: center;
         width: 80%;
         // padding-left: 10px;
-        
+
         .progress-bar-container {
-        
+
             display: flex;
             align-items: center;
             position: relative;
@@ -78,9 +78,9 @@
             border-radius: 22em !important;
             overflow: hidden;
         }
-        
+
         .progress-bar {
-            background-color: #00c875; 
+            background-color: #00c875;
             height: 100%;
             // border-radius: inherit;
             transition: width 0.4s ease;
@@ -88,9 +88,9 @@
             left: 0;
             top: 0;
         }
-        
+
         .progress-bar-container span {
-            z-index: 1; 
+            z-index: 1;
             position: absolute;
             width: 100%;
             display: flex;
@@ -99,8 +99,18 @@
             color: white;
         }
     }
-    
-    
-    
+
+    &:hover .task-actions button {
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+    .task-actions button {
+        opacity: 0;
+        position: absolute;
+        right: 0.9em;
+        top: -1em;
+    }
+
 
 }

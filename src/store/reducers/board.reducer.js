@@ -13,6 +13,7 @@ export const REMOVE_GROUP = 'REMOVE_GROUP'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const DROP_TASK = 'DROP_TASK'
 export const DROP_GROUP = 'DROP_GROUP'
+export const REMOVE_TASK = 'REMOVE_TASK'
 
 const initialState = {
     boards: null,
@@ -63,7 +64,24 @@ export function boardReducer(state = initialState, action) {
                             : group
                     ),
                 },
+            }
+        case REMOVE_TASK: {
+            const { taskId, groupId } = action.payload;
+
+            return {
+                ...state,
+                board: {
+                    ...state.board, 
+                    groups: state.board.groups.map(group =>
+                        group._id === groupId
+                            ? { ...group, tasks: group.tasks.filter(task => task._id !== taskId) } 
+                            : group
+                    ),
+                },
             };
+        }
+
+
         case ADD_GROUP:
             return {
                 ...state,
