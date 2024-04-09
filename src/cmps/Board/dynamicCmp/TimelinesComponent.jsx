@@ -62,7 +62,7 @@ export function TimelinesComponent({ cell }) {
 
 
     return (
-        <div className="dyn-cell">
+        <div className="dyn-cell timeline">
 
         <section className="timeline-container">
           <div className="progress-bar-container">

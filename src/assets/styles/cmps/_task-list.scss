@@ -112,5 +112,12 @@
         top: -1em;
     }
 
-
+    .dyn-cell.txt {
+        display: grid;
+        justify-items: center;
+    }
+    .dyn-cell.timeline {
+        // display: grid;
+        justify-items: center;
+    }
 }

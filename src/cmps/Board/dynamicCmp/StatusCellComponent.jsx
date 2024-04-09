@@ -11,7 +11,7 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel }) {
     function getCellTxt() {
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'puki wrongico'
-        const title = item.title || 'puki wrongico'
+        const title = item.title 
         return title
     }
 
