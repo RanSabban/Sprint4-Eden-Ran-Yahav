@@ -1317,11 +1317,11 @@ function getEmptyGroup() {
         title: "Puki",
         groupColor: utilService.getPrettyRandomColor(),
         archivedAt: null,
-        tasks: [
-            {
-                _id: "c101",
-                title: "Task 1",
-                cells: [
+        tasks: [],
+            // {
+            //     _id: "c101",
+            //     title: "Task 1",
+            //     cells: [
                     // {
                     //     _id: "c111",
                     //     type: "status",
@@ -1362,7 +1362,7 @@ function getEmptyGroup() {
                     //     type: "updates",
                     //     dataId: "1478"
                     // },
-        ],
+        // ],
         createdBy: {
             _id: "u102",
             fullname: "Ran Sabban",
@@ -1370,8 +1370,8 @@ function getEmptyGroup() {
         }
     
 
-    }]
-}}
+    }
+}
 
 async function updateTask(taskToUpdate, groupId) {
     console.log(taskToUpdate, groupId);
