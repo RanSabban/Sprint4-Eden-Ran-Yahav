@@ -71,7 +71,7 @@ export function TaskList({ groupId, onAddTask, groupColor}) {
                                     
                                     className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
-                            <TaskPreview task={task} groupColor={groupColor} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} onRemoveTask={onRemoveTask} />
+                            <TaskPreview groupId={groupId} task={task} groupColor={groupColor} onUpdateCell={onUpdateCell} onUpdateTask={onUpdateTask} onRemoveTask={onRemoveTask} />
                         </div>
                     )}
                 </Draggable>

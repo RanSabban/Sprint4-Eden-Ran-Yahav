@@ -171,7 +171,7 @@ export async function updateCell(cell, taskId, groupId) {
 
         store.dispatch({
             type: UPDATE_CELL,
-            cell, taskId
+            cell, taskId, groupId
         })
 
     }

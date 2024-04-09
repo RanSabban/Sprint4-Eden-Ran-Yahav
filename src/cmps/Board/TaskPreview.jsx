@@ -18,7 +18,8 @@ import { onOpenModalLabel, onHideModalLabel } from '../../store/actions/board.ac
 
 
 
-export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
+export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
+    console.log('this is task for reall', task)
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
@@ -94,6 +95,7 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, gr
             cells.map((cell, idx) => (
 
                 <DynamicCmp key={idx}
+                    groupId={groupId}
                     groupColor={groupColor}
                     cmpType={cell.type}
                     onChange={onChange}

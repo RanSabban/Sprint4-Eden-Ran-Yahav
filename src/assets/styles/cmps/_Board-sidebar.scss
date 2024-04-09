@@ -5,7 +5,7 @@
     height: 100vh;
     border-radius: 0 0.5em 0 0;
     transition: 0.2s;
-    z-index: 1111111;
+    z-index: 35;
 
     .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
         width: 14em;
@@ -20,17 +20,7 @@
     .button-sidebar {
         position: absolute;
         right: 0px;
-    }
-
-    .lower-sidebar:hover {
-
-        width: 255px;
-        z-index: 35;
-
-        .close-sidebar-btn {
-            opacity: 1;
-        }
-
+        border-radius: 4px;
     }
 
     .lower-sidebar.close-sidebar {
@@ -132,7 +122,7 @@
         background-color: #ffffff;
         color: #323338;
         box-shadow: none;
-        margin-right: 0.79em;
+        margin-right: 0.6em;
     }
 
     .three-points:hover {
@@ -210,7 +200,7 @@
     .actions-workspace {
         position: absolute;
         top: 290px;
-        background-color: #fff;
+        // background-color: #fff;
         box-shadow: 0 4px 17px 6px rgba(0, 0, 0, 0.1019607843);
         border-radius: 8px;
         padding: 8px;
@@ -247,11 +237,22 @@
         // width: 255px;
         z-index: 35;
 
-        .close-sidebar-btn {
+        .button-sidebar {
             opacity: 1;
         }
     }
 
+    // &:hover .open-sidebar {
+    //     // width: 255px;
+    //     z-index: 35;
+    // opacity: 1;
+
+    //     .button-sidebar {
+    //         opacity: 1;
+    //     }
+    // }
+
 
 
 }
+

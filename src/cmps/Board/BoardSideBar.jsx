@@ -43,7 +43,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
     return (<section style={{ zIndex: "35" }} className={`board-sidebar ${dynClass}`} >
 
         <Tooltip position='right' content='Close navigation'
-            animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
+            animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : '', opacity: isOpen ? '0' : '1'  }} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
         <div className={`lower-sidebar ${dynClass}`} style={{ marginLeft: "1em" }}>
             <div className="all-sidebar" style={{ display: "flex", flexDirection: "column" }}>
                 <div className="upper-actions">
