@@ -3,10 +3,18 @@
     height: em(25px);
     width: em(25px);
     padding: 0;
+    margin-left: 16px;
 }
 
 .icon {
     display: flex;
     justify-self: center;
     color: $clr-icon;
+}
+
+button{
+    span{
+        font-size: 1em;
+        color: $clr-main;
+    }
 }

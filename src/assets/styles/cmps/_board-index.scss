@@ -1,8 +1,8 @@
-
 .board-index {
-display: grid;
-grid-template-columns: auto 1fr;
-grid-template-rows: auto 1fr;
-column-gap: 12px;
-overflow: hidden;
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 12px;
+    // overflow: none;
 }

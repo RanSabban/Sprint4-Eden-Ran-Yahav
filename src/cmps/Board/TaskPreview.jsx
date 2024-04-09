@@ -12,7 +12,7 @@ import { AddSmall, Delete, Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
-import { onOpenModalLabel, onHideModalLabel } from '../../store/actions/board.actions';
+import { onOpenModalLabel } from '../../store/actions/board.actions';
 
 
 
@@ -23,6 +23,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
+    const [isLabelOpen,setIsLabelOpen] = useState(false)
 
     async function onChange(cell) {
         try {
@@ -50,20 +51,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         onUpdateTask(taskToUpdate)
     }
 
-    async function onClickLabel(target, clmType, cell) {
+    async function onClickLabel(ev,clmType,cell) {
         try {
-            console.log(target);
-            const { cell: prevCell, task: prevTask } = modalProps
-            console.log(prevCell, prevTask);
-            console.log(task, cell);
-            if (prevTask === undefined || (prevCell.type !== cell.type || task._id !== prevTask._id)) {
-                onOpenModalLabel(target, clmType, cell, task, onUpdateCell);
-            } else {
-                console.log('here');
-                onHideModalLabel();
-            }
+            onOpenModalLabel(ev,clmType,cell,task,true)
         } catch (err) {
-            console.log('Err on modal toggle', err);
+
         }
     }
 
@@ -72,14 +64,14 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <MenuButton size='XS' >
                 <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
                     {/* <MenuItem icon={AddSmall} title="Add group"/> */}
-                    <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
+                    <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)}/>
                 </Menu>
             </MenuButton>
         </section>
-        <div className='dyn-cell checkbox-container'>
+        <div className='dyn-cell checkbox-container sticky'>
             <Checkbox />
         </div>
-        <div className='title-container'>
+        <div className='title-container sticky'>
             <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
             <Button
                 className="btn-message"

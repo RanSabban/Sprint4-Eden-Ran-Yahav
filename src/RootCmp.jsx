@@ -11,15 +11,13 @@ import { BoardIndex } from './pages/BoardIndex'
 export function RootCmp() {
 
     return (
-        <div>
+        <>
             <AppHeader />
-            <main>
-                <Routes>
-                    {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
-                </Routes>
-            </main>
+            <Routes>
+                {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+            </Routes>
             <AppFooter />
-        </div>
+        </>
     )
 }
 

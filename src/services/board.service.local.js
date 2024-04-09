@@ -19,7 +19,8 @@ export const boardService = {
     updateTask,
     dragAndDropGroup,
     dragAndDropTask,
-    removeTask
+    removeTask,
+    updateGroup
 }
 window.cs = boardService
 
@@ -288,7 +289,7 @@ const gBoards = [
             {
                 _id: "g102",
                 title: "Bugs",
-                groupColor:"#ffca00",
+                groupColor: "#ffca00",
                 archivedAt: null,
                 tasks: [
                     {
@@ -400,7 +401,7 @@ const gBoards = [
             {
                 _id: "g103",
                 title: "Frontend",
-                groupColor:"#579bfc",
+                groupColor: "#579bfc",
                 archivedAt: null,
                 tasks: [
                     {
@@ -941,7 +942,7 @@ const gBoards = [
 //         },
 //       ],
 //     },
-//   ];
+//   ]
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var boards = await storageService.query(STORAGE_KEY)
@@ -1202,7 +1203,7 @@ async function getEmptyTask(groupId, boardId) {
 
     const board = await getById(boardId)
     const { clmTypes } = board
-    console.log(clmTypes);
+    console.log(clmTypes)
     const cells = clmTypes.map(clmType => {
         if (clmType.type === 'status' || clmType.type === 'priority') {
             return { _id: clmType._id, type: clmType.type, dataId: clmType.data[0].id }
@@ -1238,34 +1239,34 @@ function getById(boardId) {
 }
 
 async function addGroup(boardId) {
-    console.log(boardId);
+    console.log(boardId)
     const board = await getById(boardId)
     try {
-        console.log(board);
+        console.log(board)
         const group = getEmptyGroup()
         board.groups.push(group)
-        console.log(board);
+        console.log(board)
         await save(board)
-        console.log(group, board);
+        console.log(group, board)
         return group
     } catch (err) {
-        console.log('cannot add group');
+        console.log('cannot add group')
     }
- 
+
 }
 
 async function removeGroup(groupId) {
-    console.log(groupId);
+    console.log(groupId)
     const boards = await storageService.query(STORAGE_KEY)
     const boardsToReturn = boards.map((board) => ({
         ...board, groups: board.groups.filter(group => group._id !== groupId)
     }))
-    console.log(boardsToReturn);
+    console.log(boardsToReturn)
     _save(STORAGE_KEY, boardsToReturn)
 }
 
 async function addTask(groupId, task) {
-    console.log(groupId, task);
+    console.log(groupId, task)
     const boards = await storageService.query(STORAGE_KEY)
     boards.map(board => {
         return board.groups.map((group => {
@@ -1274,9 +1275,41 @@ async function addTask(groupId, task) {
             }
         }))
     })
-    console.log(boards);
+    console.log(boards)
     return _save(STORAGE_KEY, boards)
 }
+
+async function updateGroup(groupId, updatedGroupData) {
+    try {
+        const boards = await storageService.query(STORAGE_KEY)
+        let isGroupUpdated = false
+
+        const updatedBoards = boards.map(board => {
+            const updatedGroups = board.groups.map(group => {
+                if (group._id === groupId) {
+                    isGroupUpdated = true
+                    return { ...group, ...updatedGroupData }
+                }
+                return group
+            })
+
+            return { ...board, groups: updatedGroups }
+        })
+
+        if (!isGroupUpdated) {
+            console.error('Group not found')
+            return
+        }
+
+        _save(STORAGE_KEY, updatedBoards)
+
+        console.log('Group updated successfully')
+    } catch (err) {
+        console.error('Error updating group:', err)
+    }
+}
+
+
 
 async function updateCell(updatedCell, taskId, groupId) {
     const boards = await storageService.query(STORAGE_KEY)
@@ -1293,20 +1326,20 @@ async function updateCell(updatedCell, taskId, groupId) {
                                     ...task,
                                     cells: task.cells.map(cell => {
                                         if (cell._id === updatedCell._id) {
-                                            return updatedCell; 
+                                            return updatedCell
                                         }
-                                        return cell; 
+                                        return cell
                                     })
-                                };
+                                }
                             }
-                            return task; 
+                            return task
                         })
-                    };
+                    }
                 }
-                return group; 
+                return group
             })
-        };
-    });
+        }
+    })
     _save(STORAGE_KEY, updatedBoards)
 }
 
@@ -1318,63 +1351,63 @@ function getEmptyGroup() {
         groupColor: utilService.getPrettyRandomColor(),
         archivedAt: null,
         tasks: [],
-            // {
-            //     _id: "c101",
-            //     title: "Task 1",
-            //     cells: [
-                    // {
-                    //     _id: "c111",
-                    //     type: "status",
-                    //     dataId: "l103"
-                    // },
-                    // {
-                    //     _id: "c116",
-                    //     type: "priority",
-                    //     dataId: "l201"
-                    // },
-                    // {
-                    //     _id: "c112",
-                    //     type: "members",
-                    //     dataId: ["EtzD1"]
-                    // },
-                    // {
-                    //     _id: "c113",
-                    //     type: "timelines",
-                    //     dataId: "sdf123"
-                    // },
-                    // {
-                    //     _id: "c114",
-                    //     type: "files",
-                    //     dataId: "sdf124"
-                    // },
-                    // {
-                    //     _id: "c1145",
-                    //     type: "txt",
-                    //     txt: "puki"
-                    // },
-                    // {
-                    //     _id: "c115",
-                    //     type: "date",
-                    //     date: 1589983468418
-                    // },
-                    // {
-                    //     _id: "c116",
-                    //     type: "updates",
-                    //     dataId: "1478"
-                    // },
+        // {
+        //     _id: "c101",
+        //     title: "Task 1",
+        //     cells: [
+        // {
+        //     _id: "c111",
+        //     type: "status",
+        //     dataId: "l103"
+        // },
+        // {
+        //     _id: "c116",
+        //     type: "priority",
+        //     dataId: "l201"
+        // },
+        // {
+        //     _id: "c112",
+        //     type: "members",
+        //     dataId: ["EtzD1"]
+        // },
+        // {
+        //     _id: "c113",
+        //     type: "timelines",
+        //     dataId: "sdf123"
+        // },
+        // {
+        //     _id: "c114",
+        //     type: "files",
+        //     dataId: "sdf124"
+        // },
+        // {
+        //     _id: "c1145",
+        //     type: "txt",
+        //     txt: "puki"
+        // },
+        // {
+        //     _id: "c115",
+        //     type: "date",
+        //     date: 1589983468418
+        // },
+        // {
+        //     _id: "c116",
+        //     type: "updates",
+        //     dataId: "1478"
+        // },
         // ],
         createdBy: {
             _id: "u102",
             fullname: "Ran Sabban",
             imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
         }
-    
+
 
     }
 }
 
 async function updateTask(taskToUpdate, groupId) {
-    console.log(taskToUpdate, groupId);
+    console.log(taskToUpdate, groupId)
     const boards = await storageService.query(STORAGE_KEY)
     const updatedBoards = boards.map(board => {
         return {
@@ -1395,32 +1428,34 @@ async function updateTask(taskToUpdate, groupId) {
             })
         }
     })
-    console.log(updatedBoards);
+    console.log(updatedBoards)
     _save(STORAGE_KEY, updatedBoards)
 }
 
-async function removeTask(taskId,groupId,boardId) {
-    const board = await getById(boardId) 
-    const boardToUpdate = {...board, groups: board.groups.map(group => {
-        if (group._id === groupId){
-            return {
-                ...group, 
-                tasks: group.tasks.filter(task => task._id !== taskId)
+async function removeTask(taskId, groupId, boardId) {
+    const board = await getById(boardId)
+    const boardToUpdate = {
+        ...board, groups: board.groups.map(group => {
+            if (group._id === groupId) {
+                return {
+                    ...group,
+                    tasks: group.tasks.filter(task => task._id !== taskId)
+                }
             }
-        }
-        return group
-    })}
+            return group
+        })
+    }
     save(boardToUpdate)
 }
 
 async function dragAndDropGroup(source, destination, boardId) {
     const board = await getById(boardId)
     try {
-        console.log(source, destination, boardId);
+        console.log(source, destination, boardId)
         // const groupToCut = board.groups[source.index]
         const groupToCut = board.groups.find((group, idx) => idx === source.index)
-        board.groups.splice(source.index, 1);
-        board.groups.splice(destination.index, 0, groupToCut);
+        board.groups.splice(source.index, 1)
+        board.groups.splice(destination.index, 0, groupToCut)
         save(board)
         return board
     }
@@ -1428,7 +1463,7 @@ async function dragAndDropGroup(source, destination, boardId) {
     catch (err) {
 
     } finally {
-        console.log(board);
+        console.log(board)
     }
 }
 
@@ -1447,7 +1482,7 @@ async function dragAndDropTask(source, destination, boardId) {
 
         const sourceGroup = board.groups.find(group => group._id === sourceGroupId)
         const destinationGroup = board.groups.find(group => group._id === destinationGroupId)
-        console.log(sourceGroup,destinationGroup);
+        console.log(sourceGroup, destinationGroup)
         // If we can't find the groups, we should not continue
         if (!sourceGroup || !destinationGroup) {
             throw new Error('Group not found.')
@@ -1460,12 +1495,12 @@ async function dragAndDropTask(source, destination, boardId) {
         destinationGroup.tasks.splice(destinationTaskIndex, 0, taskToMove)
 
         // Persist the updated board
-        await save(board);
-        console.log('Task moved successfully.');
+        await save(board)
+        console.log('Task moved successfully.')
 
-        return board;
+        return board
     } catch (err) {
-        console.error('Error moving task:', err);
+        console.error('Error moving task:', err)
     }
 }
 
