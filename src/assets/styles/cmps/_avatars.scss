@@ -1,5 +1,6 @@
 .overlap-images-wrapper {
     flex-wrap: nowrap;
+
     >* {
         position: relative;
         overflow: hidden;
@@ -28,7 +29,24 @@
 
     }
 }
-.avatarGroupContainer_4a7aad6681{
+
+.avatarGroupContainer_4a7aad6681 {
     padding-left: em(12.66px);
     padding-right: 0;
+}
+
+// .textField_9430c37135 .inputWrapper_129bb61475 .iconContainer_8576251e2c.iconContainerActive_bcba3e1e17 .icon_129bb61475 {
+//     position: absolute;
+//     left: 7em;
+// }
+
+.member-option{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    // width: 100%;
+    // padding: 8px;
+    // border-radius: 4px;
+    cursor: pointer;
+    color: #323338;
 }
