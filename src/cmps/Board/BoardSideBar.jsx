@@ -40,7 +40,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
     return (<section style={{ width: dynPad, position: dynScroll, zIndex: "35" }} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 
-        <Tooltip position='right' content='Close navigation ◀'
+        <Tooltip position='right' content='Close navigation'
             animationType="expand"><button style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`} onClick={() => setIsOpen2(!isOpen2)}><OpenSidebar /></button> </Tooltip>
         <div style={{ marginLeft: "1em", display: dynClass }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -51,7 +51,7 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
                 <section className="sidebar-workspace">
                     <div className="main-back">M <Home2 /></div>
-                    <Tooltip content="Main workspace" animationType="expand" > <div className="main-workspace">Main workspace <span style={{ ght: "2.5em" }} onClick={() => setIsWorkspace(!isWorkspace)}><OpenWorkSpace /></span></div> </Tooltip>
+                    <Tooltip content="Main workspace" animationType="expand" > <div className="main-workspace">Main workspace <span className="arrow-workspace" style={{ ght: "2.5em" }} onClick={() => setIsWorkspace(!isWorkspace)}><OpenWorkSpace /></span></div> </Tooltip>
                     <button className="three-points"><ThreePoints /></button>
                 </section>
 

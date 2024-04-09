@@ -6,7 +6,7 @@
     border-radius: 0 0.5em 0 0;
     transition: 0.2s;
 
-    .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0{
+    .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
         width: 14em;
     }
 
@@ -61,6 +61,7 @@
         justify-content: space-between;
         margin-bottom: 0.5em;
         margin-top: 1em;
+        margin-left: 0.2em;
     }
 
     .sidebar-workspace-second {
@@ -127,11 +128,12 @@
         line-height: 24px;
         font-size: 16px;
         text-align: start;
-        margin-right: 1em;
+        // margin-right: 0.8em;
         gap: 1px;
         word-break: keep-all;
         white-space: nowrap;
         font-weight: 600;
+        margin-right: 1.6em;
     }
 
     .close-sidebar-btn {
@@ -180,6 +182,12 @@
         display: flex;
         flex-direction: column;
         place-items: center;
+    }
+
+    .arrow-workspace {
+        position: absolute;
+        right: 4.5em;
+        top: 7.5em;
     }
 
     .favorites {
