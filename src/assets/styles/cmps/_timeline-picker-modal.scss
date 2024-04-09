@@ -1,0 +1,67 @@
+.task-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: text;
+  
+    .date-picker-modal {
+      background-color: var(--primary-background-color);
+      z-index: 10;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  
+    .date-container {
+      position: relative;
+      cursor: text;
+  
+      .date-indication {
+        position: absolute;
+        left: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+  
+        .icon {
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          color: white;
+          cursor: text;
+  
+          &.done-icon {
+            background-color: var(--positive-color);
+          }
+  
+          &.not-done-icon {
+            background-color: rgb(93, 99, 135);
+  
+            &::before {
+              content: "";
+              border-left: 6px solid transparent;
+              border-right: 6px solid transparent;
+              border-bottom: 11px solid var(--primary-background-color);
+              position: absolute;
+              bottom: 50%;
+              left: 50%;
+              transform: rotate(100deg);
+            }
+  
+            &::after {
+              content: "";
+              position: absolute;
+              border: 1px solid rgb(93, 99, 135);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+  
