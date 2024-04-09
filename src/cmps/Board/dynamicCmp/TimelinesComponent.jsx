@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-export function TimelinesComponent({ cell }) {
+export function TimelinesComponent({ cell, groupColor }) {
 
     // const calculateDurationInDays = (startDate, endDate) => {
     //     const start = new Date(startDate);
@@ -69,7 +69,7 @@ export function TimelinesComponent({ cell }) {
             <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
             
             {/* <div className="progress-bar" style={{ width: getPercentage(cell.startDate, cell.endDate) }}></div> */}
-            <div className="progress-bar" style={{ width: "50%" }}></div>
+            <div className="progress-bar" style={{ width: "50%",background: groupColor }}></div>
           </div>
         </section>
         </div>
