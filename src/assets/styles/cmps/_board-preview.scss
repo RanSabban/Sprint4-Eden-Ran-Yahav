@@ -1,10 +1,13 @@
 
 .board-preview {
-    display: grid;
-    grid-row: 2;
-    grid-column: 2;
+    // display: grid;
+    // grid-row: 2;
+    // grid-column: 2;
     position: relative;
-    width: 100%;
+    overflow: auto;
+
+    // overflow: auto;
+    // width: 100vw;
     box-sizing: content-box;
     padding-bottom: em(40px);
     padding-left: em(40px);
@@ -13,12 +16,6 @@
         list-style: none;
     }
 
-    .board-items {
-        height: 100%;
-        width: 100%;
-        outline: none;
-        position: relative;
-    }
     .title-container{
         display: grid;
         grid-auto-flow: column;

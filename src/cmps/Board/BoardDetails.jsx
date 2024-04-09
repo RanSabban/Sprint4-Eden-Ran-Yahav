@@ -26,16 +26,16 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
     if (!board) return <div>LOADING BRO</div>
     return (
         <>
-            <div className="main-wrapper">
-                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
+            {/* <div className="main-wrapper"> */}
                 <section className="board-details">
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
                     <BoardPreview
                         onAddGroup={onAddGroup}
                         onRemoveGroup={onRemoveGroup}
                         board={board}
                     />
                 </section>
-            </div>
+            {/* </div> */}
         </>
     )
 }

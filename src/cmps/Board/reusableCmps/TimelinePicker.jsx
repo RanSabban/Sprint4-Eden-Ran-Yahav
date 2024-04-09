@@ -41,7 +41,7 @@ export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpda
         cell.date = timestamp
         try {
             await onUpdateCell(cell, taskId)
-            console.log(cell.date);
+            console.log(timestamp);
             showSuccessMsg(`Changed due date in task ${taskId}`)
             setSelected()
         } catch (err) {

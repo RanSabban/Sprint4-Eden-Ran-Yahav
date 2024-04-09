@@ -11,7 +11,7 @@ import { GroupPreview } from "./GroupPreview";
 import { useSelector } from "react-redux";
 
 
-export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
+export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps }) {
 
     const groups = useSelector(storeState => storeState.boardModule.board.groups)
 
@@ -43,30 +43,44 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
 
     if (!groups) return <div>Loading</div>
     return (
-        <div className="scrollable-container">
+        <Droppable
+            droppableId={boardId}
+            type="GROUP"
+            style={{ overflow: 'auto' }}>
+            {(provided) => (
+                <ul className="group-list"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}>
+                    {groups.map((group, index) => (
+                        <Draggable key={group._id} draggableId={group._id.toString()} index={index}>
 
-            <Droppable droppableId={boardId} type="GROUP" style={{ overflow: 'auto' }}>
-                {(provided) => (
-                    <ul className="group-list"
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}>
-                        {groups.map((group, index) => (
-                            <GroupPreview
-                                boardId={boardId}
-                                group={group}
-                                index={index}
-                                clmTypes={clmTypes}
-                                boardType={boardType}
-                                onAddGroup={onAddGroup}
-                                onRemoveGroup={onRemoveGroup}
-                                onAddTask={onAddTask}
-                            />
-                        ))}
-                        {provided.placeholder}
-                    </ul>
-                )}
-            </Droppable>
-        </div>
+                            {(provided, snapshot) => (
+                                <li
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    ref={provided.innerRef}
+                                    // className="group-card"
+                                >
+                                    <GroupPreview
+                                        placeholderProps={placeholderProps}
+                                        boardId={boardId}
+                                        group={group}
+                                        index={index}
+                                        clmTypes={clmTypes}
+                                        boardType={boardType}
+                                        onAddGroup={onAddGroup}
+                                        onRemoveGroup={onRemoveGroup}
+                                        onAddTask={onAddTask}
+                                    />
 
+                                </li>
+                            )}
+                        </Draggable>
+                    ))}
+
+
+                </ul>
+            )}
+        </Droppable>
     )
 }

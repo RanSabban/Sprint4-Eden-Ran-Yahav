@@ -11,7 +11,7 @@ import { BoardIndex } from './pages/BoardIndex'
 export function RootCmp() {
 
     return (
-        <div>
+        <>
             <AppHeader />
             <main>
                 <Routes>
@@ -19,7 +19,7 @@ export function RootCmp() {
                 </Routes>
             </main>
             <AppFooter />
-        </div>
+        </>
     )
 }
 

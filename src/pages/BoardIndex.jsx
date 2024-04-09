@@ -78,7 +78,6 @@ export function BoardIndex() {
     if (!boards) return <div>LOADING</div>
     return (<section className="board-index">
 
-        <div className="app-wrapper">
             <aside className="sidebar">
                 <BoardSideBar
                     boards={boards}
@@ -88,12 +87,9 @@ export function BoardIndex() {
 
             </aside>
  
-            <main className="board-details">
                 {
                     boardId ? <BoardDetails  onAddGroup={onAddGroup} onRemoveGroup={onRemoveGroup} /> : <BoardHome boards={boards} />
                 }
-            </main>
-        </div>
         <LabelPicker />
 
     </section>

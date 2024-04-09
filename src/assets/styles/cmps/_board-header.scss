@@ -1,6 +1,6 @@
 .board-header-wrapper {
     grid-row: 1;
-    padding: 20px 30px 0px 26px;
+    padding: 20px 30px 0px 32px;
     padding-right: 18px;
     padding-top: 16px;
     position: sticky;
@@ -57,9 +57,14 @@
         .board-title-right {
             gap: em(8px);
         }
+        .board-header-toolkit {
+            align-items: center;
+            
+        }
 
         .board-header-bottom {
             margin-left: 6px;
+            height: 36px;
             // padding-left: -6px;
             // margin-top: em(8px);
             border-bottom: 1px solid $clr-border;
@@ -83,8 +88,7 @@
                         width: 100%; 
                         border-right: 1px solid $clr-border;
                         position: absolute;
-                        // bottom: 0; 
-                        // left: 0;
+                       
                     }
                 }
             }
