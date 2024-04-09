@@ -27,25 +27,29 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         isEditMode={"true"}
                         id='editable-header'
 
-                            />
-                        </Tooltip>
-                    </section>
-                    <section style={{
-                        borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em"
-                        , borderBottomLeftRadius: "0.3em"
-                    }} className="group-container">
-                        <section className="header-items">
-                            <div className='dyn-cell checkbox-header-container'>
-                                <Checkbox />
-                            </div>
-                            <div className='dyn-cell header-item'>{boardType}</div>
-                            <RenderHeaders clmTypes={clmTypes} />
-                        </section>
-                        <TaskList groupColor={group.groupColor} tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
-                    </section>
-                </li>
-            )}
-        </Draggable>
+                    />
+                </Tooltip>
+            </section>
+            <section style={{
+                borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em"
+                , borderBottomLeftRadius: "0.3em"
+            }} className="group-container">
+                <section className="header-items">
+                    <div className='dyn-cell checkbox-header-container sticky'>
+                        <Checkbox />
+                    </div>
+                    <div className='dyn-cell header-item sticky'>{boardType}</div>
+                    <RenderHeaders clmTypes={clmTypes} />
+                </section>
+                <TaskList
+                    groupColor={group.groupColor}
+                    tasks={group.tasks}
+                    groupId={group._id}
+                    onAddTask={onAddTask}
+                    placeholderProps={placeholderProps} />
+            </section>
+
+        </>
     )
 }
 
