@@ -49,3 +49,13 @@
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
+
+// .sticky {
+//     position: sticky;
+//     left: 0;
+//     z-index: 11111111;
+// }
+
+.overflow-x {
+    overflow-x: scroll;
+}

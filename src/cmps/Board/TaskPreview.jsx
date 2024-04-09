@@ -75,10 +75,10 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, gr
                 </Menu>
             </MenuButton>
         </section>
-        <div className='dyn-cell checkbox-container'>
+        <div className='dyn-cell checkbox-container sticky'>
             <Checkbox />
         </div>
-        <div className='title-container'>
+        <div className='title-container sticky'>
             <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
             <Button
                 className="btn-message"

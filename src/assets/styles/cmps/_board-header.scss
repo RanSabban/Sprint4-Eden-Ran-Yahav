@@ -6,8 +6,10 @@
     position: sticky;
     top: 0;
     background-color: $bgc-main;
+    width: 100%;
+    z-index: 111111;
 
-    // z-index: 10020;
+
     .board-header {
         grid-row: 1;
         display: grid;
@@ -21,10 +23,7 @@
             // transform: scaleX(0);
             transition: .5s;
             
-            #search-input{
-                // padding-left: 50px;
-                // transition: .2s;
-            }
+           
         }
 
         .counterContainer_92bb3fc345.light_03931cbba0 {

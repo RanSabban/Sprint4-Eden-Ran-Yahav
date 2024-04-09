@@ -19,23 +19,20 @@ export function BoardDetails({ onAddGroup, onRemoveGroup }) {
     useEffect(() => {
         if (boardId) loadBoard(boardId)
     }, [boardId])
-
    
 
     if (!board) return <div>LOADING BRO</div>
     if (!board) return <div>LOADING BRO</div>
     return (
         <>
-            <div className="main-wrapper">
-                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
                 <section className="board-details">
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
                     <BoardPreview
                         onAddGroup={onAddGroup}
                         onRemoveGroup={onRemoveGroup}
                         board={board}
                     />
                 </section>
-            </div>
         </>
     )
 }

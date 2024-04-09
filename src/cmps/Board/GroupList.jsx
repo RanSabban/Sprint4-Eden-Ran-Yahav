@@ -43,8 +43,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
 
     if (!groups) return <div>Loading</div>
     return (
-        <div className="scrollable-container">
-
             <Droppable droppableId={boardId} type="GROUP" style={{ overflow: 'auto' }}>
                 {(provided) => (
                     <ul className="group-list"
@@ -66,7 +64,5 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId }) {
                     </ul>
                 )}
             </Droppable>
-        </div>
-
     )
 }

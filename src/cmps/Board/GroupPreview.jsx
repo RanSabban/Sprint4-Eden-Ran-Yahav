@@ -18,7 +18,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     ref={provided.innerRef}
                     className="group-card"
                 >
-                    <section className="group-header">
+                    <section className="group-header sticky">
                         <MenuButton>
                             <Menu id={`menu-${group._id}`} size={Menu.sizes.LARGE}>
                                 <MenuItem icon={AddSmall} title="Add group" onClick={onAddGroup} />
@@ -43,10 +43,10 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         , borderBottomLeftRadius: "0.3em"
                     }} className="group-container">
                         <section className="header-items">
-                            <div className='dyn-cell checkbox-header-container'>
+                            <div className='dyn-cell checkbox-header-container sticky'>
                                 <Checkbox />
                             </div>
-                            <div className='dyn-cell header-item'>{boardType}</div>
+                            <div className='dyn-cell header-item sticky'>{boardType}</div>
                             <RenderHeaders clmTypes={clmTypes} />
                         </section>
                         <TaskList groupColor={group.groupColor} tasks={group.tasks} groupId={group._id} onAddTask={onAddTask} />
