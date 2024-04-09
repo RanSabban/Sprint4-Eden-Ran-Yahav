@@ -5,6 +5,7 @@
     height: 100vh;
     border-radius: 0 0.5em 0 0;
     transition: 0.2s;
+    z-index: 1111111;
 
     .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
         width: 14em;
@@ -14,6 +15,41 @@
         right: 160px;
         width: 24px;
         height: 20px;
+    }
+
+    .button-sidebar {
+        position: absolute;
+        right: 0px;
+    }
+
+    .lower-sidebar:hover {
+
+        width: 255px;
+        z-index: 35;
+
+        .close-sidebar-btn {
+            opacity: 1;
+        }
+
+    }
+
+    .lower-sidebar.close-sidebar {
+        width: 30px;
+        display: none;
+
+        &.all-sidebar {
+            width: 30px;
+        }
+
+
+    }
+
+    .lower-sidebar.close-sidebar .all-sidebar {
+        width: 30px;
+    }
+
+    &.lowwer-sidebar.close-sidebar:hover {
+        width: 255px;
     }
 
     .actions-sidebar-upper {
@@ -207,16 +243,15 @@
         width: 255px;
     }
 
+    &:hover {
+        // width: 255px;
+        z-index: 35;
 
-}
-
-.board-sidebar:hover {
-    width: 255px;
-    z-index: 35;
-    // box-shadow: 0 6px 20px #0003;
-    // position: absolute;
-
-    .close-sidebar-btn {
-        display: block;
+        .close-sidebar-btn {
+            opacity: 1;
+        }
     }
+
+
+
 }

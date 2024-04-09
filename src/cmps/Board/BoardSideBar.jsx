@@ -9,15 +9,14 @@ import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, Dro
 
 export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
     const [isOpen, setIsOpen] = useState(true)
-    const [isOpen2, setIsOpen2] = useState(true)
+    // const [isOpen2, setIsOpen2] = useState(true)
     const [isWorkspace, setIsWorkspace] = useState(true)
-    const dynClass = isOpen ? 'block' : 'none'
+    const dynClass = isOpen ? 'open-sidebar' : 'close-sidebar'
     const dynWorkspace = isWorkspace ? 'none' : 'block'
-    const isbtnshow = isOpen2 ? 'hide' : 'show'
+    // const isbtnshow = isOpen2 ? 'hide' : 'show'
     const dynPad = isOpen ? '255px' : '30px'
-    const dynScroll = isOpen2 ? 'relative' : 'absolute'
-    console.log('isopen', isOpen)
-    console.log('isopen2222222', isOpen2)
+    // const dynScroll = isOpen2 ? 'relative' : 'absolute'
+
 
     function addBoard(ev) {
         ev.preventDefault()
@@ -28,22 +27,25 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
         setIsOpen(true)
     }
 
-    const handleMouseLeave = () => {
-        if (isOpen2) return
-        setIsOpen(false)
-    }
+    // const handleMouseLeave = () => {
+    //     if (isOpen2) return
+    //     setIsOpen(false)
+    // }
 
-    <Tooltip
-        content='Click to edit'
-        animationType="expand">
-    </Tooltip>
+    // onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
 
-    return (<section style={{ width: dynPad, position: dynScroll, zIndex: "35" }} className="board-sidebar" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    // <Tooltip
+    //     content='Click to edit'
+    //     animationType="expand">
+    // </Tooltip>
+    // className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`}
+
+    return (<section style={{ zIndex: "35" }} className={`board-sidebar ${dynClass}`} >
 
         <Tooltip position='right' content='Close navigation'
-            animationType="expand"><button style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`} onClick={() => setIsOpen2(!isOpen2)}><OpenSidebar /></button> </Tooltip>
-        <div style={{ marginLeft: "1em", display: dynClass }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
+        <div className={`lower-sidebar ${dynClass}`} style={{ marginLeft: "1em" }}>
+            <div className="all-sidebar" style={{ display: "flex", flexDirection: "column" }}>
                 <div className="upper-actions">
                     <NavLink className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
                     <NavLink className="actions-sidebar-upper-second"><MyWork /><div className="home-sidebar">My work</div></NavLink>
