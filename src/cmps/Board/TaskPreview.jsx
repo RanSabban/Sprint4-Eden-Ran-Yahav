@@ -12,16 +12,17 @@ import { AddSmall, Delete, Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
-import { onOpenModalLabel, onHideModalLabel } from '../../store/actions/board.actions';
+import { onOpenModalLabel } from '../../store/actions/board.actions';
 
 
 
 
 
-export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
+export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
+    const [isLabelOpen,setIsLabelOpen] = useState(false)
 
     async function onChange(cell) {
         try {
@@ -49,20 +50,11 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, gr
         onUpdateTask(taskToUpdate)
     }
 
-    async function onClickLabel(target, clmType, cell) {
+    async function onClickLabel(ev,clmType,cell) {
         try {
-            console.log(target);
-            const { cell: prevCell, task: prevTask } = modalProps
-            console.log(prevCell, prevTask);
-            console.log(task, cell);
-            if (prevTask === undefined || (prevCell.type !== cell.type || task._id !== prevTask._id)) {
-                onOpenModalLabel(target, clmType, cell, task, onUpdateCell);
-            } else {
-                console.log('here');
-                onHideModalLabel();
-            }
+            onOpenModalLabel(ev,clmType,cell,task,true)
         } catch (err) {
-            console.log('Err on modal toggle', err);
+
         }
     }
 
@@ -71,7 +63,7 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, gr
             <MenuButton size='XS' >
                 <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
                     {/* <MenuItem icon={AddSmall} title="Add group"/> */}
-                    <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
+                    <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)}/>
                 </Menu>
             </MenuButton>
         </section>
@@ -94,7 +86,6 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, gr
             cells.map((cell, idx) => (
 
                 <DynamicCmp key={idx}
-                    groupColor={groupColor}
                     cmpType={cell.type}
                     onChange={onChange}
                     clmType={getClmType(cell._id)}

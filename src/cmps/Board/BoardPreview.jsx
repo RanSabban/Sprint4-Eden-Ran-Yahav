@@ -7,10 +7,12 @@ import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
 import { useSelector } from "react-redux";
 import { LabelPicker } from "./reusableCmps/LabelPicker";
+import { useState } from "react";
 
 
 export function BoardPreview({ board, onAddGroup }) {
     const currBoard = useSelector(state => state.boardModule.board)
+    const [placeholderProps, setPlaceholderProps] = useState("");
 
     const groups = board.groups
     const clmTypes = board.clmTypes
@@ -30,38 +32,74 @@ export function BoardPreview({ board, onAddGroup }) {
     async function handleOnDragEnd(result) {
         if (!result.destination) return
 
-        const { destination, source , type} = result
+        const { destination, source, type } = result
         console.log(type);
         try {
-            if (type=== 'TASK')  {
-                dragAndDropTask(source,destination,board._id)
+            if (type === 'TASK') {
+                dragAndDropTask(source, destination, board._id)
                 showSuccessMsg('Tasks swiped!')
             } else if (type === 'GROUP') {
-                dragAndDropGroup(source,destination, board._id)
+                dragAndDropGroup(source, destination, board._id)
                 showSuccessMsg('Tasks swiped!')
             }
         } catch (err) {
             console.log('Error drag and drop', err);
             showErrorMsg('Cannot swipe sorry AVATAR!!!')
         }
+        finally {
+            setPlaceholderProps({})
+        }
         console.log(destination, source);
     }
 
+    const queryAttr = "data-rbd-drag-handle-draggable-id";
+
+    function onDragUpdate(update) {
+        if (!update.destination) {
+            return;
+        }
+        const draggableId = update.draggableId;
+        const destinationIndex = update.destination.index;
+
+        const domQuery = `[${queryAttr}='${draggableId}']`;
+        const draggedDOM = document.querySelector(domQuery);
+
+        if (!draggedDOM) {
+            return;
+        }
+        const { clientHeight, clientWidth } = draggedDOM;
+
+        const clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) + [...draggedDOM.parentNode.children]
+            .slice(0, destinationIndex)
+            .reduce((total, curr) => {
+                const style = curr.currentStyle || window.getComputedStyle(curr);
+                const marginBottom = parseFloat(style.marginBottom);
+                return total + curr.clientHeight + marginBottom;
+            }, 0);
+
+        setPlaceholderProps({
+            clientHeight,
+            clientWidth,
+            clientY,
+            clientX: parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft)
+        });
+    };
 
     if (!groups) return <div>LOADING</div>
     return (
 
 
         <section className="board-preview">
-            <DragDropContext onDragEnd={handleOnDragEnd}>
+            <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate} >
                 <GroupList
+                    placeholderProps={placeholderProps}
                     clmTypes={clmTypes}
                     groups={groups}
                     onAddTask={onAddTask}
                     boardType={board.type}
                     boardId={board._id}
                     onAddGroup={onAddGroup} />
-                   
+
             </DragDropContext>
 
         </section>

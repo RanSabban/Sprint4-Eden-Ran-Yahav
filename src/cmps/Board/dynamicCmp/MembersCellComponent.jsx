@@ -6,8 +6,8 @@ import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, Dro
 
 export function MembersCellComponent({ clmType, cell }) {
 
-    console.log('cell cell', cell)
-    console.log('cell cell', clmType)
+    // console.log('cell cell', cell)
+    // console.log('cell cell', clmType)
 
     // console.log(clmType,cell);
     const assignedUsers = cell.dataId

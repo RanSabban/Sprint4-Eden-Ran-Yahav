@@ -8,6 +8,7 @@
     height: 2.25em;
     align-items: center;
     text-align: center;
+    position: relative;
     // border-left: 0.4em solid $clr-label-3;
 
     &:hover {
@@ -15,9 +16,11 @@
     }
 
     &.drag {
+        // position: relative;
         background-color: $bgc-main;
         rotate: 1deg;
         opacity: 60%;
+        border: none;
     }
 
     .dyn-cell {
@@ -50,6 +53,7 @@
 
     &.add-task {
         border-bottom-left-radius: 0.3em;
+        background-color: white;
     }
 
     &.add-task div {

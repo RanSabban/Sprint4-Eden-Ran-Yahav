@@ -22,7 +22,7 @@
         // border-top-left-radius: 0.3em
     }
 
-    & > *{
+    &>* {
         grid-template-columns: subgrid;
     }
 
@@ -64,7 +64,7 @@
         opacity: 1;
     }
 
-    .wrapper_3963731b0e{
+    .wrapper_3963731b0e {
         justify-self: center;
         position: relative;
         display: grid;
@@ -72,9 +72,14 @@
         width: fit-content;
         height: min-content;
     }
+
     .dyn-cell.checkbox-header-container {
         display: grid;
         justify-items: center;
     }
 
+    .group-container {
+       background-color: $bgc-main;
+
+    }
 }
