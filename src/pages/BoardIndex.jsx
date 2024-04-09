@@ -10,6 +10,7 @@ import { BoardHome } from '../cmps/Board/BoardHome.jsx'
 import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
 import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
 import { AppHeader } from '../cmps/AppHeader.jsx'
+import { LabelPicker } from '../cmps/Board/reusableCmps/LabelPicker.jsx'
 
 
 export function BoardIndex() {
@@ -93,7 +94,7 @@ export function BoardIndex() {
                 }
             </main>
         </div>
-
+        <LabelPicker />
 
     </section>
     )

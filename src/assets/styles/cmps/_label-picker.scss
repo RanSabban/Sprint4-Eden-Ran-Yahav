@@ -1,7 +1,7 @@
 .label-picker-container {
     position: absolute;
     background-color: white;
-    width: 200px;
+    width: 150px;
     display: grid;
     justify-content: center;
     cursor: pointer;
@@ -10,6 +10,7 @@
     -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
     height: max-content;
     border-radius: 0.6em;
+    // padding: 5px;
 
     ul {
         display: grid;

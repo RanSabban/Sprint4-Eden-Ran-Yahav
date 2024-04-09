@@ -1281,33 +1281,29 @@ async function addTask(groupId, task) {
 async function updateCell(updatedCell, taskId, groupId) {
     const boards = await storageService.query(STORAGE_KEY)
     const updatedBoards = boards.map(board => {
-        // No changes to the board itself, but iterate over its groups
         return {
             ...board,
             groups: board.groups.map(group => {
-                // Check if this is the group we're modifying
                 if (group._id === groupId) {
                     return {
                         ...group,
                         tasks: group.tasks.map(task => {
-                            // Check if this is the task we're modifying
                             if (task._id === taskId) {
                                 return {
                                     ...task,
                                     cells: task.cells.map(cell => {
-                                        // Check if this is the cell we're updating
                                         if (cell._id === updatedCell._id) {
-                                            return updatedCell; // Use the updated cell
+                                            return updatedCell; 
                                         }
-                                        return cell; // Otherwise, return the cell unchanged
+                                        return cell; 
                                     })
                                 };
                             }
-                            return task; // Return tasks that aren't being updated unchanged
+                            return task; 
                         })
                     };
                 }
-                return group; // Return groups that aren't being updated unchanged
+                return group; 
             })
         };
     });

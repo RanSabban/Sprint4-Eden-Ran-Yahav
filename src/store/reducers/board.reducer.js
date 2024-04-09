@@ -15,6 +15,9 @@ export const DROP_TASK = 'DROP_TASK'
 export const DROP_GROUP = 'DROP_GROUP'
 export const REMOVE_TASK = 'REMOVE_TASK'
 export const SET_LABEL_MODAL = 'SET_LABEL_MODAL'
+export const HIDE_LABEL_MODAL = 'HIDE_LABEL_MODAL'
+export const UPDATE_TASK = 'UPDATE_TASK'
+export const UPDATE_CELL = 'UPDATE_CELL'
 
 const initialState = {
     boards: null,
@@ -23,7 +26,7 @@ const initialState = {
     clmTypes: null,
     lastRemovedBoard: null,
     isLoading: false,
-    modalProps: { isModalLabelOpen: false }
+    modalProps: {}
 }
 
 export function boardReducer(state = initialState, action) {
@@ -54,13 +57,23 @@ export function boardReducer(state = initialState, action) {
 
 
         case SET_LABEL_MODAL: {
-            const { ev, clmType, cell, task, isOpen } = action.payload
+            const { target, clmType, cell, task, isOpen, callBackFunc } = action.payload
             newState = {
                 ...state,
-                modalProps: {ev,clmType,cell,task, isModalLabelOpen: isOpen}
+                modalProps: { target, clmType, task, cell, isOpen, callBackFunc }
             }
             break
         }
+
+        case HIDE_LABEL_MODAL: {
+            const { isOpen } = action.payload
+            newState = {
+                ...state,
+                modalProps: { ...state.modalProps, isOpen }
+            }
+            break
+        }
+
         case ADD_TASK:
             const { groupId, task } = action.payload;
             console.log(groupId);
@@ -89,6 +102,28 @@ export function boardReducer(state = initialState, action) {
                             : group
                     ),
                 },
+            };
+        }
+
+        case UPDATE_CELL: {
+            const { taskId, updatedCell } = action.payload;
+
+            return {
+                ...state,
+                boards: state.boards.map(board => ({
+                    ...board,
+                    groups: board.groups.map(group => ({
+                        ...group,
+                        tasks: group.tasks.map(task =>
+                            task._id === taskId ? {
+                                ...task,
+                                cells: task.cells.map(cell =>
+                                    cell._id === updatedCell._id ? updatedCell : cell
+                                )
+                            } : task
+                        )
+                    }))
+                }))
             };
         }
 

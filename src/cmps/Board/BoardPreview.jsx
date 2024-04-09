@@ -61,7 +61,7 @@ export function BoardPreview({ board, onAddGroup }) {
                     boardType={board.type}
                     boardId={board._id}
                     onAddGroup={onAddGroup} />
-                    <LabelPicker />
+                   
             </DragDropContext>
 
         </section>
