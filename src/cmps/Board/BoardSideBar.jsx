@@ -3,7 +3,8 @@ import { useState } from "react"
 import { CloseSidebar, Home, Home2, MyWork, OpenSidebar, OpenWorkSpace, PlusTool, SearchTool, ThreePoints } from "../../services/svg.service"
 import { BoardList } from "./BoardList"
 import { InputCell } from "./reusableCmps/InputCell"
-import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText, Search } from "monday-ui-react-core";
+import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText, Search, Menu, MenuItem, Flex } from "monday-ui-react-core";
+import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
 
 
 export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
@@ -79,8 +80,6 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
 
                         <Search
                             size="Search.sizes.MEDIUM"
-                            // width="11.6em"
-                            // height="2em"
                             placeholder="   Search"
                             wrapperClassName="monday-storybook-search_size"
                         />
@@ -92,8 +91,9 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
                 </section>
 
                 <div className="board-sidebar-lowwer">
-                    <BoardList boards={boards} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
 
+                    <BoardList boards={boards} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
+                    
                 </div>
             </div>
         </div>

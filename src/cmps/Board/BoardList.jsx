@@ -109,7 +109,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
                             <Menu id="menu" size={Menu.sizes.LARGE}>
                                 <MenuItem onClick={openInNewTab} icon={NewTab} title="Open Board in New Tab" />
-                          
+                                <MenuDivider />
                                     <MenuItem onClick={changeBoardName} icon={RenameSvg} title="Rename Board" />
                                     <MenuItem onClick={duplicateBoard} icon={DuplicateSvg} title="Duplicate Board" />
                                     <MenuItem onClick={addToFavorites} icon={FavoritesSvg} title={board.isStarred ? <p>Remove from favorites</p> : <p>Add to favorites</p>} />
