@@ -2,7 +2,7 @@ import { boardService } from '../../services/board.service.local.js'
 import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK , REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL} from '../reducers/board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK, REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL, UPDATE_GROUP } from '../reducers/board.reducer.js'
 import { SET_SCORE } from '../reducers/user.reducer.js'
 
 // Action Creators:
@@ -126,6 +126,18 @@ export async function removeGroup(groupId) {
     }
 }
 
+export async function updateGroup(groupId, updatedGroupData) {
+    try {
+        const updatedGroup = await boardService.updateGroup(groupId, updatedGroupData)
+        store.dispatch({
+            type: UPDATE_GROUP,
+            payload: { groupId, updatedGroupData: updatedGroup }
+        })
+    } catch (err) {
+        console.log('cannot update group', err);
+    }
+}
+
 export async function addTask(groupId, boardId, taskTitle) {
     try {
         const task = await boardService.getEmptyTask(groupId, boardId)
@@ -146,19 +158,19 @@ export async function addTask(groupId, boardId, taskTitle) {
     }
 }
 
-export async function removeTask(taskId,groupId,boardId) {
+export async function removeTask(taskId, groupId, boardId) {
     // console.log(taskId,groupId,boardId);
     try {
-        await boardService.removeTask(taskId,groupId,boardId)
+        await boardService.removeTask(taskId, groupId, boardId)
         store.dispatch({
-            type: REMOVE_TASK, 
-            payload:{
+            type: REMOVE_TASK,
+            payload: {
                 taskId,
                 groupId,
                 boardId
             }
         })
-        
+
     } catch (err) {
         console.log('Cannot remove task sorry', err);
     }
@@ -191,7 +203,7 @@ export async function updateTask(task, groupId) {
 
 export async function dragAndDropTask(source, destination, boardId) {
     try {
-        
+
         store.dispatch({
             type: DROP_TASK,
             payload: {
@@ -229,13 +241,13 @@ export async function dragAndDropGroup(source, destination, boardId) {
     }
 }
 
-export async function onOpenModalLabel(target,clmType,cell,task,callBackFunc){
+export async function onOpenModalLabel(target, clmType, cell, task, callBackFunc) {
     try {
         console.log(target);
         store.dispatch({
             type: SET_LABEL_MODAL,
             payload: {
-                target,clmType,cell,task, isOpen: true, callBackFunc
+                target, clmType, cell, task, isOpen: true, callBackFunc
             }
         })
     } catch (err) {
@@ -243,7 +255,7 @@ export async function onOpenModalLabel(target,clmType,cell,task,callBackFunc){
     }
 }
 
-export async function onHideModalLabel(){
+export async function onHideModalLabel() {
     try {
         store.dispatch({
             type: HIDE_LABEL_MODAL,
