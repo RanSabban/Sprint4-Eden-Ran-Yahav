@@ -3,6 +3,7 @@ import { AvatarGroupAng } from "../reusableCmps/AvatarGroupAang"
 import { Chips, Search } from "monday-ui-react-core"
 import { loadBoards } from "../../../store/actions/board.actions"
 
+
 export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateCell }) {
     const [isOpen, setIsOpen] = useState(false)
     const modalRef = useRef()

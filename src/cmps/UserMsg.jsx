@@ -1,6 +1,7 @@
 import { eventBus, showSuccessMsg } from "../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
 import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from "../services/socket.service.js"
+import { UserV, UserX } from "../services/svg.service.jsx"
 
 export function UserMsg() {
 
@@ -35,8 +36,9 @@ export function UserMsg() {
   if (!msg) return <span></span>
   return (
     <section className={`user-msg ${msg.type}`}>
-      <button onClick={closeMsg}>x</button>
+      <UserV />
       {msg.txt}
+      <UserX style={{lineHeight: '0.5em', position: 'absolute', right: '1em'}} onClick={closeMsg}/>
     </section>
   )
 }

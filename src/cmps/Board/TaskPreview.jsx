@@ -13,13 +13,16 @@ import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
 import { onOpenModalLabel } from '../../store/actions/board.actions';
+import { Activity } from '../Acttivity';
 
 
 
 
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
-    console.log('this is task for reall', task)
+    const [isOpen, setIsOpen] = useState(false)
+    const dynClass = isOpen ? 'show' : 'hide'
+    console.log(isOpen)
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
@@ -76,10 +79,13 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <Button
                 className="btn-message"
                 kind="tertiary"
-                onClick={() => console.log('m-list')}
+                onClick={() => setIsOpen(!isOpen)}
                 size="small">
                 <Update />
             </Button>
+            <div className={`${dynClass}`}>
+            {/* <Activity task={task} onUpdateTask={onUpdateTask} /> */}
+            </div>
         </div>
 
 

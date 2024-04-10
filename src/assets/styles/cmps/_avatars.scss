@@ -35,10 +35,9 @@
     padding-right: 0;
 }
 
-// .textField_9430c37135 .inputWrapper_129bb61475 .iconContainer_8576251e2c.iconContainerActive_bcba3e1e17 .icon_129bb61475 {
-//     position: absolute;
-//     left: 7em;
-// }
+.textField_5c7ed8f268 .inputWrapper_f7d37dd0a6 .iconContainer_fb989f5083.iconContainerActive_6caf034a46 .icon_f7d37dd0a6 {
+    right: 11em
+}
 
 .member-option {
     display: flex;
@@ -71,10 +70,17 @@
         bottom: 0.6em;
     }
 
-    .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
+    // .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
+    //     width: 24em;
+    //     color: #323338;
+    //     margin-bottom: 1em;
+    // }
+
+    .textField_5c7ed8f268 .inputWrapper_f7d37dd0a6 .input_45f5cffc4e.inputHasIcon_b527778477 {
+        margin-bottom: 1em;
         width: 24em;
         color: #323338;
-        margin-bottom: 1em;
+
     }
 
     // .members-picker .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
@@ -90,4 +96,5 @@
         margin-bottom: 1em;
         margin-left: 1em;
     }
+
 }
