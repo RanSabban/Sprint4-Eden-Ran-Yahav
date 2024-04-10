@@ -4,6 +4,19 @@
     width: em(25px);
     padding: 0;
     margin-left: 16px;
+
+    &:hover svg  {
+        -webkit-animation-name: hvr-wobble-vertical;
+        animation-name: hvr-wobble-vertical;
+        -webkit-animation-duration: 1.2s;
+        animation-duration: 1.2s;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;    
+        animation-delay: 0.8875712107602118ms;
+    }
+
 }
 
 .icon {
@@ -12,9 +25,42 @@
     color: $clr-icon;
 }
 
-button{
-    span{
+button {
+    span {
         font-size: 1em;
         color: $clr-main;
+    }
+}
+
+
+@keyframes hvr-wobble-vertical {
+    18% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+
+    36% {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    50% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+
+    62% {
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+    }
+
+    83% {
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
     }
 }

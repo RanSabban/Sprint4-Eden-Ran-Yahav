@@ -19,7 +19,7 @@ import { onOpenModalLabel } from '../../store/actions/board.actions';
 
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
-    console.log('this is task for reall', task)
+    // console.log('this is task for reall', task)
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)

@@ -7,6 +7,7 @@
 
 
     }
+   
 
     > :first-child {
         height: 26px;
@@ -17,16 +18,26 @@
     > :nth-child(2) {
         height: 26px;
         width: 26px;
-        margin-right: em(-5px);
+        // margin-right: em(-5px);
         margin-left: em(-5px);
+    }
+    > :last-child{
+        height: 26px;
+        width: 26px;
     }
 
     span>* {
-        // height: 26px;
-        // width: 26px;
-        margin-left: em(-5px);
+        min-height: 26px;
+        max-width: 26px;
+        font-size: 13px;
+        // margin-left: em(-5px);
         align-items: center;
 
+
+    }
+    .counterContainer_92bb3fc345.small_dd1b590d70{
+        min-width: none;
+        color: #323338;
     }
 }
 
@@ -91,3 +102,6 @@
         margin-left: 1em;
     }
 }
+[data-testid="tooltip"] {
+    z-index: 99999;
+  }

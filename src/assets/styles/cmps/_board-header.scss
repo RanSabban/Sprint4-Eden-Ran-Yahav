@@ -7,24 +7,40 @@
     background-color: $bgc-main;
     width: 100%;
     z-index: 1;
+    transition: all 0.1s ease-in-out;
+
+    &.collapsed {
+        padding-top: 16px;
+    }
 
     .board-header {
         grid-row: 1;
         display: grid;
         grid-template-rows: auto auto;
         row-gap: em(10px);
-        transition: .5s;
 
         .board-header-top {
             min-width: 0;
             border: 1px solid transparent;
+            transition: all 0.1s ease-in-out;
+
+
+            &.collapsed {
+                border-bottom: 1px solid $clr-border;
+            }
+            .tabsWrapper_63f5a9c091 {
+                & .tabsList_fba69a45a0.sm_7ab11b5d46 {
+                    height: 33px;
+                }
+            }
 
             .board-title-left {
                 transition: all 0.1s ease-in-out;
 
-
                 .editable-container {
                     align-items: center;
+                    transition: all 0.1s ease-in-out;
+
 
                     .editable-title {
                         font-family: 'Poppins Medium', sans-serif;
@@ -39,6 +55,11 @@
                         border: 1px solid transparent;
                         border-radius: em(2px);
                         padding: 4px;
+
+                        &.collapsed {
+                            font-size: em(24px);
+                            margin-right: em(16px);
+                        }
 
                         &:hover {
                             border-color: $clr-border;
@@ -73,8 +94,39 @@
             }
         }
 
+        .tabsWrapper_63f5a9c091 {
+            width: max-content;
+            padding-bottom: 2px;
+        }
+
+        .tabWrapper_327c220e12 .tabInner_3d041b1150 {
+            height: 32px;
+            padding: 8px;
+
+            &:not(:hover)::after {
+                content: "";
+                display: block;
+                height: 16px;
+                width: 100%;
+                border-right: 1px solid $clr-border;
+                position: absolute;
+            }
+        }
+
+        .tabWrapper_327c220e12 {
+            height: auto;
+            padding-left: 1px;
+            padding-right: 1px;
+            border-bottom: 2px solid grey;
+        }
+
         .board-title-right {
             gap: em(8px);
+
+            &.collapsed {
+                margin-bottom: 4px;
+                align-items: center;
+            }
         }
 
         .board-header-toolkit {
@@ -95,8 +147,7 @@
 
             .tabsWrapper_63f5a9c091 {
 
-                padding-bottom: 0;
-                margin-top: em(3px);
+
 
                 .tabWrapper_327c220e12 .tabInner_3d041b1150 {
                     font-size: 14px;
