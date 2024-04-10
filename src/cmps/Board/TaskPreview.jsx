@@ -14,6 +14,7 @@ import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
 import { onOpenModalLabel } from '../../store/actions/board.actions';
 import { Link } from 'react-router-dom';
+import { EditableCellTitle } from './reusableCmps/EditableCellTitle';
 
 
 
@@ -81,7 +82,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     <Checkbox />
                 </div>
                 <div className='task-title-cell'>
-                    <span style={{}} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
+                    <span style={{}} className='dyn-cell title'>
+                        <EditableCellTitle txt={task.title} onUpdateInput={onUpdateTitle}/>
+                    </span>
                     <div className="btn-message-container">
                         <Link to={`/`}>
                             <AddUpdate />
