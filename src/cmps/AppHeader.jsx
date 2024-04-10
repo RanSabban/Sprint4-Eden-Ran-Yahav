@@ -5,8 +5,9 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/actions/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
 import { Help, Inbox, Invite, Notifications, Search } from 'monday-ui-react-core/icons'
-import { Avatar, Badge, Button } from 'monday-ui-react-core'
-import { Tooltip } from '@mui/material'
+import { Avatar, Badge, Button, Tooltip } from 'monday-ui-react-core'
+// import { Tooltip } from '@mui/material'
+
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -54,7 +55,7 @@ export function AppHeader() {
                         onClick={() => console.log('m-list')}
                         size="sm"
                     >
-                    <Badge alignment={Badge.alignments.CIRCULAR}>
+                        <Badge alignment={Badge.alignments.CIRCULAR}>
                             <Notifications className='flex' />
                         </Badge>
                     </Button>

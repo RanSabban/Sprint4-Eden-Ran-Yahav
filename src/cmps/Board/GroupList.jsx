@@ -60,7 +60,8 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
         <Droppable
             droppableId={boardId}
             type="GROUP"
-            style={{ overflow: 'auto' }}>
+            style={{ overflow: 'auto' }}
+            >
             {(provided) => (
                 <ul className="group-list"
                     {...provided.droppableProps}
@@ -92,8 +93,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
                             )}
                         </Draggable>
                     ))}
-
-
+                    {provided.placeholder}
                 </ul>
             )}
         </Droppable>

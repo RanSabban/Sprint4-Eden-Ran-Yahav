@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 import { NavLink } from "react-router-dom"
-import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
-import { BoardListPreview } from "./BoardListPreview"
-// import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText } from "monday-ui-react-core";
-
-import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core";
-import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
-
 import { useSelector } from "react-redux";
 
+import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
+import { Menu, MenuDivider, MenuItem, Tooltip, } from "monday-ui-react-core";
+
+import { BoardListPreview } from "./BoardListPreview"
 
 function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const [isEdit, setIsEdit] = useState(false)
@@ -59,7 +56,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
     function onSubmitTitle(ev) {
         ev.preventDefault()
-        onUpdateBoard({ ...board, title: editedTitle})
+        onUpdateBoard({ ...board, title: editedTitle })
         setIsEdit(false)
         setIsShown(false)
     }
@@ -107,15 +104,15 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
                 <div>
                     <div style={{ display: isShown ? "block" : "none" }} className={`actions-border-side`}>
 
-                            <Menu id="menu" size={Menu.sizes.LARGE}>
-                                <MenuItem onClick={openInNewTab} icon={NewTab} title="Open Board in New Tab" />
-                                <MenuDivider />
-                                    <MenuItem onClick={changeBoardName} icon={RenameSvg} title="Rename Board" />
-                                    <MenuItem onClick={duplicateBoard} icon={DuplicateSvg} title="Duplicate Board" />
-                                    <MenuItem onClick={addToFavorites} icon={FavoritesSvg} title={board.isStarred ? <p>Remove from favorites</p> : <p>Add to favorites</p>} />
-                                    <MenuItem onClick={removeBoard} icon={DeleteSvg} title="Delete" />
+                        <Menu id="menu" size={Menu.sizes.LARGE}>
+                            <MenuItem onClick={openInNewTab} icon={NewTab} title="Open Board in New Tab" />
+                            <MenuDivider />
+                            <MenuItem onClick={changeBoardName} icon={RenameSvg} title="Rename Board" />
+                            <MenuItem onClick={duplicateBoard} icon={DuplicateSvg} title="Duplicate Board" />
+                            <MenuItem onClick={addToFavorites} icon={FavoritesSvg} title={board.isStarred ? <p>Remove from favorites</p> : <p>Add to favorites</p>} />
+                            <MenuItem onClick={removeBoard} icon={DeleteSvg} title="Delete" />
 
-                            </Menu>
+                        </Menu>
 
                     </div>
                 </div>

@@ -104,9 +104,9 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         <div style={{
                             position: "absolute",
                             top: placeholderProps.clientY + 1,
-                            left: placeholderProps.clientX + 10,
+                            left: placeholderProps.clientX + 60,
                             height: placeholderProps.clientHeight,
-                            border: "1px dashed grey",
+                            border: "1px dashed #d0d4e4",
                             borderRadius: "2px",
                             width: placeholderProps.clientWidth - 10
                         }} />
