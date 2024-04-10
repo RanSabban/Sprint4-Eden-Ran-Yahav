@@ -120,6 +120,11 @@
             grid-auto-flow: column;
         }
     }
+    .dyn-cell .date{
+        font-size: em(13px);
+        color: #666;
+        border: none;
+    }
 
     .group-header button {
         opacity: 0;
