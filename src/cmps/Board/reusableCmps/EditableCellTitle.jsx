@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function EditableCmp({ txt, onUpdateInput, placeholder }) {
+export function EditableCmp({ txt, onUpdateInput }) {
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(txt);
 
@@ -17,9 +17,6 @@ export function EditableCmp({ txt, onUpdateInput, placeholder }) {
     } catch (err) {
       console.error('Error updating content:', err);
     }
-    finally {
-        setContent(placeholder)
-    }
   };
 
   const handleInputChange = (e) => {
@@ -33,21 +30,20 @@ export function EditableCmp({ txt, onUpdateInput, placeholder }) {
   };
 
   return (
-    <div className="editable-container-cmp">
+    <div className="editable-container-title-cell">
       {!isEditing ? (
-        <span onClick={handleSpanClick} className="editable-title-dyn-cmp" style={{paddingInlineStart: '10px',
+        <span onClick={handleSpanClick} className="editable-title-cell-cmp-span" style={{paddingInlineStart: '10px',
         paddingBlockStart: '2px', paddingBlockEnd: '3px'}}>
-          {content || placeholder}
+          {content}
         </span>
       ) : (
         <input
           type="text"
-          className="editable-title-dyn-cmp-input"
+          className="editable-title-cell-input"
           value={content}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
           onKeyDown={handleInputKeyDown}
-          placeholder={placeholder}
           autoFocus
           style={{paddingInlineStart: '10px', paddingBlockStart: '2px', paddingBlockEnd: '3px'}}
         />
