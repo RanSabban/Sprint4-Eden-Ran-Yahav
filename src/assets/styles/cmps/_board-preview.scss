@@ -2,9 +2,7 @@
     position: relative;
     box-sizing: content-box;
     padding-bottom: em(40px);
-    // overflow: scroll;
     overflow: auto;
-    // height: 100%;
 
     & ul {
         list-style: none;
