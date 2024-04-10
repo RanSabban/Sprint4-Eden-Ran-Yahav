@@ -77,7 +77,7 @@ export function boardReducer(state = initialState, action) {
 
         case ADD_TASK:
             const { groupId, task } = action.payload;
-            console.log(groupId,task);
+            console.log(groupId, task);
 
             return {
                 ...state,
@@ -107,7 +107,7 @@ export function boardReducer(state = initialState, action) {
         }
 
         case UPDATE_CELL: {
-            const { groupId,taskId, cell: updatedCell } = action.payload;
+            const { updatedCell, taskId } = action.payload;
 
             return {
                 ...state,

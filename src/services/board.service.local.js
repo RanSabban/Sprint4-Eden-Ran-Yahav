@@ -1209,7 +1209,7 @@ async function getEmptyTask(groupId, boardId) {
             return { _id: clmType._id, type: clmType.type, dataId: clmType.data[0].id }
         }
         if (clmType.type === 'members') {
-            return { _id: clmType._id, type: 'members', dataId: []}
+            return { _id: clmType._id, type: 'members', dataId: [] }
         }
         if (clmType.type === 'timelines') {
             return { _id: clmType._id, type: 'timelines', startDate: 0, endDate: 0 }
@@ -1312,35 +1312,22 @@ async function updateGroup(groupId, updatedGroupData) {
 
 
 async function updateCell(updatedCell, taskId, groupId) {
-    const boards = await storageService.query(STORAGE_KEY)
-    const updatedBoards = boards.map(board => {
-        return {
-            ...board,
-            groups: board.groups.map(group => {
-                if (group._id === groupId) {
-                    return {
-                        ...group,
-                        tasks: group.tasks.map(task => {
-                            if (task._id === taskId) {
-                                return {
-                                    ...task,
-                                    cells: task.cells.map(cell => {
-                                        if (cell._id === updatedCell._id) {
-                                            return updatedCell
-                                        }
-                                        return cell
-                                    })
-                                }
-                            }
-                            return task
-                        })
-                    }
-                }
-                return group
-            })
-        }
-    })
-    _save(STORAGE_KEY, updatedBoards)
+    try {
+        const boards = await storageService.query(STORAGE_KEY);
+        let targetBoard = boards.find(board =>
+            board.groups.some(group => group._id === groupId));
+
+        let targetGroup = targetBoard.groups.find(group => group._id === groupId);
+        targetGroup.tasks.forEach(task => {
+            if (task._id === taskId) {
+                task.cells = task.cells.map(cell =>
+                    cell._id === updatedCell._id ? updatedCell : cell);
+            }
+        })
+        _save(STORAGE_KEY, boards);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 function getEmptyGroup() {
