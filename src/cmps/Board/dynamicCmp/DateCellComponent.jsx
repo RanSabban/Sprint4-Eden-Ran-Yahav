@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { TimelinePicker } from "../reusableCmps/TimelinePicker";
 
 export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
-    const [showPicker, setShowPicker] = useState(false);
+    const [isDatePickerOpen, setDatePickerOpen] = useState(false);
 
     function getCellDate() {
         const date = dayjs(cell.date).format('DD MMM');
@@ -11,11 +11,8 @@ export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
     }
 
     const handleOnClick = () => {
-        setShowPicker(true);
-    };
-
-    function onChange() {
-        onUpdateCell(cell, taskId)
+        setDatePickerOpen(true);
+        console.log(isDatePickerOpen);
     }
 
     return (
@@ -23,7 +20,12 @@ export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
             <span className="dyn-cell date" onClick={handleOnClick}>
                 {getCellDate()}
             </span>
-            {showPicker && <TimelinePicker cell={cell} onUpdateCell={onUpdateCell} taskId={taskId} />}
+            {isDatePickerOpen && <TimelinePicker
+                cell={cell}
+                onUpdateCell={onUpdateCell}
+                taskId={taskId}
+                isDatePickerOpen={isDatePickerOpen}
+                setDatePickerOpen={setDatePickerOpen} />}
         </div>
     );
 }

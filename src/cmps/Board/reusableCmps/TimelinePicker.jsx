@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { usePopper } from "react-popper"
 import { format, addMonths } from 'date-fns'
 
@@ -10,92 +10,60 @@ import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.servic
 import { Icon } from "monday-ui-react-core"
 import { CloseSmall, Calendar } from "monday-ui-react-core/icons"
 
-export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpdateCell }) {
-    const [selected, setSelected] = useState(dueDate ? new Date() : null)
-    const [isDatePickerOpen, setDatePickerOpen] = useState(false)
+export function TimelinePicker({ isDatePickerOpen, setDatePickerOpen, boardId, groupId, taskId, cell, onUpdateCell }) {
+    const [selected, setSelected] = useState(new Date());
+    const referenceElem = useRef()
+    const popperElem = useRef(null);
+    const arrowElem = useRef(null);
 
-    const [referenceElem, setReferenceElem] = useState(null)
-    const [popperElem, setPopperElem] = useState(null)
-    const [arrowElem, setArrowElem] = useState(null)
-    const today = new Date();
-    const nextMonth = addMonths(new Date(), 1);
+    const styles = { popper: {}, arrow: {} };
+    const attributes = { popper: {} };
 
-    const { styles, attributes } = usePopper(referenceElem, popperElem, {
-        modifiers: [{ name: 'arrow', options: { element: arrowElem } }],
-    })
     const modifiers = {
         today: new Date(),
     }
+    const footer = selected ? <p>You picked {format(selected, 'PP')}.</p> : <p>Please pick a day.</p>
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
-            setDatePickerOpen(false);
+            if (popperElem.current && !popperElem.current.contains(event.target) &&
+                referenceElem.current && !referenceElem.current.contains(event.target)) {
+                setDatePickerOpen(false);
+            }
+        };
 
-        }
-
-        document.addEventListener('mousedown', handleOutsideClick)
-
+        document.addEventListener('mousedown', handleOutsideClick);
         return () => {
-            document.removeEventListener('mousedown', handleOutsideClick)
-        }
-    }, [popperElem, referenceElem])
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [setDatePickerOpen]);
+
 
     async function onChangeDueDate(date) {
-        // ev.preventDefault()
-
         if (!date) return
         const timestamp = date.getTime()
         try {
+            setDatePickerOpen(false)
             cell.date = timestamp
             await onUpdateCell(cell, taskId)
             console.log(timestamp);
             showSuccessMsg(`Changed due date in task ${taskId}`)
-            setSelected()
+            setSelected(date);
         } catch (err) {
             showErrorMsg(`Can't change due date in task ${taskId}`)
         }
     }
 
-    async function clearTaskDueDate(ev) {
-        ev.preventDefault()
-        try {
-            await updateCell(boardId, groupId, taskId)
-            setSelected(null)
-        } catch (err) {
-            showErrorMsg('Something went wrong')
-        }
-    }
-
-    const footer = selected ? <p>You picked {format(selected, 'PP')}.</p> : <p>Please pick a day.</p>
-
-    const pickerCss = `
-    .my-selected:not([disabled]) { 
-        border-radius: var(--border-radius-small)
-        background-color: $bgc-main
-        color : white
-      }
-      .my-selected:hover:not([disabled]) { 
-        background-color: #0060b9
-        border : 1px solid black
-        color: black
-      }
-      .my-today { 
-        border-radius: 2em
-        border : 1px solid #0060b9
-      }
-    `
-
     return (
+        <>
 
-        <div className="task-date"
-            ref={setReferenceElem}
-            onClick={() => setDatePickerOpen(!isDatePickerOpen)}>
-            {isDatePickerOpen &&
-                <div ref={setPopperElem}
+            <div className="task-date"
+                ref={referenceElem} 
+            >
+                <div ref={popperElem}
                     style={styles.popper}
                     {...attributes.popper}
                     className="date-picker-modal">
-
                     <style>{pickerCss}</style>
                     <DayPicker
                         mode="single"
@@ -109,12 +77,30 @@ export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpda
                             today: 'my-today',
                         }}
                     />
-                    <div ref={setArrowElem}
-                        style={styles.arrow} />
+                    <div ref={arrowElem} style={styles.arrow} />
                 </div>
-            }
-        </div>
+            </div>
 
+        </>
+    );
 
-    )
 }
+
+
+
+const pickerCss = `
+.my-selected:not([disabled]) { 
+    border-radius: var(--border-radius-small)
+    background-color: $bgc-main
+    color : white
+  }
+  .my-selected:hover:not([disabled]) { 
+    background-color: #0060b9
+    border : 1px solid black
+    color: black
+  }
+  .my-today { 
+    border-radius: 2em
+    border : 1px solid #0060b9
+  }
+`
