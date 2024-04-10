@@ -4,9 +4,27 @@ import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading 
 import { AddSmall, Delete } from 'monday-ui-react-core/icons';
 import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
+import { useState } from 'react';
+import { useEditableText } from '../../customHooks/useEditableText';
 
-export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, boardType, clmTypes, placeholderProps }) {
+export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps }) {
+    const [initialTitle, setInitialTitle] = useState(group.title)
+    const [isEditable, setIsEditable] = useState(false)
+    const [dynClass, setDynClass] = useState('')
+    const editableTitleRef = useEditableText(initialTitle, isEditable, setIsEditable, onUpdateGroup, group)
 
+    async function handleClick() {
+        if (!isEditable) {
+            setInitialTitle(boardTitle)
+            setIsEditable(true)
+
+            if (editableTitleRef.current) {
+                setDynClass('flex-grow')
+                editableTitleRef.current.contentEditable = "true"
+                editableTitleRef.current.focus()
+            }
+        }
+    }
     return (
 
         <>
@@ -18,8 +36,10 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveGroup(group._id)} />
                         </Menu>
                     </MenuButton>
-                    <Tooltip content="Click to Edit"
-                        animationType="expand">
+    
+                <Tooltip content="Click to Edit"
+                        zIndex="99999"
+                    animationType="expand">
                         <EditableHeading
                             style={{ color: group.groupColor }}
                             type={EditableHeading.types.h3}
@@ -27,6 +47,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             value={group.title}
                             isEditMode={"true"}
                             id='editable-header'
+                        onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
 
                         />
                     </Tooltip>

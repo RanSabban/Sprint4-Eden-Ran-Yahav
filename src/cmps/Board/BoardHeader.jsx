@@ -1,53 +1,116 @@
-import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core";
-import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
-import EmojiPicker from 'emoji-picker-react';
+import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
+import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons"
+import EmojiPicker from 'emoji-picker-react'
 
-import { BoardFilter } from "./BoardFilter";
-import { boardService } from "../../services/board.service.local";
-import { updateBoard } from "../../store/actions/board.actions";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { BoardFilter } from "./BoardFilter"
+import { boardService } from "../../services/board.service.local"
+import { updateBoard } from "../../store/actions/board.actions"
+import { useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
+import { MenuDots } from "../../services/svg.service"
 
 
 export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) {
-    // const [boardTitle, setBoardTitle] = useState(board.title)
     const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
-    const [showEmojiPicker, setShowEmojiPicker] = useState(false)
-    const [chosenEmoji, setChosenEmoji] = useState(null)
-
+    const [initialTitle, setInitialTitle] = useState(boardTitle)
+    const [isEditable, setIsEditable] = useState(false)
+    const [dynClass, setDynClass] = useState('')
     const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'
+    const editableTitleRef = useRef(null)
 
-    function onEmojiInput(ev, emoji) {
-        setChosenEmoji(emoji)
+    async function handleClick() {
+
+        if (!isEditable) {
+            setInitialTitle(boardTitle)
+            setIsEditable(true)
+
+            if (editableTitleRef.current) {
+                setDynClass('flex-grow')
+                editableTitleRef.current.contentEditable = "true"
+                editableTitleRef.current.focus()
+            }
+        }
+
     }
 
-    function onRenameBoard(newTitle) {
+    useEffect(() => {
+        const handleOutsideClick = (ev) => {
+            if (editableTitleRef.current && !editableTitleRef.current.contains(ev.target)) {
+                setIsEditable(false)
+                if (isEditable) {
+                    editableTitleRef.current.innerText = initialTitle
+                }
+            }
+        }
+    
+        const handleKeyDown = (ev) => {
+            if (ev.key === 'Enter') {
+                ev.preventDefault()
+                ev.target.blur()
+                setIsEditable(false)
+                const newTitle = ev.target.innerText
+                if (newTitle !== initialTitle) {
+                    try {
+                        board.title = newTitle
+                        updateBoard(board)
+                    } catch (err) {
+                        console.error('Error renaming board:', err)
+                        editableTitleRef.current.innerText = initialTitle
+                    }
+                } else {
+                    editableTitleRef.current.innerText = initialTitle
+                }
+            }
+        }
+    
+        document.addEventListener('mousedown', handleOutsideClick)
+        editableTitleRef.current && editableTitleRef.current.addEventListener('keydown', handleKeyDown)
+            setInitialTitle(boardTitle)
+    
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick)
+            editableTitleRef.current && editableTitleRef.current.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [initialTitle, isEditable, boardTitle])
+    
+
+    // function onEmojiInput(ev, emoji) {
+    //     setChosenEmoji(emoji)
+    // }
+
+    function onRenameBoard(ev) {
+        const newTitle = ev.target.innerText
+        if (newTitle === boardTitle) return
         try {
             board.title = newTitle
             updateBoard(board)
+        } catch (err) {
+            console.error('Error renaming board:', err)
         }
-        catch (err) {
-
-        }
+        setIsEditable(false)
     }
 
     return (
         <section className="board-header-wrapper">
             <div className="board-header">
                 <div className="board-header-top flex align-center justify-between">
-                    <div className="board-title-left">
+                    <div className={`board-title-left ${isEditable ? dynClass : ''}`}>
                         <div className="editable-container flex">
                             <Tooltip
+                                zIndex="2000"
                                 position="bottom"
                                 content='Click to edit'
                                 animationType="expand">
-
-                                <EditableHeading
-                                    type={EditableHeading.types.h1}
-                                    value={boardTitle}
-                                    isEditMode={"true"}
-                                    onFinishEditing={onRenameBoard}
-                                />
+                                <div
+                                    ref={editableTitleRef}
+                                    contentEditable={isEditable}
+                                    onClick={handleClick}
+                                    className="editable-title"
+                                    onBlur={onRenameBoard}
+                                    suppressContentEditableWarning={true}
+                                >
+                                    {boardTitle}
+                                </div>
 
                             </Tooltip>
                             {/* <Button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
@@ -58,6 +121,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                             )} */}
 
                             <Tooltip
+                                zIndex="2000"
                                 content='Show board description'
                                 animationType="expand">
                                 <Button
@@ -70,6 +134,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                             </Tooltip>
 
                             <Tooltip
+                                zIndex="2000"
                                 content='Add to favorites'
                                 animationType="expand">
                                 <Button
@@ -114,6 +179,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                         </Button>
 
                         <Tooltip
+                            zIndex="2000"
                             content='Add to favorites'
                             animationType="expand">
                             <Button
@@ -130,13 +196,15 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                         </Tooltip>
 
                         <Tooltip
+                            zIndex="2000"
                             content='Options'
                             animationType="expand">
                             <MenuButton
-                            // kind="tertiary"
-                            // size={"large"} 
+                                component={MenuDots}
+                                zIndex="999999"
+
                             >
-                                <Menu id="menu" size={Menu.sizes.LARGE}>
+                                <Menu id="menu" size="large" style={{ height: "30px" }} >
                                     <MenuItem icon={Sun} title="The sun" />
                                     <MenuItem icon={Moon} title="The moon" />
                                     <MenuItem icon={Favorite} title="And the stars" />
@@ -147,11 +215,11 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                 </div>
 
                 <div className="board-header-bottom flex align-center justify-between">
-                    <div className="board-header-nav flex">
+                    <div className="board-header-nav flex align-center">
                         <TabList
                             style={{ marginBottom: "16px" }}
                             size="sm">
-                            <Tooltip content='Main Table' animationType="expand">
+                            <Tooltip content='Main Table' animationType="expand" zIndex="2000">
                                 <Tab
                                     className="main-table-tab"
                                     active={true}
@@ -177,7 +245,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                     </div>
 
                     <div className="board-header-toolkit flex">
-                        <Tooltip content='Integrate' animationType="expand">
+                        <Tooltip content='Integrate' animationType="expand" zIndex="2000">
                             <Button
                                 className="btn"
                                 kind="tertiary"
@@ -189,7 +257,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board }) 
                                     style={{ marginRight: "8px" }} /> Integrate
                             </Button>
                         </Tooltip>
-                        <Tooltip content='Automate' animationType="expand">
+                        <Tooltip content='Automate' animationType="expand" zIndex="2000">
                             <Button
                                 className="btn"
                                 kind="tertiary"

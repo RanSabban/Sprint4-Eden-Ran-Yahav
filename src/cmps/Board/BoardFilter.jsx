@@ -2,13 +2,13 @@ import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu
 import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
 import { useState } from "react";
 
-export function BoardFilter({onAddGroup,boardId}) {
+export function BoardFilter({ onAddGroup, boardId }) {
 
     const [isSearch, setIsSearch] = useState(false)
 
     const dynSearchBtn = isSearch ? '' : 'searchBtn'
 
-    function toggleIsSearch(){
+    function toggleIsSearch() {
         setIsSearch(!isSearch)
     }
 
@@ -34,14 +34,13 @@ export function BoardFilter({onAddGroup,boardId}) {
 
             {isSearch ? (
                 <Button
-                className="icon"
-                onBlur={() => toggleIsSearch()}
-
-                leftIcon={Search}
-                kind="tertiary"
-                style={{ marginRight: "6px", marginLeft: "6px" }}
-                size="small">
-                        Search
+                    className="icon"
+                    onBlur={() => toggleIsSearch()}
+                    leftIcon={Search}
+                    kind="tertiary"
+                    style={{ marginRight: "6px", marginLeft: "6px" }}
+                    size="small">
+                    <span style={{ marginLeft: "-6px" }}>Search</span>
                 </Button>
 
             ) : (
@@ -66,7 +65,7 @@ export function BoardFilter({onAddGroup,boardId}) {
                     size="small"
                     style={{ marginRight: "6px" }}
                 >
-                    Person
+                    <span>Person</span>
                 </Button>
             </Tooltip>
 
@@ -77,7 +76,7 @@ export function BoardFilter({onAddGroup,boardId}) {
                     kind="tertiary"
                     style={{ marginRight: "6px" }}
                     size="small">
-                    Filter
+                    <span>Filter</span>
                 </Button>
             </Tooltip>
 
@@ -89,7 +88,7 @@ export function BoardFilter({onAddGroup,boardId}) {
                     kind="tertiary"
                     style={{ marginRight: "6px" }}
                     size="small">
-                    Sort
+                    <span>Sort</span>
                 </Button>
 
             </Tooltip>
