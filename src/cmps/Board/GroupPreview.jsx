@@ -28,38 +28,44 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     return (
 
         <>
-            <section className="group-header sticky">
-                <MenuButton>
-                    <Menu id={`menu-${group._id}`} size={Menu.sizes.LARGE}>
-                        <MenuItem icon={AddSmall} title="Add group" onClick={onAddGroup} />
-                        <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveGroup(group._id)} />
-                    </Menu>
-                </MenuButton>
-
+            <section className="group-header">
+                <div className="section-group-header-sticky">
+                    <MenuButton>
+                        <Menu id={`menu-${group._id}`} size={Menu.sizes.LARGE}>
+                            <MenuItem icon={AddSmall} title="Add group" onClick={onAddGroup} />
+                            <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveGroup(group._id)} />
+                        </Menu>
+                    </MenuButton>
+    
                 <Tooltip content="Click to Edit"
-                    zIndex="99999"
+                        zIndex="99999"
                     animationType="expand">
-                    <EditableHeading
-                        style={{ color: group.groupColor }}
-                        type={EditableHeading.types.h3}
-                        weight={"normal"}
-                        value={group.title}
-                        isEditMode={"true"}
-                        id='editable-header'
+                        <EditableHeading
+                            style={{ color: group.groupColor }}
+                            type={EditableHeading.types.h3}
+                            weight={"normal"}
+                            value={group.title}
+                            isEditMode={"true"}
+                            id='editable-header'
                         onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
 
-                    />
-                </Tooltip>
+                        />
+                    </Tooltip>
+                </div>
             </section>
             <section style={{
-                borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em"
-                , borderBottomLeftRadius: "0.3em"
             }} className="group-container">
                 <section className="header-items">
-                    <div className='dyn-cell checkbox-header-container sticky'>
-                        <Checkbox />
+                    <div className='blank-cell'>
+
                     </div>
-                    <div className='dyn-cell header-item sticky'>{boardType}</div>
+                    <div className="group-preview-title-container dyn-cell"
+                        style={{ borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em" }}>
+                        <div className='checkbox-header-container sticky'>
+                            <Checkbox />
+                        </div>
+                        <div className='header-item sticky'>{boardType}</div>
+                    </div>
                     <RenderHeaders clmTypes={clmTypes} />
                 </section>
                 <TaskList

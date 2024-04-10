@@ -19,7 +19,7 @@ export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
     }
 
     return (
-        <div className="dyn-cell date-container">
+        <div className="dyn-cell date-container dyn-cell-flexy">
             <span className="dyn-cell date" onClick={handleOnClick}>
                 {getCellDate()}
             </span>

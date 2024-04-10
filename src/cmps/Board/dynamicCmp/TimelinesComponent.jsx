@@ -62,7 +62,7 @@ export function TimelinesComponent({ cell, groupColor }) {
 
 
     return (
-        <div className="dyn-cell timeline">
+        <div className="dyn-cell timeline dyn-cell-flexy">
 
         <section className="timeline-container">
           <div className="progress-bar-container">

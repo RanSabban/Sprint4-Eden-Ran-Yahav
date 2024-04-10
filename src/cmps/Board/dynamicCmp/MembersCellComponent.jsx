@@ -64,7 +64,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
 
     return (
         <Fragment>
-            <span onClick={() => setIsOpen(!isOpen)} className="dyn-cell members">
+            <span onClick={() => setIsOpen(!isOpen)} className="dyn-cell members dyn-cell-flexy">
                 <AvatarGroupAng users={clmType.data.filter(user => assignedUsers.includes(user._id))} />
             </span>
 

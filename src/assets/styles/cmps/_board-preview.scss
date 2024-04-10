@@ -3,8 +3,9 @@
     position: relative;
     box-sizing: content-box;
     padding-bottom: em(40px);
-    padding-left: em(40px);
+    // overflow: scroll;
     overflow: auto;
+    // height: 100%;
 
     & ul{
         list-style: none;
@@ -13,5 +14,47 @@
     .title-container{
         display: grid;
         grid-auto-flow: column;
+    }
+
+    .editable-container-cmp {
+        transition: all 0.1s ease-in-out;
+
+
+        .editable-container-dyn-cmp {
+            align-items: center;
+            text-align: start;
+
+            .editable-title-dyn-cmp {
+                font-family: 'Figtree', sans-serif;
+                font-size: $font-size-subtext;
+                width: 100%;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                border: 1px solid transparent;
+                border-radius: em(2px);
+                padding: 4px;
+
+                &.editable[contenteditable="true"]:empty:before,
+                .editable[contenteditable="true"].is-empty:before {
+                    content: attr(data-placeholder);
+                    display: block; /* For Firefox */
+                    color: #888;
+                }
+
+                &:hover {
+                    border-color: $clr-border;
+                    transition: border-color 0.3s ease-in-out;
+                }
+
+                &:focus-visible {
+                    display: flex;
+                    outline: solid #0073ea 1px;
+                }
+            }
+        }
     }
 }
