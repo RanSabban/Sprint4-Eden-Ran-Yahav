@@ -11,6 +11,7 @@
     transition: right .15s cubic-bezier(0, 0, .35, 1);
     display: flex;
     flex-direction: column;
+    z-index: 111;
 
     .input-details {
         padding: 10px 20px;
@@ -22,12 +23,24 @@
         font-family: figtree;
         font-size: 1rem;
         margin-left: 1em;
+        height: 2em;
+    }
+
+    .contentImg_0a4efe4e24{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
     }
 
     .close-details {
+        display: block;
         text-align: start;
+        color: #323338;
+        text-decoration: none;
+
         margin-left: 2em;
         margin-top: 1em;
+        margin-bottom: 1em;
     }
 
     .upper-details-actions {
@@ -41,6 +54,7 @@
         flex-direction: column;
         place-items: center;
         line-height: 2em;
+        margin-left: 3em;
     }
 
     .input-details2{
@@ -52,6 +66,7 @@
         outline: 1px solid #0073ea;
         font-family: figtree;
         font-size: 1rem;
+        margin-left: 2em;
     }
 
     .details-option{
