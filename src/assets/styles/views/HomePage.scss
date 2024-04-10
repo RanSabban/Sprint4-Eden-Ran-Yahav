@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.grid-item {
+    padding: 20px;
+    background-color: blue;
+    border: 1px solid black;
+    resize: both; /* Allows resizing */
+    overflow: auto; /* Needed to enable resizing */
+}

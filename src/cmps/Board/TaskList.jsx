@@ -79,7 +79,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                     {tasks.map((task, index) => (
 
 
-                        <Draggable key={task._id} draggableId={String(task._id)} index={index} >
+                        <Draggable key={task._id} draggableId={task._id} index={index} >
                             {(provided, snapshot) => (
                                 <div
                                     ref={provided.innerRef}

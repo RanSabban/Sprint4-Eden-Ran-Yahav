@@ -56,9 +56,10 @@ export function TimelinesComponent({ cell, groupColor }) {
         const elapsedDuration = now.diff(start, 'day')
         const percentage = (elapsedDuration / totalDuration) * 100
         console.log(percentage.toFixed(2))
+        // return `${percentage.toFixed(2)}%`
         return `${percentage.toFixed(2)}%`
+
     }
-    // const elapsedTime = getDoneTodosPercent()
 
 
     return (
@@ -68,8 +69,8 @@ export function TimelinesComponent({ cell, groupColor }) {
           <div className="progress-bar-container">
             <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
             
-            {/* <div className="progress-bar" style={{ width: getPercentage(cell.startDate, cell.endDate) }}></div> */}
-            <div className="progress-bar" style={{ width: "50%",background: groupColor }}></div>
+            <div className="progress-bar" style={{ width: getPercentage(cell.startDate, cell.endDate),background: groupColor }}></div>
+            {/* <div className="progress-bar" style={{ width: "50%",background: groupColor }}></div> */}
           </div>
         </section>
         </div>
