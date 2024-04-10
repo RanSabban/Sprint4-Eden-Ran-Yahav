@@ -1,38 +1,93 @@
 .group-list {
     display: grid;
     row-gap: 2em;
-    width: max-content;
-    // overflow: auto;
+    min-width: max-content;
+    // overflow: scroll;
     position: relative;
+
 
     >* {
         background-color: $bgc-main;
     }
 
-    .header-items {
+    .task-list {
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-column: 1/-1;
+    }
+
+    & .header-items {
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: 36px 350px 150px 150px 100px 200px repeat(auto-fill, 100px);
-        border: 1px solid $clr-border;
+        grid-template-columns: subgrid;
+        grid-column: 1/-1;
+        grid-auto-flow: column;
+        // border: 1px solid $clr-border;
         height: 2.25em;
         align-items: center;
         text-align: center;
         border-right: 1px solid $clr-border;
-        // border-left: 0.4em solid $clr-label-3;
-        // border-top-left-radius: 0.3em
+
+        & .blank-cell {
+            position: sticky;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+        }
+
+        & .dyn-cell {
+            border: 1px solid $clr-border;
+            border-left: none;
+            height: 100%;
+            display: grid;
+            align-self: center;
+            align-items: center;
+        }
+
     }
 
-    &>* {
-        grid-template-columns: subgrid;
-    }
-
-    .header-items .dyn-cell {
-        border-right: 1px solid $clr-border;
-        height: 2.25em;
+    & .group-container {
+        background-color: $bgc-main;
         display: grid;
-        align-self: center;
-        align-items: center;
+        // grid-template-columns: 36px 350px 150px 150px 100px 200px repeat(auto-fill, minmax(100px,1fr));
+        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px;
+        grid-template-rows: 36px;
+        width: 100%;
+
+        // grid-template-columns: repeat(auto-fit);
+        .group-preview-title-container {
+            position: sticky;
+            left: 0;
+            display: grid;
+            grid-auto-flow: column;
+            background-color: #ffffff;
+            // z-index: 1111;
+            border: 1px solid #d0d4e4;
+            border-bottom: none;
+            // border-top: none;
+            left: 40px;
+            grid-template-columns: 36px 1fr;
+        }
+
+
+        .task-preview-title-container {
+            display: grid;
+            grid-auto-flow: column;
+            background-color: #ffffff;
+            position: sticky;
+            left: 40px;
+            height: 100%;
+            grid-template-columns: 36px 1fr;
+            z-index: 11;
+            // grid-template-columns: 304px 65px;
+        }
     }
+
+    // &>* {
+    //     grid-column: 1/-1;
+    //     grid-template-columns: subgrid;
+    // }
 
     .group-title {
         font-family: poppins;
@@ -42,8 +97,9 @@
 
     .group-header {
         display: grid;
+        grid-column: 1/-1;
         position: relative;
-        right: 1.8em;
+        // right: 1.8em;
         grid-auto-flow: column;
         justify-content: start;
         align-items: center;
@@ -52,6 +108,13 @@
         .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8 {
             font-family: poppins-medium;
             font-size: 18px !important;
+        }
+
+        & .section-group-header-sticky {
+            position: sticky;
+            left: 0;
+            display: grid;
+            grid-auto-flow: column;
         }
     }
 
@@ -73,13 +136,19 @@
         height: min-content;
     }
 
-    .dyn-cell.checkbox-header-container {
+    .checkbox-header-container {
         display: grid;
         justify-items: center;
+        align-items: center;
+        border: 1px solid #d0d4e4;
+        height: 100%;
+        border-top: none;
+        border-bottom: none;
     }
 
-    .group-container {
-       background-color: $bgc-main;
-
+    .task-title-cell {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 312px 65px;
     }
 }

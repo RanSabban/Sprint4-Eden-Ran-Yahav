@@ -1,0 +1,61 @@
+.activity-container {
+    background-color: #fff;
+    position: fixed;
+    top: 48px;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    max-width: 760px;
+    z-index: 100;
+    box-shadow: 0 4px 8px #0003;
+    transition: right .15s cubic-bezier(0, 0, .35, 1);
+    display: flex;
+    flex-direction: column;
+
+    .input-details {
+        padding: 10px 20px;
+        font-size: 1.1428571429rem;
+        border-radius: 8px;
+        border: none;
+        flex-grow: 0.8;
+        // outline: 1px solid #0073ea;
+        font-family: figtree;
+        font-size: 1rem;
+        margin-left: 1em;
+    }
+
+    .close-details {
+        text-align: start;
+        margin-left: 2em;
+        margin-top: 1em;
+    }
+
+    .upper-details-actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .no-updates{
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        line-height: 2em;
+    }
+
+    .input-details2{
+        margin-bottom: 4em;
+        padding: 10px 20px;
+        font-size: 1.1428571429rem;
+        border-radius: 8px;
+        border: none;
+        outline: 1px solid #0073ea;
+        font-family: figtree;
+        font-size: 1rem;
+    }
+
+    .details-option{
+        background: none;
+        color: #323338;
+    }
+}

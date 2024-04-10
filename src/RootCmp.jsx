@@ -1,12 +1,11 @@
 import React from 'react'
 import { Routes, Route } from 'react-router'
 
-import routes from './routes'
-
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { UserDetails } from './pages/UserDetails'
 import { BoardIndex } from './pages/BoardIndex'
+import { HomePage } from './pages/HomePage'
 
 export function RootCmp() {
 
@@ -14,7 +13,9 @@ export function RootCmp() {
         <>
             <AppHeader />
             <Routes>
-                {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+                <Route element= {<HomePage />} path='/' />
+                <Route element= {<BoardIndex />} path='/board' />
+                <Route element= {<BoardIndex />} path='/board/:boardId' />
             </Routes>
             <AppFooter />
         </>

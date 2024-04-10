@@ -1209,7 +1209,7 @@ async function getEmptyTask(groupId, boardId) {
             return { _id: clmType._id, type: clmType.type, dataId: clmType.data[0].id }
         }
         if (clmType.type === 'members') {
-            return { _id: clmType._id, type: 'members', dataId: clmType.data[0]._id }
+            return { _id: clmType._id, type: 'members', dataId: []}
         }
         if (clmType.type === 'timelines') {
             return { _id: clmType._id, type: 'timelines', startDate: 0, endDate: 0 }

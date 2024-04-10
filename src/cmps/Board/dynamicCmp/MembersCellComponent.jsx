@@ -3,6 +3,7 @@ import { AvatarGroupAng } from "../reusableCmps/AvatarGroupAang"
 import { Chips, Search } from "monday-ui-react-core"
 import { loadBoards } from "../../../store/actions/board.actions"
 
+
 export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateCell }) {
     const [isOpen, setIsOpen] = useState(false)
     const modalRef = useRef()
@@ -63,7 +64,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
 
     return (
         <Fragment>
-            <span onClick={() => setIsOpen(!isOpen)} className="dyn-cell members">
+            <span onClick={() => setIsOpen(!isOpen)} className="dyn-cell members dyn-cell-flexy">
                 <AvatarGroupAng users={clmType.data.filter(user => assignedUsers.includes(user._id))} />
             </span>
 
