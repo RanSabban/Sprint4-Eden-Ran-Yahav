@@ -5,7 +5,7 @@ import { loadBoards, addBoard, updateBoard, removeBoard, addGroup } from '../sto
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { boardService } from '../services/board.service.local.js'
-import { useParams } from 'react-router'
+import { Outlet, useParams } from 'react-router'
 import { BoardHome } from '../cmps/Board/BoardHome.jsx'
 import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
 import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
@@ -17,79 +17,48 @@ export function BoardIndex() {
 
     const boards = useSelector(storeState => storeState.boardModule.boards)
 
-    const { boardId } = useParams()
+    // const { boardId } = useParams()
 
     useEffect(() => {
         loadBoards()
     }, [])
 
-    async function onRemoveBoard(boardId) {
-        try {
-            await removeBoard(boardId)
-            showSuccessMsg('Board removed')
-        } catch (err) {
-            showErrorMsg('Cannot remove board')
-        }
-    }
+    // async function onRemoveBoard(boardId) {
+    //     try {
+    //         await removeBoard(boardId)
+    //         showSuccessMsg('Board removed')
+    //     } catch (err) {
+    //         showErrorMsg('Cannot remove board')
+    //     }
+    // }
 
-    async function onAddBoard() {
-        const board = boardService.getEmptyBoard()
-        try {
-            const savedBoard = await addBoard(board)
-            showSuccessMsg(`Board added (id: ${savedBoard._id})`)
-        } catch (err) {
-            showErrorMsg('Cannot add board')
-        }
-    }
+    // async function onAddBoard() {
+    //     const board = boardService.getEmptyBoard()
+    //     try {
+    //         const savedBoard = await addBoard(board)
+    //         showSuccessMsg(`Board added (id: ${savedBoard._id})`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot add board')
+    //     }
+    // }
 
-    async function onUpdateBoard(board) {
+    // async function onUpdateBoard(board) {
 
-        try {
-            const savedBoard = await updateBoard(board)
-            loadBoards()
-            showSuccessMsg(`Board updated`)
-        } catch (err) {
-            showErrorMsg('Cannot update board')
-        }
-    }
+    //     try {
+    //         const savedBoard = await updateBoard(board)
+    //         loadBoards()
+    //         showSuccessMsg(`Board updated`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot update board')
+    //     }
+    // }
 
-    async function onAddGroup(boardId) {
-        try {
-            const group = await addGroup(boardId)
-            console.log(group);
-            showSuccessMsg('Group added')
-        } catch (err) {
-            console.log('Err add group', err);
-            showErrorMsg('Nono')
-        }
-    }
-
-    async function onRemoveGroup(groupId) {
-        try {
-            await removeGroup(groupId)
-            showSuccessMsg('Group removed')
-        } catch (err) {
-            console.log('cannot remove group', err); 
-            showErrorMsg('Error remove group')
-        }
-    }
-
-
-    if (!boards) return <div>LOADING</div>
+    // if () return <div>LOADING</div>
     return (<section className="board-index">
+        <BoardSideBar/>
 
-            <aside className="sidebar">
-                <BoardSideBar
-                    boards={boards}
-                    onRemoveBoard={onRemoveBoard}
-                    onUpdateBoard={onUpdateBoard}
-                    onAddBoard={onAddBoard} />
+        <Outlet />
 
-            </aside>
-                {
-                    boardId ? <BoardDetails  onAddGroup={onAddGroup} onRemoveGroup={onRemoveGroup} /> : <BoardHome boards={boards} />
-                }
-        <LabelPicker />
 
     </section>
     )
