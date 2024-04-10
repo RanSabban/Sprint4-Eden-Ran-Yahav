@@ -83,7 +83,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 <div className='task-title-cell'>
                     <span style={{}} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
                     <div className="btn-message-container">
-                        <Link to={'/'}>
+                        <Link to={`/`}>
                             <AddUpdate />
                         </Link>
                     </div>
