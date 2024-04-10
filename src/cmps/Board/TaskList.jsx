@@ -6,10 +6,10 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { InputCell } from './reusableCmps/InputCell';
 import { useState } from 'react';
 import { RenderHeaders } from './RenderHeaders'
-import {  Checkbox } from 'monday-ui-react-core';
+import { Checkbox } from 'monday-ui-react-core';
 
 
-export function TaskList({ groupId, onAddTask, groupColor, placeholderProps,boardType,clmTypes }) {
+export function TaskList({ groupId, onAddTask, groupColor, placeholderProps, boardType, clmTypes }) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
@@ -65,6 +65,7 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps,boar
                 >
                     {tasks.map((task, index) => (
 
+
                         <Draggable key={task._id} draggableId={String(task._id)} index={index} >
                             {(provided, snapshot) => (
                                 <div
@@ -75,12 +76,13 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps,boar
                                     className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
 
-                                        <TaskPreview 
-                                        task={task} 
-                                        groupColor={groupColor} 
-                                        onUpdateCell={onUpdateCell} 
-                                        onUpdateTask={onUpdateTask} 
-                                        onRemoveTask={onRemoveTask} />
+                                    <TaskPreview
+                                        task={task}
+                                        groupColor={groupColor}
+                                        onUpdateCell={onUpdateCell}
+                                        onUpdateTask={onUpdateTask}
+                                        onRemoveTask={onRemoveTask}
+                                    />
 
                                 </div>
                             )}
@@ -98,8 +100,22 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps,boar
                         }} />
                     )}
                     {provided.placeholder}
-                    <div className='list-item add-task' >
-                        <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
+                    <div className='list-item add-task'  >
+                        <div className='blank-cell-add-task' style={{ width: '40px' }}>
+
+                        </div>
+                        <div className="add-task-sticky-container" style={{
+                            borderLeft: `0.4em solid ${groupColor}`,
+                            borderBottomLeftRadius: "0.3em"
+                        }}>
+
+                            <div className='dyn-cell checkbox-container'>
+                                <Checkbox />
+                            </div>
+                            <div className='add-task-content-container'>
+                                <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             )

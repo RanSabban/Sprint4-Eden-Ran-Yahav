@@ -18,11 +18,11 @@ import { onOpenModalLabel } from '../../store/actions/board.actions';
 
 
 
-export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) {
+export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
-    const [isLabelOpen,setIsLabelOpen] = useState(false)
+    const [isLabelOpen, setIsLabelOpen] = useState(false)
 
     async function onChange(cell) {
         try {
@@ -50,56 +50,65 @@ export function TaskPreview({ task, onUpdateCell, onUpdateTask, onRemoveTask }) 
         onUpdateTask(taskToUpdate)
     }
 
-    async function onClickLabel(ev,clmType,cell) {
+    async function onClickLabel(ev, clmType, cell) {
         try {
-            onOpenModalLabel(ev,clmType,cell,task,true)
+            onOpenModalLabel(ev, clmType, cell, task, true)
         } catch (err) {
 
         }
     }
 
-    return (<>
-        <section style={{ position: 'absolute' }} className="task-actions">
-            <MenuButton size='XS' >
-                <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
-                    {/* <MenuItem icon={AddSmall} title="Add group"/> */}
-                    <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)}/>
-                </Menu>
-            </MenuButton>
-        </section>
-        <div className='dyn-cell checkbox-container sticky'>
-            <Checkbox />
-        </div>
-        <div className='title-container sticky'>
-            <span style={{ width: '300px' }} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
-            <Button
-                className="btn-message"
-                kind="tertiary"
-                onClick={() => console.log('m-list')}
-                size="small">
-                <Update />
-            </Button>
-        </div>
+    return (
+        // <section className="task-preview">
+        <>
+                <section style={{}} className="task-actions">
+                    <MenuButton size='XS' >
+                        <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
+                            {/* <MenuItem icon={AddSmall} title="Add group"/> */}
+                            <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
+                        </Menu>
+                    </MenuButton>
+                </section>
+            <div className="task-preview-title-container" style={{
+                borderLeft: `0.4em solid ${groupColor}`
+            }}>
+
+                <div className='dyn-cell checkbox-container'>
+                    <Checkbox />
+                </div>
+                <div className='task-title-cell'>
+                    <span style={{}} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
+                    <Button
+                        className="btn-message"
+                        kind="tertiary"
+                        onClick={() => console.log('m-list')}
+                        size="small">
+                        <Update />
+                    </Button>
+                </div>
+            </div>
 
 
-        {
-            cells.map((cell, idx) => (
+            {
+                cells.map((cell, idx) => (
 
-                <DynamicCmp key={idx}
-                    cmpType={cell.type}
-                    onChange={onChange}
-                    clmType={getClmType(cell._id)}
-                    cell={cell}
-                    onUpdateCell={onUpdateCell}
-                    taskId={task._id}
-                    onClick={openDynModal}
-                    onClickLabel={onClickLabel}
-                />
-            ))
-        }
-    </>
+                    <DynamicCmp key={idx}
+                        cmpType={cell.type}
+                        onChange={onChange}
+                        clmType={getClmType(cell._id)}
+                        cell={cell}
+                        onUpdateCell={onUpdateCell}
+                        taskId={task._id}
+                        onClick={openDynModal}
+                        onClickLabel={onClickLabel}
+                    />
+                ))
+            }
+        </>
+        // </section>
     )
 }
+
 
 function DynamicCmp(props) {
     switch (props.cmpType) {
