@@ -22,7 +22,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
     async function onUpdateCell(cell, taskId) {
         try {
-            await updateCell(cell, taskId, groupId)
+            updateCell(cell, taskId, groupId)
         }
         catch (err) {
             console.log('err update task', err)
@@ -112,7 +112,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         }} />
                     )}
                     {provided.placeholder}
-                    <div className='list-item add-task' style={{  }} >
+                    <div className='list-item add-task' style={{}} >
                         <div className='blank-cell-add-task' style={{ width: '40px' }}>
 
                         </div>
@@ -122,10 +122,10 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             borderTop: '1px solid #d0d4e4'
                         }}>
 
-                            <div className='dyn-cell checkbox-container' style={{borderTop: '1px solid #d0d4e4', borderBottom: '1px solid #d0d4e4'}}>
-                                <Checkbox className='add-task-checkbox' disabled={true}/>
+                            <div className='dyn-cell checkbox-container' style={{ borderTop: '1px solid #d0d4e4', borderBottom: '1px solid #d0d4e4' }}>
+                                <Checkbox className='add-task-checkbox' disabled={true} />
                             </div>
-                            <div className='add-task-content-container' style={{borderBottom: '1px solid #d0d4e4'}}>
+                            <div className='add-task-content-container' style={{ borderBottom: '1px solid #d0d4e4' }}>
                                 {/* <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} /> */}
                                 <EditableCmp onUpdateInput={onAddTaskFromList} placeholder={'+ Add item'} />
                             </div>

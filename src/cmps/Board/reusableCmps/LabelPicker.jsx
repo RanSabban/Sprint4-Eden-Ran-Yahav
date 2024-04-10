@@ -37,8 +37,9 @@ export function LabelPicker() {
 
     function onUpdateCell(labelId) {
         console.log(labelId);
-        const cellToUpdate = cell;
-        cell.dataId = labelId
+        let cellToUpdate = cell;
+        // cell.dataId = labelId
+        cellToUpdate = {...cell, dataId: labelId}
         callBackFunc(cellToUpdate, task._id);
         onHideModalLabel();
     }

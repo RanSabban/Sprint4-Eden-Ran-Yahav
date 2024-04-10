@@ -14,7 +14,7 @@
     position: relative;
     // border-left: 0.4em solid $clr-label-3;
 
-    &:hover > *  {
+    &:hover>* {
         background-color: rgba(245, 246, 248, 0.9);
         // background-color: black;
     }
@@ -56,6 +56,9 @@
     .status,
     .priority {
         color: $clr6;
+        font-size: 0.875em;
+        line-height: 1.3125;
+        height: 100%;
     }
 
     .dyn-cell.title div {

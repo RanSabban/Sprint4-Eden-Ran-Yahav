@@ -29,12 +29,10 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel }) {
 
     return (
         <>
-            <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%', cursor: 'pointer' }} className="dyn-cell status dyn-cell-flexy"
+            <div style={{ backgroundColor: getCellColor(), width: '100%', cursor: 'pointer' }} className="dyn-cell status dyn-cell-flexy"
              onClick={(ev) => onClickLabel(ev.target,clmType,cell)}
             >
-                <span className="status-txt"
-                   
-                >{getCellTxt()}</span>
+                {getCellTxt()}
             </div>
         </>
     )

@@ -177,13 +177,14 @@ export async function removeTask(taskId, groupId, boardId) {
 }
 
 export async function updateCell(cell, taskId, groupId) {
+    boardService.updateCell(cell, taskId, groupId)
     try {
         console.log(cell, taskId, groupId);
-        boardService.updateCell(cell, taskId, groupId)
-
         store.dispatch({
             type: UPDATE_CELL,
-            cell, taskId, groupId
+            payload: {
+                cell, taskId, groupId
+            }
         })
 
     }

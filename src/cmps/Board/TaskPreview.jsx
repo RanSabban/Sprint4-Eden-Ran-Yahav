@@ -53,11 +53,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         onUpdateTask(taskToUpdate)
     }
 
-    async function onClickLabel(ev, clmType, cell) {
+    function onClickLabel(ev, clmType, cell) {
         try {
-            onOpenModalLabel(ev, clmType, cell, task, true)
+            onOpenModalLabel(ev, clmType, cell, task, onUpdateCell)
         } catch (err) {
-
+            console.log('cannot change label', err);
         }
     }
 

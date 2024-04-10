@@ -6,12 +6,12 @@ export function PriorityCellComponent({ clmType, cell, onChange, onClickLabel })
     // console.log(clmType, cell);
     const { data } = clmType
 
-    
+
 
     function getCellTxt() {
         const item = data.find(item => item.id === cell.dataId)
         if (!item) return 'puki wrongico'
-        const title = item.title 
+        const title = item.title
         return title
     }
 
@@ -29,13 +29,9 @@ export function PriorityCellComponent({ clmType, cell, onChange, onClickLabel })
 
     return (
         <>
-            <div style={{ backgroundColor: getCellColor(), height: '2.25em', width: '100%', cursor: 'pointer' }} className="dyn-cell priority dyn-cell-flexy"
-             onClick={(ev) => onClickLabel(ev.target,clmType,cell)}
-            >
-                <span className="priority-txt"
-                   
-                >{getCellTxt()}</span>
-            </div>
+            <div style={{ backgroundColor: getCellColor(), width: '100%', cursor: 'pointer' }} className="dyn-cell priority dyn-cell-flexy"
+                onClick={(ev) => onClickLabel(ev.target, clmType, cell)}
+            >{getCellTxt()} </div>
         </>
     )
 }
