@@ -13,7 +13,7 @@ import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
 import { onOpenModalLabel } from '../../store/actions/board.actions';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { EditableCellTitle } from './reusableCmps/EditableCellTitle';
 
 
@@ -26,6 +26,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const [isLabelOpen, setIsLabelOpen] = useState(false)
+
+    const {boardId} = useParams()
 
     async function onChange(cell) {
         try {
@@ -86,7 +88,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         <EditableCellTitle txt={task.title} onUpdateInput={onUpdateTitle}/>
                     </span>
                     <div className="btn-message-container">
-                        <Link to={`/`}>
+                        <Link to={`/board/${boardId}/task/${task._id}`}>
                             <AddUpdate />
                         </Link>
                     </div>

@@ -1,13 +1,55 @@
-import { Link, NavLink } from "react-router-dom"
-import { useState } from "react"
+import { Link, NavLink, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { CloseSidebar, Home, Home2, MyWork, OpenSidebar, OpenWorkSpace, PlusTool, SearchTool, ThreePoints } from "../../services/svg.service"
 import { BoardList } from "./BoardList"
 import { InputCell } from "./reusableCmps/InputCell"
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText, Search, Menu, MenuItem, Flex } from "monday-ui-react-core";
 import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
+import { loadBoards, removeBoard, updateBoard } from "../../store/actions/board.actions"
+import { boardService } from "../../services/board.service.local"
+import { useSelector } from "react-redux"
 
 
-export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard }) {
+export function BoardSideBar() {
+
+    const boards = useSelector(storeState => storeState.boardModule.boards)
+
+    const { boardId } = useParams()
+
+    useEffect(() => {
+        loadBoards()
+    }, [])
+
+    async function onRemoveBoard(boardId) {
+        try {
+            await removeBoard(boardId)
+            showSuccessMsg('Board removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove board')
+        }
+    }
+
+    async function onAddBoard() {
+        const board = boardService.getEmptyBoard()
+        try {
+            const savedBoard = await addBoard(board)
+            showSuccessMsg(`Board added (id: ${savedBoard._id})`)
+        } catch (err) {
+            showErrorMsg('Cannot add board')
+        }
+    }
+
+    async function onUpdateBoard(board) {
+
+        try {
+            const savedBoard = await updateBoard(board)
+            loadBoards()
+            showSuccessMsg(`Board updated`)
+        } catch (err) {
+            showErrorMsg('Cannot update board')
+        }
+    }
+
     const [isOpen, setIsOpen] = useState(true)
     // const [isOpen2, setIsOpen2] = useState(true)
     const [isWorkspace, setIsWorkspace] = useState(true)
@@ -39,6 +81,8 @@ export function BoardSideBar({ boards, onAddBoard, onRemoveBoard, onUpdateBoard 
     //     animationType="expand">
     // </Tooltip>
     // className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`}
+
+    if (!boards) return (<div>LOADING BRO</div>)
 
     return (<section style={{ zIndex: "35" }} className={`board-sidebar ${dynClass}`} >
 
