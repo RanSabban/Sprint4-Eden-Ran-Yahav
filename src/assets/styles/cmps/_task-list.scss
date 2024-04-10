@@ -191,6 +191,10 @@
         border-right: none;
     }
 
+    & .add-task-checkbox {
+        opacity: .4;
+    }
+
     & .btn-message-container {
         display: grid;
         justify-content: center;

@@ -143,7 +143,7 @@ export async function addTask(groupId, boardId, taskTitle) {
         const task = await boardService.getEmptyTask(groupId, boardId)
         if (taskTitle) task.title = taskTitle
         await boardService.addTask(groupId, task)
-
+        console.log('here');
         store.dispatch({
             type: ADD_TASK,
             payload: {

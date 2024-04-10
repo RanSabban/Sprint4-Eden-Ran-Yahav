@@ -1,15 +1,17 @@
 import { useSelector } from 'react-redux'
 import { TaskPreview } from './TaskPreview'
-import { removeTask, updateCell, updateTask } from '../../store/actions/board.actions'
+import { addTask, removeTask, updateCell, updateTask } from '../../store/actions/board.actions'
 import { useParams } from 'react-router'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { InputCell } from './reusableCmps/InputCell';
 import { useState } from 'react';
 import { RenderHeaders } from './RenderHeaders'
 import { Checkbox } from 'monday-ui-react-core';
+import { EditableCmp } from './reusableCmps/EditableCmp'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
 
-export function TaskList({ groupId, onAddTask, groupColor, placeholderProps, boardType, clmTypes }) {
+export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes }) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
@@ -44,15 +46,24 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps, boa
         }
     }
 
-    function onAddTaskFromList(taskTitle) {
-        onAddTask(groupId, taskTitle)
-        setIsClear(true)
+    async function onAddTaskFromList(taskTitle) {
+        // onAddTask(groupId, taskTitle)
+        // setIsClear(true)
+        console.log(taskTitle);
+        try {
+            console.log(groupId);
+            await addTask(groupId, boardId, taskTitle)
+            showSuccessMsg('Task Added')
+        }
+        catch (err) {
+            console.log('err adding task', err);
+            showErrorMsg('Cannot add task')
+        }
     }
 
     function onAddTaskComplete() {
         setIsClear(false)
     }
-
 
     return (
         <Droppable droppableId={groupId} type="TASK">
@@ -112,10 +123,11 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps, boa
                         }}>
 
                             <div className='dyn-cell checkbox-container' style={{borderTop: '1px solid #d0d4e4', borderBottom: '1px solid #d0d4e4'}}>
-                                <Checkbox />
+                                <Checkbox className='add-task-checkbox' disabled={true}/>
                             </div>
                             <div className='add-task-content-container' style={{borderBottom: '1px solid #d0d4e4'}}>
-                                <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
+                                {/* <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} /> */}
+                                <EditableCmp onUpdateInput={onAddTaskFromList} placeholder={'+ Add item'} />
                             </div>
                         </div>
                         <div className='add-task-fill-gap'>

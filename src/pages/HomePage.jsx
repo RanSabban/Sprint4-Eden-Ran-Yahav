@@ -11,7 +11,6 @@ export function HomePage() {
     return (
         <section className='home-page'>
             <TimelinePicker/>
-            <EditableCmp txt={'Hello'} />
         </section >
     )
 }
