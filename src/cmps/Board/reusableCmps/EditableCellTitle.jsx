@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-export function EditableCmp({ txt, onUpdateInput }) {
+export function EditableCellTitle({ txt, onUpdateInput }) {
   const [isEditing, setIsEditing] = useState(false);
   const [content, setContent] = useState(txt);
 
   const handleSpanClick = () => {
-    setContent('')
     setIsEditing(true);
   };
 
@@ -32,8 +31,7 @@ export function EditableCmp({ txt, onUpdateInput }) {
   return (
     <div className="editable-container-title-cell">
       {!isEditing ? (
-        <span onClick={handleSpanClick} className="editable-title-cell-cmp-span" style={{paddingInlineStart: '10px',
-        paddingBlockStart: '2px', paddingBlockEnd: '3px'}}>
+        <span onClick={handleSpanClick} className="editable-title-cell-cmp-span">
           {content}
         </span>
       ) : (
@@ -45,7 +43,6 @@ export function EditableCmp({ txt, onUpdateInput }) {
           onBlur={handleInputBlur}
           onKeyDown={handleInputKeyDown}
           autoFocus
-          style={{paddingInlineStart: '10px', paddingBlockStart: '2px', paddingBlockEnd: '3px'}}
         />
       )}
     </div>
