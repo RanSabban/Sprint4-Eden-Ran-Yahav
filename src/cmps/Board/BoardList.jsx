@@ -128,7 +128,6 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
 export function BoardList({ onAddBoard, onRemoveBoard, onUpdateBoard }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
-    console.log(boards)
 
     return (
         <section className="board-list">

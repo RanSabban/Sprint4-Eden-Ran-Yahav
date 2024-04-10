@@ -126,7 +126,7 @@ export function BoardSideBar() {
 
                         <Search
                             size="Search.sizes.MEDIUM"
-                            placeholder="   Search"
+                            placeholder="Search"
                             wrapperClassName="monday-storybook-search_size"
                         />
 
