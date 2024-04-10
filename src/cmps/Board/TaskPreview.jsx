@@ -8,17 +8,18 @@ import { LastUpdatedComponent } from './dynamicCmp/LastUpdatedComponent'
 import { FilesComponent } from './dynamicCmp/FilesComponent';
 import { TimelinesComponent } from './dynamicCmp/TimelinesComponent';
 import { Button, Checkbox, Menu, MenuButton, MenuItem } from 'monday-ui-react-core';
-import { AddSmall, Delete, Update } from 'monday-ui-react-core/icons';
+import { AddSmall, AddUpdate, Delete, Update } from 'monday-ui-react-core/icons';
 import { InputCell } from './reusableCmps/InputCell';
 import { LabelPicker } from './reusableCmps/LabelPicker';
 import { useState } from 'react';
 import { onOpenModalLabel } from '../../store/actions/board.actions';
+import { Link } from 'react-router-dom';
 
 
 
 
 
-export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor }) {
+export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast }) {
     console.log('this is task for reall', task)
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
@@ -59,17 +60,19 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         }
     }
 
+    // const taskTitleCellStyle = isLast ? { } : {};
+
     return (
         // <section className="task-preview">
         <>
-                <section style={{}} className="task-actions">
-                    <MenuButton size='XS' >
-                        <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
-                            {/* <MenuItem icon={AddSmall} title="Add group"/> */}
-                            <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
-                        </Menu>
-                    </MenuButton>
-                </section>
+            <section style={{}} className="task-actions">
+                <MenuButton size='XS' >
+                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
+                        {/* <MenuItem icon={AddSmall} title="Add group"/> */}
+                        <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
+                    </Menu>
+                </MenuButton>
+            </section>
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}>
@@ -79,13 +82,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 </div>
                 <div className='task-title-cell'>
                     <span style={{}} className='dyn-cell title'><InputCell txt={task.title} onUpdateInput={onUpdateTitle} style={{ marginLeft: '5px' }} /></span>
-                    <Button
-                        className="btn-message"
-                        kind="tertiary"
-                        onClick={() => console.log('m-list')}
-                        size="small">
-                        <Update />
-                    </Button>
+                    <div className="btn-message-container">
+                        <Link to={'/'}>
+                            <AddUpdate />
+                        </Link>
+                    </div>
                 </div>
             </div>
 
@@ -93,21 +94,21 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             {
                 cells.map((cell, idx) => (
 
-                <DynamicCmp key={idx}
-                    groupId={groupId}
-                    groupColor={groupColor}
-                    cmpType={cell.type}
-                    onChange={onChange}
-                    clmType={getClmType(cell._id)}
-                    cell={cell}
-                    onUpdateCell={onUpdateCell}
-                    taskId={task._id}
-                    onClick={openDynModal}
-                    onClickLabel={onClickLabel}
-                />
-            ))
-        }
-    </>
+                    <DynamicCmp key={idx}
+                        groupId={groupId}
+                        groupColor={groupColor}
+                        cmpType={cell.type}
+                        onChange={onChange}
+                        clmType={getClmType(cell._id)}
+                        cell={cell}
+                        onUpdateCell={onUpdateCell}
+                        taskId={task._id}
+                        onClick={openDynModal}
+                        onClickLabel={onClickLabel}
+                    />
+                ))
+            }
+        </>
     )
 }
 

@@ -82,6 +82,7 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps, boa
                                         onUpdateCell={onUpdateCell}
                                         onUpdateTask={onUpdateTask}
                                         onRemoveTask={onRemoveTask}
+                                        isLast={index === tasks.length - 1}
                                     />
 
                                 </div>
@@ -100,21 +101,25 @@ export function TaskList({ groupId, onAddTask, groupColor, placeholderProps, boa
                         }} />
                     )}
                     {provided.placeholder}
-                    <div className='list-item add-task'  >
+                    <div className='list-item add-task' style={{  }} >
                         <div className='blank-cell-add-task' style={{ width: '40px' }}>
 
                         </div>
                         <div className="add-task-sticky-container" style={{
                             borderLeft: `0.4em solid ${groupColor}`,
-                            borderBottomLeftRadius: "0.3em"
+                            borderBottomLeftRadius: "0.3em",
+                            borderTop: '1px solid #d0d4e4'
                         }}>
 
-                            <div className='dyn-cell checkbox-container'>
+                            <div className='dyn-cell checkbox-container' style={{borderTop: '1px solid #d0d4e4', borderBottom: '1px solid #d0d4e4'}}>
                                 <Checkbox />
                             </div>
-                            <div className='add-task-content-container'>
+                            <div className='add-task-content-container' style={{borderBottom: '1px solid #d0d4e4'}}>
                                 <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} />
                             </div>
+                        </div>
+                        <div className='add-task-fill-gap'>
+
                         </div>
                     </div>
                 </div>

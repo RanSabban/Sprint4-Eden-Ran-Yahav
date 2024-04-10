@@ -14,13 +14,16 @@
     position: relative;
     // border-left: 0.4em solid $clr-label-3;
 
-    &:hover {
-        background-color: rgba(245, 246, 248, 0.97);
+    &:hover > *  {
+        background-color: rgba(245, 246, 248, 0.9);
+        // background-color: black;
     }
 
     & .blank-cell-add-task {
         position: sticky;
         left: 0;
+        height: 40px;
+        background: white;
     }
 
     &.drag {
@@ -28,7 +31,7 @@
         background-color: $bgc-main;
         rotate: 1deg;
         opacity: 60%;
-        border: none;
+        border-bottom: 1px solid $clr-border;
     }
 
     .dyn-cell {
@@ -77,6 +80,8 @@
         display: grid;
         justify-items: center;
         width: 36px;
+        border: 1px solid #d0d4e4;
+        border-bottom: none;
     }
 
     .timeline-container {
@@ -124,6 +129,10 @@
         display: grid;
         position: sticky;
         left: 0;
+        height: 100%;
+        background: #fff;
+        justify-content: center;
+        align-items: center;
     }
 
     &:hover .task-actions button {
@@ -132,10 +141,7 @@
     }
 
     .task-actions button {
-        // opacity: 0;
-        // position: absolute;
-        // right: 0.9em;
-        // top: -1em;
+        opacity: 0;
     }
 
     .dyn-cell.txt {
@@ -151,6 +157,10 @@
     .task-title-cell {
         display: grid;
         grid-auto-flow: column;
+        grid-template-columns: 1fr 65px;
+        border-top: 1px solid #d0d4e4;
+        border-left: none;
+        border-right: none;
         // width: 377px;
     }
 
@@ -162,12 +172,48 @@
         grid-template-columns: 36px;
         position: sticky;
         left: 40px;
+        // grid-column: 2 / -1;
     }
 
     & .add-task-content-container {
         display: grid;
         align-items: center;
-        width: 80%;
+        width: 100%;
+        border-top: 1px solid #d0d4e4;
     }
+
+    & .add-task-fill-gap {
+        grid-column: 3/-1;
+        height: 39px;
+        width: 100%;
+        border: 1px solid #d0d4e4;
+        border-left: none;
+        border-right: none;
+    }
+
+    & .btn-message-container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid #d0d4e4;
+    }
+
+    & .btn-message-container a {
+        display: grid;
+    }
+
+    & .btn-message-container svg {
+        color: $clr-icon;
+        width: 22px;
+        height: 22px;
+    }
+
+    & .btn-message-container svg:hover {
+        color: $clr-btn;
+    }
+
+    // & .task-preview-title-container .task-title-cell:last-of-type {
+    //     border-bottom: 1px solid #d0d4e4;
+    // }
 
 }
