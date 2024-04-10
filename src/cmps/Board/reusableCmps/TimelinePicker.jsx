@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from "react"
 import { usePopper } from "react-popper"
-import { format } from 'date-fns'
+import { format, addMonths } from 'date-fns'
+
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
 
-import { updateTask as modifyTask, updateCell } from "../../../store/actions/board.actions" // Ensure correct import path
+import { updateTask as modifyTask, updateCell } from "../../../store/actions/board.actions" 
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service"
-// Assuming utilService is available
-import { utilService } from "../../../services/util.service"
 import { Icon } from "monday-ui-react-core"
-import { CloseSmall, Calendar } from "monday-ui-react-core/icons" // Import Calendar icon
+import { CloseSmall, Calendar } from "monday-ui-react-core/icons" 
 
 export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpdateCell }) {
-    const [selected, setSelected] = useState(dueDate ? new Date(dueDate) : null) // Initialize with dueDate if available
+    const [selected, setSelected] = useState(dueDate ? new Date() : null)
     const [isDatePickerOpen, setDatePickerOpen] = useState(false)
 
     const [referenceElem, setReferenceElem] = useState(null)
     const [popperElem, setPopperElem] = useState(null)
     const [arrowElem, setArrowElem] = useState(null)
+    const today = new Date();
+    const nextMonth = addMonths(new Date(), 1);
+    
     const { styles, attributes } = usePopper(referenceElem, popperElem, {
         modifiers: [{ name: 'arrow', options: { element: arrowElem } }],
     })
+    const modifiers = {
+        today: new Date(),
+    }
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
-            if (!popperElem.contains(event.target) && !referenceElem.contains(event.target)) {
-                setDatePickerOpen(false)
+            if (popperElem && !popperElem.contains(event.target) && referenceElem && !referenceElem.contains(event.target)) {
+                setDatePickerOpen(false);
             }
-        }
+        };
+        
         document.addEventListener('mousedown', handleOutsideClick)
 
         return () => {
@@ -36,10 +42,12 @@ export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpda
     }, [popperElem, referenceElem])
 
     async function onChangeDueDate(date) {
+        // ev.preventDefault()
+
         if (!date) return
         const timestamp = date.getTime()
-        cell.date = timestamp
         try {
+            cell.date = timestamp
             await onUpdateCell(cell, taskId)
             console.log(timestamp);
             showSuccessMsg(`Changed due date in task ${taskId}`)
@@ -50,7 +58,7 @@ export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpda
     }
 
     async function clearTaskDueDate(ev) {
-        ev.stopPropagation()
+        ev.preventDefault()
         try {
             await updateCell(boardId, groupId, taskId)
             setSelected(null) // Clear selected date
@@ -110,9 +118,12 @@ export function TimelinePicker({ dueDate, boardId, groupId, taskId, cell, onUpda
                         selected={selected}
                         onSelect={onChangeDueDate}
                         footer={footer}
+                        showOutsideDays
+                        modifiers={modifiers} // Use the modifiers here
                         modifiersClassNames={{
                             selected: 'my-selected',
-                            today: 'my-today'
+                            today: 'my-today',
+                            // Ensure your custom styling matches what you're trying to achieve
                         }}
                     />
                     <div ref={setArrowElem}
