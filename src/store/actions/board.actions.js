@@ -178,18 +178,24 @@ export async function removeTask(taskId, groupId, boardId) {
 
 export async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        console.log(updatedCell, taskId, groupId, boardId);
-        await boardService.updateCell(updatedCell, taskId, groupId, boardId)
+        console.log('updatedCell:', updatedCell, 'taskId' ,taskId, 'groupId',groupId, 'boardId',boardId);
+        const board = await boardService.updateCell(updatedCell, taskId, groupId, boardId)
+        console.log(board);
 
         store.dispatch({
-            type: UPDATE_CELL,
-            payload: {
-                updatedCell,
-                taskId,
-                groupId,
-                boardId
-            }
+            type: SET_CURRENT_BOARD,
+            board
         })
+
+        // store.dispatch({
+        //     type: UPDATE_CELL,
+        //     payload: {
+        //         updatedCell,
+        //         taskId,
+        //         groupId,
+        //         boardId
+        //     }
+        // })
     }
     catch (err) {
         console.log(err);

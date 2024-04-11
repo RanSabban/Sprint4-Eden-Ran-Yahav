@@ -20,7 +20,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
     async function onUpdateCell(cell, taskId) {
         try {
-            await updateCell(cell, taskId, groupId)
+            console.log(cell,taskId);
+            await updateCell(cell, taskId, groupId,boardId)
         }
         catch (err) {
             console.log('err update task', err)

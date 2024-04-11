@@ -25,10 +25,20 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     const { target, clmType, cell, isOpen, callBackFunc } = modalProps
 
     // const [isLabelOpen, setIsLabelOpen] = useState(false)
-    const [selected, setSelected] = useState(cell)
+    const [selectedCell, setSelectedCell] = useState(null)
 
 
     const { boardId } = useParams()
+
+    useEffect(() => {
+        const update = async () => {
+            if (selectedCell) {
+                await onUpdateCell(selectedCell, task._id);
+                setSelectedCell(null);
+            }
+        };
+        update();
+    }, [selectedCell]);
 
     // useEffect(() => {
     //     if(selected){
@@ -77,8 +87,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     }
 
     function onClickLabel(target, clmType, cell) {
+        // const cellToUpdate = setSelectedCell((prevSelectedCell) => cell)
         try {
-            onOpenModalLabel(target, clmType, cell, task, groupId, onUpdateCell)
+            // const cellToOpen = setSelectedCell(cell)
+            // console.log(selectedCell);
+            onOpenModalLabel(target, clmType, cell, task, groupId, setSelectedCell, boardId)
         } catch (err) {
             console.log('cannot open modal', err)
         }
@@ -133,12 +146,13 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         cmpType={cell.type}
                         onChange={onChange}
                         clmType={getClmType(cell._id)}
-                        setSelected={setSelected}
+                        setSelectedCell={setSelectedCell}
                         cell={cell}
                         onUpdateCell={onUpdateCell}
                         taskId={task._id}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
+                        // selectedCell={selectedCell}
                     />
                 ))
             } 

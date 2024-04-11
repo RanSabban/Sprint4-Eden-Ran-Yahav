@@ -8,7 +8,7 @@ export function LabelPicker() {
     const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = modalProps
     const dispatch = useDispatch()
     // console.log(modalProps)
-    const [cellToUpdate, setCellToUpdate] = useState(cell)
+    // const [cellToUpdate, setCellToUpdate] = useState(cell)
     // setSelected(cellToUpdate)
     const { boardId } = useParams()
 
@@ -76,16 +76,23 @@ export function LabelPicker() {
             document.removeEventListener('mousedown', handleClickOutside)
             window.removeEventListener('scroll', handleScroll, true)
         }
-    }, [isOpen, target, cellToUpdate])
+    }, [isOpen, target, cell])
 
     if (!isOpen || !target) return null
 
+    function onClickStatus(dataId) {
+        const cellToUpdate = {...cell, dataId}
+        callBackFunc(cellToUpdate)
+        onHideModalLabel()
+    }
+
     async function onUpdateCell(labelId) {
-        const newCell = { ...cellToUpdate, dataId: labelId }
-        setCellToUpdate(newCell)
+        const newCell = { ...cell, dataId: labelId }
+        // setCellToUpdate(newCell)
         try {
-            console.log(cellToUpdate);
-            updateCell(cellToUpdate, task._id, groupId, boardId)
+            // console.log(cellToUpdate);
+            updateCell(cell, task._id, groupId, boardId)
+        
             onHideModalLabel()
             // setSelected(labelId)
 
@@ -93,6 +100,8 @@ export function LabelPicker() {
             console.log(err)
         }
     }
+
+    console.log(cell);
 
     return (
         <div className="label-picker-container" ref={pickerRef}>
@@ -122,7 +131,7 @@ export function LabelPicker() {
             <div className="label-picker-content">
                 <ul>
                     {clmType.data.map((label) => (
-                        <li key={label.id} className="label" onClick={() => onUpdateCell(label.id)} style={{
+                        <li key={label.id} className="label" onClick={() => onClickStatus(label.id)} style={{
                             backgroundColor: label.color,
                             width: '130px',
                             height: '35px'
