@@ -88,7 +88,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
                                     className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
-
+                                      
+                                   
                                     <TaskPreview
                                         task={task}
                                         groupColor={groupColor}
@@ -99,8 +100,9 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                                         resizeColumn={resizeColumn}
                                         columnWidth={columnWidth}
                                         
-                                    />
+                                        />
 
+                                       
                                 </div>
                             )}
                         </Draggable>

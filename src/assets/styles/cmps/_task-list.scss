@@ -12,11 +12,20 @@
     align-items: center;
     text-align: center;
     position: relative;
-
+    // z-index: 11111111111111111111111111111111111;
+    
+    // & .on-hover-task {
+    //     z-index: 111111111111111111;
+    //     // pointer-events:none;
+    //     &:hover{
+            
+    //         background-color: rgba(103, 104, 121, 0.1);
+    //     }
+    
     // border-left: 0.4em solid $clr-label-3;
 
-    &:hover>* {
-        background-color: rgba(245, 246, 248, 0.9);
+    &:hover {
+        background-color: rgba(103, 104, 121, 0.1);
         // background-color: black;
     }
 
@@ -225,5 +234,12 @@
     // & .task-preview-title-container .task-title-cell:last-of-type {
     //     border-bottom: 1px solid #d0d4e4;
     // }
+
+    // checkbox
+
+    .singleLineEllipsis_f03db45281 {
+        // display: none !important;
+    }
+
 
 }

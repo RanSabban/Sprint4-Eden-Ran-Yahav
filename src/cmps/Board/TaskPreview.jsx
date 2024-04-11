@@ -75,16 +75,23 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
 
     // const taskTitleCellStyle = isLast ? { } : {}
 
-    return (
-        // <section className="task-preview">
-        <>
+    return ( 
+    
+    <>
+
+
+           
+        
             <section style={{}} className="task-actions">
+                {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
+
                 <MenuButton size='XS' >
-                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
+                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE} style={{zIndex: '1111111'}}>
                         {/* <MenuItem icon={AddSmall} title="Add group"/> */}
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
                 </MenuButton>
+                {/* </section> */}
             </section>
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
@@ -123,9 +130,10 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         onClickLabel={onClickLabel}
                     />
                 ))
-            }
-        </>
+            } 
+       </>
     )
+
 }
 
 
