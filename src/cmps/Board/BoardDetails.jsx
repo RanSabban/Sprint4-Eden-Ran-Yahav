@@ -63,6 +63,7 @@ export function BoardDetails() {
                 />
 
                 <Outlet/> 
+       
             </section>
         </>
     )

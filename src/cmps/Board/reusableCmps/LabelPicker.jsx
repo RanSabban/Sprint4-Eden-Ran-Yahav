@@ -1,56 +1,107 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { onHideModalLabel } from "../../../store/actions/board.actions";
 
 export function LabelPicker() {
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps);
     const { target, clmType, cell, task, isOpen, callBackFunc } = modalProps;
+    const dispatch = useDispatch();
 
-    const pickerRef = useRef(null); 
+    const pickerRef = useRef(null);
 
     useEffect(() => {
         if (!isOpen || !target) return;
 
+        const updatePosition = () => {
+            const rect = target.getBoundingClientRect();
+            const picker = pickerRef.current;
+            if (!picker) return;
+
+            // Force layout to calculate picker height
+            picker.style.visibility = 'hidden';
+            picker.style.display = 'block';
+            const pickerHeight = picker.offsetHeight;
+
+            // Calculate available space above and below target
+            const spaceAbove = rect.top;
+            const spaceBelow = window.innerHeight - rect.bottom;
+
+            console.log(spaceAbove,spaceBelow);
+
+            // Determine opening side based on available space and picker height
+            let topPosition;
+            if (spaceBelow > pickerHeight || spaceBelow > spaceAbove) {
+                topPosition = rect.bottom + window.scrollY;
+                if (topPosition + pickerHeight > window.innerHeight) {
+                    topPosition = window.innerHeight - pickerHeight;
+                }
+            } else {
+                topPosition = rect.top - pickerHeight + window.scrollY;
+                if (topPosition < 0) {
+                    topPosition = 0;
+                }
+            }
+
+            // Apply calculated position
+            picker.style.position = 'fixed';
+            picker.style.left = `${rect.left + window.scrollX}px`;
+            picker.style.top = `${topPosition}px`;
+
+            // Restore visibility
+            picker.style.visibility = 'visible';
+        };
+
         const handleClickOutside = (event) => {
             if (pickerRef.current && !pickerRef.current.contains(event.target)) {
-                onHideModalLabel();
+                dispatch(onHideModalLabel());
             }
         };
 
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-
-        const rect = target.getBoundingClientRect();
-        const pickerStyle = document.querySelector(".label-picker-container").style;
-        pickerStyle.position = 'absolute';
-        pickerStyle.left = `${rect.left + window.scrollX}px`;
-        pickerStyle.top = `${rect.bottom + window.scrollY}px`;
-
- 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+        const handleScroll = () => {
+            const rect = target.getBoundingClientRect();
+            const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+            if (!isInViewport) {
+                dispatch(onHideModalLabel());
+            } else {
+                updatePosition();
+            }
         };
-    }, [isOpen, target]); 
 
-    if (!target || !isOpen) return null;
+        updatePosition(); // Update position initially and on every scroll
+        document.addEventListener('mousedown', handleClickOutside);
+        window.addEventListener('scroll', handleScroll, true);
+
+        return () => { // Cleanup
+            document.removeEventListener('mousedown', handleClickOutside);
+            window.removeEventListener('scroll', handleScroll, true);
+        };
+    }, [isOpen, target, dispatch]);
+
+    if (!isOpen || !target) return null;
 
     function onUpdateCell(labelId) {
-        console.log(labelId);
-        let cellToUpdate = cell;
-        // cell.dataId = labelId
-        cellToUpdate = {...cell, dataId: labelId}
+        const cellToUpdate = { ...cell, dataId: labelId };
         callBackFunc(cellToUpdate, task._id);
-        onHideModalLabel();
+        dispatch(onHideModalLabel());
     }
 
-    const { data } = clmType;
-
     return (
-        <div className="label-picker-container" ref={pickerRef} style={{position: 'absolute', left: '50%'}}>
+        <div className="label-picker-container" ref={pickerRef}>
+            <div className="cell-target-indicator" style={{ 
+                height: '20px', 
+                width: '100%', 
+                backgroundColor: '#f0f0f0', 
+                textAlign: 'center', 
+                lineHeight: '20px', 
+                borderTopLeftRadius: '0.6em', 
+                borderTopRightRadius: '0.6em' 
+            }}>
+                Targeted Cell Indicator
+            </div>
+
             <div className="label-picker-content">
                 <ul>
-                    {data.map((label) => (
+                    {clmType.data.map((label) => (
                         <li key={label.id} className="label" onClick={() => onUpdateCell(label.id)} style={{
                             backgroundColor: label.color,
                             width: '130px',

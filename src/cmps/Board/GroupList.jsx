@@ -9,6 +9,7 @@ import { AddSmall, Delete, Edit, Favorite, Moon } from "monday-ui-react-core/ico
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { GroupPreview } from "./GroupPreview"
 import { useSelector } from "react-redux"
+import { LabelPicker } from "./reusableCmps/LabelPicker"
 
 
 export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps }) {
@@ -66,6 +67,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
                 <ul className="group-list"
                     {...provided.droppableProps}
                     ref={provided.innerRef}>
+               
                     {groups.map((group, index) => (
                         <Draggable key={group._id} draggableId={group._id.toString()} index={index}>
 

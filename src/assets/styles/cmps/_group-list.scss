@@ -44,6 +44,27 @@
             align-items: center;
         }
 
+
+        & .dyn-cell-flexy {
+            position: relative;
+            border-bottom: 1px solid #d0d4e4;
+         
+        }
+
+        & .resize-handle {
+            position: absolute;
+            right: 0;
+            width: 2px; 
+            /* Adjust based on desired usability */
+            height: 100%;
+            cursor: ew-resize;
+            /* Indicates horizontal resizing */
+            background-color: #ccc;
+            /* Make the handle visible */
+        }
+
+        
+
         & .header-item {
             text-transform: capitalize;
         }

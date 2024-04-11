@@ -20,14 +20,14 @@ import { EditableCellTitle } from './reusableCmps/EditableCellTitle';
 
 
 
-export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast }) {
+export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn }) {
     // console.log('this is task for reall', task)
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const [isLabelOpen, setIsLabelOpen] = useState(false)
 
-    const {boardId} = useParams()
+    const { boardId } = useParams()
 
     async function onChange(cell) {
         try {
@@ -55,11 +55,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         onUpdateTask(taskToUpdate)
     }
 
-    function onClickLabel(ev, clmType, cell) {
+    function onClickLabel(target, clmType, cell) {
         try {
-            onOpenModalLabel(ev, clmType, cell, task, onUpdateCell)
+            onOpenModalLabel(target, clmType, cell, task, onUpdateCell)
         } catch (err) {
-            console.log('cannot change label', err);
+            console.log('cannot open modal', err);
         }
     }
 
@@ -85,7 +85,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 </div>
                 <div className='task-title-cell'>
                     <span style={{}} className='dyn-cell title'>
-                        <EditableCellTitle txt={task.title} onUpdateInput={onUpdateTitle}/>
+                        <EditableCellTitle txt={task.title} onUpdateInput={onUpdateTitle} />
                     </span>
                     <div className="btn-message-container">
                         <Link to={`/board/${boardId}/task/${task._id}`}>

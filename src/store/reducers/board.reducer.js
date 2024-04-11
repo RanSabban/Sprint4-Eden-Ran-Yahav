@@ -23,8 +23,8 @@ export const UPDATE_CELL = 'UPDATE_CELL'
 const initialState = {
     boards: null,
     board: null,
-    groups: null,
-    clmTypes: null,
+    // groups: null,
+    // clmTypes: null,
     lastRemovedBoard: null,
     isLoading: false,
     modalProps: {}
@@ -173,10 +173,8 @@ export function boardReducer(state = initialState, action) {
                 return state; // Return current state if groups are not found
             }
 
-            // Remove the task from the source group
             const [movedTask] = sourceGroup.tasks.splice(sourceTaskIndex, 1);
 
-            // Insert the task into the destination group
             destinationGroup.tasks.splice(destinationTaskIndex, 0, movedTask);
 
             return {
@@ -198,7 +196,7 @@ export function boardReducer(state = initialState, action) {
                     groups: newGroups
                 }
             }
-        default:
+        // default:
     }
     return newState
 }
