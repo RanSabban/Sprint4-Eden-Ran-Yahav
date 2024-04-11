@@ -9,6 +9,7 @@ import { useEditableText } from '../../customHooks/useEditableText';
 import { ResizableColumn } from './ResizableColumn';
 import { GroupArrow } from '../../services/svg.service';
 import { set } from 'date-fns';
+import { GroupStatistics } from './GroupStatistics';
 
 export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps }) {
     const [initialTitle, setInitialTitle] = useState(group.title)
@@ -102,6 +103,11 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     placeholderProps={placeholderProps} 
                     columnWidth={columnWidths}
                     />
+
+                <GroupStatistics  
+                tasks={group.tasks}
+                index={index}
+                />
             </section>
 
         </>

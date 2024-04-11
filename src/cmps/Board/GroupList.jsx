@@ -47,7 +47,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
             await updateGroup(groupId, updatedGroupData);
 
             console.log('Group updated successfully');
-            showSuccessMsg('Group updated successfully');
+            // showSuccessMsg('Group updated successfully');
         } catch (err) {
             console.error('Error updating group:', err);
             showErrorMsg('Error updating group');

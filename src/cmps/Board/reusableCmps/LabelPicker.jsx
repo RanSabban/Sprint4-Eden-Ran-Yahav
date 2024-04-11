@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 
 export function LabelPicker() {
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
-    const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = modalProps
+    const { target, clmType, cell, isOpen, callBackFunc } = modalProps
     const dispatch = useDispatch()
     // console.log(modalProps)
     // const [cellToUpdate, setCellToUpdate] = useState(cell)
@@ -84,21 +84,6 @@ export function LabelPicker() {
         const cellToUpdate = {...cell, dataId}
         callBackFunc(cellToUpdate)
         onHideModalLabel()
-    }
-
-    async function onUpdateCell(labelId) {
-        const newCell = { ...cell, dataId: labelId }
-        // setCellToUpdate(newCell)
-        try {
-            // console.log(cellToUpdate);
-            updateCell(cell, task._id, groupId, boardId)
-        
-            onHideModalLabel()
-            // setSelected(labelId)
-
-        } catch (err) {
-            console.log(err)
-        }
     }
 
     console.log(cell);
