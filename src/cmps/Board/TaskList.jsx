@@ -65,7 +65,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
         setIsClear(false)
     }
 
-    console.log(tasks);
+    // console.log(tasks);
 
     return (
         <Droppable droppableId={groupId} type="TASK">

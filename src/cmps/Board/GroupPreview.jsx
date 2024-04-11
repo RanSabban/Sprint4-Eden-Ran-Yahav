@@ -44,7 +44,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
         gridTemplateColumns: columnWidths.map(width => `${width}px`).join(' ')
     };
 
-    console.log(dynamicStyle);
+    // console.log(dynamicStyle);
     return (
 
         <>

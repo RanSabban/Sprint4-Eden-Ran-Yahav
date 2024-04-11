@@ -38,7 +38,7 @@ export function UserMsg() {
     <section className={`user-msg ${msg.type}`}>
       <UserV />
       {msg.txt}
-      <UserX style={{lineHeight: '0.5em', position: 'absolute', right: '1em'}} onClick={closeMsg}/>
+      <UserX style={{ lineHeight: '0.5em', position: 'absolute', right: '1em' }} onClick={closeMsg} />
     </section>
   )
 }

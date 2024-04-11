@@ -1,23 +1,19 @@
 import React, { useEffect, useRef, useState } from "react"
-import { usePopper } from "react-popper"
-import { format, addMonths } from 'date-fns'
 
+import { format, addMonths } from 'date-fns'
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
 
-import { updateTask as modifyTask, updateCell } from "../../../store/actions/board.actions"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service"
-import { Icon } from "monday-ui-react-core"
-import { CloseSmall, Calendar } from "monday-ui-react-core/icons"
 
-export function TimelinePicker({ isDatePickerOpen, setDatePickerOpen, boardId, groupId, taskId, cell, onUpdateCell }) {
-    const [selected, setSelected] = useState(new Date());
+export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }) {
+    const [selected, setSelected] = useState(new Date())
     const referenceElem = useRef()
-    const popperElem = useRef(null);
-    const arrowElem = useRef(null);
+    const popperElem = useRef(null)
+    const arrowElem = useRef(null)
 
-    const styles = { popper: {}, arrow: {} };
-    const attributes = { popper: {} };
+    const styles = { popper: {}, arrow: {} }
+    const attributes = { popper: {} }
 
     const modifiers = {
         today: new Date(),
@@ -28,15 +24,15 @@ export function TimelinePicker({ isDatePickerOpen, setDatePickerOpen, boardId, g
         const handleOutsideClick = (event) => {
             if (popperElem.current && !popperElem.current.contains(event.target) &&
                 referenceElem.current && !referenceElem.current.contains(event.target)) {
-                setDatePickerOpen(false);
+                setDatePickerOpen(false)
             }
-        };
+        }
 
-        document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('mousedown', handleOutsideClick)
         return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
-        };
-    }, [setDatePickerOpen]);
+            document.removeEventListener('mousedown', handleOutsideClick)
+        }
+    }, [setDatePickerOpen])
 
 
     async function onChangeDueDate(date) {
@@ -46,9 +42,9 @@ export function TimelinePicker({ isDatePickerOpen, setDatePickerOpen, boardId, g
             setDatePickerOpen(false)
             cell.date = timestamp
             await onUpdateCell(cell, taskId)
-            console.log(timestamp);
+            console.log(timestamp)
             showSuccessMsg(`Changed due date in task ${taskId}`)
-            setSelected(date);
+            setSelected(date)
         } catch (err) {
             showErrorMsg(`Can't change due date in task ${taskId}`)
         }
@@ -56,9 +52,8 @@ export function TimelinePicker({ isDatePickerOpen, setDatePickerOpen, boardId, g
 
     return (
         <>
-
             <div className="task-date"
-                ref={referenceElem} 
+                ref={referenceElem}
             >
                 <div ref={popperElem}
                     style={styles.popper}
@@ -80,13 +75,9 @@ export function TimelinePicker({ isDatePickerOpen, setDatePickerOpen, boardId, g
                     <div ref={arrowElem} style={styles.arrow} />
                 </div>
             </div>
-
         </>
-    );
-
+    )
 }
-
-
 
 const pickerCss = `
 .my-selected:not([disabled]) { 

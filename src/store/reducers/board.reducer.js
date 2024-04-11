@@ -58,10 +58,10 @@ export function boardReducer(state = initialState, action) {
 
 
         case SET_LABEL_MODAL: {
-            const { target, clmType, cell, task, isOpen, callBackFunc } = action.payload
+            const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = action.payload
             newState = {
                 ...state,
-                modalProps: { target, clmType, task, cell, isOpen, callBackFunc }
+                modalProps: { target, clmType, task, cell, isOpen, groupId, callBackFunc }
             }
             break
         }
