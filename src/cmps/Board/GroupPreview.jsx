@@ -6,12 +6,15 @@ import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
 import { useState } from 'react';
 import { useEditableText } from '../../customHooks/useEditableText';
+import { ResizableColumn } from './ResizableColumn';
 
 export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps }) {
     const [initialTitle, setInitialTitle] = useState(group.title)
     const [isEditable, setIsEditable] = useState(false)
     const [dynClass, setDynClass] = useState('')
     const editableTitleRef = useEditableText(initialTitle, isEditable, setIsEditable, onUpdateGroup, group)
+    const [columnWidths, setColumnWidths] = useState([40, 453, 150, 150, 100, 200, 100, 100, 100, 100]);
+
 
     async function handleClick() {
         if (!isEditable) {
@@ -24,7 +27,24 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                 editableTitleRef.current.focus()
             }
         }
+
+  
+
+
     }
+
+
+    const resizeColumn = (index, newWidth) => {
+        setColumnWidths(currentWidths =>
+            currentWidths.map((width, i) => (i === index ? newWidth : width))
+        )
+    }
+
+    const dynamicStyle = {
+        gridTemplateColumns: columnWidths.map(width => `${width}px`).join(' ')
+    };
+
+    console.log(dynamicStyle);
     return (
 
         <>
@@ -36,10 +56,10 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveGroup(group._id)} />
                         </Menu>
                     </MenuButton>
-    
-                <Tooltip content="Click to Edit"
+
+                    <Tooltip content="Click to Edit"
                         zIndex="99999"
-                    animationType="expand">
+                        animationType="expand"> 
                         <EditableHeading
                             style={{ color: group.groupColor }}
                             type={EditableHeading.types.h3}
@@ -47,18 +67,20 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             value={group.title}
                             isEditMode={"true"}
                             id='editable-header'
-                        onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
+                            onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
 
                         />
                     </Tooltip>
                 </div>
             </section>
-            <section style={{
-            }} className="group-container">
+            <section
+                className="group-container" style={dynamicStyle}>
                 <section className="header-items">
                     <div className='blank-cell'>
 
                     </div>
+
+                    {/* <ResizableColumn /> */}
                     <div className="group-preview-title-container dyn-cell"
                         style={{ borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em" }}>
                         <div className='checkbox-header-container sticky'>
@@ -66,14 +88,16 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         </div>
                         <div className='header-item sticky'>{boardType}</div>
                     </div>
-                    <RenderHeaders clmTypes={clmTypes} />
+                    <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
                 </section>
                 <TaskList
                     groupColor={group.groupColor}
                     tasks={group.tasks}
                     groupId={group._id}
                     onAddTask={onAddTask}
-                    placeholderProps={placeholderProps} />
+                    placeholderProps={placeholderProps} 
+                    columnWidth={columnWidths}
+                    />
             </section>
 
         </>

@@ -1,3 +1,4 @@
+
 import { InputCell } from "../reusableCmps/InputCell";
 
 export function TextCellComponent({ clmType, cell, taskId, onUpdateCell }) {

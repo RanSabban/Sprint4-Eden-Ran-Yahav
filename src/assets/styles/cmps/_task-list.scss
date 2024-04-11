@@ -12,7 +12,7 @@
     align-items: center;
     text-align: center;
     position: relative;
-    
+
     // border-left: 0.4em solid $clr-label-3;
 
     &:hover>* {
@@ -47,6 +47,7 @@
         &:not(:first-child) {
             justify-items: center;
         }
+
     }
 
     .members {

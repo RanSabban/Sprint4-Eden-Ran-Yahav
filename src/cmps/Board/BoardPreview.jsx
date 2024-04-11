@@ -7,12 +7,24 @@ import { RenderHeaders } from "./RenderHeaders";
 import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
 import { useSelector } from "react-redux";
 import { LabelPicker } from "./reusableCmps/LabelPicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export function BoardPreview({ board, onAddGroup }) {
     const currBoard = useSelector(state => state.boardModule.board)
     const [placeholderProps, setPlaceholderProps] = useState("");
+
+    // const gridStyle = {
+    //     '--column-widths': columnWidths.map(width => `${width}px`).join(' '),
+    // };
+
+
+    // useEffect(() => {
+    //     // Convert columnWidths array to a string, appending 'px' to each value
+    //     const widthsString = columnWidths.map(width => `${width}px`).join(' ');
+    //     // Update the CSS variable on the root element
+    //     document.documentElement.style.setProperty('--dynamic-column-widths', widthsString);
+    // }, [columnWidths]);
 
     const groups = board.groups
     const clmTypes = board.clmTypes
@@ -90,6 +102,7 @@ export function BoardPreview({ board, onAddGroup }) {
 
 
         <section className="board-preview">
+            <LabelPicker />
             <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate} >
                 <GroupList
                     placeholderProps={placeholderProps}
@@ -98,8 +111,8 @@ export function BoardPreview({ board, onAddGroup }) {
                     onAddTask={onAddTask}
                     boardType={board.type}
                     boardId={board._id}
+             
                     onAddGroup={onAddGroup} />
-
             </DragDropContext>
 
         </section>

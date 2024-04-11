@@ -246,7 +246,7 @@ export async function dragAndDropGroup(source, destination, boardId) {
 
 export async function onOpenModalLabel(target, clmType, cell, task, callBackFunc) {
     try {
-        console.log(target);
+        // console.log(target);
         store.dispatch({
             type: SET_LABEL_MODAL,
             payload: {

@@ -11,7 +11,7 @@ import { EditableCmp } from './reusableCmps/EditableCmp'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
 
-export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes }) {
+export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn }) {
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
@@ -22,7 +22,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
     async function onUpdateCell(cell, taskId) {
         try {
-           await updateCell(cell, taskId, groupId)
+            await updateCell(cell, taskId, groupId)
         }
         catch (err) {
             console.log('err update task', err)
@@ -96,6 +96,9 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                                         onUpdateTask={onUpdateTask}
                                         onRemoveTask={onRemoveTask}
                                         isLast={index === tasks.length - 1}
+                                        resizeColumn={resizeColumn}
+                                        columnWidth={columnWidth}
+                                        
                                     />
 
                                 </div>
