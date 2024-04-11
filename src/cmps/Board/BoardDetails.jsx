@@ -16,7 +16,7 @@ export function BoardDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const [isCollapsed, setIsCollapsed] = useState(false)
     const { ref, inView } = useInView({
-        threshold: 0.1,
+        threshold: 0,
     })
 
     useEffect(() => {
