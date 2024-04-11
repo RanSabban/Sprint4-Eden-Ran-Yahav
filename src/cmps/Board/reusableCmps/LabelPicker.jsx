@@ -117,16 +117,21 @@ export function LabelPicker() {
                 Targeted Cell Indicator
             </div>
 
-
-            {/* <DynamicCmp 
+            target, clmType, cell, task, isOpen, groupId, callBackFunc
+            <DynamicCmp 
                         clmType={clmType}
+                        callBackFunc = {callBackFunc}
                         cmpType={cell.type}
-                        // clmType={getClmType(cell._id)}
+                        task={task}
+                        isOpen={isOpen}
+                        groupId={groupId}
+                        target = {target}
                         cell={cell}
                         onUpdateCell={onUpdateCell}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
-                    /> */}
+                    />
+
 
             <div className="label-picker-content">
                 <ul>
@@ -149,15 +154,13 @@ export function LabelPicker() {
 
 function DynamicCmp(props) {
     switch (props.clmType) {
-        case 'label':
+        case 'status':
             return <StatusCellComponent {...props} />
         case 'members':
             return <MembersCellComponent {...props} />
-        case 'txt':
-            return <TextCellComponent {...props} />
-        case 'date':
-            return <DateCellComponent {...props} />
-        case 'timelines':
+        case 'priority':
+            return <TimelinesComponent {...props} />
+        case 'colors':
             return <TimelinesComponent {...props} />
         default: <span>NoNo</span>
 

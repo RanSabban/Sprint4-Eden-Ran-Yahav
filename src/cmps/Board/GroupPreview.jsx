@@ -21,9 +21,9 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     const editableTitleRef = useEditableText(initialTitle, isEditable, setIsEditable, onUpdateGroup, group)
     const [columnWidths, setColumnWidths] = useState([40, 453, 150, 150, 100, 200, 100, 100, 100, 100]);
     const [isOpen, setIsOpen] = useState(false)
-    const colorOpen = isOpen ?  'block' : 'none'
+    const colorOpen = isOpen ? 'grid' : 'none'
     const [optionColorOpen, setOptionColorOpen] = useState(false)
-    const colorOptions = optionColorOpen ?  'block' : 'none'
+    const colorOptions = optionColorOpen ? 'block' : 'none'
 
 
     async function handleClick() {
@@ -56,14 +56,12 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     async function setGroupColor(ev) {
 
         const updatedGroupData = { ...specificGroup, groupColor: ev.target.style.backgroundColor }
-        console.log(ev.target.style.backgroundColor)
-        console.log(updatedGroupData)
-        console.log( group._id )
 
+        console.log('yes v ani', updatedGroupData)
         try {
-           await updateGroup(group._id, updatedGroupData)
+            await updateGroup(group._id, updatedGroupData)
             // setSpecificGroup(updatedGroupData)
-
+            setOptionColorOpen(!optionColorOpen)
             console.log('Group updated successfully')
 
         } catch (err) {
@@ -99,9 +97,22 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     <Tooltip content="Click to Edit"
                         zIndex="99999"
                         animationType="expand">
-                        <span style={{ color: group.groupColor, transform:  'rotate(90deg)' }} className='group-collapse'> <GroupArrow /> </span>
+                        <span style={{ color: group.groupColor, transform: 'rotate(90deg)' }} className='group-collapse'> <GroupArrow /> </span>
                         <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div>
-                        <div style={{display: colorOpen}} className="color-picker-modal">
+
+                        <EditableHeading
+                            style={{ color: group.groupColor }}
+                            onClick={() => setOptionColorOpen(!optionColorOpen)}
+                            type={EditableHeading.types.h3}
+                            weight={"normal"}
+                            value={group.title}
+                            isEditMode={"true"}
+                            id='editable-header'
+                            onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
+
+                        />
+
+                        <div style={{ display: colorOpen }} className="color-picker-modal">
                             <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
                             <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
                             <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#469e9b' }}></div>
@@ -114,17 +125,6 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                             <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
                             <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
                         </div>
-                        <EditableHeading
-                            style={{ color: group.groupColor }}
-                            onClick={() => setOptionColorOpen(!optionColorOpen)}
-                            type={EditableHeading.types.h3}
-                            weight={"normal"}
-                            value={group.title}
-                            isEditMode={"true"}
-                            id='editable-header'
-                            onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
-
-                        />
                     </Tooltip>
                 </div>
             </section>
