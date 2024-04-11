@@ -202,4 +202,12 @@
     [data-testid="editable-input"] {
         color: inherit;
     }
+
+    [data-testid="checkbox-label"] {
+        display: none;
+    }
+
+    & .singleLineEllipsis_f03db45281 {
+        // display: none;
+    }
 }
