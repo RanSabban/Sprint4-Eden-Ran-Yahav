@@ -1,6 +1,6 @@
 .group-list {
     display: grid;
-    row-gap: 2em;
+    // row-gap: em(28px);
     min-width: max-content;
     position: relative;
 
@@ -80,6 +80,8 @@
         grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px;
         grid-template-rows: 36px;
         width: 100%;
+        margin-bottom: em(28px);
+
 
         // grid-template-columns: repeat(auto-fit);
         .group-preview-title-container {
