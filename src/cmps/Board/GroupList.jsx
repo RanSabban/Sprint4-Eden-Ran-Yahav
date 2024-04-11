@@ -15,6 +15,7 @@ import { LabelPicker } from "./reusableCmps/LabelPicker"
 export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps }) {
 
     const groups = useSelector(storeState => storeState.boardModule.board.groups)
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$',  groups )
 
     async function onRemoveGroup(groupId) {
         try {
@@ -41,16 +42,20 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
     }
 
     async function onUpdateGroup(groupId, updatedTitle) {
+        
+        console.log('rrr', updatedGroupData)
+        
         try {
-            console.log(groupId, updatedTitle);
-            const updatedGroupData = { title: updatedTitle };
-            await updateGroup(groupId, updatedGroupData);
+            
+            const updatedGroupData = { title: updatedTitle }
+            console.log('yes v ani', groupId, updatedGroupData)
+            await updateGroup(groupId, updatedGroupData)
 
             console.log('Group updated successfully');
             // showSuccessMsg('Group updated successfully');
         } catch (err) {
-            console.error('Error updating group:', err);
-            showErrorMsg('Error updating group');
+            console.error('Error updating group:', err)
+            showErrorMsg('Error updating group')
         }
     }
 
@@ -69,7 +74,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
                     ref={provided.innerRef}>
                
                     {groups.map((group, index) => (
-                        <Draggable key={group._id} draggableId={group._id.toString()} index={index}>
+                        <Draggable key={group._id} draggableId={group._id} index={index}>
 
                             {(provided, snapshot) => (
                                 <li
