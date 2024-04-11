@@ -117,8 +117,7 @@ export function LabelPicker() {
                 Targeted Cell Indicator
             </div>
 
-            target, clmType, cell, task, isOpen, groupId, callBackFunc
-            <DynamicCmp 
+            {/* <DynamicCmp 
                         clmType={clmType}
                         callBackFunc = {callBackFunc}
                         cmpType={cell.type}
@@ -130,7 +129,7 @@ export function LabelPicker() {
                         onUpdateCell={onUpdateCell}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
-                    />
+                    /> */}
 
 
             <div className="label-picker-content">
