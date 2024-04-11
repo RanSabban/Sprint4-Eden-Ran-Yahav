@@ -1,103 +1,126 @@
-import { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { onHideModalLabel } from "../../../store/actions/board.actions";
+import { useEffect, useRef, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { onHideModalLabel } from "../../../store/actions/board.actions"
 
 export function LabelPicker() {
-    const modalProps = useSelector(storeState => storeState.boardModule.modalProps);
-    const { target, clmType, cell, task, isOpen, callBackFunc } = modalProps;
-    const dispatch = useDispatch();
+    const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
+    const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = modalProps
+    const dispatch = useDispatch()
+    // console.log(modalProps)
+    // const [selected, setSelected] = useState(cell._id)
+    // setSelected(cellToUpdate)
 
-    const pickerRef = useRef(null);
 
+    const pickerRef = useRef(null)
+
+    
     useEffect(() => {
-        if (!isOpen || !target) return;
+        if (!isOpen || !target) return
+        // console.log(cell._id)
 
         const updatePosition = () => {
-            const rect = target.getBoundingClientRect();
-            const picker = pickerRef.current;
-            if (!picker) return;
+            const rect = target.getBoundingClientRect()
+            const picker = pickerRef.current
+            if (!picker) return
 
             // Force layout to calculate picker height
-            picker.style.visibility = 'hidden';
-            picker.style.display = 'block';
-            const pickerHeight = picker.offsetHeight;
+            picker.style.visibility = 'hidden'
+            picker.style.display = 'block'
+            const pickerHeight = picker.offsetHeight
 
             // Calculate available space above and below target
-            const spaceAbove = rect.top;
-            const spaceBelow = window.innerHeight - rect.bottom;
+            const spaceAbove = rect.top
+            const spaceBelow = window.innerHeight - rect.bottom
 
-            console.log(spaceAbove,spaceBelow);
+            console.log(spaceAbove, spaceBelow)
 
             // Determine opening side based on available space and picker height
-            let topPosition;
+            let topPosition
             if (spaceBelow > pickerHeight || spaceBelow > spaceAbove) {
-                topPosition = rect.bottom + window.scrollY;
+                topPosition = rect.bottom + window.scrollY
                 if (topPosition + pickerHeight > window.innerHeight) {
-                    topPosition = window.innerHeight - pickerHeight;
+                    topPosition = window.innerHeight - pickerHeight
                 }
             } else {
-                topPosition = rect.top - pickerHeight + window.scrollY;
+                topPosition = rect.top - pickerHeight + window.scrollY
                 if (topPosition < 0) {
-                    topPosition = 0;
+                    topPosition = 0
                 }
             }
 
             // Apply calculated position
-            picker.style.position = 'fixed';
-            picker.style.left = `${rect.left + window.scrollX}px`;
-            picker.style.top = `${topPosition}px`;
+            picker.style.position = 'fixed'
+            picker.style.left = `${rect.left + window.scrollX}px`
+            picker.style.top = `${topPosition}px`
 
             // Restore visibility
-            picker.style.visibility = 'visible';
-        };
+            picker.style.visibility = 'visible'
+        }
 
         const handleClickOutside = (event) => {
             if (pickerRef.current && !pickerRef.current.contains(event.target)) {
-                dispatch(onHideModalLabel());
+                dispatch(onHideModalLabel())
             }
-        };
+        }
 
         const handleScroll = () => {
-            const rect = target.getBoundingClientRect();
-            const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+            const rect = target.getBoundingClientRect()
+            const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0
             if (!isInViewport) {
-                dispatch(onHideModalLabel());
+                onHideModalLabel()
             } else {
-                updatePosition();
+                updatePosition()
             }
-        };
+        }
 
-        updatePosition(); // Update position initially and on every scroll
-        document.addEventListener('mousedown', handleClickOutside);
-        window.addEventListener('scroll', handleScroll, true);
+        updatePosition()
+        document.addEventListener('mousedown', handleClickOutside)
+        window.addEventListener('scroll', handleScroll, true)
 
         return () => { // Cleanup
-            document.removeEventListener('mousedown', handleClickOutside);
-            window.removeEventListener('scroll', handleScroll, true);
-        };
-    }, [isOpen, target, dispatch]);
+            document.removeEventListener('mousedown', handleClickOutside)
+            window.removeEventListener('scroll', handleScroll, true)
+        }
+    }, [isOpen, target, dispatch])
 
-    if (!isOpen || !target) return null;
+    if (!isOpen || !target) return null
 
-    function onUpdateCell(labelId) {
-        const cellToUpdate = { ...cell, dataId: labelId };
-        callBackFunc(cellToUpdate, task._id);
-        dispatch(onHideModalLabel());
+    async function onUpdateCell(labelId) {
+        const cellToUpdate = { ...cell, dataId: labelId }
+        try {
+            callBackFunc(cellToUpdate, task._id, groupId)
+            onHideModalLabel()
+            // setSelected(labelId)
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
         <div className="label-picker-container" ref={pickerRef}>
-            <div className="cell-target-indicator" style={{ 
-                height: '20px', 
-                width: '100%', 
-                backgroundColor: '#f0f0f0', 
-                textAlign: 'center', 
-                lineHeight: '20px', 
-                borderTopLeftRadius: '0.6em', 
-                borderTopRightRadius: '0.6em' 
+            <div className="cell-target-indicator" style={{
+                height: '20px',
+                width: '100%',
+                backgroundColor: '#f0f0f0',
+                textAlign: 'center',
+                lineHeight: '20px',
+                borderTopLeftRadius: '0.6em',
+                borderTopRightRadius: '0.6em'
             }}>
                 Targeted Cell Indicator
             </div>
+
+
+            {/* <DynamicCmp 
+                        clmType={clmType}
+                        cmpType={cell.type}
+                        // clmType={getClmType(cell._id)}
+                        cell={cell}
+                        onUpdateCell={onUpdateCell}
+                        onClick={openDynModal}
+                        onClickLabel={onClickLabel}
+                    /> */}
 
             <div className="label-picker-content">
                 <ul>
@@ -113,5 +136,24 @@ export function LabelPicker() {
                 </ul>
             </div>
         </div>
-    );
+    )
+}
+
+
+
+function DynamicCmp(props) {
+    switch (props.clmType) {
+        case 'label':
+            return <StatusCellComponent {...props} />
+        case 'members':
+            return <MembersCellComponent {...props} />
+        case 'txt':
+            return <TextCellComponent {...props} />
+        case 'date':
+            return <DateCellComponent {...props} />
+        case 'timelines':
+            return <TimelinesComponent {...props} />
+        default: <span>NoNo</span>
+
+    }
 }

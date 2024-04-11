@@ -31,7 +31,7 @@ export function BoardPreview({ board, onAddGroup }) {
 
     async function onAddTask(groupId, taskTitle) {
         try {
-            console.log(groupId);
+            // console.log(groupId);
             await addTask(groupId, board._id, taskTitle)
             showSuccessMsg('Task Added')
         }
@@ -45,7 +45,7 @@ export function BoardPreview({ board, onAddGroup }) {
         if (!result.destination) return
 
         const { destination, source, type } = result
-        console.log(type);
+        // console.log(type);
         try {
             if (type === 'TASK') {
                 dragAndDropTask(source, destination, board._id)
@@ -55,7 +55,7 @@ export function BoardPreview({ board, onAddGroup }) {
                 showSuccessMsg('Tasks swiped!')
             }
         } catch (err) {
-            console.log('Error drag and drop', err);
+            // console.log('Error drag and drop', err);
             showErrorMsg('Cannot swipe sorry AVATAR!!!')
         }
         finally {

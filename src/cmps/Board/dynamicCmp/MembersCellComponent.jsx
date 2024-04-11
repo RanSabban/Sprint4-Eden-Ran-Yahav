@@ -6,6 +6,7 @@ import { loadBoards } from "../../../store/actions/board.actions"
 
 export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateCell }) {
     const [isOpen, setIsOpen] = useState(false)
+    const [users, setUsers] = useState(cell.dataId || [])
     const modalRef = useRef()
 
     useEffect(() => {
@@ -26,37 +27,32 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
 
     const dynClass = isOpen ? 'block' : 'none'
 
-    const assignedUsers = cell.dataId || []
-
-    function getUnassignedUsers(allUsers, assignedUsers) {
-        return allUsers.filter(user => !assignedUsers.includes(user._id))
+    function getUnassignedUsers(allUsers, users) {
+        return allUsers.filter(user => !users.includes(user._id))
     }
 
-    const unassignedUsers = getUnassignedUsers(clmType.data, assignedUsers)
+    const unassignedUsers = getUnassignedUsers(clmType.data, users)
 
     async function updateMember(id) {
         try {
-            assignedUsers.push(id)
-            const newcell = { ...cell, dataId: assignedUsers }
-            await onUpdateCell(newcell, taskId, groupId)
-            loadBoards()
-
+            const newAssignedUsers = [...users, id]
+            const newCell = { ...cell, dataId: newAssignedUsers }
+            onUpdateCell(newCell, taskId, groupId)
+            setUsers(newAssignedUsers)
+            setIsOpen(false)
         } catch (err) {
             console.log('Err on assigned member to task', err)
         }
     }
 
     async function removeMember(id) {
-        const index = assignedUsers.indexOf(id)
-        const newAssignedUsers = [...assignedUsers]
-        newAssignedUsers.splice(index, 1)
-        const newCell = { ...cell, dataId: newAssignedUsers }
+        const newAssignedUsers = users.filter(user => user !== id)
+        console.log("newAssignedUsers", newAssignedUsers);
         try {
+            const newCell = { ...cell, dataId: newAssignedUsers }
             console.log('!!!!!!!1', newCell)
             await onUpdateCell(newCell, taskId, groupId)
-            loadBoards()
-            console.log(newCell, taskId, groupId)
-
+            setUsers(newAssignedUsers)
         } catch (err) {
             console.log('Err on remove member', err)
         }
@@ -65,12 +61,12 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
     return (
         <Fragment>
             <span onClick={() => setIsOpen(!isOpen)} className="dyn-cell members dyn-cell-flexy">
-                <AvatarGroupAng users={clmType.data.filter(user => assignedUsers.includes(user._id))} />
+                <AvatarGroupAng users={clmType.data.filter(user => users.includes(user._id))} />
             </span>
 
             <div ref={modalRef} style={{ display: dynClass }} className={`members-picker`}>
                 <div className="chips-div">
-                    {assignedUsers.map((userId) => {
+                    {users.map((userId) => {
                         const user = clmType.data.find(user => user._id === userId)
                         return (
                             <Chips onDelete={() => removeMember(user._id)} key={userId} label={user.fullname} leftAvatar={user.imgUrl} />
@@ -88,7 +84,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
                     textAlign: "start",
                     wordBreak: "keep-all",
                     whiteSpace: "nowrap",
-                    marginBottom: "0.5em"
+                    marginBottom: "0.5em",
                 }} className="suggested-people-title">Suggested people</p>
 
                 {unassignedUsers.map((user) => (

@@ -172,3 +172,7 @@ li {
 .active {
     color: #323338;
 }
+
+[data-testid="editable-input"] {
+    color: inherit;
+}
