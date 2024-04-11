@@ -15,14 +15,13 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
     const tasks = useSelector(storeState =>
         storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     )
-
     const [isClear, setIsClear] = useState(false)
-
     const { boardId } = useParams()
 
     async function onUpdateCell(cell, taskId) {
         try {
-            await updateCell(cell, taskId, groupId)
+            console.log(cell,taskId);
+            await updateCell(cell, taskId, groupId,boardId)
         }
         catch (err) {
             console.log('err update task', err)
@@ -88,7 +87,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
                                     className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
-
+                                      
+                                   
                                     <TaskPreview
                                         task={task}
                                         groupColor={groupColor}
@@ -99,8 +99,9 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                                         resizeColumn={resizeColumn}
                                         columnWidth={columnWidth}
                                         
-                                    />
+                                        />
 
+                                       
                                 </div>
                             )}
                         </Draggable>

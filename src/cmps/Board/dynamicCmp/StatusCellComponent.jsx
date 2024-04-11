@@ -2,7 +2,9 @@ import { useState } from "react"
 import { LabelPicker } from "../reusableCmps/LabelPicker"
 import { useEffect } from "react"
 
-export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setSelected }) {
+export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setSelectedCell }) {
+
+    
     const [isOpen, setIsOpen] = useState(false)
     const [status, setStatus] = useState({ color: '', title: '' })
 
@@ -15,26 +17,7 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setS
             setStatus({ color: item.color, title: item.title })
         }
     }, [clmType, cell])
-
-    // function getCellTxt() {
-    //     const item = data.find(item => item.id === cell.dataId)
-    //     if (!item) return 'puki wrongico'
-    //     const title = item.title 
-    //     return title
-    // }
-
-    // function getCellColor() {
-    //     const item = data.find(item => item.id === cell.dataId)
-    //     if (!item) return 'red'
-    //     const color = item.color
-    //     return color
-    // }
-
-    // function toggleLabelPicker() {
-    //     setIsOpen(!isOpen)
-    //     console.log("isOpen", isOpen)
-    // }
-
+    
     return (
         <>
             <div style={{ backgroundColor: status.color, width: '100%', cursor: 'pointer' }} className="dyn-cell status dyn-cell-flexy"

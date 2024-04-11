@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { onHideModalLabel } from "../../../store/actions/board.actions"
+import { onHideModalLabel, updateCell } from "../../../store/actions/board.actions"
+import { useParams } from 'react-router'
 
 export function LabelPicker() {
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = modalProps
     const dispatch = useDispatch()
     // console.log(modalProps)
-    // const [selected, setSelected] = useState(cell._id)
+    // const [cellToUpdate, setCellToUpdate] = useState(cell)
     // setSelected(cellToUpdate)
-
+    const { boardId } = useParams()
 
     const pickerRef = useRef(null)
-
     
     useEffect(() => {
         if (!isOpen || !target) return
@@ -23,18 +23,15 @@ export function LabelPicker() {
             const picker = pickerRef.current
             if (!picker) return
 
-            // Force layout to calculate picker height
             picker.style.visibility = 'hidden'
             picker.style.display = 'block'
             const pickerHeight = picker.offsetHeight
 
-            // Calculate available space above and below target
             const spaceAbove = rect.top
             const spaceBelow = window.innerHeight - rect.bottom
 
             console.log(spaceAbove, spaceBelow)
 
-            // Determine opening side based on available space and picker height
             let topPosition
             if (spaceBelow > pickerHeight || spaceBelow > spaceAbove) {
                 topPosition = rect.bottom + window.scrollY
@@ -48,12 +45,10 @@ export function LabelPicker() {
                 }
             }
 
-            // Apply calculated position
             picker.style.position = 'fixed'
             picker.style.left = `${rect.left + window.scrollX}px`
             picker.style.top = `${topPosition}px`
 
-            // Restore visibility
             picker.style.visibility = 'visible'
         }
 
@@ -81,14 +76,23 @@ export function LabelPicker() {
             document.removeEventListener('mousedown', handleClickOutside)
             window.removeEventListener('scroll', handleScroll, true)
         }
-    }, [isOpen, target, dispatch])
+    }, [isOpen, target, cell])
 
     if (!isOpen || !target) return null
 
+    function onClickStatus(dataId) {
+        const cellToUpdate = {...cell, dataId}
+        callBackFunc(cellToUpdate)
+        onHideModalLabel()
+    }
+
     async function onUpdateCell(labelId) {
-        const cellToUpdate = { ...cell, dataId: labelId }
+        const newCell = { ...cell, dataId: labelId }
+        // setCellToUpdate(newCell)
         try {
-            callBackFunc(cellToUpdate, task._id, groupId)
+            // console.log(cellToUpdate);
+            updateCell(cell, task._id, groupId, boardId)
+        
             onHideModalLabel()
             // setSelected(labelId)
 
@@ -96,6 +100,8 @@ export function LabelPicker() {
             console.log(err)
         }
     }
+
+    console.log(cell);
 
     return (
         <div className="label-picker-container" ref={pickerRef}>
@@ -125,7 +131,7 @@ export function LabelPicker() {
             <div className="label-picker-content">
                 <ul>
                     {clmType.data.map((label) => (
-                        <li key={label.id} className="label" onClick={() => onUpdateCell(label.id)} style={{
+                        <li key={label.id} className="label" onClick={() => onClickStatus(label.id)} style={{
                             backgroundColor: label.color,
                             width: '130px',
                             height: '35px'

@@ -25,20 +25,41 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     const { target, clmType, cell, isOpen, callBackFunc } = modalProps
 
     // const [isLabelOpen, setIsLabelOpen] = useState(false)
-    const [selected, setSelected] = useState(cell)
+    const [selectedCell, setSelectedCell] = useState(null)
 
 
     const { boardId } = useParams()
 
     useEffect(() => {
-        if(cell){
-            console.log('cell or clmType changed', cell.dataId)
-            setSelected(cell.dataId)
-        }
-        // Perform actions here
-    }, [selected])
-    
+        const update = async () => {
+            if (selectedCell) {
+                await onUpdateCell(selectedCell, task._id);
+                setSelectedCell(null);
+            }
+        };
+        update();
+    }, [selectedCell]);
 
+    // useEffect(() => {
+    //     if(selected){
+    //         console.log('😍', selected)
+    //         setSelected({...cell, dataId: selected.dataId})
+    //     }
+    // }, [cell, selected.dataId,isOpen])
+    
+    // useEffect(() => {
+    //     // Log whenever cell changes to see what the current value is
+    //     console.log('cell changed', cell);
+    //     // Update the selected state to the new cell
+    //     setSelected(cell);
+    // }, [cell]);  // Depend on cell to trigger this effect
+
+    // // If you want to check for isOpen changes specifically, add another effect
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         console.log('Modal is open, current selected cell:', selected);
+    //     }
+    // }, [isOpen, selected]);
 
     async function onChange(cell) {
         try {
@@ -66,8 +87,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     }
 
     function onClickLabel(target, clmType, cell) {
+        // const cellToUpdate = setSelectedCell((prevSelectedCell) => cell)
         try {
-            onOpenModalLabel(target, clmType, cell, task, groupId, onUpdateCell)
+            // const cellToOpen = setSelectedCell(cell)
+            // console.log(selectedCell);
+            onOpenModalLabel(target, clmType, cell, task, groupId, setSelectedCell, boardId)
         } catch (err) {
             console.log('cannot open modal', err)
         }
@@ -75,16 +99,23 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
 
     // const taskTitleCellStyle = isLast ? { } : {}
 
-    return (
-        // <section className="task-preview">
-        <>
+    return ( 
+    
+    <>
+
+
+           
+        
             <section style={{}} className="task-actions">
+                {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
+
                 <MenuButton size='XS' >
-                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE}>
+                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE} style={{zIndex: '1111111'}}>
                         {/* <MenuItem icon={AddSmall} title="Add group"/> */}
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
                 </MenuButton>
+                {/* </section> */}
             </section>
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
@@ -115,17 +146,19 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         cmpType={cell.type}
                         onChange={onChange}
                         clmType={getClmType(cell._id)}
-                        setSelected={setSelected}
+                        setSelectedCell={setSelectedCell}
                         cell={cell}
                         onUpdateCell={onUpdateCell}
                         taskId={task._id}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
+                        // selectedCell={selectedCell}
                     />
                 ))
-            }
-        </>
+            } 
+       </>
     )
+
 }
 
 

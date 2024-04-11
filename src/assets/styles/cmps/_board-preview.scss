@@ -1,8 +1,6 @@
 .board-preview {
     position: relative;
     box-sizing: content-box;
-    padding-bottom: em(40px);
-    overflow: auto;
 
     & ul {
         list-style: none;
@@ -39,6 +37,10 @@
                 border: none;
                 outline: 1px solid #0073ea ;
             }
+        }
+
+        .editable-title-dyn-cmp {
+            color: #909090;
         }
     
         .editable-title-dyn-cmp-input {

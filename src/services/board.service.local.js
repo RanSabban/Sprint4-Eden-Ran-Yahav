@@ -1301,7 +1301,7 @@ async function updateGroup(groupId, updatedGroupData) {
             return
         }
 
-        _save(STORAGE_KEY, updatedBoards)
+        save(STORAGE_KEY, updatedBoards)
 
         console.log('Group updated successfully')
     } catch (err) {
@@ -1310,26 +1310,33 @@ async function updateGroup(groupId, updatedGroupData) {
 }
 
 
-
-async function updateCell(updatedCell, taskId, groupId) {
+async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        const boards = await storageService.query(STORAGE_KEY);
-        let targetBoard = boards.find(board =>
-            board.groups.some(group => group._id === groupId));
-
-        let targetGroup = targetBoard.groups.find(group => group._id === groupId);
-        targetGroup.tasks.forEach(task => {
-            if (task._id === taskId) {
-                task.cells = task.cells.map(cell =>
-                    cell._id === updatedCell._id ? updatedCell : cell);
+        let board = await getById(boardId);
+        board.groups = board.groups.map(group => {
+            if (group._id === groupId) {
+                group.tasks = group.tasks.map(task => {
+                    if (task._id === taskId) {
+                        task.cells = task.cells.map(cell => {
+                            if (cell._id === updatedCell._id) {
+                                return updatedCell; // Update the cell
+                            }
+                            return cell;
+                        });
+                    }
+                    return task;
+                });
             }
-        })
-        _save(STORAGE_KEY, boards);
+            return group;
+        });
+
+        await save(board); // Assuming _save is an async function
+        return board; // Return the updated board
     } catch (err) {
-        console.log(err);
+        console.error('Error updating cell:', err);
+        throw err; // It's often better to throw the error so the caller can handle it
     }
 }
-
 function getEmptyGroup() {
 
     return {
