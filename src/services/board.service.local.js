@@ -1311,22 +1311,22 @@ async function updateGroup(groupId, updatedGroupData) {
 
 
 
-async function updateCell(updatedCell, taskId, groupId) {
+async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        const boards = await storageService.query(STORAGE_KEY);
+        const boards = await getById(boardId)
         let targetBoard = boards.find(board =>
-            board.groups.some(group => group._id === groupId));
+            board.groups.some(group => group._id === groupId))
 
-        let targetGroup = targetBoard.groups.find(group => group._id === groupId);
+        let targetGroup = targetBoard.groups.find(group => group._id === groupId)
         targetGroup.tasks.forEach(task => {
             if (task._id === taskId) {
                 task.cells = task.cells.map(cell =>
-                    cell._id === updatedCell._id ? updatedCell : cell);
+                    cell._id === updatedCell._id ? updatedCell : cell)
             }
         })
-        _save(STORAGE_KEY, boards);
+        _save(STORAGE_KEY, boards)
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
 

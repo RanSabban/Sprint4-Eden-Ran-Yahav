@@ -30,15 +30,26 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
 
     const { boardId } = useParams()
 
-    useEffect(() => {
-        if(cell){
-            console.log('cell or clmType changed', cell.dataId)
-            setSelected(cell.dataId)
-        }
-        // Perform actions here
-    }, [selected])
+    // useEffect(() => {
+    //     if(selected){
+    //         console.log('😍', selected)
+    //         setSelected({...cell, dataId: selected.dataId})
+    //     }
+    // }, [cell, selected.dataId,isOpen])
     
+    // useEffect(() => {
+    //     // Log whenever cell changes to see what the current value is
+    //     console.log('cell changed', cell);
+    //     // Update the selected state to the new cell
+    //     setSelected(cell);
+    // }, [cell]);  // Depend on cell to trigger this effect
 
+    // // If you want to check for isOpen changes specifically, add another effect
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         console.log('Modal is open, current selected cell:', selected);
+    //     }
+    // }, [isOpen, selected]);
 
     async function onChange(cell) {
         try {
