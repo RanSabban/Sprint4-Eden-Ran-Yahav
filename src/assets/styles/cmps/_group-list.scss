@@ -48,13 +48,13 @@
         & .dyn-cell-flexy {
             position: relative;
             border-bottom: 1px solid #d0d4e4;
-         
+
         }
 
         & .resize-handle {
             position: absolute;
             right: 0;
-            width: 2px; 
+            width: 2px;
             /* Adjust based on desired usability */
             height: 100%;
             cursor: ew-resize;
@@ -63,7 +63,7 @@
             /* Make the handle visible */
         }
 
-        
+
 
         & .header-item {
             text-transform: capitalize;
@@ -141,7 +141,8 @@
             grid-auto-flow: column;
         }
     }
-    .dyn-cell .date{
+
+    .dyn-cell .date {
         font-size: em(13px);
         color: #666;
         border: none;
@@ -179,5 +180,15 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: 312px 65px;
+    }
+
+    .group-collapse {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    //Credit to Eden
+    [data-testid="editable-input"] {
+        color: inherit;
     }
 }

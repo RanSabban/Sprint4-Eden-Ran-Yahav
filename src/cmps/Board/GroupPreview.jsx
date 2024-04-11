@@ -7,6 +7,8 @@ import { TaskList } from './TaskList'
 import { useState } from 'react';
 import { useEditableText } from '../../customHooks/useEditableText';
 import { ResizableColumn } from './ResizableColumn';
+import { GroupArrow } from '../../services/svg.service';
+import { set } from 'date-fns';
 
 export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps }) {
     const [initialTitle, setInitialTitle] = useState(group.title)
@@ -14,6 +16,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     const [dynClass, setDynClass] = useState('')
     const editableTitleRef = useEditableText(initialTitle, isEditable, setIsEditable, onUpdateGroup, group)
     const [columnWidths, setColumnWidths] = useState([40, 453, 150, 150, 100, 200, 100, 100, 100, 100]);
+    const [isOpen, setIsOpen] = useState(true)
 
 
     async function handleClick() {
@@ -60,6 +63,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     <Tooltip content="Click to Edit"
                         zIndex="99999"
                         animationType="expand"> 
+                       <span onClick={() => setIsOpen(!isOpen)} style={{color : group.groupColor, transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)'}} className='group-collapse'> <GroupArrow /> </span> 
                         <EditableHeading
                             style={{ color: group.groupColor }}
                             type={EditableHeading.types.h3}
