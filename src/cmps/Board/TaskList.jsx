@@ -142,7 +142,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                     </div>
 
                    
-                </div>
+            </div>
             )
             }
         </Droppable >

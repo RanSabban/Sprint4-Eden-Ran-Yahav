@@ -135,6 +135,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     />
                 ))
             }
+            <div className='dyn-cell infinity'></div>
         </>
     )
 

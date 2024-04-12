@@ -130,7 +130,9 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                 </div>
             </section>
             <section
-                className="group-container" style={dynamicStyle}>
+                className="group-container">
+                    {/* future collumns resizable */}
+                {/* className="group-container" style={dynamicStyle}> */} 
                 <section className="header-items">
                     <div className='blank-cell'>
 
@@ -154,6 +156,8 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     placeholderProps={placeholderProps}
                     columnWidth={columnWidths}
                     />
+
+                <GroupStatistics tasks={group.tasks} clmTypes={clmTypes}/>
             </section>
 
         </>
