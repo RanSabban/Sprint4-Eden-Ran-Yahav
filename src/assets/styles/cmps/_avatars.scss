@@ -72,8 +72,8 @@
     width: 360px;
     position: absolute;
     z-index: 111;
-    left: 23.3em;
-    top: 1em;
+    left: 41.3em;
+    top: 2.4em;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
@@ -83,6 +83,20 @@
         position: absolute;
         right: 1.8em;
         bottom: 0.6em;
+    }
+
+    .arrow {
+        position: absolute;
+        right: 21.8em;
+        transform: translate3d(178.4px, 0px, 0px) rotate(45deg);
+        top: -0.4em;
+        z-index: 0;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
     }
 
     // .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {

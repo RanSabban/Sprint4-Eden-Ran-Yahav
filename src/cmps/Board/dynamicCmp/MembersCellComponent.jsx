@@ -65,6 +65,9 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
             </span>
 
             <div ref={modalRef} style={{ display: dynClass }} className={`members-picker`}>
+            <div class="arrow" dataPlacement="top"></div>
+
+            
                 <div className="chips-div">
                     {users.map((userId) => {
                         const user = clmType.data.find(user => user._id === userId)
