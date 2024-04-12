@@ -140,7 +140,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
 
                     {/* <ResizableColumn /> */}
                     <div className="group-preview-title-container dyn-cell"
-                        style={{ borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.3em" }}>
+                        style={{ borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.6em" }}>
                         <div className='checkbox-header-container sticky'>
                             <Checkbox />
                         </div>

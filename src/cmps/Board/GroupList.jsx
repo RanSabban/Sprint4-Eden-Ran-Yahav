@@ -12,6 +12,7 @@ import { useSelector } from "react-redux"
 import { LabelPicker } from "./reusableCmps/LabelPicker"
 
 
+
 export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps }) {
 
     const groups = useSelector(storeState => storeState.boardModule.board.groups)
@@ -103,5 +104,8 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
                 </ul>
             )}
         </Droppable>
+
+
+
     )
 }

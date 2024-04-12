@@ -8,23 +8,12 @@ import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
 import { useSelector } from "react-redux";
 import { LabelPicker } from "./reusableCmps/LabelPicker";
 import { useEffect, useState } from "react";
+import { Add } from "monday-ui-react-core/icons";
 
 
-export function BoardPreview({ board, onAddGroup }) {
+export function BoardPreview({ board }) {
     const currBoard = useSelector(state => state.boardModule.board)
     const [placeholderProps, setPlaceholderProps] = useState("");
-
-    // const gridStyle = {
-    //     '--column-widths': columnWidths.map(width => `${width}px`).join(' '),
-    // };
-
-
-    // useEffect(() => {
-    //     // Convert columnWidths array to a string, appending 'px' to each value
-    //     const widthsString = columnWidths.map(width => `${width}px`).join(' ');
-    //     // Update the CSS variable on the root element
-    //     document.documentElement.style.setProperty('--dynamic-column-widths', widthsString);
-    // }, [columnWidths]);
 
     const groups = board.groups
     const clmTypes = board.clmTypes
@@ -62,6 +51,10 @@ export function BoardPreview({ board, onAddGroup }) {
             setPlaceholderProps({})
         }
         console.log(destination, source);
+    }
+
+    async function onAddGroup() {
+
     }
 
     const queryAttr = "data-rbd-drag-handle-draggable-id";
@@ -111,10 +104,15 @@ export function BoardPreview({ board, onAddGroup }) {
                     onAddTask={onAddTask}
                     boardType={board.type}
                     boardId={board._id}
-             
+
                     onAddGroup={onAddGroup} />
             </DragDropContext>
-
+            <div className="add-group-bottom-container"
+            style={{display: 'grid', gridAutoFlow: 'column'}}
+            >
+                <Add/>
+                <span className="bottom-add-group-btn">Add new group</span>
+            </div>
         </section>
 
 

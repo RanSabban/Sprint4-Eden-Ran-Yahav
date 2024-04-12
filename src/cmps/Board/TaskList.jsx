@@ -124,7 +124,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         </div>
                         <div className="add-task-sticky-container" style={{
                             borderLeft: `0.4em solid ${groupColor}`,
-                            borderBottomLeftRadius: "0.3em",
+                            borderBottomLeftRadius: '0.6em',
                             // borderTop: '1px solid #d0d4e4'
                         }}>
 
