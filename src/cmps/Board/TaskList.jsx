@@ -125,7 +125,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         <div className="add-task-sticky-container" style={{
                             borderLeft: `0.4em solid ${groupColor}`,
                             borderBottomLeftRadius: "0.3em",
-                            borderTop: '1px solid #d0d4e4'
+                            // borderTop: '1px solid #d0d4e4'
                         }}>
 
                             <div className='dyn-cell checkbox-container' style={{ borderTop: '1px solid #d0d4e4', borderBottom: '1px solid #d0d4e4' }}>
@@ -140,6 +140,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
                         </div>
                     </div>
+
+                   
                 </div>
             )
             }

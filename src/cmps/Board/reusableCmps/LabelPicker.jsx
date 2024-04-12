@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 
 export function LabelPicker() {
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
-    const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = modalProps
+    const { target, clmType, cell, isOpen, callBackFunc } = modalProps
     const dispatch = useDispatch()
     // console.log(modalProps)
     // const [cellToUpdate, setCellToUpdate] = useState(cell)
@@ -86,21 +86,6 @@ export function LabelPicker() {
         onHideModalLabel()
     }
 
-    async function onUpdateCell(labelId) {
-        const newCell = { ...cell, dataId: labelId }
-        // setCellToUpdate(newCell)
-        try {
-            // console.log(cellToUpdate);
-            updateCell(cell, task._id, groupId, boardId)
-        
-            onHideModalLabel()
-            // setSelected(labelId)
-
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     console.log(cell);
 
     return (
@@ -117,16 +102,20 @@ export function LabelPicker() {
                 Targeted Cell Indicator
             </div>
 
-
             {/* <DynamicCmp 
                         clmType={clmType}
+                        callBackFunc = {callBackFunc}
                         cmpType={cell.type}
-                        // clmType={getClmType(cell._id)}
+                        task={task}
+                        isOpen={isOpen}
+                        groupId={groupId}
+                        target = {target}
                         cell={cell}
                         onUpdateCell={onUpdateCell}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
                     /> */}
+
 
             <div className="label-picker-content">
                 <ul>
@@ -149,15 +138,13 @@ export function LabelPicker() {
 
 function DynamicCmp(props) {
     switch (props.clmType) {
-        case 'label':
+        case 'status':
             return <StatusCellComponent {...props} />
         case 'members':
             return <MembersCellComponent {...props} />
-        case 'txt':
-            return <TextCellComponent {...props} />
-        case 'date':
-            return <DateCellComponent {...props} />
-        case 'timelines':
+        case 'priority':
+            return <TimelinesComponent {...props} />
+        case 'colors':
             return <TimelinesComponent {...props} />
         default: <span>NoNo</span>
 

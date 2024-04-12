@@ -1279,6 +1279,8 @@ async function addTask(groupId, task) {
     return _save(STORAGE_KEY, boards)
 }
 
+
+
 async function updateGroup(groupId, updatedGroupData) {
     try {
         const boards = await storageService.query(STORAGE_KEY)

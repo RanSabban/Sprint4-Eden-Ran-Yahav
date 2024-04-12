@@ -8,7 +8,8 @@ export function BoardHome() {
     return (
     <section className="board-home">
         <h2>Hello from Board Home!</h2>
-        <RangePicker/>
+        {/* <BoardHomeHeader /> */}
+        {/* <RangePicker/> */}
     </section>
     )
 }

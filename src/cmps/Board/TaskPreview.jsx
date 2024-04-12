@@ -39,6 +39,15 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         update();
     }, [selectedCell]);
 
+    async function onChange(cell) {
+        try {
+            const labelsList = currClmType.data
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     function openDynModal(clmType) {
         console.log("almost")
     }

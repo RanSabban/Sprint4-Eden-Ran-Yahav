@@ -14,6 +14,8 @@
         padding-top: 16px;
     }
 
+    
+
     .board-header {
         grid-row: 1;
         display: grid;
@@ -95,14 +97,15 @@
             }
         }
 
-        .tabsWrapper_63f5a9c091 {
+        // .tabsWrapper_63f5a9c091 {
+         
+        // }
+
+        [data-testid="tab-list"] {
+            height: 32px;
+            // padding: 8px;
             width: max-content;
             padding-bottom: 2px;
-        }
-
-        .tabWrapper_327c220e12 .tabInner_3d041b1150 {
-            height: 32px;
-            padding: 8px;
 
             &:not(:hover)::after {
                 content: "";

@@ -145,18 +145,20 @@ export function boardReducer(state = initialState, action) {
                     groups: state.board.groups.filter(group => group._id !== action.groupId)
                 }
             }
-        case UPDATE_GROUP: {
-            const { groupId, updatedGroupData } = action.payload
-            return {
-                ...state,
-                board: {
-                    ...state.board,
-                    groups: state.board.groups.map(group =>
-                        group._id === groupId ? { ...group, ...updatedGroupData } : group
-                    )
-                }
+            case UPDATE_GROUP: {
+                const { groupId, updatedGroupData } = action.payload;
+                console.log( groupId, 'grs', updatedGroupData, 'uppp')
+                return {
+                    ...state,
+                    board: {
+                        ...state.board,
+                        groups: state.board.groups.map(group =>
+                            group._id === groupId ? updatedGroupData : group
+                        )
+                    }
+                };
             }
-        }
+
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
