@@ -1,0 +1,28 @@
+.board-home {
+    display: grid;
+    grid-template-rows: 75px 1fr;
+    row-gap: 5px;
+
+
+
+    .board-home-header {
+        // height: 75px;
+        background-color: #fff;
+        --box-shadow-color: #e6e9ef;
+        box-shadow: 0px 3px 12px #e6e9ef;
+        border-radius: 0.5em 0 0 0;
+
+        .welcome-user-container {
+            font-family: Figtree;
+            font-weight: 400;   
+        }
+
+
+    }
+
+    .board-home-list {
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+    }
+}

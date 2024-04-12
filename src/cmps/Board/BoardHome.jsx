@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { RangePicker } from "./reusableCmps/RangePicker";
+import { BoardHomeHeader } from "./BoardHomeHeader";
+import { BoardHomeList } from "./BoardHomeList";
 
 export function BoardHome() {
     
@@ -7,8 +9,8 @@ export function BoardHome() {
 
     return (
     <section className="board-home">
-        <h2>Hello from Board Home!</h2>
-        {/* <BoardHomeHeader /> */}
+        <BoardHomeHeader />
+        <BoardHomeList />
         {/* <RangePicker/> */}
     </section>
     )
