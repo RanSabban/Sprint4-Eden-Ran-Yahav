@@ -39,9 +39,10 @@ export function BoardDetails() {
     }
 
     
-    async function onAddGroup(boardId) {
+    async function onAddGroup(boardId,isBottom) {
         try {
-            const group = await addGroup(boardId)
+            console.log('here');
+            const group = await addGroup(boardId,isBottom)
             console.log(group);
             showSuccessMsg('Group added')
         } catch (err) {

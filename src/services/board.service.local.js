@@ -1238,21 +1238,27 @@ function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
 }
 
-async function addGroup(boardId) {
-    console.log(boardId)
-    const board = await getById(boardId)
+async function addGroup(boardId, isBottom) {
+    console.log('Board ID:', boardId)
     try {
-        console.log(board)
+        const board = await getById(boardId)
+        console.log('Board:', board)
         const group = getEmptyGroup()
-        board.groups.push(group)
-        console.log(board)
+        
+        if (isBottom) {
+            console.log('Adding group at the bottom.')
+            board.groups.push(group)
+        } else {
+            console.log('Adding group at the top.')
+            board.groups.unshift(group)
+        }
+
         await save(board)
-        console.log(group, board)
+        console.log('Group added:', group, 'Updated Board:', board)
         return group
     } catch (err) {
-        console.log('cannot add group')
+        console.log('Error adding group:', err)
     }
-
 }
 
 async function removeGroup(groupId) {

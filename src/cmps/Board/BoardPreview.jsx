@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Add } from "monday-ui-react-core/icons";
 
 
-export function BoardPreview({ board }) {
+export function BoardPreview({ board , onAddGroup}) {
     const currBoard = useSelector(state => state.boardModule.board)
     const [placeholderProps, setPlaceholderProps] = useState("");
 
@@ -53,9 +53,7 @@ export function BoardPreview({ board }) {
         console.log(destination, source);
     }
 
-    async function onAddGroup() {
 
-    }
 
     const queryAttr = "data-rbd-drag-handle-draggable-id";
 
@@ -107,7 +105,7 @@ export function BoardPreview({ board }) {
 
                     onAddGroup={onAddGroup} />
             </DragDropContext>
-            <div className="add-group-bottom-container"
+            <div onClick={() => onAddGroup(board._id, true)} className="add-group-bottom-container"
             style={{display: 'grid', gridAutoFlow: 'column'}}
             >
                 <Add/>

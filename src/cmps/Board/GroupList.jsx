@@ -13,9 +13,10 @@ import { LabelPicker } from "./reusableCmps/LabelPicker"
 
 
 
-export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps }) {
+export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps, groups }) {
 
-    const groups = useSelector(storeState => storeState.boardModule.board.groups)
+    // const groups = useSelector(storeState => storeState.boardModule.board.groups)
+    // const groups = useSelector(storeState => storeState.boardModule.board)
 
     async function onRemoveGroup(groupId) {
         try {

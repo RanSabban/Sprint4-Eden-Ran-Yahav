@@ -97,12 +97,15 @@
 
     }
     .add-group-bottom-container {
+        position: sticky;
+        left: 40px;
+        // bottom: 40px;
         width: max-content;
         align-items: center;
         border: 1px solid $clr-border;
         border-radius: 0.2em;
-        margin-left: 40px;
-        margin-bottom: 40px;
+        // margin-left: 40px;
+        // margin-bottom: 40px;
         padding-inline: 8px;
         padding-block: 4px;
         column-gap: 4px;
