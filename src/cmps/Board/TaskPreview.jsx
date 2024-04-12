@@ -24,7 +24,6 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const { target, clmType, cell, isOpen, callBackFunc } = modalProps
 
-    // const [isLabelOpen, setIsLabelOpen] = useState(false)
     const [selectedCell, setSelectedCell] = useState(null)
 
 
@@ -39,36 +38,6 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         };
         update();
     }, [selectedCell]);
-
-    // useEffect(() => {
-    //     if(selected){
-    //         console.log('😍', selected)
-    //         setSelected({...cell, dataId: selected.dataId})
-    //     }
-    // }, [cell, selected.dataId,isOpen])
-    
-    // useEffect(() => {
-    //     // Log whenever cell changes to see what the current value is
-    //     console.log('cell changed', cell);
-    //     // Update the selected state to the new cell
-    //     setSelected(cell);
-    // }, [cell]);  // Depend on cell to trigger this effect
-
-    // // If you want to check for isOpen changes specifically, add another effect
-    // useEffect(() => {
-    //     if (isOpen) {
-    //         console.log('Modal is open, current selected cell:', selected);
-    //     }
-    // }, [isOpen, selected]);
-
-    async function onChange(cell) {
-        try {
-            const labelsList = currClmType.data
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
 
     function openDynModal(clmType) {
         console.log("almost")
@@ -99,18 +68,19 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
 
     // const taskTitleCellStyle = isLast ? { } : {}
 
-    return ( 
-    
-    <>
+    return (
+
+        <>
 
 
-           
-        
+
+            <span className='task-effect-box'></span>
+
             <section style={{}} className="task-actions">
                 {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
 
                 <MenuButton size='XS' >
-                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE} style={{zIndex: '1111111'}}>
+                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE} style={{ zIndex: '1111111' }}>
                         {/* <MenuItem icon={AddSmall} title="Add group"/> */}
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
@@ -120,8 +90,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}>
-
                 <div className='dyn-cell checkbox-container'>
+
                     <Checkbox />
                 </div>
                 <div className='task-title-cell'>
@@ -152,11 +122,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         taskId={task._id}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
-                        // selectedCell={selectedCell}
+                    // selectedCell={selectedCell}
                     />
                 ))
-            } 
-       </>
+            }
+        </>
     )
 
 }

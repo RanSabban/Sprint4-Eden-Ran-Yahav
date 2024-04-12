@@ -2,6 +2,7 @@ import { eventBus, showSuccessMsg } from "../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
 import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from "../services/socket.service.js"
 import { UserV, UserX } from "../services/svg.service.jsx"
+import { Toast } from "monday-ui-react-core"
 
 export function UserMsg() {
 
@@ -35,10 +36,11 @@ export function UserMsg() {
 
   if (!msg) return <span></span>
   return (
-    <section className={`user-msg ${msg.type}`}>
-      <UserV />
-      {msg.txt}
-      <UserX style={{ lineHeight: '0.5em', position: 'absolute', right: '1em' }} onClick={closeMsg} />
-    </section>
+    // <section className={`user-msg ${msg.type}`}>
+    //   </section>
+      
+      <Toast open type={Toast.types.POSITIVE} autoHideDuration={5000} className={`monday-storybook-toast_wrapper ${msg ? `active` : ''}`} >
+        Positive message toast
+      </Toast>   
   )
 }

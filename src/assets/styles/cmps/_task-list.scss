@@ -13,20 +13,37 @@
     text-align: center;
     position: relative;
     // z-index: 11111111111111111111111111111111111;
-    
+
     // & .on-hover-task {
     //     z-index: 111111111111111111;
     //     // pointer-events:none;
     //     &:hover{
-            
+
     //         background-color: rgba(103, 104, 121, 0.1);
     //     }
-    
+
     // border-left: 0.4em solid $clr-label-3;
 
+    .task-effect-box {
+        position: absolute;
+        pointer-events: none;
+        height: 36px;
+        left: 0;
+        background-color:#32333813;
+        z-index: 99999;
+        box-shadow: 4px 3px 6px -3px #c3c6d4;
+        // box-shadow: 4px 3px 6px -3px #112a96;
+        transform: translate(40px);
+        width: 100vw;
+        opacity: 0;
+    }
+
     &:hover {
-        background-color: rgba(103, 104, 121, 0.1);
-        // background-color: black;
+
+        // background-color: rgba(103, 104, 121, 0.1);
+        .task-effect-box {
+            opacity: 1;
+        }
     }
 
     & .blank-cell-add-task {
@@ -34,6 +51,7 @@
         left: 0;
         height: 40px;
         background: white;
+
     }
 
     &.drag {
@@ -93,9 +111,12 @@
     .dyn-cell.checkbox-container {
         display: grid;
         justify-items: center;
+        // position: relative;
         width: 36px;
         border: 1px solid #d0d4e4;
         border-bottom: none;
+
+
     }
 
     .timeline-container {
