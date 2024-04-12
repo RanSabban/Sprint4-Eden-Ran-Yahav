@@ -29,7 +29,7 @@
         pointer-events: none;
         height: 36px;
         left: 0;
-        background-color:#32333813;
+        background-color: #32333813;
         z-index: 99999;
         box-shadow: 4px 3px 6px -3px #c3c6d4;
         // box-shadow: 4px 3px 6px -3px #112a96;
@@ -80,6 +80,7 @@
     .members {
         display: grid;
         justify-items: center;
+        border-bottom: 1px solid $clr-border;
     }
 
     .status,
@@ -127,6 +128,7 @@
         position: relative;
         text-align: center;
         width: 80%;
+
         // padding-left: 10px;
 
         .progress-bar-container {
@@ -183,11 +185,28 @@
     .dyn-cell.txt {
         display: grid;
         justify-items: center;
+        border-bottom: 1px solid $clr-border;
     }
+
+    .dyn-cell.date-container{
+        border-bottom: 1px solid $clr-border;
+    }
+
+    .dyn-cell.files {
+        border-bottom: 1px solid $clr-border;
+
+    }
+
 
     .dyn-cell.timeline {
         // display: grid;
         justify-items: center;
+        border-bottom: 1px solid $clr-border;
+    }
+    .dyn-cell.timelines {
+        // display: grid;
+        justify-items: center;
+        border-bottom: 1px solid $clr-border;
     }
 
     .task-title-cell {
