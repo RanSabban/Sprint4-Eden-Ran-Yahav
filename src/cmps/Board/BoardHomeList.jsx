@@ -27,7 +27,7 @@ export function BoardHomeList() {
                 className="board-home-card-container"
                 key={board._id}
             >
-                <img class="quick-search-item-image" src="https://cdn.monday.com/images/quick_search_recent_board.svg" />
+                <img className="quick-search-item-image" src="https://cdn.monday.com/images/quick_search_recent_board.svg" />
             <section className="board-home-card-title">
                     <Board />
                     <span>{board.title}</span>

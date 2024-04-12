@@ -15,7 +15,6 @@ import { LabelPicker } from "./reusableCmps/LabelPicker"
 export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps }) {
 
     const groups = useSelector(storeState => storeState.boardModule.board.groups)
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$',  groups )
 
     async function onRemoveGroup(groupId) {
         try {
@@ -42,11 +41,11 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
     }
 
     async function onUpdateGroup(groupId, updatedTitle) {
-        
-        console.log('rrr', updatedGroupData)
-        
+
+        // console.log('rrr', updatedGroupData)
+
         try {
-            
+
             const updatedGroupData = { title: updatedTitle }
             console.log('yes v ani', groupId, updatedGroupData)
             await updateGroup(groupId, updatedGroupData)
@@ -67,12 +66,12 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
             droppableId={boardId}
             type="GROUP"
             style={{ overflow: 'auto' }}
-            >
+        >
             {(provided) => (
                 <ul className="group-list"
                     {...provided.droppableProps}
                     ref={provided.innerRef}>
-               
+
                     {groups.map((group, index) => (
                         <Draggable key={group._id} draggableId={group._id} index={index}>
 

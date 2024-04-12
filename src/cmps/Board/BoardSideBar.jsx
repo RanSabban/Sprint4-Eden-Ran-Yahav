@@ -5,9 +5,10 @@ import { BoardList } from "./BoardList"
 import { InputCell } from "./reusableCmps/InputCell"
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText, Search, Menu, MenuItem, Flex } from "monday-ui-react-core";
 import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
-import { loadBoards, removeBoard, updateBoard } from "../../store/actions/board.actions"
+import { loadBoards, removeBoard, updateBoard, addBoard } from "../../store/actions/board.actions"
 import { boardService } from "../../services/board.service.local"
 import { useSelector } from "react-redux"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
 
 export function BoardSideBar() {
@@ -31,6 +32,7 @@ export function BoardSideBar() {
 
     async function onAddBoard() {
         const board = boardService.getEmptyBoard()
+        console.log('-----', board)
         try {
             const savedBoard = await addBoard(board)
             showSuccessMsg(`Board added (id: ${savedBoard._id})`)
@@ -60,7 +62,7 @@ export function BoardSideBar() {
     // const dynScroll = isOpen2 ? 'relative' : 'absolute'
 
 
-    function addBoard(ev) {
+    function addBoardOnClick(ev) {
         ev.preventDefault()
         onAddBoard()
     }
@@ -132,7 +134,7 @@ export function BoardSideBar() {
 
 
                         {/* </div> */}
-                        <Tooltip position="top" zIndex='100' content="Add item to workspace" animationType="expand" ><button onClick={addBoard} className="plus-button"><PlusTool /></button></Tooltip>
+                        <Tooltip position="top" zIndex='100' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
                     </section>
                 </section>
 

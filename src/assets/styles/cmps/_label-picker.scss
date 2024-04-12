@@ -11,11 +11,16 @@
     height: max-content;
     border-radius: 0.6em;
     z-index: 111;
+    flex-direction: column;
+    place-items: center;
+    color: #323338;
+    padding: 16px 24px 8px;
+
     // padding: 5px;
 
     ul {
         display: grid;
-        
+
     }
 
     li {
@@ -40,6 +45,16 @@
         border-top-left-radius: 0.6em;
         border-top-right-radius: 0.6em;
     }
+
+    .edit-btn {
+        background: none;
+    }
+
+    .edit-btn:hover {
+        background-color: rgba(103, 104, 121, 10%);
+    }
+
+
 }
 
 
