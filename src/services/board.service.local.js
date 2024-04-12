@@ -45,6 +45,11 @@ const gBoards = [
                 title: "Status",
                 data: [
                     {
+                        id: "l105",
+                        title: "",
+                        color: "#c4c4c4"
+                    },
+                    {
                         id: "l102",
                         title: "Working on it",
                         color: "#fdab3d"
@@ -71,6 +76,11 @@ const gBoards = [
                 type: "priority",
                 title: "Priority",
                 data: [
+                    {
+                        id: "l208",
+                        title: "",
+                        color: "#c4c4c4"
+                    },
                     {
                         id: "l201",
                         title: "Critical ⚠",
@@ -1349,7 +1359,7 @@ function getEmptyGroup() {
 
     return {
         _id: utilService.makeId(),
-        title: "Puki",
+        title: "New Group",
         groupColor: utilService.getPrettyRandomColor(),
         archivedAt: null,
         tasks: [],
@@ -1403,8 +1413,6 @@ function getEmptyGroup() {
             fullname: "Ran Sabban",
             imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
         }
-
-
     }
 }
 
