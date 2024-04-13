@@ -97,15 +97,16 @@ export async function loadBoard(boardId) {
     }
 }
 
-export async function addGroup(boardId) {
+export async function addGroup(boardId,isBottom) {
     try {
         // const board = await boardService.getById(boardId)
         // console.log('Boards from DB:', board)
-        const group = await boardService.addGroup(boardId)
+        const group = await boardService.addGroup(boardId,isBottom)
         console.log(group);
         store.dispatch({
             type: ADD_GROUP,
-            group
+            group: group,
+            isBottom: isBottom
         })
         return group
     } catch (err) {

@@ -45,6 +45,11 @@ const gBoards = [
                 title: "Status",
                 data: [
                     {
+                        id: "l100",
+                        title: "",
+                        color: "#c4c4c4"
+                    },
+                    {
                         id: "l102",
                         title: "Working on it",
                         color: "#fdab3d"
@@ -59,11 +64,6 @@ const gBoards = [
                         title: "Done",
                         color: "#00c875"
                     },
-                    {
-                        title: 'Will do',
-                        id: "l100",
-                        color: "#c4c4c4"
-                    }
                 ]
             },
             {
@@ -71,6 +71,11 @@ const gBoards = [
                 type: "priority",
                 title: "Priority",
                 data: [
+                    {
+                        id: "l200",
+                        color: "#c4c4c4",
+                        title: ''
+                    },
                     {
                         id: "l201",
                         title: "Critical ⚠",
@@ -91,10 +96,7 @@ const gBoards = [
                         title: "Low",
                         color: "#579bfc"
                     },
-                    {
-                        id: "l200",
-                        color: "#c4c4c4"
-                    }
+                   
                 ]
             },
             {
@@ -1238,21 +1240,27 @@ function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
 }
 
-async function addGroup(boardId) {
-    console.log(boardId)
-    const board = await getById(boardId)
+async function addGroup(boardId, isBottom) {
+    console.log('Board ID:', boardId)
     try {
-        console.log(board)
+        const board = await getById(boardId)
+        console.log('Board:', board)
         const group = getEmptyGroup()
-        board.groups.push(group)
-        console.log(board)
+        
+        if (isBottom) {
+            console.log('Adding group at the bottom.')
+            board.groups.push(group)
+        } else {
+            console.log('Adding group at the top.')
+            board.groups.unshift(group)
+        }
+
         await save(board)
-        console.log(group, board)
+        console.log('Group added:', group, 'Updated Board:', board)
         return group
     } catch (err) {
-        console.log('cannot add group')
+        console.log('Error adding group:', err)
     }
-
 }
 
 async function removeGroup(groupId) {
@@ -1343,7 +1351,7 @@ function getEmptyGroup() {
 
     return {
         _id: utilService.makeId(),
-        title: "Puki",
+        title: "New Group",
         groupColor: utilService.getPrettyRandomColor(),
         archivedAt: null,
         tasks: [],
@@ -1397,8 +1405,6 @@ function getEmptyGroup() {
             fullname: "Ran Sabban",
             imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
         }
-
-
     }
 }
 

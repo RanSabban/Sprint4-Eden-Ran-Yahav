@@ -129,14 +129,20 @@ export function boardReducer(state = initialState, action) {
         }
 
 
-        case ADD_GROUP:
+        case ADD_GROUP:{
+
+        
+            const newGroups = action.isBottom 
+                              ? [...state.board.groups, action.group]
+                              : [action.group, ...state.board.groups]
+        
             return {
                 ...state,
                 board: {
                     ...state.board,
-                    groups: [...state.board.groups, action.group]
+                    groups: newGroups
                 }
-            }
+            }}
         case REMOVE_GROUP:
             return {
                 ...state,

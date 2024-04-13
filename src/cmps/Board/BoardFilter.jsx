@@ -25,7 +25,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                 secondaryDialogContent={
                     <SplitButtonMenu _id="split-menu">
                         <MenuItem
-                            onClick={() => onAddGroup(boardId)}
+                            onClick={() => onAddGroup(boardId,false)}
                             title="New group of tasks"
                         />
                     </SplitButtonMenu>}>New Item
