@@ -15,7 +15,6 @@ import { GroupStatistics } from './GroupStatistics';
 export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
     // const [specificGroup, setSpecificGroup] = useState(group)
-    console.log('speccc', specificGroup)
     const [initialTitle, setInitialTitle] = useState(group.title)
     const [isEditable, setIsEditable] = useState(false)
     const [dynClass, setDynClass] = useState('')
@@ -58,7 +57,6 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
 
         const updatedGroupData = { ...specificGroup, groupColor: ev.target.style.backgroundColor }
 
-        console.log('yes v ani', updatedGroupData)
         try {
             await updateGroup(group._id, updatedGroupData)
             // setSpecificGroup(updatedGroupData)

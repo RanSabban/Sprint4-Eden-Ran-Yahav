@@ -20,7 +20,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
 
     async function onRemoveGroup(groupId) {
         try {
-            console.log(groupId)
             await removeGroup(groupId)
             showSuccessMsg('Group removed')
         } catch (err) {
@@ -49,7 +48,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
         try {
 
             const updatedGroupData = { title: updatedTitle }
-            console.log('yes v ani', groupId, updatedGroupData)
             await updateGroup(groupId, updatedGroupData)
 
             console.log('Group updated successfully');
