@@ -1,7 +1,13 @@
 .board-index {
     display: grid;
     width: 100%;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: minmax(30px,auto) 1fr;
     column-gap: 10px;
     overflow: hidden;
+    // transition: grid-template-columns 2s;
+    
+    // & .board-sidebar .close-sidebar:hover{
+    //     grid-template-columns: 255px 1fr;
+        
+    // }
 }

@@ -45,7 +45,7 @@ const gBoards = [
                 title: "Status",
                 data: [
                     {
-                        id: "l105",
+                        id: "l100",
                         title: "",
                         color: "#c4c4c4"
                     },
@@ -64,11 +64,6 @@ const gBoards = [
                         title: "Done",
                         color: "#00c875"
                     },
-                    {
-                        title: 'Will do',
-                        id: "l100",
-                        color: "#c4c4c4"
-                    }
                 ]
             },
             {
@@ -77,9 +72,9 @@ const gBoards = [
                 title: "Priority",
                 data: [
                     {
-                        id: "l208",
-                        title: "",
-                        color: "#c4c4c4"
+                        id: "l200",
+                        color: "#c4c4c4",
+                        title: ''
                     },
                     {
                         id: "l201",
@@ -101,10 +96,7 @@ const gBoards = [
                         title: "Low",
                         color: "#579bfc"
                     },
-                    {
-                        id: "l200",
-                        color: "#c4c4c4"
-                    }
+                   
                 ]
             },
             {

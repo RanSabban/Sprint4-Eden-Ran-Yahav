@@ -40,8 +40,8 @@ export function UserMsg() {
     // <section className={`user-msg ${msg.type}`}>
     //   </section>
       
-      <Toast open type={Toast.types.POSITIVE} autoHideDuration={5000} className={`monday-storybook-toast_wrapper ${msg ? `active` : ''}`} >
-        We successfully updated the board
+      <Toast open type={msg.type} autoHideDuration={5000} className={`monday-storybook-toast_wrapper ${msg ? `active` : ''}`} >
+        Positive message toast
       </Toast>   
   )
 }

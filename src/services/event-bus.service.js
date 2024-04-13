@@ -23,10 +23,10 @@ export function showUserMsg(msg) {
 }
 
 export function showSuccessMsg(txt) {
-    showUserMsg({txt, type: 'success'})
+    showUserMsg({txt, type: 'positive'})
 }
 export function showErrorMsg(txt) {
-    showUserMsg({txt, type: 'error'})
+    showUserMsg({txt, type: 'negative'})
 }
 
 window.showUserMsg = showUserMsg
