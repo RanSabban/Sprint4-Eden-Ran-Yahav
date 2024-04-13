@@ -75,7 +75,6 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         }
     }
 
-    // const taskTitleCellStyle = isLast ? { } : {}
 
     return (
 
