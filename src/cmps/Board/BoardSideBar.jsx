@@ -16,6 +16,8 @@ export function BoardSideBar() {
     const boards = useSelector(storeState => storeState.boardModule.boards)
 
     const { boardId } = useParams()
+    const dynClasse = !boardId ? '#cce5ff' : '#ffffff'
+    console.log(boardId)
 
     useEffect(() => {
         loadBoards()
@@ -95,7 +97,7 @@ export function BoardSideBar() {
                 <div className={`lower-sidebar ${dynClass}`} style={{ marginLeft: "1em" }}>
                     <div className="all-sidebar" style={{ display: "flex", flexDirection: "column" }}>
                         <div className="upper-actions">
-                            <NavLink className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
+                        <NavLink style={{backgroundColor: dynClasse, borderRadius: '6px', maxWidth: '16.2em'}} className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
                             <NavLink className="actions-sidebar-upper-second"><MyWork /><div className="home-sidebar">My work</div></NavLink>
                         </div>
 
