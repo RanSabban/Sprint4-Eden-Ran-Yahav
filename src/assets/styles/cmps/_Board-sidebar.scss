@@ -1,18 +1,132 @@
 .board-sidebar {
     background-color: #ffffff;
     position: relative;
-    width: 255px;
-    // height: 100vh;
     border-radius: 0 0.5em 0 0;
-    transition: 0.2s;
-    z-index: 35;
+    transition: all 0.2s;
+    z-index: 99999;
+    width: 30px;
+    // overflow: hidden;
+
+    &.open-sidebar{
+        .sidebar-container{
+            width: 255px;
+        }
+    }
+
+
+    & .sidebar-container {
+        position: absolute;
+        border-radius: 0 0.5em 0 0;
+
+        left: 0;
+        height: 100%;
+        width: 30px; 
+        background-color: #ffffff;
+        transition: width 0.2s ease;
+        overflow: auto;
+
+        &:hover {
+            width: 255px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+
+
+            > .lower-sidebar.close-sidebar{
+                overflow: visible;
+                opacity: 1;
+            }
+          
+        }
+
+        
+    }
+
+    .lower-sidebar.close-sidebar {
+        margin-left: 1em;
+        width: 30px;
+        opacity: 0;
+        overflow: hidden;
+    }
+    .lower-sidebar.open-sidebar {
+        margin-left: 1em;
+        width: 255px;
+        opacity: 1;
+        overflow: hidden;
+    }
+    
+
+    &.close-sidebar {
+        // width: 40px;
+        // position: absolute;
+        height: 100%;
+        // overflow: hidden;
+        transition: width .2s;
+        width: 30px;
+        // margin-right: 10px;
+
+
+        &:hover {
+            // width: 30px;
+            opacity: 1;
+            // width: 255px;
+            // overflow: auto;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+            z-index: 9999999;
+
+
+
+            // overflow: auto;
+            // position: absolute;
+            .button-sidebar {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    .button-sidebar {
+        position: absolute;
+        right: 0px;
+        border-radius: 4px;
+        width: 30px;
+        height: 38px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        background-color: #f6f7fb;
+
+        &:hover {
+
+            background-color: rgba(103, 104, 121, 0.1);
+        }
+    }
+
+
+
+
+
+    &.open-sidebar {
+        width: 255px;
+        // width: 100%;
+        overflow: hidden;
+        transition: width .2s;
+
+        .button-sidebar {
+            opacity: 1;
+
+            &:hover {
+
+                background-color: rgba(103, 104, 121, 0.1);
+            }
+        }
+    }
+
 
     .textField_9430c37135 .inputWrapper_129bb61475 .input_fb77b8179c.inputHasIcon_c8735863b0 {
         width: 14em;
     }
 
-    & .textField_5c7ed8f268 .inputWrapper_f7d37dd0a6 .input_45f5cffc4e.inputHasIcon_b527778477{
-        width:14em;
+    & .textField_5c7ed8f268 .inputWrapper_f7d37dd0a6 .input_45f5cffc4e.inputHasIcon_b527778477 {
+        width: 14em;
     }
 
     .textField_9430c37135 .inputWrapper_129bb61475 .iconContainer_8576251e2c {
@@ -21,33 +135,8 @@
         height: 20px;
     }
 
-    .textField_5c7ed8f268 .inputWrapper_f7d37dd0a6 .iconContainer_fb989f5083.iconContainerActive_6caf034a46 .icon_f7d37dd0a6{
+    .textField_5c7ed8f268 .inputWrapper_f7d37dd0a6 .iconContainer_fb989f5083.iconContainerActive_6caf034a46 .icon_f7d37dd0a6 {
         display: none;
-    }
-
-    .button-sidebar {
-        position: absolute;
-        right: 0px;
-        border-radius: 4px;
-    }
-
-    .lower-sidebar.close-sidebar {
-        width: 30px;
-        display: none;
-
-        &.all-sidebar {
-            width: 30px;
-        }
-
-
-    }
-
-    .lower-sidebar.close-sidebar .all-sidebar {
-        width: 30px;
-    }
-
-    &.lowwer-sidebar.close-sidebar:hover {
-        width: 255px;
     }
 
     .actions-sidebar-upper {
@@ -58,15 +147,17 @@
         text-decoration: none;
         display: flex;
         padding: 5px 40px 6px 4px;
+        width: 14em;
     }
 
     .actions-sidebar-upper:hover {
         background-color: rgba(103, 104, 121, 10%);
-        width: 14em;
         border-radius: 4px;
+        width: 14em;
     }
 
     .actions-sidebar-upper-second {
+        width: 14em;
         font-size: 14px;
         text-align: start;
         color: #323338;
@@ -80,8 +171,10 @@
         border-bottom: 1px solid #d0d4e4;
         display: flex;
         flex-direction: column;
+        width: 14em;
+
         // padding-right: 12px;
-        padding-block: 10px;
+        padding-block: em(13px);
         width: 100%;
     }
 
@@ -92,8 +185,8 @@
 
     .sidebar-workspace {
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5em;
+        gap: em(12px);
+        margin-bottom: em(13px);
         margin-top: 1em;
         margin-left: 0.2em;
     }
@@ -130,7 +223,7 @@
         background-color: #ffffff;
         color: #323338;
         box-shadow: none;
-        margin-right: 0.6em;
+        display: contents;
     }
 
     .three-points:hover {
@@ -148,7 +241,6 @@
         text-align: start;
         height: 1.5em;
         font-size: 14px;
-        margin-left: 0.2em;
     }
 
     .house-svg {
@@ -168,7 +260,7 @@
         word-break: keep-all;
         white-space: nowrap;
         font-weight: 600;
-        margin-right: 1.6em;
+        margin-right: em(36px);
     }
 
     .close-sidebar-btn {
@@ -196,15 +288,16 @@
         width: 14em;
     }
 
-    .sidebar-workspace2 {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1em;
-        margin-bottom: 0;
-        position: absolute;
-        left: -13em;
-        top: -1.5em;
-    }
+
+    // .sidebar-workspace2 {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     margin-bottom: 1em;
+    //     margin-bottom: 0;
+    //     position: absolute;
+    //     left: -13em;
+    //     top: -1.5em;
+    // }
 
     .actions-workspace {
         position: absolute;
@@ -234,22 +327,15 @@
         }
     }
 
-    &.close-sidebar {
-        width: 30px;
-    }
+    // .lower-sidebar.close-sidebar .all-sidebar {
+    //     width: 30px;
+    // }
 
-    &.open-sidebar {
-        width: 255px;
-    }
+    // &.lower-sidebar.close-sidebar:hover {
+    //     width: 255px;
+    // }
 
-    &:hover {
-        // width: 255px;
-        z-index: 35;
 
-        .button-sidebar {
-            opacity: 1;
-        }
-    }
 
     // &:hover .open-sidebar {
     //     // width: 255px;
@@ -264,4 +350,3 @@
 
 
 }
-

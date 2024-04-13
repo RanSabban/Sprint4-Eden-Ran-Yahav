@@ -16,7 +16,7 @@ export function BoardDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const [isCollapsed, setIsCollapsed] = useState(false)
     const { ref, inView } = useInView({
-        threshold: 0,
+        threshold: .1,
     })
 
     useEffect(() => {
@@ -24,8 +24,14 @@ export function BoardDetails() {
     }, [boardId])
 
     useEffect(() => {
-        setIsCollapsed(!inView)
-    }, [inView])
+        setIsCollapsed(!inView);
+    }, [inView]);
+    
+    useEffect(() => {
+        if (isCollapsed) {
+            window.scrollTo({ top: 1500, behavior: 'smooth' });
+        }
+    }, [isCollapsed]);
 
 
     async function onRemoveGroup(groupId) {
