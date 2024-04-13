@@ -93,7 +93,7 @@ export function BoardSideBar() {
         <section className={`board-sidebar ${dynClass}`} >
             <div className="sidebar-container">
                 <Tooltip position='right' content='Close navigation'
-                    animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : '', opacity: isOpen ? '0' : '1' }} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
+                    animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : ''}} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
                 <div className={`lower-sidebar ${dynClass}`} style={{ marginLeft: "1em" }}>
                     <div className="all-sidebar" style={{ display: "flex", flexDirection: "column" }}>
                         <div className="upper-actions">
@@ -138,7 +138,7 @@ export function BoardSideBar() {
 
 
                                 {/* </div> */}
-                                <Tooltip position="top" zIndex='100' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
+                                <Tooltip className='tool' position="absolute" zIndex='111111' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
                             </section>
                         </section>
 

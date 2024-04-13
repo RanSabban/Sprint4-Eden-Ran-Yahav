@@ -3,9 +3,16 @@ import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux";
 
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
-import { Menu, MenuDivider, MenuItem, Tooltip, } from "monday-ui-react-core";
+import { Menu, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core";
 
 import { BoardListPreview } from "./BoardListPreview"
+
+function truncateString(str, num) {
+  if (str.length > num) {
+    return str.slice(0, num) + '...';
+  }
+  return str;
+}
 
 function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const [isEdit, setIsEdit] = useState(false)
@@ -93,7 +100,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
         >
             <div className="board-list-prev">
                 <Tooltip zIndex='100' position="right" content="This board is public, visible to all team members" animationType="expand" ><SidePrevSvg /></Tooltip>
-                {!isEdit && <BoardListPreview board={board} />}
+                {!isEdit && <BoardListPreview board={{...board, title: truncateString(board.title, 21)}} />}
                 {!isEdit && (
                     <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
                         <ThreePoints />
@@ -137,8 +144,8 @@ export function BoardList({ onAddBoard, onRemoveBoard, onUpdateBoard }) {
                     board={board}
                     onUpdateBoard={onUpdateBoard}
                     onRemoveBoard={onRemoveBoard}
-                />
-            ))}
+                />)
+            )}
         </section>
     )
 }

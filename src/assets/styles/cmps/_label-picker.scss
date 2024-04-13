@@ -54,6 +54,30 @@
         background-color: rgba(103, 104, 121, 10%);
     }
 
+    .arrow-up {
+        position: absolute;
+        right: 15.4em;
+        transform: translate3d(178.4px, 0px, 0px) rotate(45deg);
+        top: -0.5em;
+        z-index: 11111;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        border-radius: 2px;
+    }
+
+    .arrow-down{
+        position: absolute;
+        right: 15.4em;
+        transform: translate3d(178.4px, 0px, 0px) rotate(45deg);
+        z-index: 11111;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        border-radius: 2px;
+        bottom: -8px;
+    }
+
 
 }
 

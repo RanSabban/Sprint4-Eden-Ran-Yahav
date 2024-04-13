@@ -73,7 +73,7 @@
     & .group-container {
         background-color: $bgc-main;
         display: grid;
-        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px ;
+        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px;
         grid-template-rows: 36px;
         width: 100%;
         margin-bottom: em(28px);
@@ -90,7 +90,7 @@
             left: 40px;
             grid-template-columns: 36px 1fr;
 
-          
+
         }
 
 
@@ -129,12 +129,12 @@
             font-size: 18px !important;
         }
 
-        #editable-header > div > h3 {
+        #editable-header>div>h3 {
             font-family: poppins-medium;
             font-size: 18px !important;
         }
 
-        #editable-header > div > input {
+        #editable-header>div>input {
             font-family: poppins-medium;
             font-size: 18px !important;
         }
@@ -230,4 +230,11 @@
         display: none;
     }
 
+}
+
+.typePopover_78e5ed1923 {
+    display: block;
+    position: fixed;
+    top: -50px;
+    left: 5em;
 }
