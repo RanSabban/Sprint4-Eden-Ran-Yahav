@@ -127,14 +127,15 @@ export async function removeGroup(groupId) {
     }
 }
 
-export async function updateGroup(groupId, updatedGroupData) {
-    console.log( groupId,  updatedGroupData)
+export async function updateGroup(groupId, updatedTitle,boardId) {
     try {
-        const updatedGroup = await boardService.updateGroup(groupId, updatedGroupData)
+        const updatedBoard = await boardService.updateGroup(groupId, updatedTitle,boardId)
+
         store.dispatch({
-            type: UPDATE_GROUP,
-            payload: { groupId, updatedGroupData: updatedGroupData }
+            type: SET_CURRENT_BOARD,
+            board: updatedBoard
         })
+        
     } catch (err) {
         console.log('cannot update group', err);
     }

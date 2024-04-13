@@ -47,8 +47,8 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
 
         try {
 
-            const updatedGroupData = { title: updatedTitle }
-            await updateGroup(groupId, updatedGroupData)
+            // const updatedGroupData = { title: updatedTitle }
+            await updateGroup(groupId, updatedTitle,boardId)
 
             console.log('Group updated successfully');
             // showSuccessMsg('Group updated successfully');

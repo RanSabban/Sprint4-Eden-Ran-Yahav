@@ -1289,31 +1289,18 @@ async function addTask(groupId, task) {
 
 
 
-async function updateGroup(groupId, updatedGroupData) {
+async function updateGroup(groupId, updatedTitle,boardId) {
     try {
-        const boards = await storageService.query(STORAGE_KEY)
-        let isGroupUpdated = false
-
-        const updatedBoards = boards.map(board => {
-            const updatedGroups = board.groups.map(group => {
-                if (group._id === groupId) {
-                    isGroupUpdated = true
-                    return { ...group, ...updatedGroupData }
-                }
+        const board = await getById(boardId)
+        board.groups.map(group => {
+            if (group._id === groupId) {
+                group.title = updatedTitle
                 return group
-            })
-
-            return { ...board, groups: updatedGroups }
+            } return group
         })
+        await save(board)
+        return board
 
-        if (!isGroupUpdated) {
-            console.error('Group not found')
-            return
-        }
-
-        save(STORAGE_KEY, updatedBoards)
-
-        console.log('Group updated successfully')
     } catch (err) {
         console.error('Error updating group:', err)
     }
