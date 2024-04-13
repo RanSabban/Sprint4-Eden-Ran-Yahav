@@ -39,20 +39,6 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
         }
     }
 
-    // async function onUpdateGroup(groupId, updatedTitle) {
-    //     try {
-    //         console.log(groupId, updatedTitle);
-    //         const updatedGroupData = { title: updatedTitle };
-    //         await updateGroup(groupId, updatedGroupData);
-
-    //         console.log('Group updated successfully');
-    //         showSuccessMsg('Group updated successfully');
-    //     } catch (err) {
-    //         console.error('Error updating group:', err);
-    //         showErrorMsg('Error updating group');
-    //     }
-    // }
-
     async function setGroupColor(ev) {
 
         const updatedGroupData = { ...specificGroup, groupColor: ev.target.style.backgroundColor }
@@ -77,7 +63,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     }
 
     const dynamicStyle = {
-        gridTemplateColumns: columnWidths.map((width,index) => `${width}px`).join(' ')
+        gridTemplateColumns: columnWidths.map((width, index) => `${width}px`).join(' ')
     };
 
     // console.log(dynamicStyle);
@@ -93,44 +79,44 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         </Menu>
                     </MenuButton>
 
-                    <Tooltip content="Click to Edit"
+                    {/* <Tooltip content="Click to Edit"
                         zIndex="99999"
-                        animationType="expand">
-                        <span style={{ color: group.groupColor, transform: 'rotate(90deg)' }} className='group-collapse'> <GroupArrow /> </span>
-                        <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div>
+                        animationType="expand"> */}
+                    <span style={{ color: group.groupColor, transform: 'rotate(90deg)' }} className='group-collapse'> <GroupArrow /> </span>
+                    <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div>
 
-                        <EditableHeading
-                            style={{ color: group.groupColor }}
-                            onClick={() => setOptionColorOpen(!optionColorOpen)}
-                            type={EditableHeading.types.h3}
-                            weight={"normal"}
-                            value={group.title}
-                            isEditMode={"true"}
-                            id='editable-header'
-                            onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
+                    <EditableHeading
+                        onFocus={() => setOptionColorOpen(!optionColorOpen) }
+                        style={{ color: group.groupColor }}
+                        type={EditableHeading.types.h3}
+                        weight={"normal"}
+                        value={group.title}
+                        isEditMode={"true"}
+                        id='editable-header'
+                        onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
 
-                        />
+                    />
 
-                        <div style={{ display: colorOpen }} className="color-picker-modal">
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#469e9b' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#579bfc' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#9aadbd' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bba5e8' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#8050ab' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#4f3a65' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#92334c' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
-                            <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
-                        </div>
-                    </Tooltip>
+                    <div style={{ display: colorOpen }} className="color-picker-modal">
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#469e9b' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#579bfc' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#9aadbd' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bba5e8' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#8050ab' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#4f3a65' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#92334c' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
+                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
+                    </div>
+                    {/* </Tooltip> */}
                 </div>
             </section>
             <section
                 className="group-container">
-                    {/* future collumns resizable */}
-                {/* className="group-container" style={dynamicStyle}> */} 
+                {/* future collumns resizable */}
+                {/* className="group-container" style={dynamicStyle}> */}
                 <section className="header-items">
                     <div className='blank-cell'>
 
@@ -153,9 +139,9 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     onAddTask={onAddTask}
                     placeholderProps={placeholderProps}
                     columnWidth={columnWidths}
-                    />
+                />
 
-                <GroupStatistics tasks={group.tasks} clmTypes={clmTypes}/>
+                <GroupStatistics tasks={group.tasks} clmTypes={clmTypes} />
             </section>
 
         </>
