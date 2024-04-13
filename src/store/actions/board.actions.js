@@ -135,7 +135,7 @@ export async function updateGroup(groupId, updatedTitle,boardId) {
             type: SET_CURRENT_BOARD,
             board: updatedBoard
         })
-        
+
     } catch (err) {
         console.log('cannot update group', err);
     }
@@ -143,16 +143,13 @@ export async function updateGroup(groupId, updatedTitle,boardId) {
 
 export async function addTask(groupId, boardId, taskTitle) {
     try {
-        const task = await boardService.getEmptyTask(groupId, boardId)
+        const task = await boardService.getEmptyTask(boardId)
         if (taskTitle) task.title = taskTitle
-        await boardService.addTask(groupId, task)
+        const updatedBoard = await boardService.addTask(groupId, task, boardId)
         console.log('here');
         store.dispatch({
-            type: ADD_TASK,
-            payload: {
-                groupId,
-                task
-            }
+            type: SET_CURRENT_BOARD,
+            board: updatedBoard
         })
 
     }
