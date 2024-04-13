@@ -65,7 +65,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
             </span>
 
             <div ref={modalRef} style={{ display: dynClass }} className={`members-picker`}>
-            <div class="arrow" dataPlacement="top"></div>
+            <div className="arrow" dataplacement="top"></div>
 
             
                 <div className="chips-div">

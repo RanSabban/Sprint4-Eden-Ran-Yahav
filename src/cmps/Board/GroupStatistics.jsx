@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { utilService } from "../../services/util.service";
 
 export function GroupStatistics({ tasks, clmTypes }) {
     const [statusStats, setStatusStats] = useState({});
@@ -37,23 +38,24 @@ export function GroupStatistics({ tasks, clmTypes }) {
     }
 
     return (
-        <div className="list-item statistics">
+        <div className="list-item statistics" key={utilService.makeId()}>
+            
             <div className="group-statistics-fill"
                 style={{ gridColumn: '1/3', height: '100%', position: 'sticky', left: '0', background: 'white' }}>
             </div>
-            {clmTypes.map(clmType => {
+            {clmTypes.map((clmType,index) => {
                 if (clmType.type === 'status' || clmType.type === 'priority') {
                     return (
-                        <div key={clmType._id}
+                        <div key={JSON.stringify(clmType)}
                             className="stats-cell-container"
                             style={{ padding: '2px' }}
                         >
-                            <div style={{ display: 'flex' }}>
-                                {clmType.data.map(item => {
+                            <div style={{ display: 'flex' }} key={utilService.makeId()}>
+                                {clmType.data.map((item,index) => {
                                     const stats = clmType.type === 'status' ? statusStats : priorityStats
                                     const width = stats[item.id] || '0%'
                                     return (
-                                        <div key={item.id} style={{
+                                        <div key={index} style={{
                                             width: width,
                                             height: '20px',
                                             backgroundColor: item.color,

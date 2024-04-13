@@ -109,12 +109,12 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                     {snapshot.isDraggingOver && (
                         <div style={{
                             position: "absolute",
-                            top: placeholderProps.clientY + 1,
-                            left: placeholderProps.clientX + 60,
+                            top: placeholderProps.clientY,
+                            left: placeholderProps.clientX + `60px`,
                             height: placeholderProps.clientHeight,
                             border: "1px dashed #d0d4e4",
                             borderRadius: "2px",
-                            width: placeholderProps.clientWidth - 10
+                            width: placeholderProps.clientWidth - `10px`
                         }} />
                     )}
                     {provided.placeholder}
