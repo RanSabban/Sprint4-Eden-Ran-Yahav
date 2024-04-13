@@ -77,7 +77,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     }
 
     const dynamicStyle = {
-        gridTemplateColumns: columnWidths.map(width => `${width}px`).join(' ')
+        gridTemplateColumns: columnWidths.map((width,index) => `${width}px`).join(' ')
     };
 
     // console.log(dynamicStyle);
