@@ -13,7 +13,7 @@ import { LoginPage } from './pages/LoginPage'
 
 export function RootCmp() {
     const location = useLocation()
-    const showHeaderFooter = location.pathname !== '/users'
+const showHeaderFooter = location.pathname !== '/users' && location.pathname !== '/';
 
     return (
         <>

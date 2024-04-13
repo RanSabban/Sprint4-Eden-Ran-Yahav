@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
+import logo from '../assets/img/oneday-logo.png'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/actions/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
@@ -41,7 +41,9 @@ export function AppHeader() {
     return (
         <header className="main-header">
             <div className='logo'>
-                <img alt="monday.com logo" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/monday-logo-x2.png"></img>
+                <img alt="oneday.com logo" src={logo}></img>
+                {/* <img alt="monday.com logo" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/monday-logo-x2.png"></img> */}
+
             </div>
 
             <nav className='nav-container'>
