@@ -1201,8 +1201,8 @@ function getEmptyBoard() {
     }
 }
 
-async function getEmptyTask(groupId, boardId) {
-
+async function getEmptyTask(boardId) {
+    console.log(boardId);
     const board = await getById(boardId)
     const { clmTypes } = board
     console.log(clmTypes)
@@ -1273,21 +1273,48 @@ async function removeGroup(groupId) {
     _save(STORAGE_KEY, boardsToReturn)
 }
 
-async function addTask(groupId, task) {
-    console.log(groupId, task)
-    const boards = await storageService.query(STORAGE_KEY)
-    boards.map(board => {
-        return board.groups.map((group => {
-            if (group._id === groupId) {
-                group.tasks.push(task)
-            }
-        }))
-    })
-    console.log(boards)
-    return _save(STORAGE_KEY, boards)
+// async function addTask(groupId, task) {
+//     console.log(groupId, task)
+//     const boards = await storageService.query(STORAGE_KEY)
+//     boards.map(board => {
+//         return board.groups.map((group => {
+//             if (group._id === groupId) {
+//                 group.tasks.push(task)
+//             }
+//         }))
+//     })
+//     console.log(boards)
+//     return _save(STORAGE_KEY, boards)
+// }
+async function addTask(groupId, task, boardId) {
+    console.log(groupId, task, boardId);
+    const board = await getById(boardId);  // Retrieves the board based on boardId
+
+    if (!board) {
+        throw new Error("Board not found");
+    }
+
+    let taskAdded = false;
+    board.groups.forEach(group => {
+        if (group._id === groupId) {
+            group.tasks.push(task);
+            taskAdded = true;  // Set flag when task is added
+        }
+    });
+
+    // If no groupId provided or groupId not found, add to the first group
+    if (!groupId || !taskAdded) {
+        if (board.groups.length > 0) {
+            board.groups[0].tasks.push(task);
+            taskAdded = true;  // Ensure task is only added once
+        } else {
+            throw new Error("No groups exist on the board to add a task");
+        }
+    }
+
+    console.log(board);
+    return save(board);  // Save the modified board
 }
-
-
 
 async function updateGroup(groupId, updatedTitle,boardId) {
     try {

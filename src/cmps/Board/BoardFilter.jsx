@@ -1,6 +1,8 @@
 import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu, Tooltip } from "monday-ui-react-core";
 import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
 import { useState } from "react";
+import { addTask } from "../../store/actions/board.actions";
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 
 export function BoardFilter({ onAddGroup, boardId }) {
 
@@ -12,6 +14,18 @@ export function BoardFilter({ onAddGroup, boardId }) {
         setIsSearch(!isSearch)
     }
 
+    async function onAddTask() {
+        try {
+            // console.log(groupId);
+            await addTask('abc',boardId)
+            showSuccessMsg('Task Added')
+        }
+        catch (err) {
+            console.log('err adding task', err);
+            showErrorMsg('Cannot add task')
+        }
+    }
+
     return (
         <section className="board-filter flex">
 
@@ -19,7 +33,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
 
             <SplitButton
                 shouldCloseOnClickInsideDialog
-                onClick={console.log("Add Item Click")}
+                onClick={onAddTask}
                 size="small"
 
                 secondaryDialogContent={
