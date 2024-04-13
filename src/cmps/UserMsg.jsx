@@ -8,6 +8,7 @@ export function UserMsg() {
 
   const [msg, setMsg] = useState(null)
   const timeoutIdRef = useRef()
+  console.log(msg, 'this is msg')
 
   useEffect(() => {
     const unsubscribe = eventBus.on('show-msg', (msg) => {
@@ -40,7 +41,7 @@ export function UserMsg() {
     //   </section>
       
       <Toast open type={Toast.types.POSITIVE} autoHideDuration={5000} className={`monday-storybook-toast_wrapper ${msg ? `active` : ''}`} >
-        Positive message toast
+        We successfully updated the board
       </Toast>   
   )
 }
