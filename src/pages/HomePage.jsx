@@ -4,6 +4,7 @@ import { Home } from '../services/svg.service'
 import { TimelinePicker } from '../cmps/Board/reusableCmps/TimelinePicker'
 import { EditableCmp } from '../cmps/Board/reusableCmps/EditableCmp'
 import { ResizableGrid } from '../cmps/Board/ResizableGrid'
+import { LoginSignup } from '../cmps/LoginSignup'
 
 
 
@@ -14,6 +15,7 @@ export function HomePage() {
 
             <ResizableGrid/>
             {/* <TimelinePicker/> */}
+            <LoginSignup/>
         </section >
     )
 }

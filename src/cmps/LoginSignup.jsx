@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { userService } from '../services/user.service'
 import { ImgUploader } from './ImgUploader'
+import { userService } from '../services/user.service'
 
 export function LoginSignup(props) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
@@ -63,25 +63,27 @@ export function LoginSignup(props) {
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                 </select>
-                {/* <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        placeholder="Username"
-                        onChange={handleChange}
-                        required
-                        autoFocus
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                    /> */}
-                <button>Login!</button>
+                <input
+                    type="text"
+                    name="username"
+                    value={credentials.username}
+                    placeholder="Username"
+                    onChange={handleChange}
+                    required
+                    autoFocus
+                />
+                <input
+                    type="password"
+                    name="password"
+                    value={credentials.password}
+                    placeholder="Password"
+                    onChange={handleChange}
+                    required
+                />
+                <button type="submit">Login!</button>
             </form>}
+
+{/* 
             <div className="signup-section">
                 {isSignup && <form className="signup-form" onSubmit={onSignup}>
                     <input
@@ -111,7 +113,7 @@ export function LoginSignup(props) {
                     <ImgUploader onUploaded={onUploaded} />
                     <button >Signup!</button>
                 </form>}
-            </div>
+            </div> */}
         </div>
     )
 }
