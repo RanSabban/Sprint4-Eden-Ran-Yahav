@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd'
-import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading } from 'monday-ui-react-core';
+import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading, ColorPicker } from 'monday-ui-react-core';
 import { AddSmall, Delete } from 'monday-ui-react-core/icons';
 import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
@@ -83,10 +83,10 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         zIndex="99999"
                         animationType="expand"> */}
                     <span style={{ color: group.groupColor, transform: 'rotate(90deg)' }} className='group-collapse'> <GroupArrow /> </span>
-                    <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div>
+                    {/* <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div> */}
 
                     <EditableHeading
-                        onFocus={() => setOptionColorOpen(!optionColorOpen) }
+                        onFocus={() => setOptionColorOpen(!optionColorOpen)}
                         style={{ color: group.groupColor }}
                         type={EditableHeading.types.h3}
                         weight={"normal"}
@@ -96,7 +96,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
 
                     />
-
+{/*                    
                     <div style={{ display: colorOpen }} className="color-picker-modal">
                         <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
                         <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
@@ -109,7 +109,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#92334c' }}></div>
                         <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
                         <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
-                    </div>
+                    </div> */}
                     {/* </Tooltip> */}
                 </div>
             </section>

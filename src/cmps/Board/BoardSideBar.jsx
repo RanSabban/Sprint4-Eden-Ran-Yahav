@@ -138,7 +138,7 @@ export function BoardSideBar() {
 
 
                                 {/* </div> */}
-                                <Tooltip position="top" zIndex='100' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
+                                <Tooltip className='tool' position="absolute" zIndex='111111' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
                             </section>
                         </section>
 
