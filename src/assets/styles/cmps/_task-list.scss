@@ -30,9 +30,9 @@
         pointer-events: none;
         height: 36px;
         left: 0;
-        background-color: #32333813;
-        z-index: 99999;
-        // box-shadow: 4px 3px 6px -3px #c3c6d4;
+        background-color: #ffffff48;
+        z-index: 10;
+        box-shadow: 4px 3px 6px -3px #c3c6d4;
         // box-shadow: 4px 3px 6px -3px #112a96;
         transform: translate(40px);
         width: 100vw;
@@ -40,12 +40,19 @@
     }
 
     &:hover {
-
-        // background-color: rgba(103, 104, 121, 0.1);
         .task-effect-box {
             opacity: 1;
         }
+    
+        .dyn-cell{
+
+            &.status,
+           \ {
+                background-color: rgb(106, 121, 151);
+            }
+        }
     }
+    
 
     & .blank-cell-add-task {
         position: sticky;
@@ -69,7 +76,7 @@
         align-items: center;
         // border-left: 1px solid $clr-border;
         border-right: 1px solid $clr-border;
-        
+
 
         // width: 100px;
 
@@ -88,10 +95,55 @@
     .status,
     .priority {
         color: $clr6;
+        position: relative;
         font-size: 0.875em;
         line-height: 1.3125;
-        // height: 100%;
+
+
+        & .label-fold {
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            right: 0;
+            top: 0;
+            transition: 0.2s 0.2s ease;
+            transform-origin: right top;
+            transform: scale(0);
+
+            & .half {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                
+                &.first-half {
+                    background-color: rgb(255, 255, 255);
+                    clip-path: polygon(0 0, 100% 0, 100% 100%);
+                }
+                
+                &.second-half {
+                    background-color: rgba(0, 0, 0, .2);
+                    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+                    z-index: 1;
+                }
+            }
+
+        }
+        
+        &:hover {
+
+            .label-fold {
+                right: -1;
+                transform: scale(1);
+                z-index: 1;
+            }
+        }
     }
+
+
+
+
+
+
 
     .dyn-cell.title div {
         margin-inline-start: 36px;
@@ -232,7 +284,7 @@
         grid-template-columns: 36px;
         position: sticky;
         left: 40px;
-        
+
         // border-bottom-left-radius: 0.3em;
         // grid-column: 2 / -1;
     }
@@ -320,8 +372,8 @@
         border-top: none;
         border-right: none;
     }
-    
-    
+
+
 
     // & .task-preview-title-container .task-title-cell:last-of-type {
     //     border-bottom: 1px solid #d0d4e4;

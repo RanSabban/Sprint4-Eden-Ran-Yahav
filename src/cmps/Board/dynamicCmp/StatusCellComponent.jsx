@@ -23,6 +23,10 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setS
             <div style={{ backgroundColor: status.color, width: '100%', cursor: 'pointer' }} className="dyn-cell status dyn-cell-flexy"
              onClick={(ev) => onClickLabel(ev.target,clmType,cell)}
             >
+                <div className="label-fold">
+                    <div class="half first-half"></div>
+                    <div class="half second-half"></div>
+                </div>
                 {status.title}
             </div>
         </>
