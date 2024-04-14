@@ -31,7 +31,7 @@
         background-color: $bgc-main;
         top: 156px;
         z-index: 9999;
-        
+
 
         & .blank-cell {
             position: sticky;
@@ -42,12 +42,23 @@
         }
 
         & .dyn-cell {
-            border: 1px solid $clr-border;
+            // border: 1px solid $clr-border;
             border-left: none;
             height: 100%;
             display: grid;
             align-self: center;
             align-items: center;
+
+            &.header-item:not(.sticky) {
+                border: 1px solid $clr-border;
+                border-left: none;
+
+            }
+
+            &.infinity {
+                border: 1px solid $clr-border;
+                border-left: none;
+            }
         }
 
 
@@ -76,6 +87,7 @@
             padding: 2px;
             transition: 0.3s;
             border-radius: 0.3em;
+
             &:hover {
                 background-color: #f0f0f2;
             }
@@ -88,7 +100,8 @@
                 height: 100%;
                 display: grid;
                 align-items: center;
-                border-bottom: 1px solid #d0d4e4;;
+                border-bottom: 1px solid #d0d4e4;
+                ;
             }
         }
 
@@ -150,7 +163,7 @@
         align-items: center;
 
 
-        
+
         position: sticky;
         background-color: $bgc-main;
         top: 118px;
@@ -224,6 +237,7 @@
     .group-collapse {
         margin-left: 1em;
         margin-right: 1em;
+
     }
 
     //Credit to Eden

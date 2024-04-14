@@ -83,7 +83,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                     {/* <Tooltip content="Click to Edit"
                         zIndex="99999"
                         animationType="expand"> */}
-                    <span style={{ color: group.groupColor, transform: 'rotate(90deg)' }} className='group-collapse'> <GroupArrow /> </span>
+                    <span style={{ color: group.groupColor, transform: 'rotate(90deg)', }} className='group-collapse'> <GroupArrow /> </span>
                     {/* <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div> */}
 
                     <EditableHeading
