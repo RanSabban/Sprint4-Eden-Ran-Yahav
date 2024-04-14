@@ -1,10 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Home } from '../services/svg.service'
-import { TimelinePicker } from '../cmps/Board/reusableCmps/TimelinePicker'
-import { EditableCmp } from '../cmps/Board/reusableCmps/EditableCmp'
-import { ResizableGrid } from '../cmps/Board/ResizableGrid'
-import { LoginSignup } from '../cmps/LoginSignup'
+import logo from '../assets/img/oneday-logo.png'
 
 
 
@@ -12,10 +7,30 @@ export function HomePage() {
 
     return (
         <section className='home-page'>
+            <header className='home-header'>
+                <div className='logo'>
+                    <img alt="oneday.com logo" src={logo}></img>
+                </div>
+                <div className="home-actions">
+                    <button className='login-btn'>Login</button>
+                    <button className='cta-btn'>Get Started</button>
+                </div>
+            </header>
+            <section className='hero-header'>
+                <h1>Your go-to work platform</h1>
+                <sub>
+                    <h2>Run all your work on one platform with customizable</h2>
+                    <h2>products that scale with your needs.</h2>
+                </sub>
+                <img src="../assets/img/home/wm-dark.png" alt="" srcset="" />
+            </section>
 
-            <ResizableGrid/>
+
+
+
+            {/* <ResizableGrid/> */}
             {/* <TimelinePicker/> */}
-            <LoginSignup/>
+            {/* <LoginSignup/> */}
         </section >
     )
 }

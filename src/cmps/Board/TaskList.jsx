@@ -128,10 +128,10 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             // borderTop: '1px solid #d0d4e4'
                         }}>
 
-                            <div className='dyn-cell checkbox-container' style={{ borderTop: '1px solid #d0d4e4', borderBottom: '1px solid #d0d4e4' }}>
+                            <div className='dyn-cell checkbox-container' style={{ borderTop: '1px solid #d0d4e4', borderBottom: '3px solid #d0d4e4' }}>
                                 <Checkbox className='add-task-checkbox' disabled={true} />
                             </div>
-                            <div className='add-task-content-container' style={{ borderBottom: '1px solid #d0d4e4' }}>
+                            <div className='add-task-content-container' style={{ borderBottom: '3px solid #d0d4e4' }}>
                                 {/* <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} /> */}
                                 <EditableCmp onUpdateInput={onAddTaskFromList} placeholder={'+ Add item'} />
                             </div>
