@@ -31,16 +31,16 @@
         .task-effect-box {
             opacity: 1;
         }
-    
-        .dyn-cell{
+
+        .dyn-cell {
 
             &.status,
-           \ {
+            \  {
                 background-color: rgb(106, 121, 151);
             }
         }
     }
-    
+
 
     & .blank-cell-add-task {
         position: sticky;
@@ -103,12 +103,12 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                
+
                 &.first-half {
                     background-color: rgb(255, 255, 255);
                     clip-path: polygon(0 0, 100% 0, 100% 100%);
                 }
-                
+
                 &.second-half {
                     background-color: rgba(0, 0, 0, .2);
                     clip-path: polygon(0 0, 0% 100%, 100% 100%);
@@ -117,7 +117,7 @@
             }
 
         }
-        
+
         &:hover {
 
             .label-fold {
@@ -138,6 +138,14 @@
         margin-inline-start: 36px;
     }
 
+    .dyn-cell.title {
+        border-bottom: 1px solid #d0d4e4;
+    }
+
+    .btn-message-container {
+        border-bottom: 1px solid #d0d4e4;
+    }
+
     &.add-task {
         // position: sticky;
         display: grid;
@@ -153,16 +161,19 @@
         // padding-left: 0.9em;
     }
 
-    .dyn-cell.checkbox-container {
+    & .checkbox-container {
         display: grid;
         justify-items: center;
         // position: relative;
         width: 36px;
         border: 1px solid #d0d4e4;
-        border-bottom: none;
-
-
+        border-top: none;
+        // border-bottom: none;
     }
+
+    // &:not(.add-task):last-of-type {
+    //     border-bottom: none;
+    // }
 
     .timeline-container {
         background-color: rgb(48, 48, 48);
@@ -259,10 +270,8 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: 1fr 65px;
-        border-top: 1px solid #d0d4e4;
         border-left: none;
         border-right: none;
-        // width: 377px;
     }
 
     & .add-task-sticky-container {
@@ -339,8 +348,8 @@
     }
 
     & .stats-clrs-container {
-        padding-inline: 4px ;
-        padding-block: 8px ;
+        padding-inline: 4px;
+        padding-block: 8px;
     }
 
     & .stats-cell-container {
@@ -354,7 +363,7 @@
 
         &:first-child {
             border-left: 1px solid $clr-border;
-            
+
         }
 
     }
