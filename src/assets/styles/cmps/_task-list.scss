@@ -31,16 +31,15 @@
         .task-effect-box {
             opacity: 1;
         }
-    
-        .dyn-cell{
 
-            &.status,
-           \ {
+        .dyn-cell {
+
+            &.status {
                 background-color: rgb(106, 121, 151);
             }
         }
     }
-    
+
 
     & .blank-cell-add-task {
         position: sticky;
@@ -103,12 +102,12 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                
+
                 &.first-half {
                     background-color: rgb(255, 255, 255);
                     clip-path: polygon(0 0, 100% 0, 100% 100%);
                 }
-                
+
                 &.second-half {
                     background-color: rgba(0, 0, 0, .2);
                     clip-path: polygon(0 0, 0% 100%, 100% 100%);
@@ -117,7 +116,7 @@
             }
 
         }
-        
+
         &:hover {
 
             .label-fold {
@@ -126,6 +125,8 @@
                 z-index: 1;
             }
         }
+
+        // height: 100%;
     }
 
 
@@ -331,7 +332,7 @@
 
     & .group-statistics-fill {
         // border: 1px solid $clr-border;
-        height: 36px;
+        height: em(36px);
         border-bottom: none;
         border-left: none;
         border-top: none;
@@ -339,8 +340,22 @@
     }
 
     & .stats-clrs-container {
-        padding-inline: 4px ;
-        padding-block: 8px ;
+        padding-inline: 4px;
+        padding-block: 8px;
+        // display: flex;
+
+        & div {
+            height: 24px;
+            border: none;
+
+
+            &:hover {
+                border-radius: em(2px);
+                transition: 0.2s;
+                transform: scale(1.2);
+            }
+
+        }
     }
 
     & .stats-cell-container {
@@ -354,7 +369,7 @@
 
         &:first-child {
             border-left: 1px solid $clr-border;
-            
+
         }
 
     }
