@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../assets/img/oneday-logo.png'
+import { Link } from 'react-router-dom'
 
 
 
@@ -12,7 +13,9 @@ export function HomePage() {
                     <img alt="oneday.com logo" src={logo}></img>
                 </div>
                 <div className="home-actions">
-                    <button className='login-btn'>Login</button>
+                    <Link to='/users'>
+                        <button className='login-btn'>Login</button>
+                    </Link>
                     <button className='cta-btn'>Get Started</button>
                 </div>
             </header>

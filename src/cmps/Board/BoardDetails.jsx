@@ -9,6 +9,7 @@ import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useInView } from "react-intersection-observer"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { Activity } from "../Acttivity"
+import loader from '../../assets/img/loader.gif'
 
 export function BoardDetails() {
 
@@ -57,7 +58,7 @@ export function BoardDetails() {
         }
     }
 
-    if (!board) return <div>LOADING BRO</div>
+    if (!board) return <div></div>
     return (
         <>
             <section className="board-details" >

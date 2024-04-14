@@ -41,9 +41,9 @@ export function AppHeader() {
     return (
         <header className="main-header">
             <div className='logo'>
-                <img alt="oneday.com logo" src={logo}></img>
-                {/* <img alt="monday.com logo" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/monday-logo-x2.png"></img> */}
-
+                <Link to='/'>
+                    <img alt="oneday.com logo" src={logo}></img>
+                </Link>
             </div>
 
             <nav className='nav-container'>
@@ -133,6 +133,6 @@ export function AppHeader() {
             {/* <LoginSignup/> */}
             {/* <UserMsg /> */}
         </header>
-        
+
     )
 }
