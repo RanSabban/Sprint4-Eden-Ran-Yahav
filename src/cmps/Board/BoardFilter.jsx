@@ -1,7 +1,7 @@
 import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu, Tooltip } from "monday-ui-react-core";
 import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
 import { useState } from "react";
-import { addTask } from "../../store/actions/board.actions";
+import { addTask, updateFilterBy } from "../../store/actions/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { boardService } from "../../services/board.service.local";
 
@@ -32,8 +32,12 @@ export function BoardFilter({ onAddGroup, boardId }) {
         
     // }
 
-    function handleChangeFilter(value) {
-       
+    async function handleChangeFilter(value) {
+       try {
+        updateFilterBy({title:value}, boardId)
+       } catch (err) {
+
+       }
     }
 
     return (
