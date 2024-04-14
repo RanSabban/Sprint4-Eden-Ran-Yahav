@@ -45,33 +45,38 @@ export function LabelPicker() {
 
             console.log(spaceAbove, 'for sure')
 
-            if (spaceAbove < 450) {
-                setIsUp(true)
-            }
+            // if (spaceAbove < 450) {
+            // }
             
-            if (spaceAbove > 450) {
-                setIsUp(false)
-            }
+            // if (spaceAbove > 450) {
+               
+            // }
+            let isOpenUp
 
             console.log(spaceAbove, spaceBelow)
             let topPosition
             if (spaceBelow > pickerHeight || spaceBelow > spaceAbove) {
+                console.log('bottom!');
+                setIsUp(true)
+                isOpenUp = true
                 topPosition = rect.bottom + window.scrollY
                 if (topPosition + pickerHeight > window.innerHeight) {
                     topPosition = window.innerHeight - pickerHeight
-
                 }
             } else {
                 topPosition = rect.top - pickerHeight + window.scrollY
-
+                setIsUp(false)
+                isOpenUp = false
+                console.log('top!');
                 if (topPosition < 0) {
                     topPosition = 0
                 }
             }
 
             picker.style.position = 'fixed'
-            picker.style.left = `${rect.left + window.scrollX}px`
-            picker.style.top = `${topPosition}px`
+            picker.style.left = `${rect.left + window.scrollX - 25}px`
+            
+            isOpenUp ?  picker.style.top = `${topPosition + 10}px` : picker.style.top = `${topPosition - 10}px`
 
             picker.style.visibility = 'visible'
         }

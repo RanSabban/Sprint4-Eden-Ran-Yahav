@@ -9,7 +9,7 @@ export function StatusCmp({clmType, onClickStatus}){
         {clmType.data.map((label) => (
             <li key={label.id} className="label" onClick={() => onClickStatus(label.id)} style={{
                 backgroundColor: label.color,
-                width: '130px',
+                width: '150px',
                 height: '35px'
             }}>
                 <span className="label-txt">{label.title}</span>
