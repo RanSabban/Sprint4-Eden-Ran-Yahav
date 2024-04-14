@@ -85,7 +85,6 @@
 
     .button-sidebar {
         position: absolute;
-        opacity: 0;
         right: 0px;
         border-radius: 4px;
         width: 30px;
@@ -107,32 +106,10 @@
 
     &.open-sidebar {
         width: 255px;
+        // width: 100%;
         overflow: hidden;
         transition: width .2s;
 
-        .button-sidebar {
-
-            &:hover {
-
-                background-color: rgba(103, 104, 121, 0.1);
-            }
-        }
-    }
-
-    &.open-sidebar:hover {
-
-        .button-sidebar {
-            opacity: 1;
-
-            &:hover {
-
-                background-color: rgba(103, 104, 121, 0.1);
-            }
-        }
-    }
-
-    &.close-sidebar {
-    
         .button-sidebar {
             opacity: 1;
 
@@ -338,7 +315,7 @@
     .arrow-workspace {
         position: absolute;
         right: 4.5em;
-        top: 7.95em;
+        top: 7.5em;
     }
 
     .favorites {
@@ -350,10 +327,6 @@
         }
     }
 
-    .tool{
-        position: fixed;
-        z-index: 111111111;
-    }
     // .lower-sidebar.close-sidebar .all-sidebar {
     //     width: 30px;
     // }
@@ -375,13 +348,5 @@
     // }
 
 
-
-}
-
-.board-sidebar .open-sidebar:hover{
-    .button-sidebar{
-        display: block;
-        opacity: 1;
-    }
 
 }

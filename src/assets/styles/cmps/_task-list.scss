@@ -34,8 +34,7 @@
 
         .dyn-cell {
 
-            &.status,
-            \  {
+            &.status {
                 background-color: rgb(106, 121, 151);
             }
         }
@@ -126,6 +125,8 @@
                 z-index: 1;
             }
         }
+
+        // height: 100%;
     }
 
 
@@ -340,16 +341,36 @@
 
     & .group-statistics-fill {
         // border: 1px solid $clr-border;
-        height: 36px;
+        height: em(36px);
         border-bottom: none;
         border-left: none;
         border-top: none;
+
+
 
     }
 
     & .stats-clrs-container {
         padding-inline: 4px;
         padding-block: 8px;
+        // display: flex;
+        pointer-events: fill;
+
+
+        & div {
+            height: 24px;
+            border: none;
+            user-select: none;
+            cursor: pointer;
+
+
+            &:hover {
+                border-radius: em(2px);
+                transition: 0.2s;
+                transform: scale(1.2);
+            }
+
+        }
     }
 
     & .stats-cell-container {
