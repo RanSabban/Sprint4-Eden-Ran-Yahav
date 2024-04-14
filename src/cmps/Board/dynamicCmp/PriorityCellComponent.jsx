@@ -24,8 +24,8 @@ export function PriorityCellComponent({ clmType, cell, onChange, onClickLabel, s
                 onClick={(ev) => onClickLabel(ev.target, clmType, cell)}
             >
                 <div className="label-fold">
-                    <div class="half first-half"></div>
-                    <div class="half second-half"></div>
+                    <div className="half first-half"></div>
+                    <div className="half second-half"></div>
                 </div>
                 {status.title}
             </div>
