@@ -33,6 +33,13 @@ section {
     display: block
 }
 
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+}
 body {
     font-family: figtree;
     background-color: $bgc-page;

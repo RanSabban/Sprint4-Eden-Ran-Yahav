@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom';
 import loginImage from '../../src/assets/img/login.png';
 
 export function LoginPage() {
@@ -21,7 +22,9 @@ export function LoginPage() {
                     <section className='work-email'>
                         <span>Work email</span>
                         <input className='work-email-input rect' type="email" required placeholder='name@company.com' />
+                        <Link to='/board'>
                         <button className='rect'>Continue</button>
+                        </Link>
                     </section>
                     <div className="terms">
                         <p>By proceeding, you agree to the</p>
