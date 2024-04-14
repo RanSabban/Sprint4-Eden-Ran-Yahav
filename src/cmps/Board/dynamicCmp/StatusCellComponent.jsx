@@ -2,7 +2,7 @@ import { useState } from "react"
 import { LabelPicker } from "../reusableCmps/LabelPicker"
 import { useEffect } from "react"
 
-export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setSelectedCell }) {
+export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setSelectedCell, isLast }) {
 
     
     const [isOpen, setIsOpen] = useState(false)
@@ -20,7 +20,8 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel,setS
     
     return (
         <>
-            <div style={{ backgroundColor: status.color, width: '100%', cursor: 'pointer' }} className="dyn-cell status dyn-cell-flexy"
+            <div 
+            style={{ backgroundColor: status.color, width: '100%', cursor: 'pointer',  }} className="dyn-cell status dyn-cell-flexy"
              onClick={(ev) => onClickLabel(ev.target,clmType,cell)}
             >
                 <div className="label-fold">

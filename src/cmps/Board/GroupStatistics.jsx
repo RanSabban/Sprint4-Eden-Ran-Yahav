@@ -17,7 +17,7 @@ export function GroupStatistics({ tasks, clmTypes }) {
 
         setStatusStats(statusPercentages)
         setPriorityStats(priorityPercentages)
-    }, [tasks]) 
+    }, [tasks])
 
     function getMapCounts(type) {
         const counts = {}
@@ -33,7 +33,7 @@ export function GroupStatistics({ tasks, clmTypes }) {
 
     function mapCountsToPercentages(counts, total) {
         return Object.keys(counts).reduce((acc, key) => {
-            acc[key] = (counts[key] / total * 100).toFixed(2) + '%' 
+            acc[key] = (counts[key] / total * 100).toFixed(2) + '%'
             return acc
         }, {})
     }
@@ -57,11 +57,11 @@ export function GroupStatistics({ tasks, clmTypes }) {
                                     const width = stats[item.id] || '0%'
                                     return (
                                         <Tooltip
-                                        content={(item.title || ' ' ) + ' ' +  width}>
-                                        <div key={index} style={{
-                                            width: width,
-                                            backgroundColor: item.color,
-                                        }} name={`${item.title}: ${width}`}></div>
+                                            content={(item.title || ' ') + ' ' + width}>
+                                            <div key={index} style={{
+                                                width: width,
+                                                backgroundColor: item.color,
+                                            }} name={`${item.title}: ${width}`}></div>
                                         </Tooltip>
                                     )
                                 })}
@@ -74,7 +74,9 @@ export function GroupStatistics({ tasks, clmTypes }) {
                     </div>
                 }
             })}
+            <div className='dyn-cell infinity'>
 
+            </div>
         </div>
     )
 }

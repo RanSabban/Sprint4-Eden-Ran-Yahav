@@ -1,7 +1,8 @@
 .group-list {
     display: grid;
     // row-gap: em(28px);
-    min-width: max-content;
+    // min-width: max-content;
+    min-width: 1500px;
     position: relative;
 
 
@@ -68,7 +69,17 @@
             /* Make the handle visible */
         }
 
-
+        & .add-column-container {
+            max-width: min-content;
+            margin-left: 10px;
+            cursor: pointer;
+            padding: 2px;
+            transition: 0.3s;
+            border-radius: 0.3em;
+            &:hover {
+                background-color: #f0f0f2;
+            }
+        }
 
         & .header-item {
             text-transform: capitalize;
@@ -86,7 +97,7 @@
     & .group-container {
         background-color: $bgc-main;
         display: grid;
-        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px;
+        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px 1fr;
         grid-template-rows: 36px;
         width: 100%;
         margin-bottom: em(28px);

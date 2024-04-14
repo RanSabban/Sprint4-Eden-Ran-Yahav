@@ -19,7 +19,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     const [isEditable, setIsEditable] = useState(false)
     const [dynClass, setDynClass] = useState('')
     const editableTitleRef = useEditableText(initialTitle, isEditable, setIsEditable, onUpdateGroup, group)
-    const [columnWidths, setColumnWidths] = useState([40, 453, 150, 150, 100, 200, 100, 100, 100, 100]);
+    const [columnWidths, setColumnWidths] = useState([40, 453, 150, 150, 100, 200, 100, 100, 100, 100])
     const [isOpen, setIsOpen] = useState(false)
     const colorOpen = isOpen ? 'grid' : 'none'
     const [optionColorOpen, setOptionColorOpen] = useState(false)
