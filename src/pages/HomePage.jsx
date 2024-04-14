@@ -1,9 +1,11 @@
 import React from 'react'
 import logo from '../assets/img/oneday-logo.png'
+import { Link } from 'react-router-dom'
 
 
 
 export function HomePage() {
+    
 
     return (
         <section className='home-page'>
@@ -13,7 +15,7 @@ export function HomePage() {
                 </div>
                 <div className="home-actions">
                     <button className='login-btn'>Login</button>
-                    <button className='cta-btn'>Get Started</button>
+                   <Link to={'/board'}> <button className='cta-btn'>Get Started</button> </Link>
                 </div>
             </header>
             <section className='hero-header'>
