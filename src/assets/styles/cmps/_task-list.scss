@@ -13,10 +13,10 @@
     text-align: center;
     position: relative;
 
-    &:not(:last-child){
-        border-bottom: 1px solid $clr-border;
+    // &:not(:last-child){
+    //     border-bottom: 1px solid $clr-border;
 
-    }
+    // }
 
     .task-effect-box {
         position: absolute;
