@@ -128,7 +128,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             // borderTop: '1px solid #d0d4e4'
                         }}>
 
-                            <div className='dyn-cell checkbox-container' style={{ borderTop: '1px solid #d0d4e4'}}>
+                            <div className='dyn-cell checkbox-container'>
                                 <Checkbox className='add-task-checkbox' disabled={true} />
                             </div>
                             <div className='add-task-content-container' 

@@ -98,15 +98,15 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}>
-                <div className='dyn-cell checkbox-container' style={isLast ? {borderBottom: 'none'} : {}}>
+                <div className='dyn-cell checkbox-container'>
 
                     <Checkbox />
                 </div>
                 <div className='task-title-cell'>
-                    <span style={isLast ? {borderBottom: 'none'} : {}} className='dyn-cell title'>
+                    <span className='dyn-cell title'>
                         <EditableCellTitle txt={task.title} onUpdateInput={onUpdateTitle} />
                     </span>
-                    <div className="btn-message-container" style={isLast ? {borderBottom: 'none'} : {}}>
+                    <div className="btn-message-container">
                         <Link to={`/board/${boardId}/task/${task._id}`}>
                             <AddUpdate />
                         </Link>

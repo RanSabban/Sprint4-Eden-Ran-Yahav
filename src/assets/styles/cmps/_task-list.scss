@@ -5,7 +5,6 @@
     grid-column: 1 / -1;
     grid-auto-flow: column;
 
-    // border: 1px solid $clr-border;
     border-left: none;
     border-right: none;
     // height: 2.25em;
@@ -13,6 +12,11 @@
     align-items: center;
     text-align: center;
     position: relative;
+
+    &:not(:last-child){
+        border-bottom: 1px solid $clr-border;
+
+    }
 
     .task-effect-box {
         position: absolute;
@@ -172,8 +176,8 @@
         justify-items: center;
         // position: relative;
         width: 36px;
-        border: 1px solid #d0d4e4;
-        border-top: none;
+        border-bottom: 1px solid #d0d4e4;
+        // border-top: none;
         // border-bottom: none;
     }
 
@@ -297,7 +301,7 @@
         display: grid;
         align-items: center;
         width: 100%;
-        border-top: 1px solid #d0d4e4;
+        // border-top: 1px solid #d0d4e4;
         height: 36px;
     }
 
@@ -305,7 +309,7 @@
         grid-column: 3/-1;
         height: 36px;
         width: 100%;
-        border: 1px solid #d0d4e4;
+        // border: 1px solid #d0d4e4;
         border-left: none;
         border-right: none;
         border-top: none;
