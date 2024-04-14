@@ -39,7 +39,8 @@ export function BoardHomeHeader() {
             style={{
                 maxWidth: '100%',
                 maxHeight: '100%',
-                justifySelf: 'center'
+                justifySelf: 'center',
+                overflow: 'hidden'
             }}
         />
     </section>

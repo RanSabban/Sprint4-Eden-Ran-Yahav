@@ -98,32 +98,36 @@ export function AppHeader() {
                 </Tooltip>
 
                 <div className="separator"></div>
-
+              
                 <Tooltip content='Help' animationType="expand">
                     <Button
                         className="btn"
                         kind="tertiary"
                         onClick={() => console.log('m-list')}
                         size="sm"
+                        style={{lineHeight: '0.5em'}}
                     >
                         <Help />
                     </Button>
                 </Tooltip>
 
-                <Tooltip content='Help' animationType="expand">
+                <Tooltip content='' animationType="expand">
                     <Button
                         className="btn"
                         kind="tertiary"
                         onClick={() => console.log('m-list')}
                         size="sm"
                     >
-                        <Avatar size={Avatar.sizes.MEDIUM}
+                    
+                      <span> <Avatar size={Avatar.sizes.MEDIUM}
+                        style={{lineHeight: '0.5em'}}
                             src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
                             withoutBorder
                             type={Avatar.types.IMG}
-                            ariaLabel="Eden Gilady" />
+                            ariaLabel="Yahav ganon" /> </span> 
+                  
                     </Button>
-                </Tooltip>
+                </Tooltip> 
 
 
 

@@ -100,7 +100,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
         >
             <div className="board-list-prev">
                 <Tooltip zIndex='100' position="right" content="This board is public, visible to all team members" animationType="expand" ><SidePrevSvg /></Tooltip>
-                {!isEdit && <BoardListPreview board={{...board, title: truncateString(board.title, 21)}} />}
+                {!isEdit && <BoardListPreview board={{...board, title: truncateString(board.title, 20)}} />}
                 {!isEdit && (
                     <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
                         <ThreePoints />
