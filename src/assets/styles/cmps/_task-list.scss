@@ -5,7 +5,6 @@
     grid-column: 1 / -1;
     grid-auto-flow: column;
 
-    // border: 1px solid $clr-border;
     border-left: none;
     border-right: none;
     // height: 2.25em;
@@ -13,6 +12,11 @@
     align-items: center;
     text-align: center;
     position: relative;
+
+    // &:not(:last-child){
+    //     border-bottom: 1px solid $clr-border;
+
+    // }
 
     .task-effect-box {
         position: absolute;
@@ -64,6 +68,7 @@
         align-items: center;
         // border-left: 1px solid $clr-border;
         border-right: 1px solid $clr-border;
+
         &.infinity {
             border: 1px solid #d0d4e4;
             border-left: none;
@@ -158,8 +163,19 @@
         border-bottom-left-radius: 0.3em;
         background-color: white;
         grid-column: 1/-1;
+        border-bottom: 1px solid #d0d4e4;
         // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        // left: 40px;
+        // left: 50px;
+
+
+    }
+
+    & .add-task-sticky-container {
+        // box-shadow: 0 4px 8px #0003;
+        // margin-right: -10px;
+        // // clip-path: inset(0 -10px 0 0); 
+        // z-index: 2;
+
     }
 
     &.add-task div {
@@ -172,8 +188,8 @@
         justify-items: center;
         // position: relative;
         width: 36px;
-        border: 1px solid #d0d4e4;
-        border-top: none;
+        border-bottom: 1px solid #d0d4e4;
+        // border-top: none;
         // border-bottom: none;
     }
 
@@ -297,7 +313,7 @@
         display: grid;
         align-items: center;
         width: 100%;
-        border-top: 1px solid #d0d4e4;
+        // border-top: 1px solid #d0d4e4;
         height: 36px;
     }
 
@@ -305,7 +321,7 @@
         grid-column: 3/-1;
         height: 36px;
         width: 100%;
-        border: 1px solid #d0d4e4;
+        // border: 1px solid #d0d4e4;
         border-left: none;
         border-right: none;
         border-top: none;
@@ -350,9 +366,12 @@
         border-bottom: none;
         border-left: none;
         border-top: none;
-
-
-
+        background-color: transparent;
+        // box-shadow: 0 4px 8px #0003;
+        // margin-right: -10px;
+        // clip-path: inset(0 -10px 0 0); 
+        z-index: 2;
+        box-shadow: 1px 8px 0 -1px $bgc-main, 0 8px 9px -9px rgba(0,0,0,0.1);
     }
 
     & .stats-clrs-container {

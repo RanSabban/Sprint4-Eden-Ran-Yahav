@@ -11,7 +11,7 @@
     transition: right .15s cubic-bezier(0, 0, .35, 1);
     display: flex;
     flex-direction: column;
-    z-index: 111;
+    z-index: 999999;
 
     .input-details {
         padding: 10px 20px;
