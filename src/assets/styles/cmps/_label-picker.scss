@@ -1,27 +1,30 @@
 .label-picker-container {
     position: absolute;
-    background-color: white;
+    background-color: #ffffff;
     width: 200px;
     
     display: grid;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-    -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-    -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    // box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.32);
+    // -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+    // -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
     height: max-content;
     border-radius: 0.6em;
     z-index: 11111111111111;
     flex-direction: column;
     place-items: center;
     color: #323338;
-    padding: 16px 24px 8px;
+    
+    // padding: 16px 24px 8px;
 
     // padding: 5px;
 
     ul {
         display: grid;
-
+        row-gap: 7px;
+        padding-bottom: 10px;
     }
 
     li {
@@ -30,7 +33,7 @@
         justify-items: center;
         color: white;
         border-radius: 0.2em;
-        margin-bottom: 7px;
+        // margin-bottom: 7px;
         // width: 150px;
     }
 
@@ -50,6 +53,15 @@
 
     .edit-btn {
         background: none;
+        width: 170px;
+        border-radius: 0.3em;
+        height: 32px;
+        font-family: figtree;
+        font-size: 14px;
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        
     }
 
     .edit-btn:hover {
@@ -62,21 +74,22 @@
         right: 270px;
         transform: translate3d(178.4px, 0px, 0px) rotate(45deg);
         top: -0.5em;
-        z-index: 11111;
+        z-index: 11111111111111;
         width: 16px;
         height: 16px;
-        background-color: white;
+        background-color: #ffffff;
         border-radius: 2px;
+        // box-shadow: 0 8px 16px 0 rgba(0,0,0,.32);
     }
 
     .arrow-down{
         position: absolute;
         right: 270px;
         transform: translate3d(178.4px, 0px, 0px) rotate(45deg);
-        z-index: 11111;
+        z-index: 11111111111111;
         width: 16px;
         height: 16px;
-        background-color: white;
+        background-color: #ffffff;
         border-radius: 2px;
         bottom: -8px;
     }

@@ -50,7 +50,7 @@ export function GroupStatistics({ tasks, clmTypes }) {
                             className="stats-cell-container"
                             style={{ padding: '2px' }}
                         >
-                            <div style={{ display: 'flex' }} key={utilService.makeId()}>
+                            <div style={{ display: 'flex' }} key={utilService.makeId()} className="stats-clrs-container">
                                 {clmType.data.map((item,index) => {
                                     const stats = clmType.type === 'status' ? statusStats : priorityStats
                                     const width = stats[item.id] || '0%'
