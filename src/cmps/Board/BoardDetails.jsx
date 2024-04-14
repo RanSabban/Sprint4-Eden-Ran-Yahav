@@ -27,7 +27,7 @@ export function BoardDetails() {
     useEffect(() => {
         setIsCollapsed(!inView);
     }, [inView]);
-    
+
     useEffect(() => {
         if (isCollapsed) {
             window.scrollTo({ top: 1500, behavior: 'smooth' });
@@ -40,16 +40,16 @@ export function BoardDetails() {
             await removeGroup(groupId)
             showSuccessMsg('Group removed')
         } catch (err) {
-            console.log('cannot remove group', err); 
+            console.log('cannot remove group', err);
             showErrorMsg('Error remove group')
         }
     }
 
-    
-    async function onAddGroup(boardId,isBottom) {
+
+    async function onAddGroup(boardId, isBottom) {
         try {
             console.log('here');
-            const group = await addGroup(boardId,isBottom)
+            const group = await addGroup(boardId, isBottom)
             console.log(group);
             showSuccessMsg('Group added')
         } catch (err) {
@@ -58,11 +58,14 @@ export function BoardDetails() {
         }
     }
 
-    if (!board) return <div></div>
+    if (!board) return <section style={{ position: "relative",  backgroundColor: 'white' }} className="loader-container" >
+        <img style={{ position: "fixed", left: '54em', top: '15em' }} className="loader" src="https://myday-p034.onrender.com/img/board-loader.gif" />
+    </section >
     return (
+
         <>
             <section className="board-details" >
-                <div ref={ref} style={{ height: '1px', position: "absolute", width: '100vw'}}></div>
+                <div ref={ref} style={{ height: '1px', position: "absolute", width: '100vw' }}></div>
                 <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
                 <BoardPreview
                     onAddGroup={onAddGroup}
@@ -70,8 +73,8 @@ export function BoardDetails() {
                     board={board}
                 />
 
-                <Outlet/> 
-       
+                <Outlet />
+
             </section>
         </>
     )
