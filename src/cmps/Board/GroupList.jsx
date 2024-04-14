@@ -73,6 +73,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
                     ref={provided.innerRef}>
 
                     {groups.map((group, index) => (
+                       
                         <Draggable key={index} draggableId={group._id} index={index}>
 
                             {(provided, snapshot) => (

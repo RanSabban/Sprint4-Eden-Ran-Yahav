@@ -20,7 +20,9 @@ export const boardService = {
     dragAndDropGroup,
     dragAndDropTask,
     removeTask,
-    updateGroup
+    updateGroup,
+    getEmptyFilterBy,
+    updateFilterBy
 }
 window.cs = boardService
 
@@ -96,7 +98,7 @@ const gBoards = [
                         title: "Low",
                         color: "#579bfc"
                     },
-                   
+
                 ]
             },
             {
@@ -955,6 +957,12 @@ async function query(filterBy = { txt: '', price: 0 }) {
     return boards
 }
 
+function getEmptyFilterBy() {
+    return {
+        title: ''
+    }
+}
+
 
 
 async function remove(boardId) {
@@ -1246,7 +1254,7 @@ async function addGroup(boardId, isBottom) {
         const board = await getById(boardId)
         console.log('Board:', board)
         const group = getEmptyGroup()
-        
+
         if (isBottom) {
             console.log('Adding group at the bottom.')
             board.groups.push(group)
@@ -1316,7 +1324,7 @@ async function addTask(groupId, task, boardId) {
     return save(board);  // Save the modified board
 }
 
-async function updateGroup(groupId, updatedTitle,boardId) {
+async function updateGroup(groupId, updatedTitle, boardId) {
     try {
         const board = await getById(boardId)
         board.groups.map(group => {
@@ -1520,11 +1528,60 @@ async function dragAndDropTask(source, destination, boardId) {
     }
 }
 
+// async function updateFilterBy(filterBy, boardId) {
+//     console.log('here');
+//     try {
+//         let board = await getById(boardId);
+//         board.groups = board.groups.map(group => {
+//                 return group.tasks = group.tasks.filter(task => {
+//                     if (filterBy.title){
+//                         const regex = new RegExp(filterBy.title, 'i')
+//                         return task.filter(task => regex.test(task.title))
+//                     }
+//                     // return task;
+//                 });
+//             return group;
+//         });
+
+//         console.log(board);
+//         // await save(board)
+//     }
+//     catch (err) {
+//         console.log('cannot filter board', err);
+//     }
+// }
+async function updateFilterBy(filterBy, boardId) {
+    console.log('here');
+    try {
+        let board = await getById(boardId);
+        if (board && board.groups) {
+            board.groups = board.groups.map(group => {
+                if (group.tasks) {
+                    group.tasks = group.tasks.filter(task => {
+                        return !filterBy.title || new RegExp(filterBy.title, 'i').test(task.title);
+                    });
+                }
+                return group;
+            });
+        }
+
+        console.log(board);
+        return board
+        // await save(board);
+    }
+    catch (err) {
+        console.log('cannot filter board', err);
+    }
+}
+
+
+
 // PRIVATE FUNCS
 
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
+
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

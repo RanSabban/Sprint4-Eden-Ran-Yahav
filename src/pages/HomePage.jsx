@@ -1,10 +1,12 @@
 import React from 'react'
 import logo from '../assets/img/oneday-logo.png'
 import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 
 export function HomePage() {
+    
 
     return (
         <section className='home-page'>
@@ -13,10 +15,8 @@ export function HomePage() {
                     <img alt="oneday.com logo" src={logo}></img>
                 </div>
                 <div className="home-actions">
-                    <Link to='/users'>
-                        <button className='login-btn'>Login</button>
-                    </Link>
-                    <button className='cta-btn'>Get Started</button>
+                    <button className='login-btn'>Login</button>
+                   <Link to={'/board'}> <button className='cta-btn'>Get Started</button> </Link>
                 </div>
             </header>
             <section className='hero-header'>

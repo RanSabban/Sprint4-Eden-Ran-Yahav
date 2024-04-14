@@ -1,12 +1,14 @@
 import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu, Tooltip } from "monday-ui-react-core";
 import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
 import { useState } from "react";
-import { addTask } from "../../store/actions/board.actions";
+import { addTask, updateFilterBy } from "../../store/actions/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
+import { boardService } from "../../services/board.service.local";
 
 export function BoardFilter({ onAddGroup, boardId }) {
 
     const [isSearch, setIsSearch] = useState(false)
+    const [filterByToUpdate, setFilterByToUpdate] = useState(boardService.getEmptyFilterBy)
 
     const dynSearchBtn = isSearch ? '' : 'searchBtn'
 
@@ -17,13 +19,25 @@ export function BoardFilter({ onAddGroup, boardId }) {
     async function onAddTask() {
         try {
             // console.log(groupId);
-            await addTask('abc',boardId)
+            await addTask('abc', boardId)
             showSuccessMsg('Task Added')
         }
         catch (err) {
             console.log('err adding task', err);
             showErrorMsg('Cannot add task')
         }
+    }
+
+    // async function updateFilterBy(filterBy) {
+        
+    // }
+
+    async function handleChangeFilter(value) {
+       try {
+        updateFilterBy({title:value}, boardId)
+       } catch (err) {
+
+       }
     }
 
     return (
@@ -39,7 +53,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                 secondaryDialogContent={
                     <SplitButtonMenu _id="split-menu">
                         <MenuItem
-                            onClick={() => onAddGroup(boardId,false)}
+                            onClick={() => onAddGroup(boardId, false)}
                             title="New group of tasks"
                         />
                     </SplitButtonMenu>}>New Item
@@ -67,6 +81,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                     placeholder="Search"
                     size="small"
                     wrapperClassName="dyn-search"
+                    onChange={(value) => handleChangeFilter(value)}
                 />)
             }
 

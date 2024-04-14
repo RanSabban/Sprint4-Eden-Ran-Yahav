@@ -41,7 +41,7 @@ export function GroupStatistics({ tasks, clmTypes }) {
         <div className="list-item statistics" key={utilService.makeId()}>
             
             <div className="group-statistics-fill"
-                style={{ gridColumn: '1/3', height: '100%', position: 'sticky', left: '0', background: 'white' }}>
+                style={{ gridColumn: '1/3', position: 'sticky', left: '0', background: 'white' }}>
             </div>
             {clmTypes.map((clmType,index) => {
                 if (clmType.type === 'status' || clmType.type === 'priority') {

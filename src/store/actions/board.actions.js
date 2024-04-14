@@ -97,11 +97,11 @@ export async function loadBoard(boardId) {
     }
 }
 
-export async function addGroup(boardId,isBottom) {
+export async function addGroup(boardId, isBottom) {
     try {
         // const board = await boardService.getById(boardId)
         // console.log('Boards from DB:', board)
-        const group = await boardService.addGroup(boardId,isBottom)
+        const group = await boardService.addGroup(boardId, isBottom)
         console.log(group);
         store.dispatch({
             type: ADD_GROUP,
@@ -127,9 +127,9 @@ export async function removeGroup(groupId) {
     }
 }
 
-export async function updateGroup(groupId, updatedTitle,boardId) {
+export async function updateGroup(groupId, updatedTitle, boardId) {
     try {
-        const updatedBoard = await boardService.updateGroup(groupId, updatedTitle,boardId)
+        const updatedBoard = await boardService.updateGroup(groupId, updatedTitle, boardId)
 
         store.dispatch({
             type: SET_CURRENT_BOARD,
@@ -178,7 +178,7 @@ export async function removeTask(taskId, groupId, boardId) {
 
 export async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        console.log('updatedCell:', updatedCell, 'taskId' ,taskId, 'groupId',groupId, 'boardId',boardId);
+        console.log('updatedCell:', updatedCell, 'taskId', taskId, 'groupId', groupId, 'boardId', boardId);
         const board = await boardService.updateCell(updatedCell, taskId, groupId, boardId)
         console.log(board);
 
@@ -275,6 +275,19 @@ export async function onHideModalLabel() {
         })
     } catch (err) {
         console.log('Error open moadl', err);
+    }
+}
+
+export async function updateFilterBy(filterBy, boardId) {
+    try {
+        console.log(filterBy, boardId);
+        const board = await boardService.updateFilterBy(filterBy, boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+    } catch (err) {
+
     }
 }
 

@@ -67,6 +67,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     };
 
     // console.log(dynamicStyle);
+    if (!group.tasks.length) return
     return (
 
         <>
