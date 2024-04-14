@@ -139,6 +139,14 @@
         margin-inline-start: 36px;
     }
 
+    .dyn-cell.title {
+        border-bottom: 1px solid #d0d4e4;
+    }
+
+    .btn-message-container {
+        border-bottom: 1px solid #d0d4e4;
+    }
+
     &.add-task {
         // position: sticky;
         display: grid;
@@ -154,16 +162,19 @@
         // padding-left: 0.9em;
     }
 
-    .dyn-cell.checkbox-container {
+    & .checkbox-container {
         display: grid;
         justify-items: center;
         // position: relative;
         width: 36px;
         border: 1px solid #d0d4e4;
-        border-bottom: none;
-
-
+        border-top: none;
+        // border-bottom: none;
     }
+
+    // &:not(.add-task):last-of-type {
+    //     border-bottom: none;
+    // }
 
     .timeline-container {
         background-color: rgb(48, 48, 48);
@@ -260,10 +271,8 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: 1fr 65px;
-        border-top: 1px solid #d0d4e4;
         border-left: none;
         border-right: none;
-        // width: 377px;
     }
 
     & .add-task-sticky-container {
