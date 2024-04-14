@@ -337,16 +337,22 @@
         border-left: none;
         border-top: none;
 
+
+
     }
 
     & .stats-clrs-container {
         padding-inline: 4px;
         padding-block: 8px;
         // display: flex;
+        pointer-events: fill;
+
 
         & div {
             height: 24px;
             border: none;
+            user-select: none;
+            cursor: pointer;
 
 
             &:hover {

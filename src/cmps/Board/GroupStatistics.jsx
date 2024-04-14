@@ -61,7 +61,7 @@ export function GroupStatistics({ tasks, clmTypes }) {
                                         <div key={index} style={{
                                             width: width,
                                             backgroundColor: item.color,
-                                        }} title={`${item.title}: ${width}`}></div>
+                                        }} name={`${item.title}: ${width}`}></div>
                                         </Tooltip>
                                     )
                                 })}
