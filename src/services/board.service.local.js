@@ -20,7 +20,8 @@ export const boardService = {
     dragAndDropGroup,
     dragAndDropTask,
     removeTask,
-    updateGroup
+    updateGroup,
+    getEmptyFilterBy
 }
 window.cs = boardService
 
@@ -953,6 +954,12 @@ async function query(filterBy = { txt: '', price: 0 }) {
         _save(STORAGE_KEY, gBoards)
     }
     return boards
+}
+
+function getEmptyFilterBy() {
+    return {
+        title: ''
+    }
 }
 
 

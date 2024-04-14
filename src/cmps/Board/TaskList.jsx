@@ -118,7 +118,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         }} />
                     )}
                     {provided.placeholder}
-                    <div className='list-item add-task' style={{}} >
+                    <div className='list-item add-task'>
                         <div className='blank-cell-add-task' style={{ width: '40px' }}>
 
                         </div>

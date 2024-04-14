@@ -1,3 +1,5 @@
+import { boardService } from "../../services/board.service.local"
+
 export const SET_BOARDS = 'SET_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
@@ -27,7 +29,8 @@ const initialState = {
     // clmTypes: null,
     lastRemovedBoard: null,
     isLoading: false,
-    modalProps: {}
+    modalProps: {},
+    filterBy: boardService.getEmptyFilterBy()
 }
 
 export function boardReducer(state = initialState, action) {
