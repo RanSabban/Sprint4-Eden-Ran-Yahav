@@ -12,18 +12,6 @@
     align-items: center;
     text-align: center;
     position: relative;
-    // box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
-    // z-index: 11111111111111111111111111111111111;
-
-    // & .on-hover-task {
-    //     z-index: 111111111111111111;
-    //     // pointer-events:none;
-    //     &:hover{
-
-    //         background-color: rgba(103, 104, 121, 0.1);
-    //     }
-
-    // border-left: 0.4em solid $clr-label-3;
 
     .task-effect-box {
         position: absolute;
@@ -98,6 +86,7 @@
         position: relative;
         font-size: 0.875em;
         line-height: 1.3125;
+        border-bottom: 1px solid #d0d4e4;
 
 
         & .label-fold {
@@ -299,11 +288,12 @@
 
     & .add-task-fill-gap {
         grid-column: 3/-1;
-        height: 36px;
+        height: 32px;
         width: 100%;
         border: 1px solid #d0d4e4;
         border-left: none;
         border-right: none;
+        border-top: none;
     }
 
     & .add-task-checkbox {
@@ -335,6 +325,7 @@
         >:nth-child(2) {
             border-bottom-left-radius: 0.3em;
             border-left: 1px solid $clr-border;
+            border-right: 1px solid $clr-border;
         }
     }
 
@@ -347,17 +338,23 @@
 
     }
 
+    & .stats-clrs-container {
+        padding-inline: 4px ;
+        padding-block: 8px ;
+    }
+
     & .stats-cell-container {
         border: 1px solid $clr-border;
         height: 36px;
         align-content: center;
         border-top: none;
         width: 100%;
-        // border-right: none;
+        border-right: none;
         border-left: none;
 
         &:first-child {
             border-left: 1px solid $clr-border;
+            
         }
 
     }
