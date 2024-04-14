@@ -86,18 +86,18 @@ export function BoardSideBar() {
     // </Tooltip>
     // className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`}
 
-    if (!boards) return (<div>LOADING BRO</div>)
+    if (!boards) return (<div style={{ display: 'inline' }}></div>)
 
     return (
 
         <section className={`board-sidebar ${dynClass}`} >
             <div className="sidebar-container">
                 <Tooltip position='right' content='Close navigation'
-                    animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : ''}} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
+                    animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
                 <div className={`lower-sidebar ${dynClass}`} style={{ marginLeft: "1em" }}>
                     <div className="all-sidebar" style={{ display: "flex", flexDirection: "column" }}>
                         <div className="upper-actions">
-                        <NavLink style={{backgroundColor: dynClasse, borderRadius: '6px', maxWidth: '16.2em'}} className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
+                            <NavLink style={{ backgroundColor: dynClasse, borderRadius: '6px', maxWidth: '16.2em' }} className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
                             <NavLink className="actions-sidebar-upper-second"><MyWork /><div className="home-sidebar">My work</div></NavLink>
                         </div>
 

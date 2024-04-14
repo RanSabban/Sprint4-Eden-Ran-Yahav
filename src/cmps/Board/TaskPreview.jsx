@@ -130,11 +130,14 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         taskId={task._id}
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
+                        isLast={isLast}
                     // selectedCell={selectedCell}
                     />
                 ))
             }
-            <div className='dyn-cell infinity'></div>
+            <div className='dyn-cell infinity'>
+
+            </div>
         </>
     )
 

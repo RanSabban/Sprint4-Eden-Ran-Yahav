@@ -2,6 +2,8 @@
     position: relative;
     box-sizing: content-box;
 
+    // overflow: auto;
+
     & ul {
         list-style: none;
     }
@@ -112,7 +114,6 @@
         background-color: #fff;
         cursor: pointer;
         margin-bottom: 40px;
-        
         &:hover {
             background-color:rgba(103, 104, 121, 0.1);
         }

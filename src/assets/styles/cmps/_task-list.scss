@@ -8,7 +8,8 @@
     // border: 1px solid $clr-border;
     border-left: none;
     border-right: none;
-    height: 2.25em;
+    // height: 2.25em;
+    height: 36px;
     align-items: center;
     text-align: center;
     position: relative;
@@ -44,7 +45,7 @@
     & .blank-cell-add-task {
         position: sticky;
         left: 0;
-        height: 40px;
+        height: 36px;
         background: white;
     }
 
@@ -63,13 +64,17 @@
         align-items: center;
         // border-left: 1px solid $clr-border;
         border-right: 1px solid $clr-border;
-
+        &.infinity {
+            border: 1px solid #d0d4e4;
+            border-left: none;
+            border-top: none;
+        }
 
         // width: 100px;
 
-        &:not(:first-child) {
-            justify-items: center;
-        }
+        // &:not(:first-child) {
+        //     justify-items: center;
+        // }
 
     }
 
@@ -298,7 +303,7 @@
 
     & .add-task-fill-gap {
         grid-column: 3/-1;
-        height: 32px;
+        height: 36px;
         width: 100%;
         border: 1px solid #d0d4e4;
         border-left: none;
