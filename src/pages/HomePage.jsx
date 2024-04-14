@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../assets/img/oneday-logo.png'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 
@@ -16,7 +16,7 @@ export function HomePage() {
                 </div>
                 <div className="home-actions">
                     <button className='login-btn'>Login</button>
-                   <Link to={'/board'}> <button className='cta-btn'>Get Started</button> </Link>
+                   <Link to={'/users'}> <button className='cta-btn'>Get Started</button> </Link>
                 </div>
             </header>
             <section className='hero-header'>

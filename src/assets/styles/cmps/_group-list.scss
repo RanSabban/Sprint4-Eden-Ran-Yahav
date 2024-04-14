@@ -26,6 +26,12 @@
         text-align: center;
         border-right: 1px solid $clr-border;
 
+        position: sticky;
+        background-color: $bgc-main;
+        top: 156px;
+        z-index: 9999;
+        
+
         & .blank-cell {
             position: sticky;
             left: 0;
@@ -91,6 +97,7 @@
             grid-template-columns: 36px 1fr;
 
 
+
         }
 
 
@@ -123,6 +130,14 @@
         grid-auto-flow: column;
         justify-content: start;
         align-items: center;
+
+
+        
+        position: sticky;
+        background-color: $bgc-main;
+        top: 118px;
+        height: 40px;
+        z-index: 999;
 
         .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8 {
             font-family: poppins-medium;
