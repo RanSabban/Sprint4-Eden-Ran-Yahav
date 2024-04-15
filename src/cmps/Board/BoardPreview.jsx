@@ -101,7 +101,7 @@ export function BoardPreview({ onAddGroup}) {
         })
     }
 
-    if (!groups) return <div>LOADING</div>
+    if (!groups && !board) return <div>LOADING</div>
     return (
 
 
