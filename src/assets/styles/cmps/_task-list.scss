@@ -25,7 +25,8 @@
         box-shadow: 4px 3px 6px -3px #c3c6d4;
         // box-shadow: 4px 3px 6px -3px #112a96;
         transform: translate(40px);
-        width: 100%;
+        width: max-content;
+        // overflow-wrap: break-word;
         opacity: 0;
     }
 
@@ -410,7 +411,41 @@
 
     .dyn-cell.files {
         border-bottom: 1px solid $clr-border;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+      
 
+        .empty-file-icons-container{
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            pointer-events: fill;
+        }
+        
+        &:hover .empty-file-icon {
+            opacity: 1;
+        }
+        &:hover svg {
+            opacity: 1;
+        }
+        .empty-file-icon, svg {
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: fill;
+        }
+
+        svg {
+            margin-inline-start: -7px;
+            position: absolute;
+        }
+
+        label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
     }
 
 

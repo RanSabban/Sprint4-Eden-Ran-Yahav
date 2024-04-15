@@ -25,7 +25,6 @@ export function HomePage() {
                     <h2>Run all your work on one platform with customizable</h2>
                     <h2>products that scale with your needs.</h2>
                 </sub>
-                <img src="../assets/img/home/wm-dark.png" alt="" srcset="" />
             </section>
             <section className='welcome-section'>
 
@@ -43,7 +42,7 @@ export function HomePage() {
 
                 <Link to={'/board'}> <button className='cta-button'>Get Started</button> </Link>
 
-                <p class="no-credit-card-txt">No credit card needed<span>✦</span>Unlimited time on Free plan</p>
+                <p className="no-credit-card-txt">No credit card needed<span>✦</span>Unlimited time on Free plan</p>
 
             </section>
             <img src="	https://myday-p034.onrender.com/img/home_page/HomeAppPreviewImg.avif

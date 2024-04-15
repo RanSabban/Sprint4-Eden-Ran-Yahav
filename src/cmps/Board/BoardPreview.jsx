@@ -27,6 +27,8 @@ export function BoardPreview({ onAddGroup}) {
     const groups = board.groups
     const clmTypes = board.clmTypes
 
+    console.log(clmTypes);
+
     async function onAddTask(groupId, taskTitle) {
         try {
             // console.log(groupId)
@@ -101,7 +103,7 @@ export function BoardPreview({ onAddGroup}) {
         })
     }
 
-    if (!groups) return <div>LOADING</div>
+    if (!groups && !board) return <div>LOADING</div>
     return (
 
 

@@ -1,6 +1,5 @@
 import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
 import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons"
-import EmojiPicker from 'emoji-picker-react'
 
 import { BoardFilter } from "./BoardFilter"
 import { boardService } from "../../services/board.service"
@@ -11,7 +10,7 @@ import { CustomAdd, MenuDots } from "../../services/svg.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
 
-export function BoardHeader({ isCollapsed, setIsCollapsed, board, ref }) {
+export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
     const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
     const [initialTitle, setInitialTitle] = useState(boardTitle)
     const [isEditable, setIsEditable] = useState(false)

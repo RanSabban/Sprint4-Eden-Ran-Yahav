@@ -5,11 +5,8 @@ import { useSelector } from 'react-redux'
 import { addGroup, loadBoard, removeGroup } from "../../store/actions/board.actions"
 import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
-import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useInView } from "react-intersection-observer"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
-import { Activity } from "../Acttivity"
-import loader from '../../assets/img/loader.gif'
 
 export function BoardDetails() {
 
@@ -58,23 +55,20 @@ export function BoardDetails() {
         }
     }
 
-    if (!board) return <section style={{ position: "relative",  backgroundColor: 'white' }} className="loader-container" >
+    if (!board) return <section style={{ position: "relative", backgroundColor: 'white' }} className="loader-container" >
         <img style={{ position: "fixed", left: '54em', top: '15em' }} className="loader" src="https://myday-p034.onrender.com/img/board-loader.gif" />
     </section >
     return (
-
         <>
             <section className="board-details" >
                 <div ref={ref} style={{ height: '1px', position: "absolute", width: '100%' }}></div>
-                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} ref={ref} />
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board}     />
                 <BoardPreview
                     onAddGroup={onAddGroup}
                     onRemoveGroup={onRemoveGroup}
                     board={board}
                 />
-
                 <Outlet />
-
             </section>
         </>
     )
