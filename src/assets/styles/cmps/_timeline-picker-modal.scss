@@ -19,7 +19,7 @@
 
 .date-picker-modal {
   background-color: var(--primary-background-color);
-  z-index: 111111;
+  z-index: 11111111;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
   border-radius: 4px;
   font-size: 14px;
@@ -109,4 +109,16 @@
       }
     }
   }
+}
+
+.rdp:not([dir='rtl']) .rdp-day_range_start:not(.rdp-day_range_end){
+  border-radius: 50%;
+}
+
+.rdp-day{
+  border-radius: 50%;
+}
+
+.rdp:not([dir='rtl']) .rdp-day_range_end:not(.rdp-day_range_start){
+  border-radius: 50%;
 }
