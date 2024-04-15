@@ -791,7 +791,7 @@ function getEmptyFilterBy() {
 async function addBoard() {
     const board = getEmptyBoard()
     try {
-        const savedBoard = await saveOnline(board)
+        const savedBoard = await save(board)
         return savedBoard
     } catch (err) {
         console.log('cannot add board', err);

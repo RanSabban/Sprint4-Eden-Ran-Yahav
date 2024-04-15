@@ -25,9 +25,7 @@ export function RenderHeaders({ clmTypes, isCollapsed }) {
                         <span className='dyn-cell header-item' style={{fontSize: '14px'}} key={idx}>{clmType.title}</span>
                     ))}
                     <div className='dyn-cell infinity add-column'>
-                        <div className="add-column-container">
-                            <Add />
-                        </div>
+                      
                     </div>
                 </>
             )}

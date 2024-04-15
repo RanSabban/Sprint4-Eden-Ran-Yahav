@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd'
 import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading, ColorPicker } from 'monday-ui-react-core';
-import { AddSmall, Delete, DropdownChevronDown, DropdownChevronRight, DropdownChevronUp } from 'monday-ui-react-core/icons';
+import { Add, AddSmall, Delete, DropdownChevronDown, DropdownChevronRight, DropdownChevronUp } from 'monday-ui-react-core/icons';
 import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
 import { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ import { set } from 'date-fns';
 import { loadBoards, updateGroup } from '../../store/actions/board.actions';
 import { GroupStatistics } from './GroupStatistics';
 import { useParams } from 'react-router';
+import { ColumnsEdit } from './ColumnsEdit';
 
 export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
@@ -25,6 +26,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     const colorOpen = isOpen ? 'grid' : 'none'
     const [optionColorOpen, setOptionColorOpen] = useState(false)
     const colorOptions = optionColorOpen ? 'block' : 'none'
+   
 
     const [isCollapsed, setIsCollapsed] = useState(false)
 
@@ -225,10 +227,13 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                 <div className='checkbox-header-container sticky'>
                                     <Checkbox />
                                 </div>
-                                <div className='header-item sticky' style={{fontSize: '14px'}} >{boardType}</div>
+                                <div className='header-item sticky' style={{ fontSize: '14px' }} >{boardType}</div>
                             </div>
                             { }
                             <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
+                            <div className="add-column-container">
+                                <ColumnsEdit clmTypes={clmTypes} />
+                            </div>
                         </section>
                         <TaskList
                             groupColor={group.groupColor}
