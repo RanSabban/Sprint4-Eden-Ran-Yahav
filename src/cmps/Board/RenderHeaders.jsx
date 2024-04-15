@@ -15,14 +15,14 @@ export function RenderHeaders({ clmTypes, isCollapsed }) {
                         clmType.type !== "files" &&
                         clmType.type !== "updates" &&
                         clmType.type !== "timelines") {
-                        return <span className='dyn-cell header-item' key={idx}>{clmType.title}</span>
+                        return <span className='dyn-cell header-item' style={{fontSize: '14px'}} key={idx}>{clmType.title}</span>
                     }
                     return null
                 })
             ) : (
                 <>
                     {clmTypes.map((clmType, idx) => (
-                        <span className='dyn-cell header-item' key={idx}>{clmType.title}</span>
+                        <span className='dyn-cell header-item' style={{fontSize: '14px'}} key={idx}>{clmType.title}</span>
                     ))}
                     <div className='dyn-cell infinity add-column'>
                         <div className="add-column-container">

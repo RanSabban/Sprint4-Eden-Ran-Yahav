@@ -1,10 +1,11 @@
 .overlap-images-wrapper {
     flex-wrap: nowrap;
+    
 
     >* {
         position: relative;
         overflow: hidden;
-
+        border: none;
 
     }
 
@@ -31,6 +32,8 @@
         min-height: 26px;
         max-width: 26px;
         font-size: 13px;
+        background-color: $bgc-main !important;
+        border: 1px solid $clr-border !important;
         // margin-left: em(-5px);
         align-items: center;
 

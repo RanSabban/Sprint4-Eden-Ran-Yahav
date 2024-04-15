@@ -1,9 +1,10 @@
-import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu, Tooltip } from "monday-ui-react-core";
-import { Filter, PersonRound, Search, Sort } from "monday-ui-react-core/icons";
-import { useState } from "react";
+import { Avatar, Button, MenuItem, SearchComponent, SplitButton, SplitButtonMenu, Tooltip, TextField } from "monday-ui-react-core";
+import { Filter, PersonRound,  Sort, Search } from "monday-ui-react-core/icons";
+import { useEffect, useState } from "react";
 import { addTask, updateFilterBy } from "../../store/actions/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { boardService } from "../../services/board.service.local";
+import { MondaySearchIcon } from "../../services/svg.service";
 
 export function BoardFilter({ onAddGroup, boardId }) {
 
@@ -11,6 +12,10 @@ export function BoardFilter({ onAddGroup, boardId }) {
     const [filterByToUpdate, setFilterByToUpdate] = useState(boardService.getEmptyFilterBy)
 
     const dynSearchBtn = isSearch ? '' : 'searchBtn'
+
+    useEffect(()=>{
+        setIsSearch(false)
+    },[])
 
     function toggleIsSearch() {
         setIsSearch(!isSearch)
@@ -62,9 +67,9 @@ export function BoardFilter({ onAddGroup, boardId }) {
 
             {isSearch ? (
                 <Button
-                    className="icon"
+                    className="search-btn"
                     onBlur={() => toggleIsSearch()}
-                    leftIcon={Search}
+                    leftIcon={MondaySearchIcon}
                     kind="tertiary"
                     style={{ marginRight: "6px", marginLeft: "6px" }}
                     size="small">
@@ -72,14 +77,15 @@ export function BoardFilter({ onAddGroup, boardId }) {
                 </Button>
 
             ) : (
-                <SearchComponent
-                    id="search-input"
+                <TextField 
+                    id="search-input-focused"
+                    size={TextField.sizes.SMALL} 
                     onBlur={() => toggleIsSearch()}
+                    iconName={MondaySearchIcon}
+                    data-testid="search-input-icon"
                     autoFocus
                     debounceRate={200}
-                    leftIcon={Search}
-                    placeholder="Search"
-                    size="small"
+                    placeholder="Search this board"
                     wrapperClassName="dyn-search"
                     onChange={(value) => handleChangeFilter(value)}
                 />)

@@ -25,7 +25,7 @@
         box-shadow: 4px 3px 6px -3px #c3c6d4;
         // box-shadow: 4px 3px 6px -3px #112a96;
         transform: translate(40px);
-        width: 100vw;
+        width: 100%;
         opacity: 0;
     }
 
@@ -355,9 +355,9 @@
             text-align: center;
             align-self: center;
             border-radius: 0;
-            overflow: hidden; /* Hides text that overflows the element's box */
-            text-overflow: ellipsis; /* Replace overflow with ellipsis */
-            white-space: nowrap; /* Prevents text from wrapping */
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            white-space: nowrap; 
             height: 24px;
             width: 100%;
             padding-top: 2px;

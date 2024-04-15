@@ -19,16 +19,16 @@ export function BoardHomeHeader() {
     return <section className="board-home-header"
         style=
         {{
-            display: 'grid',
-            gridAutoFlow: 'column',
-            width: '100%',
-            gridTemplateColumns: '1fr 1fr 1fr'
+            // display: 'grid',
+            // gridAutoFlow: 'column',
+            // width: '100%',
+            // gridTemplateColumns: '1fr 1fr 1fr'
         }}
     >
         <section
             style={{ justifySelf: 'start' }}
             className="welcome-user-container">
-            <span>{`${welcomeUser()}, User!`}</span>
+            <span>{`${welcomeUser()}, Guest!`}</span>
             <p 
             className="welcome-user-content"
             >Quickly access your recent boards, Inbox and workspaces</p>
@@ -37,10 +37,10 @@ export function BoardHomeHeader() {
         <img
             src="https://cdn.monday.com/images/homepage-desktop/header-background-v2.svg"
             style={{
-                maxWidth: '100%',
-                maxHeight: '100%',
-                justifySelf: 'center',
-                overflow: 'hidden'
+                // maxWidth: '100%',
+                // maxHeight: '100%',
+                // justifySelf: 'center',
+                // overflow: 'hidden'
             }}
         />
     </section>

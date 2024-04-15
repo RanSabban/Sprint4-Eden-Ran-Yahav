@@ -112,7 +112,9 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board, re
 
     return (
         <section className={`board-header-wrapper ${isCollapsed ? 'collapsed' : ''}`}>
+
             <div className="board-header">
+
                 <div className={`board-header-top flex align-center justify-between ${isCollapsed ? 'collapsed' : ''}`}>
 
                     <div className={`board-title-left ${isEditable ? dynClass : ''}`}>
