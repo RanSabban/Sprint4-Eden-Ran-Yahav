@@ -89,7 +89,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
 
                     {groups.map((group, index) => (
 
-                        <Draggable key={group._id} draggableId={group._id} index={index}>
+                        <Draggable key={index} draggableId={group._id} index={index}>
 
                             {(provided, snapshot) => (
                                 <li
@@ -112,22 +112,22 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                                         isCollapsedAll={isCollapsedAll}
                                     />
 
-                                    {snapshot.isDraggingOver && (
-                                        <div style={{
-                                            position: "absolute",
-                                            top: placeholderProps.clientY,
-                                            left: placeholderProps.clientX + `60px`,
-                                            height: placeholderProps.clientHeight,
-                                            border: "1px dashed #d0d4e4",
-                                            borderRadius: "2px",
-                                            width: placeholderProps.clientWidth - `10`,
-                                        }} />
-                                    )}
-                                    {provided.placeholder}
                                 </li>
                             )}
                         </Draggable>
                     ))}
+                    {snapshot.isDraggingOver && (
+                        <div style={{
+                            position: "absolute",
+                            top: placeholderProps.clientY,
+                            left: placeholderProps.clientX + `60px`,
+                            height: placeholderProps.clientHeight,
+                            border: "1px dashed #d0d4e4",
+                            borderRadius: "2px",
+                            width: placeholderProps.clientWidth - `10`,
+                        }} />
+                    )}
+                    {provided.placeholder}
                 </ul>
             )}
         </Droppable>

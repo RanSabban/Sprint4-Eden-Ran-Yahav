@@ -1,8 +1,8 @@
 .group-list {
     display: grid;
     // row-gap: em(28px);
-    // min-width: max-content;
-    min-width: 1500px;
+    width: max-content;
+    // max-width: 1500px;
     position: relative;
 
 
@@ -27,7 +27,7 @@
 
         position: sticky;
         background-color: $bgc-main;
-        top: 156px;
+        top: 164px;
         z-index: 9999;
 
 
@@ -105,14 +105,52 @@
 
     }
 
-    & .group-container {
+    .group-container {
         background-color: $bgc-main;
         display: grid;
-        grid-template-columns: 40px 453px 150px 150px 150px 200px 100px 100px 100px 100px 1fr;
+        position: relative;
+        // grid-template-columns: 40px 453px 150px 150px 150px 200px 100px 100px 100px 100px 1fr;
+
+        grid-template-columns: 40px 500px 150px 150px 150px 200px 100px 100px 100px 100px 100px auto;
+        grid-auto-columns: minmax(100px, 1fr);
         grid-template-rows: 36px;
         width: 100%;
         margin-bottom: em(28px);
+        // overflow-x: hidden; 
+    
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            background-color: $clr-border; 
+            
+        }
+    
+        &::before {
+            top: 0; 
+            height: 1px; 
+        }
+    
+        &::after {
+            bottom: 0; 
+            height: 1px; 
+        }
+    
+    
+        
+        // .group-container::before {
+        //     top: 0; /* Top border */
+        // }
+        
+        // .group-container::after {
+        //     bottom: 0; /* Bottom border */
+        // }
 
+        .dyn-cell.header-item {
+            font-size: em(14px);
+        }
 
         .group-preview-title-container {
             position: sticky;
@@ -162,7 +200,7 @@
 
         position: sticky;
         background-color: $bgc-main;
-        top: 118px;
+        top: 126px;
         height: 40px;
         z-index: 999;
 

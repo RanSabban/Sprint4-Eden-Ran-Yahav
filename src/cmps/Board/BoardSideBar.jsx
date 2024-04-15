@@ -55,13 +55,10 @@ export function BoardSideBar() {
     }
 
     const [isOpen, setIsOpen] = useState(true)
-    // const [isOpen2, setIsOpen2] = useState(true)
     const [isWorkspace, setIsWorkspace] = useState(true)
     const dynClass = isOpen ? 'open-sidebar' : 'close-sidebar'
     const dynWorkspace = isWorkspace ? 'none' : 'block'
-    // const isbtnshow = isOpen2 ? 'hide' : 'show'
     const dynPad = isOpen ? '255px' : '30px'
-    // const dynScroll = isOpen2 ? 'relative' : 'absolute'
 
 
     function addBoardOnClick(ev) {

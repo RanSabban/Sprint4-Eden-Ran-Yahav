@@ -38,6 +38,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         };
         update();
     }, [selectedCell]);
+    
 
     async function onChange(cell) {
         try {
@@ -95,7 +96,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             </section>
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
-            }}>
+            }}
+            onClick={console.log('active')}
+            >
                 <div className='dyn-cell checkbox-container'>
 
                     <Checkbox />
@@ -135,6 +138,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className='dyn-cell infinity'>
 
             </div>
+            {/* {provided.placeholder} */}
+
         </>
     )
 

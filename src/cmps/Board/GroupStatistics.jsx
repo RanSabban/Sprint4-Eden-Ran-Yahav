@@ -46,7 +46,7 @@ export function GroupStatistics({ tasks, clmTypes, isCollapsed, groupColor }) {
 
     return (
 
-        <div className="list-item statistics"       >
+        <div className="list-item statistics"        >
 
             <div className="group-statistics-fill" style={style}><span>{isCollapsed && `${tasks.length} Tasks`}</span></div>
 
@@ -59,11 +59,11 @@ export function GroupStatistics({ tasks, clmTypes, isCollapsed, groupColor }) {
                                     const stats = clmType.type === 'status' ? statusStats : priorityStats
                                     const width = stats[item.id] || '0%'
                                     return (
-                                        <Tooltip key={JSON.stringify(item.title)} content={`${item.title || ' '}: ${width}`}>
+                                        <Tooltip key={JSON.stringify(item.title)} content={`${item.title|| ' '}: ${width}`}>
                                             <div style={{
                                                 width: width,
                                                 backgroundColor: item.color,
-                                            }} title={`${item.title}: ${width}`}></div>
+                                            }} name={`${item.title}: ${width}`}></div>
                                         </Tooltip>
                                     )
                                 })}

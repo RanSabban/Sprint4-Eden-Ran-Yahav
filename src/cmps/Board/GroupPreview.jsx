@@ -217,9 +217,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                         {/* future collumns resizable */}
                         {/* className="group-container" style={dynamicStyle}> */}
                         <section className="header-items">
-                            <div className='blank-cell'>
-
-                            </div>
+                            <div className='blank-cell'>                            </div>
 
                             {/* <ResizableColumn /> */}
                             <div className="group-preview-title-container dyn-cell"
@@ -227,7 +225,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                 <div className='checkbox-header-container sticky'>
                                     <Checkbox />
                                 </div>
-                                <div className='header-item sticky'>{boardType}</div>
+                                <div className='header-item sticky' style={{fontSize: '14px'}} >{boardType}</div>
                             </div>
                             { }
                             <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
