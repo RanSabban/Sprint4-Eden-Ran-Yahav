@@ -11,10 +11,13 @@ import { EditableCmp } from './reusableCmps/EditableCmp'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
 
-export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn }) {
-    const tasks = useSelector(storeState =>
-        storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
-    )
+export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn, tasks }) {
+    // const tasks = useSelector(storeState =>
+    //     storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
+    // )
+
+
+
     const [isClear, setIsClear] = useState(false)
     const { boardId } = useParams()
 

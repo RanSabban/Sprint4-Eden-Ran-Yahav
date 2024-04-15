@@ -18,15 +18,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
 
     // const groups = useSelector(storeState => storeState.boardModule.board.groups)
     // const groups = useSelector(storeState => storeState.boardModule.board)
-    const groupListRef = useRef();  // Create a ref object
 
-    useEffect(() => {
-        if (groupListRef.current) {
-            const scrollWidth = groupListRef.current.scrollWidth
-            console.log("Scrollable Width:", scrollWidth)
-            // You can also handle the scrollWidth here as per your requirement
-        }
-    }, [groups])
 
 
     async function onRemoveGroup(groupId) {

@@ -2,6 +2,9 @@ import { Fragment, useState, useRef, useEffect } from "react"
 import { AvatarGroupAng } from "../reusableCmps/AvatarGroupAang"
 import { Chips, Search } from "monday-ui-react-core"
 import { loadBoards } from "../../../store/actions/board.actions"
+// import {AddCircleOutlineRoundedIcon} from '@mui/icons-material/AddCircleOutlineRounded';
+import { RoundedCornerRounded } from "@mui/icons-material"
+import { AddBtn } from "../../../services/svg.service"
 
 
 export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateCell }) {
@@ -61,13 +64,14 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
     return (
         <Fragment>
             <span onClick={() => setIsOpen(!isOpen)} className="dyn-cell members dyn-cell-flexy">
+                <AddBtn />
                 <AvatarGroupAng users={clmType.data.filter(user => users.includes(user._id))} />
             </span>
 
             <div ref={modalRef} style={{ display: dynClass }} className={`members-picker`}>
-            <div className="arrow" dataplacement="top"></div>
+                <div className="arrow" dataplacement="top"></div>
 
-            
+
                 <div className="chips-div">
                     {users.map((userId) => {
                         const user = clmType.data.find(user => user._id === userId)

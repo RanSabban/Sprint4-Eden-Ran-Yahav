@@ -110,7 +110,7 @@
     & .group-container {
         background-color: $bgc-main;
         display: grid;
-        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px 1fr;
+        grid-template-columns: 40px 453px 150px 150px 150px 200px 100px 100px 100px 100px 200px;
         grid-template-rows: 36px;
         width: 100%;
         margin-bottom: em(28px);

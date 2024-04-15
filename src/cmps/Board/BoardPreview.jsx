@@ -12,7 +12,7 @@ import { Add } from "monday-ui-react-core/icons";
 
 
 export function BoardPreview({ board , onAddGroup}) {
-    const currBoard = useSelector(state => state.boardModule.board)
+
     const [placeholderProps, setPlaceholderProps] = useState("");
 
     const groups = board.groups
