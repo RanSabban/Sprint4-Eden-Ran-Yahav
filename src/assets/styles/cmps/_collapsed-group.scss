@@ -1,0 +1,131 @@
+.group-card {
+
+    & .collapsed-group {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        align-self: flex-start;
+        height: 100%;
+        width: 100%;
+        margin-left: 0;
+        padding-top: em(4px);
+        padding-bottom: em(8px);
+        padding-right: em(8px);
+        height: em(60px);
+        margin-bottom: 50px;
+
+        & .group-container {
+
+            & .btn-group-collapse-arrow {
+                margin-left: 4px;
+            }
+
+            & .group-preview-title-container {
+                border: none;
+            }
+
+            & .group-wrapper {
+                display: grid;
+                grid-template-columns: 400px 140px 140px 150px 100%;
+
+                grid-auto-rows: auto;
+                z-index: 999;
+            }
+
+            & .header-items {
+                border-top-left-radius: 0.6em;
+                border-top: 1px solid $clr-border;
+
+                & .dyn-cell.header-item:not(:nth-child(2)) {
+                    border-top: none;
+                    border-right: 1px solid $clr-border;
+
+                }
+
+                & .dyn-cell.header-item:nth-child(2) {
+                    border-top: none;
+                    border-left: 1px solid $clr-border;
+                }
+
+            }
+
+            & .list-item {
+                display: grid;
+                border: none;
+
+                & .stats-clrs-container {
+                    padding-block: 6px;
+                    border-left: 1px solid $clr-border;
+                    border-right: 1px solid $clr-border;
+                    width: 150px;
+
+                    &:first-child {
+                        border-top: none;
+                    }
+                }
+
+                & .group-statistics-fill {
+                    border: none;
+                    border-left: 0.4em solid rgb(255, 202, 0);
+                    border-bottom-left-radius: 0.6em;
+                    border-bottom: 1px solid $clr-border;
+                    display: flex;
+                    align-items: center;
+
+                    & span {
+                        margin-left: em(36px);
+                        color: #676879;
+                    }
+
+
+                    position: sticky;
+                    left: 40px;
+                    background: white;
+
+                    &.stats-cell-container {
+                        padding: 0;
+                    }
+
+                }
+
+                &.statistics {
+
+                    grid-template-columns: subgrid;
+                    height: 2.25em;
+                    align-items: center;
+                    text-align: center;
+                    position: sticky;
+                    background-color: #ffffff;
+                    top: 156px;
+                    z-index: 9999;
+                    border-bottom: 1px solid $clr-border;
+
+
+                    & .stats-cell-container {
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        height: 24px;
+                        border: none;
+                        padding: 0;
+                    }
+
+                    & .stats-fill-cell {
+                        border: transparent;
+
+
+                        &:not(:nth-child(1)) {
+                            border-top: none;
+                            border-right: 1px solid $clr-border;
+                        }
+
+                        &:nth-child(1) {
+                            border-top: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
