@@ -5,4 +5,20 @@
     // display: grid;
     // position: relative;
     // height: 173px; 
+
+    & [data-testid="split-button"]{
+        margin-right: em(6px);
+    }
+
+    & #search-input-focused{
+        padding-left: 30px;
+        padding-bottom: 9px;
+
+      
+    }
+
+    & [data-testid="clickable"] {
+        color: $clr-icon;
+        left: 6px;
+    }
 }

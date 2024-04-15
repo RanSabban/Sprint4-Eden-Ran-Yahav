@@ -65,8 +65,8 @@ export function BoardDetails() {
 
         <>
             <section className="board-details" >
-                <div ref={ref} style={{ height: '1px', position: "absolute", width: '100vw' }}></div>
-                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} />
+                <div ref={ref} style={{ height: '1px', position: "absolute", width: '100%' }}></div>
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} ref={ref} />
                 <BoardPreview
                     onAddGroup={onAddGroup}
                     onRemoveGroup={onRemoveGroup}

@@ -1,6 +1,8 @@
 .group-card {
 
+
     & .collapsed-group {
+        height: 60px;
         display: grid;
         grid-template-columns: 28px 1fr;
         align-self: flex-start;
@@ -15,6 +17,12 @@
 
         & .group-container {
 
+            & .blank-cell {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
             & .btn-group-collapse-arrow {
                 margin-left: 4px;
             }
@@ -25,10 +33,14 @@
 
             & .group-wrapper {
                 display: grid;
-                grid-template-columns: 400px 140px 140px 150px 100%;
-
+                grid-template-columns: 600px 150px 150px 150px 100%;
                 grid-auto-rows: auto;
                 z-index: 999;
+                width: 100%;
+
+                .group-header {
+                    height: 30px;
+                }
             }
 
             & .header-items {
@@ -53,10 +65,12 @@
                 border: none;
 
                 & .stats-clrs-container {
-                    padding-block: 6px;
-                    border-left: 1px solid $clr-border;
-                    border-right: 1px solid $clr-border;
-                    width: 150px;
+                    // padding-block: 10px;
+                    // border-left: 1px solid $clr-border;
+                    // border-right: 1px solid $clr-border;
+                    width: 100%;
+                    padding: 0 8px;
+
 
                     &:first-child {
                         border-top: none;
@@ -105,24 +119,36 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-
-                        height: 24px;
+                        height: 100%;
                         border: none;
+                        width: 150px;
                         padding: 0;
+
+
+                    }
+
+                    & .stats-cell-container:not(:nth-child(1)) {
+                        border-radius: 0;
+                        border-left: 1px solid $clr-border;
+                        border-right: 1px solid $clr-border;
+                    }
+
+                    & .stats-cell-container:not(:nth-child(2)) {
+                        border-radius: 0;
+                        border-left: 0;
+                        border-right: 0;
+
+
+                        // border-left: 1px solid $clr-border;
                     }
 
                     & .stats-fill-cell {
-                        border: transparent;
+                        // border: transparent;
+                        border-top: none;
+                        border-bottom: none;
+                        
 
 
-                        &:not(:nth-child(1)) {
-                            border-top: none;
-                            border-right: 1px solid $clr-border;
-                        }
-
-                        &:nth-child(1) {
-                            border-top: none;
-                        }
                     }
                 }
             }

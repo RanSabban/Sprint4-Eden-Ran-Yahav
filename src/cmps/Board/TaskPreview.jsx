@@ -38,6 +38,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         };
         update();
     }, [selectedCell]);
+    
 
     async function onChange(cell) {
         try {
@@ -79,11 +80,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     return (
 
         <>
+            <span className='task-effect-box'>
 
-
-
-            <span className='task-effect-box'></span>
-
+            </span>
             <section style={{}} className="task-actions">
                 {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
 
@@ -97,7 +96,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             </section>
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
-            }}>
+            }}
+            onClick={console.log('active')}
+            >
                 <div className='dyn-cell checkbox-container'>
 
                     <Checkbox />
@@ -137,6 +138,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className='dyn-cell infinity'>
 
             </div>
+            {/* {provided.placeholder} */}
+
         </>
     )
 
@@ -162,7 +165,7 @@ function DynamicCmp(props) {
         case 'updates':
             return <LastUpdatedComponent {...props} />
 
-        default: <span>NoNo</span>
+        default: <span></span>
 
     }
 }

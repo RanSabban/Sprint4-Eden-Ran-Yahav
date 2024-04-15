@@ -11,8 +11,9 @@ import { GroupArrow } from '../../services/svg.service';
 import { set } from 'date-fns';
 import { loadBoards, updateGroup } from '../../store/actions/board.actions';
 import { GroupStatistics } from './GroupStatistics';
+import { useParams } from 'react-router';
 
-export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
+export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
     // const [specificGroup, setSpecificGroup] = useState(group)
     const [initialTitle, setInitialTitle] = useState(group.title)
@@ -27,6 +28,9 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
 
     const [isCollapsed, setIsCollapsed] = useState(false)
 
+    const { boardId } = useParams()
+
+    console.log(boardId)
 
 
     const [collapseClass, setCollapseClass] = useState('')
@@ -84,7 +88,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     };
 
     // console.log(dynamicStyle);
-    if (!group.tasks.length) return
+    // if (!group.tasks.length) return
     return (
 
         <>
@@ -213,9 +217,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                         {/* future collumns resizable */}
                         {/* className="group-container" style={dynamicStyle}> */}
                         <section className="header-items">
-                            <div className='blank-cell'>
-
-                            </div>
+                            <div className='blank-cell'>                            </div>
 
                             {/* <ResizableColumn /> */}
                             <div className="group-preview-title-container dyn-cell"
@@ -223,7 +225,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
                                 <div className='checkbox-header-container sticky'>
                                     <Checkbox />
                                 </div>
-                                <div className='header-item sticky'>{boardType}</div>
+                                <div className='header-item sticky' style={{fontSize: '14px'}} >{boardType}</div>
                             </div>
                             { }
                             <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />

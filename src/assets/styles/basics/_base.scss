@@ -10,11 +10,11 @@
 
 html {
     color: $clr-main;
-    scroll-behavior: smooth;
 }
 
 body,
 html {
+    scroll-behavior: smooth;
     overflow: hidden;
     height: 100%;
 }

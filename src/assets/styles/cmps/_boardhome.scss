@@ -9,7 +9,10 @@
     grid-template-rows: 75px 1fr;
     overflow: auto;
 
-    .board-home-header {
+    & .board-home-header {
+        display: flex;
+        justify-items: center;
+        gap: 18px;
         height: 75px;
         background-color: #fff;
         --box-shadow-color: #e6e9ef;
@@ -17,13 +20,35 @@
         border-radius: 0.5em 0 0 0;
         box-shadow: rgb(230, 233, 239) 0px 3px 12px 0px;
         z-index: 1;
+        overflow: hidden;
 
-        .welcome-user-container {
+        & img{
+            display: flex;
+            // justify-items: baseline;
+            height: em(106px);
+            width: 152px;
+            // padding-top: 10px;
+            margin-top: -10px;
+        }
+
+        & .welcome-user-container {
+            display: flex;
+            flex-direction: column;
+            row-gap: 6px;
+
+            justify-content: center;
             font-family: Figtree;
             font-weight: 400;
-            margin-left: 1em;
-            margin-top: 0.5em;
+            margin-left: 5em;
 
+            & span{
+                // margin-top: -4px;
+            }
+
+        }
+
+        & .welcome-user-content {
+            width: max-content;
         }
 
 

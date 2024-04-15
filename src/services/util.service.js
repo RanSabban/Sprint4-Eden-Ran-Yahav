@@ -6,7 +6,8 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    getPrettyRandomColor
+    getPrettyRandomColor,
+    
 }
 
 function makeId(length = 6) {
@@ -63,9 +64,8 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function getPrettyRandomColor(){
+function getPrettyRandomColor() {
     const colors = ['#579bfc', '#ffca00', '#9dd327', '#7e3b8a', '#175a63']
     const randomIndex = Math.floor(Math.random() * colors.length)
     return colors[randomIndex]
-  }
-
+}

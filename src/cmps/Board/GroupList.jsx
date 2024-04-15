@@ -11,10 +11,11 @@ import { GroupPreview } from "./GroupPreview"
 import { useSelector } from "react-redux"
 import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useEffect, useRef, useState } from "react"
+import { useParams } from "react-router"
 
 
 
-export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isCollapsedAll }) {
+export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedAll }) {
 
 
     const groupListRef = useRef()
@@ -28,10 +29,13 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isC
     //     } console.log("isCollapsedAll", isCollapsedAll)
     // }, [groups])
 
+    const {boardId} = useParams()
+
 
     async function onRemoveGroup(groupId) {
         try {
-            await removeGroup(groupId)
+            console.log(boardId);
+            await removeGroup(groupId,boardId)
             showSuccessMsg('Group removed')
         } catch (err) {
             console.log('cannot remove group', err)
@@ -85,7 +89,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isC
 
                     {groups.map((group, index) => (
 
-                        <Draggable key={group._id} draggableId={group._id} index={index}>
+                        <Draggable key={index} draggableId={group._id} index={index}>
 
                             {(provided, snapshot) => (
                                 <li
@@ -108,22 +112,22 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isC
                                         isCollapsedAll={isCollapsedAll}
                                     />
 
-                                    {snapshot.isDraggingOver && (
-                                        <div style={{
-                                            position: "absolute",
-                                            top: placeholderProps.clientY,
-                                            left: placeholderProps.clientX + `60px`,
-                                            height: placeholderProps.clientHeight,
-                                            border: "1px dashed #d0d4e4",
-                                            borderRadius: "2px",
-                                            width: placeholderProps.clientWidth - `10`,
-                                        }} />
-                                    )}
-                                    {provided.placeholder}
                                 </li>
                             )}
                         </Draggable>
                     ))}
+                    {snapshot.isDraggingOver && (
+                        <div style={{
+                            position: "absolute",
+                            top: placeholderProps.clientY,
+                            left: placeholderProps.clientX + `60px`,
+                            height: placeholderProps.clientHeight,
+                            border: "1px dashed #d0d4e4",
+                            borderRadius: "2px",
+                            width: placeholderProps.clientWidth - `10`,
+                        }} />
+                    )}
+                    {provided.placeholder}
                 </ul>
             )}
         </Droppable>

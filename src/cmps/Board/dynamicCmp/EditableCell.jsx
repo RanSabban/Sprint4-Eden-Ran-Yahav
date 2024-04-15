@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AddBtn, TextEditIcon } from "../../../services/svg.service";
 
 export function EditableCell({ txt, onUpdateInput, placeholder }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -43,6 +44,14 @@ export function EditableCell({ txt, onUpdateInput, placeholder }) {
       {!isEditing ? (
         <span onClick={handleSpanClick} className="editable-title-cell">
           {content || placeholder}
+          {
+            !txt && (
+                <div className="empty-text-container">
+                    <AddBtn />
+                    <TextEditIcon />
+                </div>
+            )
+        }
         </span>
       ) : (
         <input

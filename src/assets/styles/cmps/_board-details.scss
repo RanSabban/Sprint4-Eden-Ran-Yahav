@@ -9,7 +9,8 @@
     background-color: $clr6;
     position: relative;
     border-radius: 0.5em 0 0 0;
-    min-width: 0;
+    // min-width: 0;
+    width: 100%;
 }
 
 .loader-container{

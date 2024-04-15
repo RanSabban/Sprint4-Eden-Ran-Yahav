@@ -4,14 +4,11 @@ import { useEffect } from "react"
 import { utilService } from "../../../services/util.service"
 
 export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, setSelectedCell }) {
-
-
     const [isOpen, setIsOpen] = useState(false)
     const [status, setStatus] = useState({ color: '', title: '' })
     const [animation, setAnimation] = useState('')
     const animations = ['confetti', 'balloon', 'crazy_balls']
     const prevTitle = useRef()
-
 
     useEffect(() => {
         const item = clmType.data.find(item => item.id === cell.dataId)
@@ -22,13 +19,9 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, set
             } else {
                 setAnimation('')
             }
-            prevTitle.current = item.title
-        } else {
-            setAnimation('')
         }
+        prevTitle.current = item.title
     }, [clmType, cell])
-
-
 
     return (
         <>
