@@ -55,7 +55,7 @@ export function HomePage() {
 
 <img alt="2Retrospectives" className="main-image" src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/Generator_featured images/Homepage - 2024/usescases3/2Retrospectives.png"></img>
         
-<section className="footer-section-full"><h2>Deliver your best work <span>with myday.com</span></h2><p className='p-home'>No credit card needed   <span>✦</span>   Unlimited time on Free plan</p>  <Link to={'/board'}> <button className='cta-button'>Get Started <svg className="arrow-icon" width="14" height="10" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.628.616a.5.5 0 1 0-.64.768L6.203 3.23H.5a.5.5 0 0 0 0 1h5.612L3.988 6a.5.5 0 1 0 .64.769l3.23-2.693a.5.5 0 0 0 0-.768L4.628.616z" fill="#FFFFFF"></path></svg></button> </Link></section>
+<section className="footer-section-full"><h2>Deliver your best work <span>with oneday.com</span></h2><p className='p-home'>No credit card needed   <span>✦</span>   Unlimited time on Free plan</p>  <Link to={'/board'}> <button className='cta-button'>Get Started <svg className="arrow-icon" width="14" height="10" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.628.616a.5.5 0 1 0-.64.768L6.203 3.23H.5a.5.5 0 0 0 0 1h5.612L3.988 6a.5.5 0 1 0 .64.769l3.23-2.693a.5.5 0 0 0 0-.768L4.628.616z" fill="#FFFFFF"></path></svg></button> </Link></section>
 
         </section >
     )
