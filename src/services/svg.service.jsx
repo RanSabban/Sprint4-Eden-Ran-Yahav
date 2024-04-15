@@ -200,3 +200,9 @@ export function GroupArrow() {
     <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" role="button" tabIndex="0" aria-hidden="false" className="icon_90dcd5fe7a clickable_dbf6c899a4" data-testid="icon"><path d="M12.5303 9.46967L12 10L12.5303 10.5303C12.8232 10.2374 12.8232 9.76256 12.5303 9.46967ZM10.9393 10L7.46967 13.4697C7.17678 13.7626 7.17678 14.2374 7.46967 14.5303C7.76256 14.8232 8.23744 14.8232 8.53033 14.5303L12.5303 10.5303L12 10L12.5303 9.46967L8.53033 5.46967C8.23744 5.17678 7.76256 5.17678 7.46967 5.46967C7.17678 5.76256 7.17678 6.23744 7.46967 6.53033L10.9393 10Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
   )
 }
+
+export function AddBtn(){
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#0073ea" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+  )
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { utilService } from "../../services/util.service"
 import { Tooltip } from "monday-ui-react-core"
 
-export function GroupStatistics({ tasks, clmTypes }) {
+export function GroupStatistics({ tasks, clmTypes, isCollapsed, groupColor }) {
     const [statusStats, setStatusStats] = useState({})
     const [priorityStats, setPriorityStats] = useState({})
 
@@ -37,31 +37,33 @@ export function GroupStatistics({ tasks, clmTypes }) {
             return acc
         }, {})
     }
+    const style = !isCollapsed ?
+        { gridColumn: '1/3', position: 'sticky', left: '0', background: 'white' } :
+        {
+            borderLeft: `0.4em solid ${groupColor}`,
+        }
+
 
     return (
-        <div className="list-item statistics" key={utilService.makeId()}>
 
-            <div className="group-statistics-fill"
-                style={{ gridColumn: '1/3', position: 'sticky', left: '0', background: 'white' }}>
-            </div>
+        <div className="list-item statistics"       >
+
+            <div className="group-statistics-fill" style={style}><span>{isCollapsed && `${tasks.length} Tasks`}</span></div>
+
             {clmTypes.map((clmType, index) => {
                 if (clmType.type === 'status' || clmType.type === 'priority') {
                     return (
-                        <div key={JSON.stringify(clmType)}
-                            className="stats-cell-container"
-                            style={{ padding: '2px' }}
-                        >
-                            <div style={{ display: 'flex' }} key={utilService.makeId()} className="stats-clrs-container">
+                        <div key={JSON.stringify(clmType.type)} className="stats-cell-container" style={!isCollapsed ? { padding: '2px' } : {}}>
+                            <div style={{ display: 'flex' }} className="stats-clrs-container">
                                 {clmType.data.map((item, index) => {
                                     const stats = clmType.type === 'status' ? statusStats : priorityStats
                                     const width = stats[item.id] || '0%'
                                     return (
-                                        <Tooltip
-                                            content={(item.title || ' ') + ' ' + width}>
-                                            <div key={index} style={{
+                                        <Tooltip key={JSON.stringify(item.title)} content={`${item.title || ' '}: ${width}`}>
+                                            <div style={{
                                                 width: width,
                                                 backgroundColor: item.color,
-                                            }} name={`${item.title}: ${width}`}></div>
+                                            }} title={`${item.title}: ${width}`}></div>
                                         </Tooltip>
                                     )
                                 })}
@@ -69,15 +71,12 @@ export function GroupStatistics({ tasks, clmTypes }) {
                         </div>
                     )
                 } else {
-                    return <div className="stats-fill-cell" >
-
-                    </div>
+                    return <div key={JSON.stringify(clmType.type)} className="stats-fill-cell"></div>
                 }
             })}
-            <div className='dyn-cell infinity'>
-
-            </div>
+            <div className='dyn-cell infinity'></div>
         </div>
+
     )
 }
 

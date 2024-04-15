@@ -1,31 +1,32 @@
 
-import { DragDropContext } from "react-beautiful-dnd";
-import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-import { addTask, dragAndDropGroup, dragAndDropTask, loadBoard } from "../../store/actions/board.actions";
-import { GroupList } from "./GroupList";
-import { RenderHeaders } from "./RenderHeaders";
-import { DatePicker, DialogContentContainer } from "monday-ui-react-core";
-import { useSelector } from "react-redux";
-import { LabelPicker } from "./reusableCmps/LabelPicker";
-import { useEffect, useState } from "react";
-import { Add } from "monday-ui-react-core/icons";
+import { DragDropContext } from "react-beautiful-dnd"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import { addTask, dragAndDropGroup, dragAndDropTask, loadBoard } from "../../store/actions/board.actions"
+import { GroupList } from "./GroupList"
+import { RenderHeaders } from "./RenderHeaders"
+import { DatePicker, DialogContentContainer } from "monday-ui-react-core"
+import { useSelector } from "react-redux"
+import { LabelPicker } from "./reusableCmps/LabelPicker"
+import { useEffect, useState } from "react"
+import { Add } from "monday-ui-react-core/icons"
 
 
 export function BoardPreview({ board , onAddGroup}) {
     const currBoard = useSelector(state => state.boardModule.board)
-    const [placeholderProps, setPlaceholderProps] = useState("");
+    const [placeholderProps, setPlaceholderProps] = useState("")
+    const [isCollapsedAll, setIsCollapsedAll] = useState(false)
 
     const groups = board.groups
     const clmTypes = board.clmTypes
 
     async function onAddTask(groupId, taskTitle) {
         try {
-            // console.log(groupId);
+            // console.log(groupId)
             await addTask(groupId, board._id, taskTitle)
             showSuccessMsg('Task Added')
         }
         catch (err) {
-            console.log('err adding task', err);
+            console.log('err adding task', err)
             showErrorMsg('Cannot add task')
         }
     }
@@ -34,7 +35,7 @@ export function BoardPreview({ board , onAddGroup}) {
         if (!result.destination) return
 
         const { destination, source, type } = result
-        // console.log(type);
+        // console.log(type)
         try {
             if (type === 'TASK') {
                 dragAndDropTask(source, destination, board._id)
@@ -44,49 +45,53 @@ export function BoardPreview({ board , onAddGroup}) {
                 showSuccessMsg('Tasks swiped!')
             }
         } catch (err) {
-            // console.log('Error drag and drop', err);
+            // console.log('Error drag and drop', err)
             showErrorMsg('Cannot swipe sorry AVATAR!!!')
         }
         finally {
             setPlaceholderProps({})
+            setIsCollapsedAll(false)
+
         }
-        console.log(destination, source);
+        console.log(destination, source)
     }
 
 
 
-    const queryAttr = "data-rbd-drag-handle-draggable-id";
+    const queryAttr = "data-rbd-drag-handle-draggable-id"
 
     function onDragUpdate(update) {
         if (!update.destination) {
-            return;
+            return
         }
-        const draggableId = update.draggableId;
-        const destinationIndex = update.destination.index;
+        // setIsCollapsedAll(true)
 
-        const domQuery = `[${queryAttr}='${draggableId}']`;
-        const draggedDOM = document.querySelector(domQuery);
+        const draggableId = update.draggableId
+        const destinationIndex = update.destination.index
+
+        const domQuery = `[${queryAttr}='${draggableId}']`
+        const draggedDOM = document.querySelector(domQuery)
 
         if (!draggedDOM) {
-            return;
+            return
         }
-        const { clientHeight, clientWidth } = draggedDOM;
+        const { clientHeight, clientWidth } = draggedDOM
 
         const clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) + [...draggedDOM.parentNode.children]
             .slice(0, destinationIndex)
             .reduce((total, curr) => {
-                const style = curr.currentStyle || window.getComputedStyle(curr);
-                const marginBottom = parseFloat(style.marginBottom);
-                return total + curr.clientHeight + marginBottom;
-            }, 0);
+                const style = curr.currentStyle || window.getComputedStyle(curr)
+                const marginBottom = parseFloat(style.marginBottom)
+                return total + curr.clientHeight + marginBottom
+            }, 0)
 
         setPlaceholderProps({
             clientHeight,
             clientWidth,
             clientY,
             clientX: parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft)
-        });
-    };
+        })
+    }
 
     if (!groups) return <div>LOADING</div>
     return (
@@ -97,11 +102,13 @@ export function BoardPreview({ board , onAddGroup}) {
             <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate} >
                 <GroupList
                     placeholderProps={placeholderProps}
+                    setPlaceholderProps={setPlaceholderProps}
                     clmTypes={clmTypes}
                     groups={groups}
                     onAddTask={onAddTask}
                     boardType={board.type}
                     boardId={board._id}
+                    isCollapsedAll={isCollapsedAll}
 
                     onAddGroup={onAddGroup} />
             </DragDropContext>
@@ -125,8 +132,8 @@ export function BoardPreview({ board , onAddGroup}) {
 
 
 // const BoardContainer = () => {
-//     const columns = useSelector(state => state.columns);
-//     const tasksByColumnId = useSelector(state => state.tasksByColumnId);
+//     const columns = useSelector(state => state.columns)
+//     const tasksByColumnId = useSelector(state => state.tasksByColumnId)
 
 //     return (
 //         <div className="board">
@@ -138,8 +145,8 @@ export function BoardPreview({ board , onAddGroup}) {
 //                 />
 //             ))}
 //         </div>
-//     );
-// };
+//     )
+// }
 
 {/* {tasks.map(task => {
                             return (        

@@ -2,7 +2,7 @@ import { RenderHeaders } from "./RenderHeaders"
 import { TaskList } from "./TaskList"
 import { Menu, MenuButton, MenuItem } from "monday-ui-react-core"
 import { Button } from "monday-ui-react-core"
-import { addGroup, addTask, updateGroup } from "../../store/actions/board.actions"
+import { addGroup, addTask, dragAndDropGroup, dragAndDropTask, updateGroup } from "../../store/actions/board.actions"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { removeGroup } from "../../store/actions/board.actions"
 import { AddSmall, Delete, Edit, Favorite, Moon } from "monday-ui-react-core/icons"
@@ -10,23 +10,23 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { GroupPreview } from "./GroupPreview"
 import { useSelector } from "react-redux"
 import { LabelPicker } from "./reusableCmps/LabelPicker"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
 
-export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholderProps, groups }) {
+export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isCollapsedAll }) {
 
-    // const groups = useSelector(storeState => storeState.boardModule.board.groups)
-    // const groups = useSelector(storeState => storeState.boardModule.board)
-    const groupListRef = useRef();  // Create a ref object
 
-    useEffect(() => {
-        if (groupListRef.current) {
-            const scrollWidth = groupListRef.current.scrollWidth
-            console.log("Scrollable Width:", scrollWidth)
-            // You can also handle the scrollWidth here as per your requirement
-        }
-    }, [groups])
+    const groupListRef = useRef()
+    const [placeholderProps, setPlaceholderProps] = useState("")
+
+
+    // useEffect(() => {
+    //     if (groupListRef.current) {
+    //         const scrollWidth = groupListRef.current.scrollWidth
+    //         console.log("Scrollable Width:", scrollWidth)
+    //     } console.log("isCollapsedAll", isCollapsedAll)
+    // }, [groups])
 
 
     async function onRemoveGroup(groupId) {
@@ -53,16 +53,13 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
     }
 
     async function onUpdateGroup(groupId, updatedTitle) {
-
-        // console.log('rrr', updatedGroupData)
-
         try {
 
             // const updatedGroupData = { title: updatedTitle }
-            await updateGroup(groupId, updatedTitle,boardId)
+            await updateGroup(groupId, updatedTitle, boardId)
 
-            console.log('Group updated successfully');
-            // showSuccessMsg('Group updated successfully');
+            console.log('Group updated successfully')
+            // showSuccessMsg('Group updated successfully')
         } catch (err) {
             console.error('Error updating group:', err)
             showErrorMsg('Error updating group')
@@ -71,28 +68,31 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
 
 
 
+
     if (!groups) return <div>Loading</div>
     return (
+        // <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate}>
+
         <Droppable
             droppableId={boardId}
             type="GROUP"
-            style={{ overflow: 'auto' }}
         >
-            {(provided) => (
+            {(provided, snapshot) => (
                 <ul className="group-list"
                     {...provided.droppableProps}
-                    ref={provided.innerRef}>
+                    ref={provided.innerRef}
+                >
 
                     {groups.map((group, index) => (
-                       
-                        <Draggable key={index} draggableId={group._id} index={index}>
+
+                        <Draggable key={group._id} draggableId={group._id} index={index}>
 
                             {(provided, snapshot) => (
                                 <li
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                     ref={provided.innerRef}
-                                // className="group-card"
+                                    className="group-card"
                                 >
                                     <GroupPreview
                                         placeholderProps={placeholderProps}
@@ -105,16 +105,29 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, placeholder
                                         onRemoveGroup={onRemoveGroup}
                                         onUpdateGroup={onUpdateGroup}
                                         onAddTask={onAddTask}
+                                        isCollapsedAll={isCollapsedAll}
                                     />
 
+                                    {snapshot.isDraggingOver && (
+                                        <div style={{
+                                            position: "absolute",
+                                            top: placeholderProps.clientY,
+                                            left: placeholderProps.clientX + `60px`,
+                                            height: placeholderProps.clientHeight,
+                                            border: "1px dashed #d0d4e4",
+                                            borderRadius: "2px",
+                                            width: placeholderProps.clientWidth - `10`,
+                                        }} />
+                                    )}
+                                    {provided.placeholder}
                                 </li>
                             )}
                         </Draggable>
                     ))}
-                    {provided.placeholder}
                 </ul>
             )}
         </Droppable>
+        // </DragDropContext>
 
 
 

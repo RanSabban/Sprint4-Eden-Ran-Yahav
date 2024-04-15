@@ -33,7 +33,7 @@ export function EditableCmp({ txt, onUpdateInput, placeholder }) {
   };
 
   return (
-    <div className="editable-container-cmp">
+    <div className="editable-container-cmp dyn cell txt">
       {!isEditing ? (
         <span onClick={handleSpanClick} className="editable-title-dyn-cmp" style={{paddingInlineStart: '10px',
         paddingBlockStart: '2px', paddingBlockEnd: '3px'}}>

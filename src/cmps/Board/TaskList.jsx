@@ -11,17 +11,20 @@ import { EditableCmp } from './reusableCmps/EditableCmp'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
 
-export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn }) {
-    const tasks = useSelector(storeState =>
-        storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
-    )
+export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn, tasks }) {
+    // const tasks = useSelector(storeState =>
+    //     storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
+    // )
+
+
+
     const [isClear, setIsClear] = useState(false)
     const { boardId } = useParams()
 
     async function onUpdateCell(cell, taskId) {
         try {
-            console.log(cell,taskId);
-            await updateCell(cell, taskId, groupId,boardId)
+            console.log(cell, taskId);
+            await updateCell(cell, taskId, groupId, boardId)
         }
         catch (err) {
             console.log('err update task', err)
@@ -87,8 +90,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
                                     className={`list-item ${snapshot.isDragging ? 'drag' : ''}`}
                                 >
-                                      
-                                   
+
+
                                     <TaskPreview
                                         task={task}
                                         groupColor={groupColor}
@@ -98,10 +101,10 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                                         isLast={index === tasks.length - 1}
                                         resizeColumn={resizeColumn}
                                         columnWidth={columnWidth}
-                                        
-                                        />
 
-                                       
+                                    />
+
+
                                 </div>
                             )}
                         </Draggable>
@@ -114,7 +117,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             height: placeholderProps.clientHeight,
                             border: "1px dashed #d0d4e4",
                             borderRadius: "2px",
-                            width: placeholderProps.clientWidth - `10px`
+                            width: placeholderProps.clientWidth - `10`,
                         }} />
                     )}
                     {provided.placeholder}
@@ -131,8 +134,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             <div className='dyn-cell checkbox-container'>
                                 <Checkbox className='add-task-checkbox' disabled={true} />
                             </div>
-                            <div className='add-task-content-container' 
-                            style={{borderBottom: '1px solid #d0d4e4'}}
+                            <div className='add-task-content-container'
+                                style={{ borderBottom: '1px solid #d0d4e4' }}
                             >
                                 {/* <InputCell onUpdateInput={onAddTaskFromList} isClear={isClear} onAddTaskComplete={onAddTaskComplete} /> */}
                                 <EditableCmp onUpdateInput={onAddTaskFromList} placeholder={'+ Add item'} />
@@ -143,8 +146,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         </div>
                     </div>
 
-                   
-            </div>
+
+                </div>
             )
             }
         </Droppable >

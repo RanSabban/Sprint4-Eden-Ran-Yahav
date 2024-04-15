@@ -1,20 +1,21 @@
 import { useEffect, useState, useRef } from "react"
 import { NavLink } from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
-import { Menu, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core";
+import { Menu, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core"
 
 import { BoardListPreview } from "./BoardListPreview"
 
 function truncateString(str, num) {
   if (str.length > num) {
-    return str.slice(0, num) + '...';
+    return str.slice(0, num) + '...'
   }
-  return str;
+  return str
 }
 
 function Board({ board, onUpdateBoard, onRemoveBoard }) {
+
     const [isEdit, setIsEdit] = useState(false)
     const [isShown, setIsShown] = useState(false)
     const [editedTitle, setEditedTitle] = useState(board.title)

@@ -6,9 +6,6 @@
     position: relative;
 
 
-    >* {
-        background-color: $bgc-main;
-    }
 
     .task-list {
         display: grid;
@@ -26,6 +23,7 @@
         align-items: center;
         text-align: center;
         border-right: 1px solid $clr-border;
+        // font-size: em(14px);
 
         position: sticky;
         background-color: $bgc-main;
@@ -110,7 +108,7 @@
     & .group-container {
         background-color: $bgc-main;
         display: grid;
-        grid-template-columns: 40px 453px 150px 150px 100px 200px 100px 100px 100px 100px 1fr;
+        grid-template-columns: 40px 453px 150px 150px 150px 200px 100px 100px 100px 100px 200px;
         grid-template-rows: 36px;
         width: 100%;
         margin-bottom: em(28px);
@@ -162,13 +160,19 @@
         justify-content: start;
         align-items: center;
 
-
-
         position: sticky;
         background-color: $bgc-main;
         top: 118px;
         height: 40px;
         z-index: 999;
+
+        & .group-collapse-arrow {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            // margin-left: 4px;
+            margin-right: em(2px);
+        }
 
         .elementTypeH3_ca3a1ab6a4.sizeLarge_c730ce20f8 {
             font-family: poppins-medium;
@@ -186,10 +190,18 @@
         }
 
         & .section-group-header-sticky {
+            align-items: center;
+            justify-content: center;
             position: sticky;
-            left: 0;
+            left: em(8px);
             display: grid;
             grid-auto-flow: column;
+            // margin-left: em(6px);
+            cursor: pointer;
+
+            & button {
+                margin-right: em(20px);
+            }
         }
     }
 
