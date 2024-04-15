@@ -69,7 +69,7 @@ export function TimelinesComponent({ cell, groupColor }) {
           <div className="progress-bar-container">
             <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
             
-            <div className="progress-bar" style={{ width: getPercentage(cell.startDate, cell.endDate),background: groupColor }}></div>
+            <div style={{ width: getPercentage(cell.startDate, cell.endDate),background: groupColor, height: '100%' }} className="progress-bar" ></div>
             {/* <div className="progress-bar" style={{ width: "50%",background: groupColor }}></div> */}
           </div>
         </section>

@@ -29,7 +29,7 @@ export function Activity() {
     }
 
     return (
-        <section className="activity-container">
+        <section style={{zIndex: '11111111'}} className="activity-container">
             <div className="upper-details">
                 <Link to={`/board/${currBoard._id}`} className="close-details">X</Link>
                 <div className="upper-details-actions">
