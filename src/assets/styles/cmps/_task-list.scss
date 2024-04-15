@@ -25,7 +25,8 @@
         box-shadow: 4px 3px 6px -3px #c3c6d4;
         // box-shadow: 4px 3px 6px -3px #112a96;
         transform: translate(40px);
-        width: 100%;
+        width: max-content;
+        // overflow-wrap: break-word;
         opacity: 0;
     }
 
