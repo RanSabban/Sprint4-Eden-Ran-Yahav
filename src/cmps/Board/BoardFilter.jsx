@@ -3,7 +3,7 @@ import { Filter, PersonRound,  Sort, Search } from "monday-ui-react-core/icons";
 import { useEffect, useState } from "react";
 import { addTask, updateFilterBy } from "../../store/actions/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
-import { boardService } from "../../services/board.service.local";
+import { boardService } from "../../services/board.service";
 import { MondaySearchIcon } from "../../services/svg.service";
 
 export function BoardFilter({ onAddGroup, boardId }) {

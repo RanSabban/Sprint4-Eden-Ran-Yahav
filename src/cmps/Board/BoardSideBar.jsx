@@ -6,7 +6,7 @@ import { InputCell } from "./reusableCmps/InputCell"
 import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText, Search, Menu, MenuItem, Flex } from "monday-ui-react-core";
 import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
 import { loadBoards, removeBoard, updateBoard, addBoard } from "../../store/actions/board.actions"
-import { boardService } from "../../services/board.service.local"
+import { boardService } from "../../services/board.service"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
@@ -33,10 +33,10 @@ export function BoardSideBar() {
     }
 
     async function onAddBoard() {
-        const board = boardService.getEmptyBoard()
-        console.log('-----', board)
+        // const board = boardService.getEmptyBoard()
+        // console.log('-----', board)
         try {
-            const savedBoard = await addBoard(board)
+            const savedBoard = await addBoard()
             showSuccessMsg(`Board added (id: ${savedBoard._id})`)
         } catch (err) {
             showErrorMsg('Cannot add board')

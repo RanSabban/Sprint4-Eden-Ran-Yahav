@@ -3,20 +3,35 @@ import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronU
 import EmojiPicker from 'emoji-picker-react'
 
 import { BoardFilter } from "./BoardFilter"
-import { boardService } from "../../services/board.service.local"
-import { updateBoard } from "../../store/actions/board.actions"
+import { boardService } from "../../services/board.service"
+import { addGroup, updateBoard } from "../../store/actions/board.actions"
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { CustomAdd, MenuDots } from "../../services/svg.service"
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
 
-export function BoardHeader({ isCollapsed, setIsCollapsed, onAddGroup, board, ref }) {
+export function BoardHeader({ isCollapsed, setIsCollapsed, board, ref }) {
     const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
     const [initialTitle, setInitialTitle] = useState(boardTitle)
     const [isEditable, setIsEditable] = useState(false)
     const [dynClass, setDynClass] = useState('')
     const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'
     const editableTitleRef = useRef(null)
+
+
+    async function onAddGroup(boardId, isBottom) {
+        try {
+            console.log('here');
+            console.log(boardId, isBottom);
+            const group = await addGroup(boardId, isBottom)
+            console.log(group)
+            showSuccessMsg('Group added')
+        } catch (err) {
+            console.log('Err add group', err);
+            showErrorMsg('Nono')
+        }
+    }
 
     const setCursorToEnd = (element) => {
         const range = document.createRange()

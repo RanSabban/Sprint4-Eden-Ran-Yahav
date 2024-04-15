@@ -11,8 +11,9 @@ import { GroupArrow } from '../../services/svg.service';
 import { set } from 'date-fns';
 import { loadBoards, updateGroup } from '../../store/actions/board.actions';
 import { GroupStatistics } from './GroupStatistics';
+import { useParams } from 'react-router';
 
-export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
+export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
     // const [specificGroup, setSpecificGroup] = useState(group)
     const [initialTitle, setInitialTitle] = useState(group.title)
@@ -27,6 +28,9 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
 
     const [isCollapsed, setIsCollapsed] = useState(false)
 
+    const { boardId } = useParams()
+
+    console.log(boardId)
 
 
     const [collapseClass, setCollapseClass] = useState('')
@@ -84,7 +88,7 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     };
 
     // console.log(dynamicStyle);
-    if (!group.tasks.length) return
+    // if (!group.tasks.length) return
     return (
 
         <>

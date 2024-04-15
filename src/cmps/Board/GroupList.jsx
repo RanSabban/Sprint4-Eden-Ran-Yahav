@@ -11,10 +11,11 @@ import { GroupPreview } from "./GroupPreview"
 import { useSelector } from "react-redux"
 import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useEffect, useRef, useState } from "react"
+import { useParams } from "react-router"
 
 
 
-export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isCollapsedAll }) {
+export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedAll }) {
 
 
     const groupListRef = useRef()
@@ -28,10 +29,13 @@ export function GroupList({ clmTypes, onAddTask, boardType, boardId, groups, isC
     //     } console.log("isCollapsedAll", isCollapsedAll)
     // }, [groups])
 
+    const {boardId} = useParams()
+
 
     async function onRemoveGroup(groupId) {
         try {
-            await removeGroup(groupId)
+            console.log(boardId);
+            await removeGroup(groupId,boardId)
             showSuccessMsg('Group removed')
         } catch (err) {
             console.log('cannot remove group', err)

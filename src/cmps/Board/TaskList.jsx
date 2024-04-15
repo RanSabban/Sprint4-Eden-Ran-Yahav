@@ -33,7 +33,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
     async function onUpdateTask(task) {
         try {
-            updateTask(task, groupId)
+            updateTask(task, groupId,boardId)
         } catch (err) {
             console.log('Error update task', err)
         }

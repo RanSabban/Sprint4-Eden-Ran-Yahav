@@ -9,12 +9,20 @@ import { useSelector } from "react-redux"
 import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useEffect, useState } from "react"
 import { Add } from "monday-ui-react-core/icons"
+import { useParams } from "react-router"
 
 
-export function BoardPreview({ board , onAddGroup}) {
+export function BoardPreview({ onAddGroup}) {
     const currBoard = useSelector(state => state.boardModule.board)
     const [placeholderProps, setPlaceholderProps] = useState("")
     const [isCollapsedAll, setIsCollapsedAll] = useState(false)
+
+    const board = useSelector(storeState => storeState.boardModule.board)
+    const {boardId} = useParams()
+
+    useEffect(() => {
+        if (boardId) loadBoard(boardId)
+    }, [boardId])
 
     const groups = board.groups
     const clmTypes = board.clmTypes

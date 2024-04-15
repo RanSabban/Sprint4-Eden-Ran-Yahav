@@ -4,7 +4,7 @@ import { loadBoards, addBoard, updateBoard, removeBoard, addGroup } from '../sto
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
-import { boardService } from '../services/board.service.local.js'
+import { boardService } from '../services/board.service.js'
 import { Outlet, useParams } from 'react-router'
 import { BoardHome } from '../cmps/Board/BoardHome.jsx'
 import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
