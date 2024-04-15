@@ -305,14 +305,27 @@
         &:hover svg {
             opacity: 1;
         }
+
+        .empty-text-container {
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            position: absolute;
+            cursor: text;
+            // pointer-events: fill;
+            width: 100%;
+            justify-content: center;
+            padding-bottom: 5px;
+            column-gap: 2px;
+        }
         
         svg {
-            height: 14px;
+            // height: 18px;
             // justify-self: start;
-            position: absolute;
-            padding-inline-start: 6px;
+            // position: absolute;
+            // padding-inline-start: 6px;
             left: 0;
-            pointer-events: fill;
+            // pointer-events: fill;
             // left: 6px;
             opacity: 0;
             transition: 0.3s;
