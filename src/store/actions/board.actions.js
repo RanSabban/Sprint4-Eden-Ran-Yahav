@@ -1,4 +1,4 @@
-import { boardService } from '../../services/board.service.local.js'
+import { boardService } from '../../services/board.service.js'
 import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
@@ -51,9 +51,9 @@ export async function removeBoard(boardId) {
     }
 }
 
-export async function addBoard(board) {
+export async function addBoard() {
     try {
-        const savedBoard = await boardService.save(board)
+        const savedBoard = await boardService.addBoard()
         console.log('Added Board', savedBoard)
         store.dispatch(getActionAddBoard(savedBoard))
         return savedBoard
@@ -114,9 +114,9 @@ export async function addGroup(boardId, isBottom) {
     }
 }
 
-export async function removeGroup(groupId) {
+export async function removeGroup(groupId,boardId) {
     try {
-        boardService.removeGroup(groupId)
+        boardService.removeGroup(groupId,boardId)
         store.dispatch({
             type: REMOVE_GROUP,
             groupId
@@ -202,9 +202,9 @@ export async function updateCell(updatedCell, taskId, groupId, boardId) {
     }
 }
 
-export async function updateTask(task, groupId) {
+export async function updateTask(task, groupId,boardId) {
     try {
-        const board = boardService.updateTask(task, groupId)
+        const board = boardService.updateTask(task, groupId,boardId)
         // store.dispatch
     } catch (err) {
         console.log('Error update task', err);
