@@ -7,7 +7,7 @@ import 'react-day-picker/dist/style.css'
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service"
 import { RangePicker } from "./RangePicker"
 
-export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }) {
+export function TimelineRange({ setDatePickerOpen, taskId, cell, onUpdateCell }) {
     console.log('ss tt mm', setDatePickerOpen, taskId, cell, onUpdateCell)
     const [selected, setSelected] = useState(new Date())
     const referenceElem = useRef()
@@ -57,15 +57,15 @@ export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }
             <div className="task-date"
                 ref={referenceElem}
             >
-            
+
                 <div ref={popperElem}
                     style={styles.popper}
                     {...attributes.popper}
                     className="date-picker-modal">
                     <style>{pickerCss}</style>
                     <DayPicker
-                    monthsShown={2}
-                        mode="range"
+                        numberOfMonths={1}
+                        mode="selected"
                         selected={selected}
                         onSelect={onChangeDueDate}
                         footer={footer}

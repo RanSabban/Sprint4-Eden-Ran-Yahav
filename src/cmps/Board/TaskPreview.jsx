@@ -80,11 +80,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     return (
 
         <>
+            <span className='task-effect-box'>
 
-
-
-            <span className='task-effect-box'></span>
-
+            </span>
             <section style={{}} className="task-actions">
                 {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
 
@@ -134,7 +132,6 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
                         isLast={isLast}
-                    // selectedCell={selectedCell}
                     />
                 ))
             }
@@ -168,7 +165,7 @@ function DynamicCmp(props) {
         case 'updates':
             return <LastUpdatedComponent {...props} />
 
-        default: <span>NoNo</span>
+        default: <span></span>
 
     }
 }

@@ -1,5 +1,5 @@
 
-import { AddBtn } from "../../../services/svg.service";
+import { AddBtn, TextEditIcon } from "../../../services/svg.service";
 import { InputCell } from "../reusableCmps/InputCell";
 import { EditableCell } from "./EditableCell";
 
@@ -13,9 +13,7 @@ export function TextCellComponent({ clmType, cell, taskId, onUpdateCell }) {
 
 
     return <span className="dyn-cell txt dyn-cell-flexy">
-        {
-            !cell.txt && <AddBtn />
-        }
+      
         <EditableCell txt={cell.txt} onUpdateInput={onUpdateInput} />
 
     </span>

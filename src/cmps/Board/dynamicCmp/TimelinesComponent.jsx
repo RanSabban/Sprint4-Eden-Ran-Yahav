@@ -1,81 +1,116 @@
-import dayjs from "dayjs";
+import React, { useEffect, useState, useRef } from "react"
+import dayjs from "dayjs"
+import { DayPicker } from 'react-day-picker'
+import 'react-day-picker/dist/style.css'
 
-export function TimelinesComponent({ cell, groupColor }) {
+export function TimelinesComponent({ cell, groupColor, onUpdateCell, taskId }) {
+    const [isDatePickerOpen, setDatePickerOpen] = useState(false)
+    const [selectedRange, setSelectedRange] = useState({ from: undefined, to: undefined })
 
-    // const calculateDurationInDays = (startDate, endDate) => {
-    //     const start = new Date(startDate);
-    //     const end = new Date(endDate);
-    //     const difference = end - start; // Difference in milliseconds
-    //     const durationDays = Math.floor(difference / (1000 * 60 * 60 * 24)); // Convert to days
-    //     return durationDays;
-    // }
-
-    function formatDisplayDate(startDate, endDate) {
-        const start = dayjs(startDate);
-        const end = dayjs(endDate);
-
-        let formattedDate;
-        if (start.month() === end.month()) {
-            formattedDate = `${start.format('D')} - ${end.format('D MMM')}`;
-        } else {
-            formattedDate = `${start.format('D MMM')} - ${end.format('D MMM')}`;
-        }
-        return formattedDate;
-    }
-    // getPercentage()
-
-    // function getPercentage() {
-    //     const now = dayjs()
-    //     const start = dayjs(cell.startDate)
-    //     const end = dayjs(cell.endDate)
-    //     // console.log(durationPerc);
-    //     if (now.isBefore(start)) {
-    //         return '0%'
-    //     } else if (now.isAfter(end)) {
-    //         return '100%'
-    //     }
-
-    //     const totalDuration = end.diff(start, 'day')
-    //     const elapsedDuration = now.diff(start, 'day')
-    //     const percentage = (elapsedDuration / totalDuration) * 100
-    //     console.log(percentage);
-    //     return `${percentage}%`
-    // }
-
-    function getPercentage() {
-        const now = dayjs()
-        const start = dayjs(cell.startDate)
-        const end = dayjs(cell.endDate)
-        if (now.isBefore(start)) {
-            return '0%';
-        } else if (now.isAfter(end)) {
-            return '100%';
-        }
-
-        const totalDuration = end.diff(start, 'day')
-        const elapsedDuration = now.diff(start, 'day')
-        const percentage = (elapsedDuration / totalDuration) * 100
-        console.log(percentage.toFixed(2))
-        // return `${percentage.toFixed(2)}%`
-        return `${percentage.toFixed(2)}%`
-
+    const handleOnClick = () => {
+        setDatePickerOpen(true)
     }
 
+    const onChangeDueDate = async () => {
+        if (!selectedRange.from || !selectedRange.to) return
+        try {
+            setDatePickerOpen(false)
+            // Update the cell with the selected date range
+            const updatedCell = {
+                ...cell,
+                startDate: selectedRange.from.getTime(), // Convert to timestamp
+                endDate: selectedRange.to.getTime() // Convert to timestamp
+            }
+            await onUpdateCell(updatedCell, taskId)
+            setDatePickerOpen(false)
+        } catch (err) {
+            console.error("Error updating cell:", err)
+        }
+    }
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (!event.target.closest('.date-picker-modal') && !event.target.closest('.dyn-cell.timeline')) {
+                setSelectedRange({ from: undefined, to: undefined })
+                setDatePickerOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick)
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick)
+        }
+    }, [])
 
     return (
-        <div className="dyn-cell timeline dyn-cell-flexy">
+        <div onClick={handleOnClick} className="dyn-cell timeline dyn-cell-flexy">
+           {isDatePickerOpen && (
+               <TimelineRange
+                   selectedRange={selectedRange}
+                   setSelectedRange={setSelectedRange}
+                   onUpdateCell={onChangeDueDate}
+               />
+           )}
 
-        <section className="timeline-container">
-          <div className="progress-bar-container">
-            <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
-            
-            <div style={{ width: getPercentage(cell.startDate, cell.endDate),background: groupColor, height: '100%' }} className="progress-bar" ></div>
-            {/* <div className="progress-bar" style={{ width: "50%",background: groupColor }}></div> */}
-          </div>
-        </section>
+            <section className="timeline-container">
+                <div className="progress-bar-container">
+                    <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
+                    <div style={{ width: getPercentage(cell.startDate, cell.endDate), background: groupColor, height: '100%' }} className="progress-bar"></div>
+                </div>
+            </section>
         </div>
-      )
-      
-
+    )
 }
 
+export function TimelineRange({ selectedRange, setSelectedRange, onUpdateCell }) {
+    const referenceElem = useRef()
+    const popperElem = useRef(null)
+
+    const handleDateRangeSelect = (range) => {
+        setSelectedRange(range) // Update selectedRange state
+    }
+
+    return (
+        <div className="task-date" ref={referenceElem}>
+            <div ref={popperElem} className="date-picker-modal">
+                <DayPicker
+                    mode="range"
+                    selected={selectedRange}
+                    onSelect={handleDateRangeSelect} // Call handleDateRangeSelect on selection
+                    showOutsideDays
+                />
+                <button style={{color: '#323338'}} onClick={onUpdateCell}>Update</button> {/* Add a button to trigger update */}
+            </div>
+        </div>
+    )
+}
+
+// Helper functions
+function formatDisplayDate(startDate, endDate) {
+    const start = dayjs(startDate)
+    const end = dayjs(endDate)
+
+    let formattedDate
+    if (start.month() === end.month()) {
+        formattedDate = `${start.format('D')} - ${end.format('D MMM')}`
+    } else {
+        formattedDate = `${start.format('D MMM')} - ${end.format('D MMM')}`
+    }
+    return formattedDate
+}
+
+function getPercentage(startDate, endDate) {
+    const now = dayjs()
+    const start = dayjs(startDate)
+    const end = dayjs(endDate)
+    if (now.isBefore(start)) {
+        return '0%'
+    } else if (now.isAfter(end)) {
+        return '100%'
+    }
+
+    const totalDuration = end.diff(start, 'day')
+    const elapsedDuration = now.diff(start, 'day')
+    const percentage = (elapsedDuration / totalDuration) * 100
+    return `${percentage.toFixed(2)}%`
+}
