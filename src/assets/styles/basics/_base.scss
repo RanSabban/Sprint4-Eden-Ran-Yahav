@@ -33,13 +33,14 @@ section {
     display: block
 }
 
-.loader{
+.loader {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100px;
     width: 100px;
 }
+
 body {
     font-family: figtree;
     background-color: $bgc-page;
@@ -181,7 +182,6 @@ li {
     color: #323338;
 }
 
-.monday-style-dialog-content-wrapper{
+.monday-style-dialog-content-wrapper {
     z-index: 99999;
 }
-

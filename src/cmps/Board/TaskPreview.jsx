@@ -88,7 +88,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
 
                 <MenuButton size='XS' >
-                    <Menu id={`menu-${task._id}`} size={Menu.sizes.LARGE} style={{ zIndex: '1111111' }}>
+                    <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '1111111' }}>
                         {/* <MenuItem icon={AddSmall} title="Add group"/> */}
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
