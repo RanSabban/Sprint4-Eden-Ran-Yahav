@@ -2,20 +2,29 @@
 
 
     & .collapsed-group {
-        height: 60px;
-        display: grid;
-        grid-template-columns: 28px 1fr;
-        align-self: flex-start;
-        height: 100%;
-        width: 100%;
-        margin-left: 0;
-        padding-top: em(4px);
-        padding-bottom: em(8px);
-        padding-right: em(8px);
-        height: em(60px);
+        // height: 60px;
+        // display: grid;
+        // grid-template-columns: 28px 1fr;
+        // align-self: flex-start;
+        // height: 100%;
+        // width: 100%;
+        // margin-left: 0;
+        // padding-top: em(4px);
+        // padding-bottom: em(8px);
+        // padding-right: em(8px);
+        // height: em(60px);
         margin-bottom: 50px;
 
         & .group-container {
+            padding: 4px 8px 8px 0;
+
+            background-color: #ffffff;
+            display: grid;
+            grid-template-columns: 40px 600px 150px 150px 150px 400px 1fr;
+            grid-auto-columns: minmax(100px, 1fr);
+            grid-auto-rows: 30px 30px;
+            width: 100%;
+            margin-bottom: 1.75em;
 
             & .blank-cell {
                 display: flex;
@@ -33,19 +42,30 @@
 
             & .group-wrapper {
                 display: grid;
-                grid-template-columns: 600px 150px 150px 150px 100%;
+                grid-template-columns: 600px 150px 150px 150px 400px 1fr;
+                grid-auto-columns: minmax(100px, 1fr);
+                grid-auto-rows: 30px 30px;
+                // border-top: 1px solid $clr-border;
+                border-bottom: 1px solid $clr-border;
+                border-top-left-radius: 0.6em;
+
                 grid-auto-rows: auto;
                 z-index: 999;
                 width: 100%;
 
-                .group-header {
-                    height: 30px;
-                }
+                // .group-header {
+                //     height: 30px;
+                // }
             }
 
             & .header-items {
+                border-top-right-radius: 0.6em;
                 border-top-left-radius: 0.6em;
+                // border-right: 1px;
                 border-top: 1px solid $clr-border;
+                border-right: 1px solid $clr-border;
+                height: auto;
+                // }
 
                 & .dyn-cell.header-item:not(:nth-child(2)) {
                     border-top: none;
@@ -90,6 +110,8 @@
                         color: #676879;
                     }
 
+                  
+
 
                     position: sticky;
                     left: 40px;
@@ -112,43 +134,44 @@
                     top: 156px;
                     z-index: 9999;
                     border-bottom: 1px solid $clr-border;
+                    border-bottom-right-radius: 0.6em;
 
+
+                    & .dyn-cell.infinity {
+                        border: none;
+                        // border-right: 1px solid $clr-border;
+                        // border-bottom-right-radius: 0.6em;
+
+                    }
+
+                    & .stats-fill-cell {
+                        border-right: 1px solid $clr-border;
+
+                    }
 
                     & .stats-cell-container {
-
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        height: 100%;
                         border: none;
                         width: 150px;
                         padding: 0;
-
-
                     }
 
                     & .stats-cell-container:not(:nth-child(1)) {
                         border-radius: 0;
                         border-left: 1px solid $clr-border;
                         border-right: 1px solid $clr-border;
+
                     }
 
-                    & .stats-cell-container:not(:nth-child(2)) {
-                        border-radius: 0;
-                        border-left: 0;
-                        border-right: 0;
-
-
-                        // border-left: 1px solid $clr-border;
-                    }
 
                     & .stats-fill-cell {
                         // border: transparent;
                         border-top: none;
+                        border-right: none;
                         border-bottom: none;
-                        
-
-
+                        border-bottom-right-radius: 0.6em;
                     }
                 }
             }

@@ -2,8 +2,6 @@ import { Fragment, useState, useRef, useEffect } from "react"
 import { AvatarGroupAng } from "../reusableCmps/AvatarGroupAang"
 import { Chips, Search } from "monday-ui-react-core"
 import { loadBoards } from "../../../store/actions/board.actions"
-// import {AddCircleOutlineRoundedIcon} from '@mui/icons-material/AddCircleOutlineRounded';
-import { RoundedCornerRounded } from "@mui/icons-material"
 import { AddBtn } from "../../../services/svg.service"
 
 

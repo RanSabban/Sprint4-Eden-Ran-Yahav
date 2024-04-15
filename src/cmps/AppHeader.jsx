@@ -7,7 +7,6 @@ import { LoginSignup } from './LoginSignup.jsx'
 import { Help, Inbox, Invite, Notifications, Search } from 'monday-ui-react-core/icons'
 import { Avatar, Badge, Button, Tooltip } from 'monday-ui-react-core'
 import { UserMsg } from './UserMsg.jsx'
-// import { Tooltip } from '@mui/material'
 
 
 export function AppHeader() {

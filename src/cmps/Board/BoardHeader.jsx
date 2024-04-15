@@ -1,6 +1,5 @@
 import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
 import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons"
-import EmojiPicker from 'emoji-picker-react'
 
 import { BoardFilter } from "./BoardFilter"
 import { boardService } from "../../services/board.service"

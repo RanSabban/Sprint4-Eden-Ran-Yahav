@@ -1,5 +1,5 @@
 .board-preview {
-    position: relative;
+    // position: relative;
     box-sizing: content-box;
 
     // overflow-x: auto;
@@ -20,6 +20,7 @@
         text-align: start;
         align-items: center;
         transition: all 0.1s ease-in-out;
+        
         .editable-title-dyn-cmp, .editable-title-dyn-cmp-input {
             font-family: 'Figtree', sans-serif;
             font-size: 14px;
