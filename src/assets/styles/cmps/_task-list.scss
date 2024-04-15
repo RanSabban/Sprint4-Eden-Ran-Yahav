@@ -13,10 +13,7 @@
     text-align: center;
     position: relative;
 
-    // &:not(:last-child){
-    //     border-bottom: 1px solid $clr-border;
 
-    // }
 
     .task-effect-box {
         position: absolute;
@@ -81,6 +78,20 @@
         //     justify-items: center;
         // }
 
+        & .editable-container-cell {
+            .editable-title-cell {
+                border-bottom: 1px solid #d0d4e4;
+                height: 100%;
+
+                span {
+                    text-decoration: none;
+                    appearance: none;
+
+                }
+            }
+        }
+
+
     }
 
     .members {
@@ -97,6 +108,7 @@
             opacity: 1;
 
         }
+
         // justify-content: space-between;
         // padding-inline: 4px;
         svg {
@@ -105,7 +117,7 @@
             padding-inline-start: 6px;
             left: 6px;
             opacity: 0;
-        } 
+        }
     }
 
     .status,
@@ -283,6 +295,95 @@
         display: grid;
         justify-items: center;
         border-bottom: 1px solid $clr-border;
+        position: relative;
+        .shadow-txt-cell {
+            box-shadow: inset 0 0 0px 1px #4169a3;
+            background: #cce5fe;
+        }
+
+        &:hover svg {
+            opacity: 1;
+        }
+        
+        svg {
+            height: 14px;
+            // justify-self: start;
+            position: absolute;
+            padding-inline-start: 6px;
+            left: 0;
+            pointer-events: fill;
+            // left: 6px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+     
+    & .editable-container-cell {
+        padding-inline: 3px;
+        height: 100%;
+        width: 100%;
+        
+        
+        display: grid;
+        text-align: start;
+        align-content: center;
+        transition: all 0.1s ease-in-out;
+
+   
+        
+        .editable-title-cell, .editable-title-dyn-cell-input {
+            font-family: 'Figtree', sans-serif;
+            font-size: 13px;
+            width: 95%;
+            border: 1px solid transparent;
+            // border-radius: em(4px);
+            height: 24px;
+            cursor: text;
+            
+            // padding: 4px;
+            
+         
+    
+            &:focus-visible, &:focus {
+                border: none;
+                outline: 1px solid #0073ea ;
+            }
+        }
+
+        .editable-title-cell {
+            // color: #909090;
+            text-overflow: ellipsis;
+            text-align: center;
+            align-self: center;
+            border-radius: 0;
+            overflow: hidden; /* Hides text that overflows the element's box */
+            text-overflow: ellipsis; /* Replace overflow with ellipsis */
+            white-space: nowrap; /* Prevents text from wrapping */
+            height: 24px;
+            width: 100%;
+            padding-top: 2px;
+            
+            cursor: text;
+            &:hover {
+                border-color: $clr-border;
+                transition: border-color 0.3s ease-in-out;
+            }
+        }
+    
+        .editable-title-dyn-cell-input {
+            display: block;
+            text-align: center;
+            height: 24px;
+            width: 100%;
+
+            &:hover {
+                border-color: $clr-border;
+                transition: border-color 0.3s ease-in-out;
+            }
+        }
+    }
+
+
+
     }
 
     .dyn-cell.date-container {
@@ -390,7 +491,7 @@
         // margin-right: -10px;
         // clip-path: inset(0 -10px 0 0); 
         z-index: 2;
-        box-shadow: 1px 8px 0 -1px $bgc-main, 0 8px 9px -9px rgba(0,0,0,0.1);
+        box-shadow: 1px 8px 0 -1px $bgc-main, 0 8px 9px -9px rgba(0, 0, 0, 0.1);
     }
 
     & .stats-clrs-container {
