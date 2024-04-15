@@ -8,7 +8,7 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    outDir: '../oneday-frontend/public',
+    outDir: '../oneday-backend/public',
     emptyOutDir: true,
   },
 });
