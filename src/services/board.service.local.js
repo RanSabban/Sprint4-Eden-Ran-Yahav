@@ -152,7 +152,7 @@ const gBoards = [
             {
                 _id: "c1145",
                 type: "txt",
-                title: "Free text"
+                title: "Text"
             },
             {
                 _id: "c115",

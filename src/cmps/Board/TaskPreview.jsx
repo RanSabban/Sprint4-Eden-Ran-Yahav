@@ -131,7 +131,6 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
                         isLast={isLast}
-                    // selectedCell={selectedCell}
                     />
                 ))
             }

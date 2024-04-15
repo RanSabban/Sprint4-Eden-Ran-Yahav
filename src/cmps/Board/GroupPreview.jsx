@@ -25,6 +25,8 @@ export function GroupPreview({ boardId, onAddGroup, group, index, onRemoveGroup,
     const [optionColorOpen, setOptionColorOpen] = useState(false)
     const colorOptions = optionColorOpen ? 'block' : 'none'
 
+    console.log('this is group:', group)
+
 
     async function handleClick() {
         if (!isEditable) {
