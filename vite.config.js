@@ -8,6 +8,7 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
+    chunkSizeWarningLimit: 1200, 
     outDir: '../oneday-backend/public',
     emptyOutDir: true,
   },

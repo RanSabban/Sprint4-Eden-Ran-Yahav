@@ -1,16 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadBoards, addBoard, updateBoard, removeBoard, addGroup } from '../store/actions/board.actions.js'
+import { loadBoards } from '../store/actions/board.actions.js'
 
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { userService } from '../services/user.service.js'
-import { boardService } from '../services/board.service.js'
 import { Outlet, useParams } from 'react-router'
-import { BoardHome } from '../cmps/Board/BoardHome.jsx'
-import { BoardDetails } from '../cmps/Board/BoardDetails.jsx'
 import { BoardSideBar } from '../cmps/Board/BoardSideBar.jsx'
-import { AppHeader } from '../cmps/AppHeader.jsx'
-import { LabelPicker } from '../cmps/Board/reusableCmps/LabelPicker.jsx'
 
 
 export function BoardIndex() {
@@ -23,39 +16,9 @@ export function BoardIndex() {
         loadBoards()
     }, [])
 
-    // async function onRemoveBoard(boardId) {
-    //     try {
-    //         await removeBoard(boardId)
-    //         showSuccessMsg('Board removed')
-    //     } catch (err) {
-    //         showErrorMsg('Cannot remove board')
-    //     }
-    // }
-
-    // async function onAddBoard() {
-    //     const board = boardService.getEmptyBoard()
-    //     try {
-    //         const savedBoard = await addBoard(board)
-    //         showSuccessMsg(`Board added (id: ${savedBoard._id})`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot add board')
-    //     }
-    // }
-
-    // async function onUpdateBoard(board) {
-
-    //     try {
-    //         const savedBoard = await updateBoard(board)
-    //         loadBoards()
-    //         showSuccessMsg(`Board updated`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot update board')
-    //     }
-    // }
-
-    // if () return <div>LOADING</div>
+    
     return (<section className="board-index">
-        <BoardSideBar/>
+        <BoardSideBar />
 
         <Outlet />
 

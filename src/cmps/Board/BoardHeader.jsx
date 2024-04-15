@@ -10,7 +10,7 @@ import { CustomAdd, MenuDots } from "../../services/svg.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
 
-export function BoardHeader({ isCollapsed, setIsCollapsed, board, ref }) {
+export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
     const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
     const [initialTitle, setInitialTitle] = useState(boardTitle)
     const [isEditable, setIsEditable] = useState(false)

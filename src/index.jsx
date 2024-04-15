@@ -6,6 +6,9 @@ import { Provider } from 'react-redux'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import { store } from './store/store'
 import { RootCmp } from './RootCmp'
+import "monday-ui-style/dist/index.min.css"
+import "monday-ui-react-core/tokens"
+
 import './assets/styles/main.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
