@@ -36,12 +36,12 @@ export function BoardHomeList(screenWidth) {
                         <DropdownChevronDown onClick={() => setIsCollapsed(!isCollapsed)} />
                 )}
 
-                {screenWidth > 880 ? (
+                {/* {screenWidth > 880 ? ( */}
                     
                         <h2>My Boards</h2>
 
                     
-                ) : (
+                {/* ) : (
                     <>
                         <h2 className="activity-title" style={{ letterSpacing: '.5px', color: "#504F54" }} >What's new</h2>
                         <section className="activity-wrapper">
@@ -73,7 +73,7 @@ export function BoardHomeList(screenWidth) {
                             </article>
                         </section>
                     </>
-                )}
+                )} */}
             </div>
 
             {isCollapsed && (

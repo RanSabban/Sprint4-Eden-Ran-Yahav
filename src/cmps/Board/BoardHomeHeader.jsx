@@ -16,7 +16,7 @@ export function BoardHomeHeader(screenWidth) {
         return greeting
     }
 
-    return screenWidth > 880 && <section className="board-home-header"    >
+    return <section className="board-home-header"    >
         <section
             style={{ justifySelf: 'start' }}
             className="welcome-user-container">
