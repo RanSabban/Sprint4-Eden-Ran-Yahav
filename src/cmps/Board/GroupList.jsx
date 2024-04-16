@@ -29,13 +29,13 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
     //     } console.log("isCollapsedAll", isCollapsedAll)
     // }, [groups])
 
-    const {boardId} = useParams()
+    const { boardId } = useParams()
 
 
     async function onRemoveGroup(groupId) {
         try {
             console.log(boardId);
-            await removeGroup(groupId,boardId)
+            await removeGroup(groupId, boardId)
             showSuccessMsg('Group removed')
         } catch (err) {
             console.log('cannot remove group', err)
@@ -70,7 +70,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
         }
     }
 
-
+    // console.log(groups);
 
 
     if (!groups) return <div>Loading</div>
@@ -86,6 +86,8 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                 >
+                    <div className='mobile-border'></div>
+
 
                     {groups.map((group, index) => (
 

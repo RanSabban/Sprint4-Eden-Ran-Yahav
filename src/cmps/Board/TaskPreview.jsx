@@ -17,9 +17,9 @@ import { Link, useParams } from 'react-router-dom'
 import { EditableCellTitle } from './reusableCmps/EditableCellTitle'
 import { useEffect } from 'react'
 
-export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn }) {
+export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn, clmTypes }) {
 
-    const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
+    // const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const [isEditing, setIsEditing] = useState(false)
     const [selectedCell, setSelectedCell] = useState(null)
@@ -39,8 +39,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 setIsEditing(false)
             }
         };
-        update();
-    }, [selectedCell]);
+        update()
+    }, [selectedCell])
 
 
     async function onChange(cell) {
@@ -91,10 +91,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 </MenuButton>
             </section>
             <div className={`task-preview-title-container ${dynShadow}`} style={{ borderLeft: `0.4em solid ${groupColor}` }}>
+
                 <div className='dyn-cell checkbox-container'>
                     <Checkbox
-                    // checked={isEditing}
-                    // onChange={handleCheckboxChange}
+                    checked={isEditing}
+                    onChange={handleCheckboxChange}
                     />
                 </div>
                 <div className='task-title-cell'>

@@ -2,6 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { httpService } from './http.service.js'
+import { socketService } from './socket.service.js'
 
 const STORAGE_KEY = 'board'
 const BASE_URL = 'board/'
@@ -1107,7 +1108,9 @@ async function addGroup(boardId, isBottom) {
             board.groups.unshift(group)
         }
 
+        
         await save(board)
+        socketService.emit('board-updated', board);
         console.log('Group added:', group, 'Updated Board:', board)
         return group
     } catch (err) {
@@ -1142,6 +1145,7 @@ async function removeGroup(groupId, boardId) {
         await save(board);
 
         console.log('Group removed:', groupId, 'Updated Board:', board);
+        socketService.emit('board-updated', board);
         return board;
     } catch (err) {
         console.error('Error removing group:', err);
@@ -1189,7 +1193,10 @@ async function addTask(groupId, task, boardId) {
     }
 
     console.log(board);
-    return save(board);  // Save the modified board
+    await save(board);  // Save the modified board
+    socketService.emit('board-updated', board);
+
+    return board
 }
 
 async function updateGroup(groupId, updatedTitle, boardId) {
@@ -1202,6 +1209,9 @@ async function updateGroup(groupId, updatedTitle, boardId) {
             } return group
         })
         await save(board)
+
+        socketService.emit('board-updated', board);
+
         return board
 
     } catch (err) {
@@ -1231,6 +1241,9 @@ async function updateCell(updatedCell, taskId, groupId, boardId) {
         });
 
         await save(board); // Assuming _save is an async function
+
+        socketService.emit('board-updated', board)
+
         return board; // Return the updated board
     } catch (err) {
         console.error('Error updating cell:', err);
@@ -1327,6 +1340,7 @@ async function updateTask(taskToUpdate, groupId, boardId) {
 
         // Save the updated board back to the storage
         await save(board);
+        socketService.emit('board-updated', board);
         console.log('Task updated successfully:', taskToUpdate);
         return taskToUpdate; // Optionally return the updated task
     } catch (err) {
@@ -1349,7 +1363,8 @@ async function removeTask(taskId, groupId, boardId) {
             return group
         })
     }
-    save(boardToUpdate)
+    await save(boardToUpdate) 
+    socketService.emit('board-updated', boardToUpdate);
 }
 
 async function dragAndDropGroup(source, destination, boardId) {
@@ -1361,6 +1376,7 @@ async function dragAndDropGroup(source, destination, boardId) {
         board.groups.splice(source.index, 1)
         board.groups.splice(destination.index, 0, groupToCut)
         save(board)
+        socketService.emit('board-updated', board);
         return board
     }
     // const boardToUpdate =
@@ -1401,6 +1417,7 @@ async function dragAndDropTask(source, destination, boardId) {
         // Persist the updated board
         await save(board)
         console.log('Task moved successfully.')
+        socketService.emit('board-updated', board);
 
         return board
     } catch (err) {
@@ -1480,6 +1497,8 @@ async function addColumn(type, boardId) {
 
         await save(board)
         console.log(`Column and cells added successfully to board ${boardId}`)
+        socketService.emit('board-updated', board)
+
         return board
     } catch (err) {
         console.error('Failed to add column and cells: ', err)
@@ -1510,6 +1529,7 @@ async function removeColumn(columnId, boardId) {
         });
 
         await save(board)
+        socketService.emit('board-updated', board);
         console.log(`Column and cells added successfully to board ${boardId}`)
         return board
     } catch (err) {
@@ -1531,7 +1551,8 @@ async function updateClmTitle(txt,clmId,boardId){
         column.title = txt
 
         await save(board)
-
+        socketService.emit('board-updated', board);
+        
         return board
 
     } catch (err) {
