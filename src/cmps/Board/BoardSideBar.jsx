@@ -126,13 +126,11 @@ export function BoardSideBar() {
                                 {/* <input className="input-sidebar" name="title" type="search" placeholder={` Search`} autoComplete="off"></input> */}
                                 {/* <div style={{width:"11.6em", height:'2em'}}> */}
 
-
                                 <Search
                                     size="Search.sizes.MEDIUM"
                                     placeholder="Search"
                                     wrapperClassName="monday-storybook-search_size"
                                 />
-
 
                                 {/* </div> */}
                                 <Tooltip className='tool' position="absolute" zIndex='111111' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>

@@ -38,16 +38,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             } else {
                 setIsEditing(false)
             }
-<<<<<<< HEAD
-        };
-        update();
-    }, [selectedCell]);
-
-=======
         }
         update()
     }, [selectedCell])
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
 
     async function onChange(cell) {
         try {
@@ -101,13 +94,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className={`task-preview-title-container ${dynShadow}`} style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}
-<<<<<<< HEAD
-                onClick={console.log('active')}
-            >
-                <div className='dyn-cell checkbox-container'>
-=======
                 onClick={() => console.log('active')}>
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
 
                 <div className='dyn-cell checkbox-container'>
                     <Checkbox
@@ -129,12 +116,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         </Link>
                     </div>
                 </div>
-<<<<<<< HEAD
-            </div>
-=======
             </div >
 
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
             {
                 cells.map((cell, idx) => (
                     <DynamicCmp key={idx}
@@ -156,12 +139,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     />
                 ))
             }
-<<<<<<< HEAD
-            <div className='dyn-cell infinity'></div>
-=======
 
             < div className='dyn-cell infinity'></div >
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
         </>
     )
 }
