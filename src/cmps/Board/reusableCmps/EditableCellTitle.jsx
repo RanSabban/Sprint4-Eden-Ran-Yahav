@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 export function EditableCellTitle({ txt, onUpdateInput, isEditing, setIsEditing }) {
-  const [isEditingTxt, setIsEditingTxt] = useState(false);
-  const [content, setContent] = useState(txt);
+  const [isEditingTxt, setIsEditingTxt] = useState(false)
+  const [content, setContent] = useState(txt)
 
   const handleSpanClick = () => {
     setIsEditingTxt(true)
-    setIsEditing(true);
-  };
+    setIsEditing(true)
+  }
 
   const handleInputBlur = async () => {
     setIsEditing(false)
@@ -15,21 +15,21 @@ export function EditableCellTitle({ txt, onUpdateInput, isEditing, setIsEditing 
 
     if (content)
       try {
-        await onUpdateInput(content);
+        await onUpdateInput(content)
       } catch (err) {
-        console.error('Error updating content:', err);
+        console.error('Error updating content:', err)
       }
-  };
+  }
 
   const handleInputChange = (e) => {
-    setContent(e.target.value);
-  };
+    setContent(e.target.value)
+  }
 
   const handleInputKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.target.blur(); // This triggers handleInputBlur
+      e.target.blur()
     }
-  };
+  }
 
   return (
     <div className="editable-container-title-cell">
@@ -49,5 +49,5 @@ export function EditableCellTitle({ txt, onUpdateInput, isEditing, setIsEditing 
         />
       )}
     </div>
-  );
+  )
 }

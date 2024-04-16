@@ -32,7 +32,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     const { boardId } = useParams()
 
-    console.log(boardId)
+    // console.log(boardId)
 
 
     const [collapseClass, setCollapseClass] = useState('')
@@ -109,7 +109,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     }
 
     const gridStyle = getTemplateStyle()
-    console.log(gridStyle);
+    // console.log(gridStyle)
 
     // console.log(dynamicStyle);
     // if (!group.tasks.length) return
@@ -262,6 +262,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                             onAddTask={onAddTask}
                             placeholderProps={placeholderProps}
                             columnWidth={columnWidths}
+                            clmTypes={clmTypes}
                         />
 
                         <GroupStatistics tasks={group.tasks} clmTypes={clmTypes} />

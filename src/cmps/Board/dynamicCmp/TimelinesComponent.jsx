@@ -75,7 +75,7 @@ export function TimelineRange({ selectedRange, setSelectedRange, onUpdateCell })
             <div ref={popperElem} className="date-picker-modal">
                 <DayPicker
                     mode="range"
-                    selected={selectedRange}
+                    selected={selectedRange || 'Add time line +'}
                     onSelect={handleDateRangeSelect} // Call handleDateRangeSelect on selection
                     showOutsideDays
                 />
@@ -91,8 +91,11 @@ function formatDisplayDate(startDate, endDate) {
     const end = dayjs(endDate)
 
     let formattedDate
+
     if (start.month() === end.month()) {
         formattedDate = `${start.format('D')} - ${end.format('D MMM')}`
+    }else if(!start.month() || !end.month() ){
+        formattedDate = '-'
     } else {
         formattedDate = `${start.format('D MMM')} - ${end.format('D MMM')}`
     }
@@ -113,4 +116,8 @@ function getPercentage(startDate, endDate) {
     const elapsedDuration = now.diff(start, 'day')
     const percentage = (elapsedDuration / totalDuration) * 100
     return `${percentage.toFixed(2)}%`
+}
+
+function noTimeLine(){
+    return <p>-</p>
 }
