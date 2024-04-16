@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 
 import { AppHeader } from './cmps/AppHeader'
@@ -13,7 +13,32 @@ import { LoginPage } from './pages/LoginPage'
 
 export function RootCmp() {
     const location = useLocation()
-const showHeaderFooter = location.pathname !== '/users' && location.pathname !== '/';
+    const showHeaderFooter = location.pathname !== '/users' && location.pathname !== '/';
+    const isSurprisePrinted = useRef(false)
+
+    useEffect(() => {
+        logSurpriseMsg()
+    }, [])
+
+    function logSurpriseMsg() {
+        if (isSurprisePrinted.current) return;
+        console.log(
+            `%cLooking for web developers?\n%cWe're looking for a job. Contact us!\n\n` +
+            `%cEden Gilady: \n%chttps://www.linkedin.com/in/eden-gilady/\n` +
+            `%cRan Sabban: \n%chttps://www.linkedin.com/in/ran-sabban-36b57a210/\n` +
+            `%cYahav Ganon: \n%chttps://www.linkedin.com/in/yahavganon\n`,
+            "color: #F85FFE; font-size:24px;", 
+            "color: #ffca00; font-size:14px;",
+            "color: #FC7870; font-size:16px;",
+            "color: #ffca00; font-size:14px;",
+            "color: #00c875; font-size:16px;",
+            "color: #ffca00; font-size:14px;",
+            "color: #52A5F5; font-size:16px;",
+            "color: #ffca00; font-size:14px;"
+        )
+
+        isSurprisePrinted.current = true
+    }
 
     return (
         <>

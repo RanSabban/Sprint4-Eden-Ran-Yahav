@@ -38,16 +38,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             } else {
                 setIsEditing(false)
             }
-<<<<<<< HEAD
-        };
-        update();
-    }, [selectedCell]);
-
-=======
         }
         update()
     }, [selectedCell])
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
 
     async function onChange(cell) {
         try {
@@ -88,31 +81,19 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
 
     return (
         <>
-            <span className='task-effect-box'>
-
-            </span>
+            <span className='task-effect-box'></span>
             <section style={{}} className="task-actions">
-                <MenuButton size='XS' >
+                <MenuButton size='XS'>
                     <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '999999' }}>
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
                 </MenuButton>
             </section>
-            <div className={`task-preview-title-container ${dynShadow}`} style={{
-                borderLeft: `0.4em solid ${groupColor}`
-            }}
-<<<<<<< HEAD
-                onClick={console.log('active')}
-            >
-                <div className='dyn-cell checkbox-container'>
-=======
-                onClick={() => console.log('active')}>
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
-
+            <div className={`task-preview-title-container ${dynShadow}`} style={{ borderLeft: `0.4em solid ${groupColor}` }}>
                 <div className='dyn-cell checkbox-container'>
                     <Checkbox
-                        // checked={isEditing}
-                        // onChange={handleCheckboxChange}
+                    // checked={isEditing}
+                    // onChange={handleCheckboxChange}
                     />
                 </div>
                 <div className='task-title-cell'>
@@ -129,12 +110,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         </Link>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
-=======
-            </div >
-
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
+    
             {
                 cells.map((cell, idx) => (
                     <DynamicCmp key={idx}
@@ -152,18 +129,14 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         isLast={isLast}
                         setIsEditing={setIsEditing}
                         isEditing={isEditing}
-
                     />
                 ))
             }
-<<<<<<< HEAD
+    
             <div className='dyn-cell infinity'></div>
-=======
-
-            < div className='dyn-cell infinity'></div >
->>>>>>> 2e430ea7613fafb4f8105fe8ae909815b492a1e1
         </>
     )
+    
 }
 
 
@@ -186,9 +159,5 @@ function DynamicCmp(props) {
         case 'updates':
             return <LastUpdatedComponent {...props} />
         default: <span></span>
-    }
+    }
 }
-
-
-
-

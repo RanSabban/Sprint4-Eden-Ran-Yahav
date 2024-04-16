@@ -64,6 +64,7 @@
         transition: all 0.1s ease-in-out;
         margin-inline-end: 7px;
         font-size: 1rem;
+        overflow: hidden;
 
 
         .editable-title-cell-cmp-span,
@@ -71,6 +72,8 @@
             font-family: 'Figtree', sans-serif;
             border: 1px solid transparent;
             border-radius: em(4px);
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             &:hover {
                 border-color: $clr-border;
