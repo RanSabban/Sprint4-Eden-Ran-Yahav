@@ -33,7 +33,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
         return allUsers.filter(user => !users.includes(user._id))
     }
 
-    const unassignedUsers = getUnassignedUsers(clmType.data, users)
+
 
     async function updateMember(id) {
         try {
@@ -59,6 +59,10 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
             console.log('Err on remove member', err)
         }
     }
+
+    if (!clmType) return 
+
+    const unassignedUsers = getUnassignedUsers(clmType.data, users)
 
     return (
         <Fragment>
