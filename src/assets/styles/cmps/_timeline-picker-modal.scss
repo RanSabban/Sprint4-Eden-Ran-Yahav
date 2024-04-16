@@ -17,6 +17,7 @@
 
 }
 
+
 .date-picker-modal {
   background-color: var(--primary-background-color);
   z-index: 11111111;
@@ -106,19 +107,60 @@
           transform: translate(-50%, -50%);
           z-index: 1;
         }
+
       }
     }
   }
 }
 
-.rdp:not([dir='rtl']) .rdp-day_range_start:not(.rdp-day_range_end){
+.rdp:not([dir='rtl']) .rdp-day_range_start:not(.rdp-day_range_end) {
   border-radius: 50%;
 }
 
-.rdp-day{
+.rdp-day {
   border-radius: 50%;
 }
 
-.rdp:not([dir='rtl']) .rdp-day_range_end:not(.rdp-day_range_start){
+.rdp:not([dir='rtl']) .rdp-day_range_end:not(.rdp-day_range_start) {
   border-radius: 50%;
+}
+
+.time-difference {
+  display: none;
+}
+
+.progress-bar-container:hover {
+  cursor: pointer;
+
+  .timeline-date-txt {
+    display: none;
+  }
+
+  .time-difference {
+    display: block;
+    position: absolute;
+    text-align: center;
+  }
+
+
+}
+
+.progress-bar-container {
+  justify-content: center;
+}
+
+.time-difference {
+  color: white;
+  z-index: 11;
+}
+
+.progress-bar-container span {
+  font-size: 13px;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }

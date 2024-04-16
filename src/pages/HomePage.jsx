@@ -41,7 +41,7 @@ export function HomePage() {
             </section>
             <section className='btn-container'>
 
-                <Link to={'/board'}> <button className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
+                <Link to={'/board'}> <button style={{marginBottom: '1em'}} className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
 
                 <p className="no-credit-card-txt">No credit card needed<span>✦</span>Unlimited time on Free plan</p>
 

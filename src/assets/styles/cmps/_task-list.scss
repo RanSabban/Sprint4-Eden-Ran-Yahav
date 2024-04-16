@@ -257,6 +257,8 @@
             height: 22px;
             border-radius: 22em !important;
             overflow: hidden;
+
+           
         }
 
         .progress-bar {
@@ -269,16 +271,7 @@
             top: 0;
         }
 
-        .progress-bar-container span {
-            font-size: 13px;
-            z-index: 1;
-            position: absolute;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
+        
     }
 
     .task-actions {
@@ -468,6 +461,7 @@
 
     .dyn-cell.timeline {
         // display: grid;
+        position:relative;
         justify-items: center;
         border-bottom: 1px solid $clr-border;
     }
