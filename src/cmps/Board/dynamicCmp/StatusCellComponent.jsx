@@ -3,7 +3,7 @@ import { LabelPicker } from "../reusableCmps/LabelPicker"
 import { useEffect } from "react"
 import { utilService } from "../../../services/util.service"
 
-export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, setSelectedCell }) {
+export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isEditing, setIsEditing }) {
     const [isOpen, setIsOpen] = useState(false)
     const [status, setStatus] = useState({ color: '', title: '' })
     const [animation, setAnimation] = useState('')

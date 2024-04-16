@@ -1,11 +1,5 @@
 .group-list {
     display: grid;
-    // row-gap: em(28px);
-    // width: max-content;
-    // max-width: 1500px;
-    // position: relative;
-
-
 
     .task-list {
         display: grid;
@@ -24,11 +18,15 @@
         text-align: center;
         // border-right: 1px solid $clr-border;
         // font-size: em(14px);
-
         position: sticky;
         background-color: $bgc-main;
         top: 158px;
         z-index: 9999;
+
+        @include for-mobile-layout {
+            // overflow: hidden;
+            top: 0;
+        }
 
 
         & .blank-cell {
@@ -102,6 +100,14 @@
                 border-bottom: 1px solid #d0d4e4;
                 ;
             }
+
+            @include for-mobile-layout {
+                // left: 0;
+                align-items: center;
+                justify-items: center;
+
+            }
+
         }
 
     }
@@ -109,45 +115,25 @@
     .group-container {
         background-color: $bgc-main;
         display: grid;
-        // position: relative;
-        // grid-template-columns: 40px 453px 150px 150px 150px 200px 100px 100px 100px 100px 150px 150px minmax(60px, 1fr);
         grid-template-columns: 40px 453px 150px 150px 150px 200px 100px 100px 100px 100px minmax(60px, 1fr);
         // grid-template-columns: 40px 500px 150px 150px 150px 200px 100px 100px 100px 100px 100px auto;
         grid-auto-columns: minmax(100px, 1fr);
         grid-template-rows: 36px;
         width: 100%;
         margin-bottom: em(28px);
-        // overflow-x: hidden; 
 
-        // &::before,
-        // &::after {
-        //     content: "";
-        //     position: absolute;
-        //     left: 0;
-        //     right: 0;
-        //     background-color: $clr-border; 
+        @include for-mobile-layout {
+            grid-template-columns: 200px 150px 150px 150px 200px 100px 100px 100px 100px minmax(60px, 1fr);
+            // grid-auto-columns: minmax(100px, 1fr);
+            margin-bottom: 0;
 
-        // }
-
-        // &::before {
-        //     top: 0; 
-        //     height: 1px; 
-        // }
-
-        // &::after {
-        //     bottom: 0; 
-        //     height: 1px; 
-        // }
-
-
-
-        // .group-container::before {
-        //     top: 0; /* Top border */
-        // }
-
-        // .group-container::after {
-        //     bottom: 0; /* Bottom border */
-        // }
+            .task-effect-box,
+            .task-actions,
+            .blank-cell,
+            .blank-cell-add-task {
+                display: none;
+            }
+        }
 
         .dyn-cell.header-item {
             font-size: em(14px);
@@ -158,11 +144,21 @@
             left: 0;
             display: grid;
             grid-auto-flow: column;
+
             background-color: #ffffff;
             border: 1px solid #d0d4e4;
             border-bottom: none;
             left: 40px;
             grid-template-columns: 36px 1fr;
+            font-size: em(14px);
+
+            @include for-mobile-layout {
+                left: 0;
+                align-items: center;
+                grid-template-columns: 1fr;
+
+            }
+
         }
 
 
@@ -176,7 +172,15 @@
             grid-template-columns: 36px 1fr;
             z-index: 11;
 
+            @include for-mobile-layout {
+                left: 0;
+                grid-template-columns: 200px;
 
+            }
+
+            &.active-cell {
+                background: rgb(204, 229, 255);
+            }
 
         }
     }
@@ -201,6 +205,11 @@
         top: 118px;
         height: 40px;
         z-index: 999;
+
+        @include for-mobile-layout {
+            // overflow: hidden;
+            top: 0;
+        }
 
         & .group-collapse-arrow {
             display: grid;
@@ -273,7 +282,10 @@
         border-right: 1px solid #d0d4e4;
         height: 100%;
         border-top: none;
-        // border-bottom: none;
+
+        @include for-mobile-layout {
+            display: none;
+        }
     }
 
     .task-title-cell {

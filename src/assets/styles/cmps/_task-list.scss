@@ -1,18 +1,70 @@
 .list-item {
-
     display: grid;
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
     grid-auto-flow: column;
-
     border-left: none;
     border-right: none;
-    // height: 2.25em;
     height: 36px;
     align-items: center;
     text-align: center;
     position: relative;
 
+    // &:hover {
+
+    //     &:has(.dyn-cell),
+    //     & .task-preview-title-container {
+    //         background-color: rgb(245, 246, 248);
+    //     }
+
+
+    //     .task-effect-box {
+    //         opacity: 1;
+    //     }
+
+    //     & .status,
+    //     .priority {
+    //         opacity: 0.8;
+    //     }
+    // }
+
+    // &:has(.active-cell) {
+    //     background: rgb(204, 229, 255);
+
+    //     .task-effect-box {
+    //         opacity: 0;
+    //     }
+        
+    // }
+// ---------------------
+        &:hover {
+            background-color: rgb(245, 246, 248);
+
+            .dyn-cell,
+            .task-preview-title-container {
+                background-color: inherit;
+            }
+
+            .task-effect-box {
+                opacity: 1;
+            }
+
+            .status,
+            .priority {
+                opacity: 0.8;
+            }
+        }
+    
+
+    // Styles for items marked as active
+    &:has(.active-cell) {
+        background: rgb(204, 229, 255);
+        .task-effect-box {
+            opacity: 0;
+        }
+    }
+// }
+// --------------------
 
 
     .task-effect-box {
@@ -20,29 +72,13 @@
         pointer-events: none;
         height: 36px;
         left: 0;
-        background-color: #ffffff48;
-        z-index: 10;
+        // background-color: #ffffff48;
+        z-index: 99999999999999;
         box-shadow: 4px 3px 6px -3px #c3c6d4;
-        // box-shadow: 4px 3px 6px -3px #112a96;
         transform: translate(40px);
-        width: max-content;
-        // overflow-wrap: break-word;
+        width: calc(100% - 40px);
         opacity: 0;
     }
-
-    &:hover {
-        .task-effect-box {
-            opacity: 1;
-        }
-
-        .dyn-cell {
-
-            &.status {
-                background-color: rgb(106, 121, 151);
-            }
-        }
-    }
-
 
     & .blank-cell-add-task {
         position: sticky;
@@ -90,11 +126,13 @@
                     appearance: none;
 
                 }
+
             }
         }
 
 
     }
+
 
     .members {
         display: grid;
@@ -219,16 +257,14 @@
     & .checkbox-container {
         display: grid;
         justify-items: center;
-        // position: relative;
         width: 36px;
         border-bottom: 1px solid #d0d4e4;
-        // border-top: none;
-        // border-bottom: none;
+
+        @include for-mobile-layout {
+            display: none;
+        }
     }
 
-    // &:not(.add-task):last-of-type {
-    //     border-bottom: none;
-    // }
 
     .timeline-container {
         background-color: rgb(48, 48, 48);
@@ -298,11 +334,14 @@
         justify-items: center;
         border-bottom: 1px solid $clr-border;
         position: relative;
+
         // padding: 2px;
         .shadow-txt-cell {
             box-shadow: inset 0 0 0px 1px #4169a3;
             background: #cce5fe;
         }
+
+
 
         &:hover svg {
             opacity: 1;
@@ -320,7 +359,7 @@
             padding-bottom: 5px;
             column-gap: 2px;
         }
-        
+
         svg {
             // height: 18px;
             // justify-self: start;
@@ -332,74 +371,77 @@
             opacity: 0;
             transition: 0.3s;
         }
-     
-    & .editable-container-cell {
-        padding: 5px;
-        height: 100%;
-        width: 100%;
-        
-        
-        display: grid;
-        text-align: start;
-        align-content: center;
-        transition: all 0.1s ease-in-out;
-        // justify-content: center;
 
-   
-        
-        .editable-title-cell, .editable-title-dyn-cell-input {
-            font-family: 'Figtree', sans-serif;
-            font-size: 13px;
-            width: 95%;
-            border: 1px solid transparent;
-            // border-radius: em(4px);
-            height: 24px;
-            cursor: text;
-            
-            // padding: 4px;
-            
-         
-    
-            &:focus-visible, &:focus {
-                border: none;
-                outline: 1px solid #0073ea ;
-            }
-        }
-
-        .editable-title-cell {
-            // color: #909090;
-            text-overflow: ellipsis;
-            text-align: center;
-            align-self: center;
-            border-radius: 0;
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            white-space: nowrap; 
-            height: 24px;
+        & .editable-container-cell {
+            padding: 5px;
+            height: 100%;
             width: 100%;
-            padding-top: 2px;
+
+
             display: grid;
-            justify-items: center;
-            
-            cursor: text;
-            &:hover {
-                border-color: $clr-border;
-                transition: border-color 0.3s ease-in-out;
-            }
-        }
-    
-        .editable-title-dyn-cell-input {
-            display: block;
-            text-align: center;
-            height: 24px;
-            width: 100%;
+            text-align: start;
+            align-content: center;
+            transition: all 0.1s ease-in-out;
+            // justify-content: center;
 
-            &:hover {
-                border-color: $clr-border;
-                transition: border-color 0.3s ease-in-out;
+
+
+            .editable-title-cell,
+            .editable-title-dyn-cell-input {
+                font-family: 'Figtree', sans-serif;
+                font-size: 13px;
+                width: 95%;
+                border: 1px solid transparent;
+                // border-radius: em(4px);
+                height: 24px;
+                cursor: text;
+
+                // padding: 4px;
+
+
+
+                &:focus-visible,
+                &:focus {
+                    border: none;
+                    outline: 1px solid #0073ea;
+                }
+            }
+
+            .editable-title-cell {
+                // color: #909090;
+                text-overflow: ellipsis;
+                text-align: center;
+                align-self: center;
+                border-radius: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                height: 24px;
+                width: 100%;
+                padding-top: 2px;
+                display: grid;
+                justify-items: center;
+
+                cursor: text;
+
+                &:hover {
+                    border-color: $clr-border;
+                    transition: border-color 0.3s ease-in-out;
+                }
+            }
+
+            .editable-title-dyn-cell-input {
+                display: block;
+                text-align: center;
+                height: 24px;
+                width: 100%;
+
+                &:hover {
+                    border-color: $clr-border;
+                    transition: border-color 0.3s ease-in-out;
+                }
             }
         }
-    }
 
 
 
@@ -414,22 +456,25 @@
         position: relative;
         justify-content: center;
         align-items: center;
-      
 
-        .empty-file-icons-container{
+
+        .empty-file-icons-container {
             display: grid;
             grid-auto-flow: column;
             align-items: center;
             pointer-events: fill;
         }
-        
+
         &:hover .empty-file-icon {
             opacity: 1;
         }
+
         &:hover svg {
             opacity: 1;
         }
-        .empty-file-icon, svg {
+
+        .empty-file-icon,
+        svg {
             opacity: 0;
             transition: 0.3s;
             pointer-events: fill;
@@ -478,6 +523,10 @@
         position: sticky;
         left: 40px;
 
+        @include for-mobile-layout {
+            left: 0
+        }
+
         // border-bottom-left-radius: 0.3em;
         // grid-column: 2 / -1;
     }
@@ -509,6 +558,9 @@
         justify-content: center;
         align-items: center;
         border-right: 1px solid #d0d4e4;
+        @include for-mobile-layout {
+           display: none;
+        }
     }
 
     & .btn-message-container a {

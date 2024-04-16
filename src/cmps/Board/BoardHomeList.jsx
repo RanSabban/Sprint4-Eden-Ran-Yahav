@@ -36,15 +36,15 @@ export function BoardHomeList(screenWidth) {
                         <DropdownChevronDown onClick={() => setIsCollapsed(!isCollapsed)} />
                 )}
 
-                {screenWidth > 880 ? (
+                {/* {screenWidth > 880 ? ( */}
                     
                         <h2>My Boards</h2>
 
                     
-                ) : (
+                {/* ) : (
                     <>
-                        {/* <h2 className="activity-title" style={{ letterSpacing: '.5px', color: "#504F54" }} >What's new</h2> */}
-                        {/* <section className="activity-wrapper">
+                        <h2 className="activity-title" style={{ letterSpacing: '.5px', color: "#504F54" }} >What's new</h2>
+                        <section className="activity-wrapper">
                             <article className="activity-card">
                                 <div className="activity-card-top">
                                     <img className="activity-img" src={boardImg} alt="boardImg" />
@@ -71,9 +71,9 @@ export function BoardHomeList(screenWidth) {
                                 <p className="activity-desc">There was a change in "Demo Launch"</p>
                                 <span>1 hour ago</span>
                             </article>
-                        </section> */}
+                        </section>
                     </>
-                )}
+                )} */}
             </div>
 
             {isCollapsed && (

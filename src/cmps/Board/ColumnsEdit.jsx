@@ -1,35 +1,32 @@
-import { Add } from "monday-ui-react-core/icons";
-import { useState, useEffect, useRef } from "react";
-import { addColumn } from "../../store/actions/board.actions";
-import { useParams } from "react-router";
+import { Add } from "monday-ui-react-core/icons"
+import { useState, useEffect, useRef } from "react"
+import { addColumn } from "../../store/actions/board.actions"
+import { useParams } from "react-router"
 
 export function ColumnsEdit({ clmTypes }) {
-    const [isOpen, setIsOpen] = useState(false);
-    const modalRef = useRef(); // Reference to the modal div
+    const [isOpen, setIsOpen] = useState(false)
+    const modalRef = useRef()
 
     const { boardId } = useParams()
 
     // This function could be refined if needed
     function getClmTypes() {
-        const clmTypesToReturn = clmTypes.map((clmType) => ({ _id: clmType._id, type: clmType.type }));
-        console.log(clmTypesToReturn);
+        const clmTypesToReturn = clmTypes.map((clmType) => ({ _id: clmType._id, type: clmType.type }))
+        console.log(clmTypesToReturn)
     }
 
-    // Custom hook to detect clicks outside of the modal to close it
     useEffect(() => {
         function handleClickOutside(event) {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
-                setIsOpen(false);
+                setIsOpen(false)
             }
         }
 
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside)
         return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [modalRef]);
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [modalRef])
 
     async function onAddColumn(type) {
         try {
@@ -56,13 +53,13 @@ export function ColumnsEdit({ clmTypes }) {
             )}
         </section>
 
-    );
+    )
 }
 
 
 
-// import { Add } from "monday-ui-react-core/icons";
-// import { useState } from "react";
+// import { Add } from "monday-ui-react-core/icons"
+// import { useState } from "react"
 
 // export function ColumnsEdit({ clmTypes }) {
 
@@ -71,7 +68,7 @@ export function ColumnsEdit({ clmTypes }) {
 
 //     function getClmTypes() {
 //         const clmTypesToReturn = clmTypes.map((clmType) => ({ _id: clmType._id, type: clmType.type }))
-//         console.log(clmTypesToReturn);
+//         console.log(clmTypesToReturn)
 
 //     }
 
