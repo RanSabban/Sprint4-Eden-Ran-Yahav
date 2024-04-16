@@ -8,7 +8,7 @@ import { BoardIndex } from './pages/BoardIndex'
 import { HomePage } from './pages/HomePage'
 import { BoardHome } from './cmps/Board/BoardHome'
 import { BoardDetails } from './cmps/Board/BoardDetails'
-import { Activity } from './cmps/Acttivity'
+import { Activity } from './cmps/Activity'
 import { LoginPage } from './pages/LoginPage'
 
 export function RootCmp() {

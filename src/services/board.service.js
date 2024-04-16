@@ -25,7 +25,8 @@ export const boardService = {
     updateGroup,
     getEmptyFilterBy,
     updateFilterBy,
-    addBoard
+    addBoard,
+    addColumn
 }
 window.cs = boardService
 
@@ -1139,7 +1140,7 @@ async function removeGroup(groupId, boardId) {
         await save(board);
 
         console.log('Group removed:', groupId, 'Updated Board:', board);
-        return board;  
+        return board;
     } catch (err) {
         console.error('Error removing group:', err);
         throw err
@@ -1297,20 +1298,20 @@ function getEmptyGroup() {
 
 async function updateTask(taskToUpdate, groupId, boardId) {
     console.log('Updating task:', taskToUpdate, 'in group:', groupId, 'on board:', boardId);
-    
+
     try {
         // Fetch the specific board directly
         const board = await getById(boardId);
         if (!board) {
             throw new Error('Board not found');
         }
-        
+
         // Find the group in the board
         const group = board.groups.find(group => group._id === groupId);
         if (!group) {
             throw new Error('Group not found');
         }
-        
+
         // Update the task within the found group
         const updatedTasks = group.tasks.map(task => {
             if (task._id === taskToUpdate._id) {
@@ -1451,6 +1452,146 @@ async function updateFilterBy(filterBy, boardId) {
     }
 }
 
+async function addColumn(type, boardId) {
+    try {
+        let board = await getById(boardId)
+
+        if (!board) throw new Error('Board not found')
+
+        const columnToAdd = getEmptyColumn(type)
+
+        if (!columnToAdd) throw new Error('Failed to create a new column of type: ' + type)
+        
+        board.clmTypes.push(columnToAdd)
+
+        // Get an empty cell for all tasks in the board
+        const emptyCell = getEmptyCell(type)
+
+        board.groups.forEach(group => {
+            group.tasks.forEach(task => {
+                if (!task.cells) task.cells = []
+                task.cells.push({
+                    ...emptyCell,
+                    _id: columnToAdd._id 
+                });
+            });
+        });
+
+        // Save the updated board
+        await save(board);
+        console.log(`Column and cells added successfully to board ${boardId}`);
+        return board;
+    } catch (err) {
+        console.error('Failed to add column and cells: ', err);
+        throw err;
+    }
+
+}
+
+function getEmptyColumn(type) {
+    switch (type) {
+        case 'status':
+            return {
+                _id: utilService.makeId(),
+                type: "status",
+                title: "Status",
+                data: [
+                    { id: "l100", title: "", color: "#c4c4c4" },
+                    { id: "l102", title: "Working on it", color: "#fdab3d" },
+                    { id: "l103", title: "Stuck", color: "#df2f4a" },
+                    { id: "l101", title: "Done", color: "#00c875" },
+                ]
+            };
+        case 'priority':
+            return {
+                _id: utilService.makeId(),
+                type: "priority",
+                title: "Priority",
+                data: [
+                    { id: "l200", title: "", color: "#c4c4c4" },
+                    { id: "l201", title: "Critical ⚠", color: "#333333" },
+                    { id: "l202", title: "High", color: "#401694" },
+                    { id: "l203", title: "Medium", color: "#5559df" },
+                    { id: "l204", title: "Low", color: "#579bfc" },
+                ]
+            };
+        case 'members':
+            return {
+                _id: utilService.makeId(),
+                type: "members",
+                title: "Assigned To",
+                data: [
+                    { _id: "EtzD1", fullname: "Eden Gilady", imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195" },
+                    { _id: "EtzD2", fullname: "Yahav Ganon", imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081" },
+                    { _id: "EtzD3", fullname: "Ran Sabban", imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830" },
+                    { _id: "EtzD4", fullname: "Mor Marzan", imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512" }
+                ]
+            };
+        case 'timelines':
+            return {
+                _id: utilService.makeId(),
+                type: "timelines",
+                title: "Timeline",
+                data: [{ _id: "sdf123" }]
+            };
+        case 'files':
+            return {
+                _id: utilService.makeId(),
+                type: "files",
+                title: "Files",
+                data: [{ _id: "sdf124", file: "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png" }]
+            };
+        case 'txt':
+            return {
+                _id: utilService.makeId(),
+                type: "txt",
+                title: "Text"
+            };
+        case 'date':
+            return {
+                _id: utilService.makeId(),
+                type: "date",
+                title: "Date"
+            };
+        case 'updates':
+            return {
+                _id: utilService.makeId(),
+                type: "updates",
+                title: "Last Updated",
+                data: [
+                    { _id: "1478", fullname: "Yahav Ganon", date: 1703703751234, activity: "Moved" },
+                    { _id: "456", fullname: "Eden Gilady", date: 1703703751434, activity: "Added" },
+                    { _id: "8965", fullname: "Ran Sabban", date: 1703703751834, activity: "Removed" }
+                ]
+            };
+        default:
+            console.log(`Unrecognized type: ${type}`);
+            return null;
+    }
+}
+
+function getEmptyCell(columnType) {
+    switch (columnType) {
+        case 'status':
+            return { dataId: "l100", title: "", color: "#c4c4c4", type: columnType };  // Default to the first 'empty' status
+        case 'priority':
+            return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType };  // Default to the first 'empty' priority
+        case 'members':
+            return {type: columnType};  // Default to no member assigned
+        case 'timelines':
+            return { startDate: null, endDate: null, type: columnType };  // Default to no timeline set
+        case 'files':
+            return {type: columnType};  // Default to no file
+        case 'txt':
+            return { text: "" , type: columnType};  // Default to empty text
+        case 'date':
+            return { date: null, type: columnType };  // Default to no date
+        case 'updates':
+            return {type: columnType};  // Default to no updates
+        default:
+            return {};
+    }
+}
 
 
 // PRIVATE FUNCS

@@ -28,7 +28,7 @@ export function BoardHomeList() {
 
         <section className="board-home-list-container">
             <div className="recently-visited-acord">
-                {isCollapsed ? <DropdownChevronRight onClick={() => setIsCollapsed(!isCollapsed)} /> : <DropdownChevronDown onClick={() => setIsCollapsed(!isCollapsed)} />}
+                {isCollapsed ? <DropdownChevronDown onClick={() => setIsCollapsed(!isCollapsed)} /> : <DropdownChevronRight onClick={() => setIsCollapsed(!isCollapsed)} /> }
                 <h2>My Boards</h2>
             </div>
             {isCollapsed && (

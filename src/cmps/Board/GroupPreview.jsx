@@ -231,9 +231,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                             </div>
                             { }
                             <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
-                            <div className="add-column-container">
-                                <ColumnsEdit clmTypes={clmTypes} />
-                            </div>
+                        
                         </section>
                         <TaskList
                             groupColor={group.groupColor}
