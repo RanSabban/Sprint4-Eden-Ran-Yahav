@@ -27,7 +27,8 @@ export const boardService = {
     updateFilterBy,
     addBoard,
     addColumn,
-    removeColumn
+    removeColumn,
+    updateClmTitle
 }
 window.cs = boardService
 
@@ -1514,6 +1515,26 @@ async function removeColumn(columnId, boardId) {
     } catch (err) {
         console.error('Failed to remove column and cells: ', err);
         throw err;
+    }
+}
+
+async function updateClmTitle(txt,clmId,boardId){
+    try {
+        let board = await getById(boardId)
+
+        if (!board) throw new Error('board not found')
+
+        const column = board.clmTypes.find(column => column._id === clmId)
+        if (!column) throw new Error('column not found')
+    
+        column.title = txt
+
+        await save(board)
+
+        return board
+
+    } catch (err) {
+        console.log('cannot update clm title', err)
     }
 }
 

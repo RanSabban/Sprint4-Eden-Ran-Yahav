@@ -3,9 +3,20 @@ import { useState, useEffect, useRef } from "react"
 import { addColumn } from "../../store/actions/board.actions"
 import { useParams } from "react-router"
 
-export function ColumnsEdit({ clmTypes }) {
+export function ColumnsEdit() {
     const [isOpen, setIsOpen] = useState(false)
     const modalRef = useRef()
+
+    const clmTypes = [
+        {_id: "c111", type: "status"},
+        {_id: "c116", type: "priority"},
+        {_id: "c112", type: "members"},
+        {_id: "c113", type: "timelines"},
+        {_id: "c114", type: "files"},
+        {_id: "c1145", type: "txt"},
+        {_id: "c115", type: "date"},
+        {_id: "c1118", type: "updates"}
+    ];
 
     const { boardId } = useParams()
 
@@ -32,7 +43,7 @@ export function ColumnsEdit({ clmTypes }) {
         try {
             addColumn(type,boardId)
         } catch (err) {
-
+            console.log('cannot add column', err);
         }
     }
 

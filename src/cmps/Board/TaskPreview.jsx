@@ -94,56 +94,57 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className={`task-preview-title-container ${dynShadow}`} style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}
-                onClick={() => console.log('active')} />
-            <div className='dyn-cell checkbox-container'>
-                <Checkbox
-                // checked={isEditing}
-                // onChange={handleCheckboxChange}
-                />
-            </div>
-            <div className='task-title-cell'>
-                <span className='dyn-cell title'>
-                    <EditableCellTitle
-                        txt={task.title}
-                        isEditing={isEditing}
-                        setIsEditing={setIsEditing}
-                        onUpdateInput={onUpdateTitle} />
-                </span>
-                <div className="btn-message-container">
-                    <Link to={`/board/${boardId}/task/${task._id}`}>
-                        <AddUpdate />
-                    </Link>
+                onClick={() => console.log('active')}>
+
+                <div className='dyn-cell checkbox-container'>
+                    <Checkbox
+                    // checked={isEditing}
+                    // onChange={handleCheckboxChange}
+                    />
                 </div>
-            </div>
-      
+                <div className='task-title-cell'>
+                    <span className='dyn-cell title'>
+                        <EditableCellTitle
+                            txt={task.title}
+                            isEditing={isEditing}
+                            setIsEditing={setIsEditing}
+                            onUpdateInput={onUpdateTitle} />
+                    </span>
+                    <div className="btn-message-container">
+                        <Link to={`/board/${boardId}/task/${task._id}`}>
+                            <AddUpdate />
+                        </Link>
+                    </div>
+                </div>
+            </div >
 
-        {
-            cells.map((cell, idx) => (
-                <DynamicCmp key={idx}
-                    groupId={groupId}
-                    groupColor={groupColor}
-                    cmpType={cell.type}
-                    onChange={onChange}
-                    clmType={getClmType(cell._id)}
-                    setSelectedCell={setSelectedCell}
-                    cell={cell}
-                    onUpdateCell={onUpdateCell}
-                    taskId={task._id}
-                    onClick={openDynModal}
-                    onClickLabel={onClickLabel}
-                    isLast={isLast}
-                    setIsEditing={setIsEditing}
-                    isEditing={isEditing}
+            {
+                cells.map((cell, idx) => (
 
-                />
-            ))
-        }
+                    <DynamicCmp key={idx}
+                        groupId={groupId}
+                        groupColor={groupColor}
+                        cmpType={cell.type}
+                        onChange={onChange}
+                        clmType={getClmType(cell._id)}
+                        setSelectedCell={setSelectedCell}
+                        cell={cell}
+                        onUpdateCell={onUpdateCell}
+                        taskId={task._id}
+                        onClick={openDynModal}
+                        onClickLabel={onClickLabel}
+                        isLast={isLast}
+                        setIsEditing={setIsEditing}
+                        isEditing={isEditing}
 
-            < div className = 'dyn-cell infinity' ></div >
+                    />
+                ))
+            }
+
+            < div className='dyn-cell infinity'></div >
         </>
     )
 }
-
 
 function DynamicCmp(props) {
     switch (props.cmpType) {
@@ -166,7 +167,3 @@ function DynamicCmp(props) {
         default: <span></span>
     }
 }
-
-
-
-
