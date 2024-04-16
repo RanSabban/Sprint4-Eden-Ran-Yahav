@@ -386,7 +386,6 @@
                 align-self: center;
                 border-radius: 0;
                 overflow: hidden;
-                text-overflow: ellipsis;
                 white-space: nowrap;
                 height: 24px;
                 width: 100%;
@@ -403,10 +402,12 @@
             }
 
             .editable-title-dyn-cell-input {
-                display: block;
+                // display: block;
                 text-align: center;
                 height: 24px;
                 width: 100%;
+                // padding-inline: 2px;
+                
 
                 &:hover {
                     border-color: $clr-border;

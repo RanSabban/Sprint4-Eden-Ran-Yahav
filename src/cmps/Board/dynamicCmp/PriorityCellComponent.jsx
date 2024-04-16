@@ -12,12 +12,13 @@ export function PriorityCellComponent({ clmType, cell, onChange, onClickLabel, s
     // const { data } = clmType
 
     useEffect(() => {
+        if (!clmType) return
         const item = clmType.data.find(item => item.id === cell.dataId)
         if (item) {
             setStatus({ color: item.color, title: item.title })
         }
     }, [clmType, cell])
-
+    
     return (
         <>
             <div style={{ backgroundColor: status.color, width: '100%', cursor: 'pointer' }} className="dyn-cell priority dyn-cell-flexy"

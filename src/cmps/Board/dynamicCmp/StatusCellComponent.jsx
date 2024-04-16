@@ -11,6 +11,7 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
     const prevTitle = useRef()
 
     useEffect(() => {
+        if (!clmType) return 
         const item = clmType.data.find(item => item.id === cell.dataId)
         if (item) {
             setStatus({ color: item.color, title: item.title })

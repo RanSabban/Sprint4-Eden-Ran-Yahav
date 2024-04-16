@@ -10,29 +10,61 @@ import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useEffect, useState } from "react"
 import { Add } from "monday-ui-react-core/icons"
 import { useParams } from "react-router"
+import { socketService } from "../../services/socket.service"
+import { useDispatch } from "react-redux"
 
 
-export function BoardPreview({ onAddGroup}) {
-    const currBoard = useSelector(state => state.boardModule.board)
+export function BoardPreview({ onAddGroup, board}) {
+
     const [placeholderProps, setPlaceholderProps] = useState("")
     const [isCollapsedAll, setIsCollapsedAll] = useState(false)
 
-    const board = useSelector(storeState => storeState.boardModule.board)
+    // const board = useSelector(storeState => storeState.boardModule.board)
     const {boardId} = useParams()
+    const dispatch = useDispatch()
+
+    const [localBoard, setLocalBoard] = useState(board)
 
     useEffect(() => {
         if (boardId) loadBoard(boardId)
     }, [boardId])
 
-    const groups = board.groups
-    const clmTypes = board.clmTypes
+    useEffect(() => {
+        setLocalBoard(board)
+    },[board])
 
-    console.log(clmTypes);
+    // useEffect(() => {
+    //     if (boardId) {
+    //         dispatch(loadBoard(boardId)); // Action to load the board
+    //     }
+    // }, [boardId, dispatch]);
+
+    useEffect(() => {
+        socketService.emit('join-board', boardId)
+        // console.log('board preview socket !');
+        socketService.on('board-updated', updatedBoard => {
+            if (updatedBoard._id === boardId) {
+                console.log(updatedBoard);
+                setLocalBoard(updatedBoard)
+            }
+        })
+
+        return () => {
+            socketService.off('board-updated')
+            socketService.emit('leave-board', boardId)
+        }
+
+    }, [boardId])
+
+    const groups = localBoard.groups
+    const clmTypes = localBoard.clmTypes
+
+    // console.log(clmTypes);
 
     async function onAddTask(groupId, taskTitle) {
         try {
             // console.log(groupId)
-            await addTask(groupId, board._id, taskTitle)
+            await addTask(groupId, localBoard._id, taskTitle)
             showSuccessMsg('Task Added')
         }
         catch (err) {
@@ -48,10 +80,10 @@ export function BoardPreview({ onAddGroup}) {
         // console.log(type)
         try {
             if (type === 'TASK') {
-                dragAndDropTask(source, destination, board._id)
+                dragAndDropTask(source, destination, localBoard._id)
                 showSuccessMsg('Tasks swiped!')
             } else if (type === 'GROUP') {
-                dragAndDropGroup(source, destination, board._id)
+                dragAndDropGroup(source, destination, localBoard._id)
                 showSuccessMsg('Tasks swiped!')
             }
         } catch (err) {
@@ -103,7 +135,9 @@ export function BoardPreview({ onAddGroup}) {
         })
     }
 
-    if (!groups && !board) return <div>LOADING</div>
+    console.log('localboard',localBoard);
+
+    if (!groups && !localBoard) return <div>LOADING</div>
     return (
 
 
@@ -116,13 +150,13 @@ export function BoardPreview({ onAddGroup}) {
                     clmTypes={clmTypes}
                     groups={groups}
                     onAddTask={onAddTask}
-                    boardType={board.type}
-                    boardId={board._id}
+                    boardType={localBoard.type}
+                    boardId={localBoard._id}
                     isCollapsedAll={isCollapsedAll}
 
                     onAddGroup={onAddGroup} />
             </DragDropContext>
-            <div onClick={() => onAddGroup(board._id, true)} className="add-group-bottom-container"
+            <div onClick={() => onAddGroup(localBoard._id, true)} className="add-group-bottom-container"
             style={{display: 'grid', gridAutoFlow: 'column'}}
             >
                 <Add/>

@@ -70,7 +70,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
         }
     }
 
-
+    // console.log(groups);
 
 
     if (!groups) return <div>Loading</div>

@@ -4,11 +4,12 @@ import { addTask, removeTask, updateCell, updateTask } from '../../store/actions
 import { useParams } from 'react-router'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { InputCell } from './reusableCmps/InputCell';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RenderHeaders } from './RenderHeaders'
 import { Checkbox } from 'monday-ui-react-core';
 import { EditableCmp } from './reusableCmps/EditableCmp'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { socketService } from '../../services/socket.service'
 
 
 export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn, tasks }) {
@@ -16,14 +17,20 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
     //     storeState.boardModule.board.groups.find(group => group._id === groupId)?.tasks || []
     // )
 
+    const [localTasks, setLocalTasks] = useState(tasks)
 
+    useEffect(() => {
+        setLocalTasks(tasks)
+    },[tasks])
+
+    // console.log(localTasks)
 
     const [isClear, setIsClear] = useState(false)
     const { boardId } = useParams()
 
     async function onUpdateCell(cell, taskId) {
         try {
-            console.log(cell, taskId);
+            // console.log(cell, taskId);
             await updateCell(cell, taskId, groupId, boardId)
         }
         catch (err) {
@@ -40,7 +47,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
     }
 
     async function onRemoveTask(taskId) {
-        console.log(taskId, groupId, boardId);
+        // console.log(taskId, groupId, boardId);
         try {
             removeTask(taskId, groupId, boardId)
         } catch (err) {
@@ -78,7 +85,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                     ref={provided.innerRef}
                     style={{ position: "relative" }}
                 >
-                    {tasks.map((task, index) => (
+                    {localTasks.map((task, index) => (
 
 
                         <Draggable key={task._id} draggableId={task._id} index={index} >
@@ -101,7 +108,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                                         isLast={index === tasks.length - 1}
                                         resizeColumn={resizeColumn}
                                         columnWidth={columnWidth}
-
+                                        clmTypes={clmTypes}
                                     />
 
 
