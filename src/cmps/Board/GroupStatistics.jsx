@@ -74,7 +74,7 @@ export function GroupStatistics({ tasks, clmTypes, isCollapsed, groupColor }) {
                         </div>
                     )
                 } else {
-                    return <div key={JSON.stringify(clmType.type)} className="stats-fill-cell"></div>
+                    return <div key={JSON.stringify(clmType._id)} className="stats-fill-cell"></div>
                 }
             })}
             <div className='dyn-cell infinity'></div>
