@@ -185,3 +185,7 @@ li {
 .monday-style-dialog-content-wrapper {
     z-index: 99999;
 }
+
+@include for-mobile-layout {
+    ::-webkit-scrollbar { display: none; }
+}

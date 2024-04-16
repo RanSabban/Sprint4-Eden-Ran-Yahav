@@ -1,57 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { AddBtn, TextEditIcon } from "../../../services/svg.service";
+import React, { useState, useEffect } from "react"
+import { AddBtn, TextEditIcon } from "../../../services/svg.service"
 
-export function EditableCell({ txt, onUpdateInput, placeholder }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [content, setContent] = useState(txt);
+export function EditableCell({ txt, onUpdateInput, placeholder, isEditing, setIsEditing }) {
+  const [isEditingTxt, setIsEditingTxt] = useState(false)
+  const [content, setContent] = useState(txt)
 
-  // Sync external changes to txt with internal state
   useEffect(() => {
-    setContent(txt);
-  }, [txt]);
+    setContent(txt)
+    if(isEditingTxt){
+      setIsEditing(true)
+    } else{
+      setIsEditing(false)
+    }
+
+  }, [txt,isEditingTxt])
 
   const handleSpanClick = () => {
-    setIsEditing(true);
-  };
+    setIsEditingTxt(true)
+  }
 
   const handleInputBlur = async () => {
-    setIsEditing(false);
+    setIsEditingTxt(false)
+    
     if (content !== txt) {
-      setContent(content); // Update local state immediately to reflect new content
+      setContent(content) 
       try {
-        await onUpdateInput(content); // Send update to the server
+        await onUpdateInput(content)
       } catch (err) {
-        console.error('Error updating content:', err);
-        setContent(txt); // Revert to previous content on error
+        console.error('Error updating content:', err)
+        setContent(txt) 
       }
     }
-  };
+  }
 
   const handleInputChange = (e) => {
-    setContent(e.target.value);
-  };
+    setContent(e.target.value)
+  }
 
   const handleInputKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.target.blur();
+      e.target.blur()
     }
-  };
+  }
 
-  const dynShadow = isEditing ? 'shadow-txt-cell' : '';
+  const dynShadow = isEditingTxt ? 'shadow-txt-cell' : ''
 
   return (
     <div className={`editable-container-cell ${dynShadow}`}>
-      {!isEditing ? (
+      {!isEditingTxt ? (
         <span onClick={handleSpanClick} className="editable-title-cell">
           {content || placeholder}
           {
             !txt && (
-                <div className="empty-text-container">
-                    <AddBtn />
-                    <TextEditIcon />
-                </div>
+              <div className="empty-text-container">
+                <AddBtn />
+                <TextEditIcon />
+              </div>
             )
-        }
+          }
         </span>
       ) : (
         <input
@@ -66,5 +72,5 @@ export function EditableCell({ txt, onUpdateInput, placeholder }) {
         />
       )}
     </div>
-  );
+  )
 }

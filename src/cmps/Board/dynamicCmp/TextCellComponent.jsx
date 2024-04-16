@@ -3,7 +3,7 @@ import { AddBtn, TextEditIcon } from "../../../services/svg.service";
 import { InputCell } from "../reusableCmps/InputCell";
 import { EditableCell } from "./EditableCell";
 
-export function TextCellComponent({ clmType, cell, taskId, onUpdateCell }) {
+export function TextCellComponent({ clmType, cell, taskId, onUpdateCell, setIsEditing, isEditing }) {
 
     function onUpdateInput(value) {
         cell.txt = value
@@ -13,8 +13,8 @@ export function TextCellComponent({ clmType, cell, taskId, onUpdateCell }) {
 
 
     return <span className="dyn-cell txt dyn-cell-flexy">
-      
-        <EditableCell txt={cell.txt} onUpdateInput={onUpdateInput} />
+
+        <EditableCell txt={cell.txt} onUpdateInput={onUpdateInput} setIsEditing={setIsEditing} isEditing={isEditing} />
 
     </span>
 }

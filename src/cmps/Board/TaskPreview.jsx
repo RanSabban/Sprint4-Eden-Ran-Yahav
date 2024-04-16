@@ -18,28 +18,29 @@ import { EditableCellTitle } from './reusableCmps/EditableCellTitle'
 import { useEffect } from 'react'
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn }) {
-    // console.log('this is task for reall', task)
 
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
-    const { target, clmType, cell, isOpen, callBackFunc } = modalProps
-    console.log(clmTypes);
-    console.log(task);
+    const [isEditing, setIsEditing] = useState(false)
     const [selectedCell, setSelectedCell] = useState(null)
 
-
     const { boardId } = useParams()
+    const { cells } = task
+
+    const dynShadow = isEditing ? 'active-cell' : ''
 
     useEffect(() => {
         const update = async () => {
             if (selectedCell) {
-                await onUpdateCell(selectedCell, task._id);
-                setSelectedCell(null);
+                setIsEditing(true)
+                await onUpdateCell(selectedCell, task._id)
+                setSelectedCell(null)
+            } else {
+                setIsEditing(false)
             }
-        };
-        update();
-    }, [selectedCell]);
-    
+        }
+        update()
+    }, [selectedCell])
 
     async function onChange(cell) {
         try {
@@ -50,11 +51,14 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         }
     }
 
+    const handleCheckboxChange = () => {
+        setIsEditing(!isEditing)
+    }
+
     function openDynModal(clmType) {
         console.log("almost")
     }
 
-    const { cells } = task
     function getClmType(cellId) {
         const clmToReturn = clmTypes.find(clmTypeToReturn => (clmTypeToReturn._id === cellId))
         // setSelected(clmToReturn)
@@ -67,46 +71,44 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     }
 
     function onClickLabel(target, clmType, cell) {
-        // const cellToUpdate = setSelectedCell((prevSelectedCell) => cell)
         try {
-            // const cellToOpen = setSelectedCell(cell)
-            // console.log(selectedCell);
+            setIsEditing(true)
             onOpenModalLabel(target, clmType, cell, task, groupId, setSelectedCell, boardId)
         } catch (err) {
             console.log('cannot open modal', err)
         }
     }
 
-
     return (
-
         <>
             <span className='task-effect-box'>
 
             </span>
             <section style={{}} className="task-actions">
-                {/* <section className="action-container" style={{zIndex: '11111111'}}> */}
-
                 <MenuButton size='XS' >
-                    <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '1111111' }}>
-                        {/* <MenuItem icon={AddSmall} title="Add group"/> */}
+                    <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '999999' }}>
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
                 </MenuButton>
-                {/* </section> */}
             </section>
-            <div className="task-preview-title-container" style={{
+            <div className={`task-preview-title-container ${dynShadow}`} style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}
-            onClick={console.log('active')}
-            >
-                <div className='dyn-cell checkbox-container'>
+                onClick={() => console.log('active')}>
 
-                    <Checkbox />
+                <div className='dyn-cell checkbox-container'>
+                    <Checkbox
+                        // checked={isEditing}
+                        // onChange={handleCheckboxChange}
+                    />
                 </div>
                 <div className='task-title-cell'>
                     <span className='dyn-cell title'>
-                        <EditableCellTitle txt={task.title} onUpdateInput={onUpdateTitle} />
+                        <EditableCellTitle
+                            txt={task.title}
+                            isEditing={isEditing}
+                            setIsEditing={setIsEditing}
+                            onUpdateInput={onUpdateTitle} />
                     </span>
                     <div className="btn-message-container">
                         <Link to={`/board/${boardId}/task/${task._id}`}>
@@ -114,8 +116,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         </Link>
                     </div>
                 </div>
-            </div>
-
+            </div >
 
             {
                 cells.map((cell, idx) => (
@@ -133,17 +134,16 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         onClick={openDynModal}
                         onClickLabel={onClickLabel}
                         isLast={isLast}
+                        setIsEditing={setIsEditing}
+                        isEditing={isEditing}
+
                     />
                 ))
             }
-            <div className='dyn-cell infinity'>
 
-            </div>
-            {/* {provided.placeholder} */}
-
+            < div className='dyn-cell infinity'></div >
         </>
     )
-
 }
 
 
@@ -165,9 +165,7 @@ function DynamicCmp(props) {
             return <FilesComponent {...props} />
         case 'updates':
             return <LastUpdatedComponent {...props} />
-
         default: <span></span>
-
     }
 }
 

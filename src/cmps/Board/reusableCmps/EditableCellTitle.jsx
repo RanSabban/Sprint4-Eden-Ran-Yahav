@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 
-export function EditableCellTitle({ txt, onUpdateInput }) {
-  const [isEditing, setIsEditing] = useState(false);
+export function EditableCellTitle({ txt, onUpdateInput, isEditing, setIsEditing }) {
+  const [isEditingTxt, setIsEditingTxt] = useState(false);
   const [content, setContent] = useState(txt);
 
   const handleSpanClick = () => {
+    setIsEditingTxt(true)
     setIsEditing(true);
   };
 
   const handleInputBlur = async () => {
-    setIsEditing(false);
+    setIsEditing(false)
+    setIsEditingTxt(false)
+
     if (content)
-    try {
-      await onUpdateInput(content);
-    } catch (err) {
-      console.error('Error updating content:', err);
-    }
+      try {
+        await onUpdateInput(content);
+      } catch (err) {
+        console.error('Error updating content:', err);
+      }
   };
 
   const handleInputChange = (e) => {
@@ -30,7 +33,7 @@ export function EditableCellTitle({ txt, onUpdateInput }) {
 
   return (
     <div className="editable-container-title-cell">
-      {!isEditing ? (
+      {!isEditingTxt ? (
         <span onClick={handleSpanClick} className="editable-title-cell-cmp-span">
           {content}
         </span>
