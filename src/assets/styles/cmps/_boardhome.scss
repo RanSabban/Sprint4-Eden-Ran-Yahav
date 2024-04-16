@@ -9,6 +9,67 @@
     grid-template-rows: 75px 1fr;
     overflow: auto;
 
+
+    & .board-image {
+        display: none;
+    }
+
+    @include for-mobile-layout {
+        display: flex;
+        // flex-direction: rows;
+        overflow: hidden;
+
+        .activity-wrapper {
+            display: flex;
+            gap: 20px;
+
+            .activity-title {
+                color: #504F54;
+            }
+
+            .activity-card {
+                padding: 16px;
+                display: flex;
+                flex-direction: column;
+                row-gap: .8em;
+                height: em(164px);
+                width: em(330px);
+                background-color: #C9F4E1;
+                border-radius: 1em;
+
+                .activity-card-top {
+
+                    display: flex;
+                    justify-content: space-between;
+                    // align-items: center;
+
+                    .activity-img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: .7em;
+                        box-shadow: 0px 1px 8px #65656522;
+
+
+                    }
+
+                    .activity-member {
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 10px;
+                    }
+                }
+
+                .activity-desc {
+                    font-family: poppins;
+                    font-size: 1em;
+                    // padding-bottom: 1.2em;
+                    line-height: normal;
+
+                }
+            }
+        }
+    }
+
     & .board-home-header {
         display: flex;
         justify-items: center;
@@ -22,12 +83,10 @@
         z-index: 1;
         overflow: hidden;
 
-        & img{
+        & .quick-search-item-image {
             display: flex;
-            // justify-items: baseline;
             height: em(106px);
             width: 152px;
-            // padding-top: 10px;
             margin-top: -10px;
         }
 
@@ -35,13 +94,12 @@
             display: flex;
             flex-direction: column;
             row-gap: 6px;
-
             justify-content: center;
             font-family: Figtree;
             font-weight: 400;
             margin-left: 5em;
 
-            & span{
+            & span {
                 // margin-top: -4px;
             }
 
@@ -58,6 +116,11 @@
         background-color: #fff;
         padding-inline: 20px;
 
+        @include for-mobile-layout {
+
+            padding-inline: 0;
+        }
+
 
 
         .board-home-list-container {
@@ -70,15 +133,47 @@
             margin-top: 16px;
             padding-inline: 40px;
 
+            @include for-mobile-layout {
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                border-radius: 0.5em 0 0 0;
+                box-shadow: none;
+                margin-top: 26px;
+                padding-inline: 20px;
+
+
+
+                & .board-image {
+                    display: block;
+                    width: 60px;
+                }
+
+
+                & .quick-search-item-image {
+                    display: none;
+                }
+
+                & .boardIcon {
+                    display: none;
+                }
+
+            }
+
             .recently-visited-acord {
                 display: grid;
                 grid-auto-flow: column;
                 width: max-content;
-                // padding: 20px;
-                // padding-block: 30px;
                 column-gap: 7px;
                 align-items: center;
 
+                @include for-mobile-layout {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                    align-items: flex-start;
+
+                }
                 svg {
                     cursor: pointer;
                 }
@@ -121,6 +216,10 @@
                     cursor: pointer;
                     transition: 0.2s;
 
+                    @include for-mobile-layout {
+                        display: flex;
+                    }
+
                     &:hover {
                         box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
                         border: 1px solid transparent;
@@ -129,6 +228,11 @@
 
                     .quick-search-item-image {
                         max-height: 140px;
+
+
+                        @include for-mobile-layout {
+                            height: 60px;
+                        }
 
                     }
 
