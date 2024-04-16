@@ -39,8 +39,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 setIsEditing(false)
             }
         };
-        update();
-    }, [selectedCell]);
+        update()
+    }, [selectedCell])
 
 
     async function onChange(cell) {
@@ -91,6 +91,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 </MenuButton>
             </section>
             <div className={`task-preview-title-container ${dynShadow}`} style={{ borderLeft: `0.4em solid ${groupColor}` }}>
+
                 <div className='dyn-cell checkbox-container'>
                     <Checkbox
                     // checked={isEditing}

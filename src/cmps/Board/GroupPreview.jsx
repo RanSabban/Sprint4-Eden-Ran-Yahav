@@ -7,12 +7,11 @@ import { TaskList } from './TaskList'
 import { useEffect, useState } from 'react';
 import { useEditableText } from '../../customHooks/useEditableText';
 import { ResizableColumn } from './ResizableColumn';
-import { GroupArrow } from '../../services/svg.service';
-import { set } from 'date-fns';
 import { loadBoards, updateGroup } from '../../store/actions/board.actions';
 import { GroupStatistics } from './GroupStatistics';
 import { useParams } from 'react-router';
 import { ColumnsEdit } from './ColumnsEdit';
+import { useScreenWidth } from '../../customHooks/useScreenWidth';
 
 export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
@@ -26,7 +25,8 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     const colorOpen = isOpen ? 'grid' : 'none'
     const [optionColorOpen, setOptionColorOpen] = useState(false)
     const colorOptions = optionColorOpen ? 'block' : 'none'
-   
+    const screenWidth = useScreenWidth()
+
 
     const [isCollapsed, setIsCollapsed] = useState(false)
 
@@ -90,7 +90,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     }
 
     function getTemplateStyle() {
-        const fixedStart = '40px 453px'
+        const fixedStart = screenWidth > 920 ? '40px 453px' : '196px'
         const dynamicColumns = clmTypes.map(clmType => {
             switch (clmType.type) {
                 case 'priority':
@@ -241,7 +241,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                         {/* future collumns resizable */}
                         {/* className="group-container" style={dynamicStyle}> */}
                         <section className="header-items">
-                            <div className='blank-cell'>                            </div>
+                            <div className='blank-cell'></div>
 
                             {/* <ResizableColumn /> */}
                             <div className="group-preview-title-container dyn-cell"
