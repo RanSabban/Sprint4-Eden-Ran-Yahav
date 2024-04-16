@@ -37,18 +37,21 @@ export function GroupStatistics({ tasks, clmTypes, isCollapsed, groupColor }) {
             return acc
         }, {})
     }
-    const style = !isCollapsed ?
-        { gridColumn: '1/3', position: 'sticky', left: '0', background: 'white' } :
-        {
-            borderLeft: `0.4em solid ${groupColor}`,
-        }
+    // const style = !isCollapsed ?
+    //     { gridColumn: '1/3', position: 'sticky', left: '0', background: 'white' } :
+    //     {
+    //         borderLeft: `0.4em solid ${groupColor}`,
+    //     }
+    // }
+    // const style = !isCollapsed ? borderLeft: `0.4em solid ${groupColor}`
+        
 
 
     return (
 
-        <div className="list-item statistics"        >
+        <div className="list-item statistics">
 
-            <div className="group-statistics-fill" style={style}><span>{isCollapsed && `${tasks.length} Tasks`}</span></div>
+            <div className={`group-statistics-fill ${isCollapsed ? 'collapsed' : ''}`}  style={{borderLeft: `0.4em solid ${groupColor}`}}><span>{isCollapsed && `${tasks.length} Tasks`}</span></div>
 
             {clmTypes.map((clmType, index) => {
                 if (clmType.type === 'status' || clmType.type === 'priority') {

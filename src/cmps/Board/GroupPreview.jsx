@@ -87,7 +87,29 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     const dynamicStyle = {
         gridTemplateColumns: columnWidths.map((width, index) => `${width}px`).join(' ')
-    };
+    }
+
+    function getTemplateStyle() {
+        const fixedStart = '40px 453px'
+        const dynamicColumns = clmTypes.map(clmType => {
+            switch (clmType.type) {
+                case 'priority':
+                case 'status':
+                case 'members':
+                    return '150px';
+                case 'timelines':
+                    return '180px'
+                default:
+                    return '125px';
+            }
+        }).join(' ')
+        const fixedEnd = "minmax(60px,1fr)"
+        const gridTemplateColumns = `${fixedStart} ${dynamicColumns} ${fixedEnd}`
+        return { gridTemplateColumns }
+    }
+
+    const gridStyle = getTemplateStyle()
+    console.log(gridStyle);
 
     // console.log(dynamicStyle);
     // if (!group.tasks.length) return
@@ -215,7 +237,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                         </div>
                     </section>
                     <section
-                        className="group-container">
+                        className="group-container" style={getTemplateStyle()}>
                         {/* future collumns resizable */}
                         {/* className="group-container" style={dynamicStyle}> */}
                         <section className="header-items">
