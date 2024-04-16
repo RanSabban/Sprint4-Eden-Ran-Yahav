@@ -29,7 +29,7 @@
             minmax(20px, 1fr);
     }
 }
-
+// $normal-breakpoint
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

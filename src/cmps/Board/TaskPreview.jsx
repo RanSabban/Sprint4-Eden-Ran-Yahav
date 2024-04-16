@@ -23,7 +23,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const { target, clmType, cell, isOpen, callBackFunc } = modalProps
-
+    console.log(clmTypes);
+    console.log(task);
     const [selectedCell, setSelectedCell] = useState(null)
 
 

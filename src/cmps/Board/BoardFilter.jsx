@@ -65,7 +65,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
 
             </SplitButton>
 
-            {isSearch ? (
+            {!isSearch ? (
                 <Button
                     className="search-btn"
                     onBlur={() => toggleIsSearch()}
@@ -73,7 +73,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                     kind="tertiary"
                     style={{ marginRight: "6px", marginLeft: "6px" }}
                     size="small">
-                    <span style={{ marginLeft: "-6px" }}>Search</span>
+                    <span style={{ marginLeft: "2px" }}>Search</span>
                 </Button>
 
             ) : (

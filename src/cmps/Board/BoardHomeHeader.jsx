@@ -1,4 +1,4 @@
-export function BoardHomeHeader() {
+export function BoardHomeHeader(screenWidth) {
 
 
     function welcomeUser() {
@@ -16,32 +16,18 @@ export function BoardHomeHeader() {
         return greeting
     }
 
-    return <section className="board-home-header"
-        style=
-        {{
-            // display: 'grid',
-            // gridAutoFlow: 'column',
-            // width: '100%',
-            // gridTemplateColumns: '1fr 1fr 1fr'
-        }}
-    >
+    return screenWidth > 880 && <section className="board-home-header"    >
         <section
             style={{ justifySelf: 'start' }}
             className="welcome-user-container">
             <span>{`${welcomeUser()}, Guest!`}</span>
-            <p 
-            className="welcome-user-content"
+            <p
+                className="welcome-user-content"
             >Quickly access your recent boards, Inbox and workspaces</p>
         </section>
 
         <img
             src="https://cdn.monday.com/images/homepage-desktop/header-background-v2.svg"
-            style={{
-                // maxWidth: '100%',
-                // maxHeight: '100%',
-                // justifySelf: 'center',
-                // overflow: 'hidden'
-            }}
         />
     </section>
 }

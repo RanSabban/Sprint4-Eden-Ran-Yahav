@@ -7,8 +7,12 @@
     width: 30px;
     // overflow: hidden;
 
-    &.open-sidebar{
-        .sidebar-container{
+    @include for-mobile-layout {
+        display: none;
+    }
+
+    &.open-sidebar {
+        .sidebar-container {
             width: 255px;
         }
     }
@@ -20,7 +24,7 @@
 
         left: 0;
         height: 100%;
-        width: 30px; 
+        width: 30px;
         background-color: #ffffff;
         transition: width 0.2s ease;
         overflow: hidden;
@@ -30,14 +34,14 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
 
 
-            > .lower-sidebar.close-sidebar{
+            >.lower-sidebar.close-sidebar {
                 overflow: visible;
                 opacity: 1;
             }
-          
+
         }
 
-        
+
     }
 
     .lower-sidebar.close-sidebar {
@@ -46,13 +50,14 @@
         opacity: 0;
         overflow: hidden;
     }
+
     .lower-sidebar.open-sidebar {
         margin-left: 1em;
         width: 255px;
         opacity: 1;
         overflow: hidden;
     }
-    
+
 
     &.close-sidebar {
         // width: 40px;
@@ -66,7 +71,7 @@
 
         &:hover {
             opacity: 1;
-    
+
             box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
             z-index: 9999999;
 
