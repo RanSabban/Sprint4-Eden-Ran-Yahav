@@ -1,5 +1,5 @@
-import { Avatar, AvatarGroup, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
-import { Home, Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons"
+import { Avatar, AvatarGroup, Button, IconButton, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
+import { Home, Favorite, Invite, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon, MoveArrowLeft } from "monday-ui-react-core/icons"
 
 import { BoardFilter } from "./BoardFilter"
 import { boardService } from "../../services/board.service"
@@ -131,6 +131,14 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
 
                 <div className={`board-header-top flex align-center justify-between ${isCollapsed ? 'collapsed' : ''}`}>
 
+                    <IconButton
+                        icon={MoveArrowLeft}
+                        kind="tertiary"
+                        wrapperClassName="back-btn"
+                        iconClassName="back-btn-icon"
+                        size="medium">
+                    </IconButton >
+
                     <div className={`board-title-left ${isEditable ? dynClass : ''}`}>
                         <div className={`editable-container flex ${isEditable ? dynClass : ''}`}>
                             <Tooltip
@@ -211,8 +219,10 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
                                     </Tooltip>
                                 </div>
                             )}
+
                         </div>
                     </div>
+
 
                     <div className={`board-title-right flex ${isCollapsed ? 'collapsed' : ''}`}>
                         {!isCollapsed && (
@@ -298,6 +308,13 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
                             </Tooltip>
                         )}
                     </div>
+                    <IconButton
+                        icon={MenuDots}
+                        kind="tertiary"
+                        wrapperClassName="menu-btn"
+                        iconClassName="menu-btn-icon"
+                        size="medium">
+                    </IconButton >
                 </div>
 
                 {!isCollapsed && (

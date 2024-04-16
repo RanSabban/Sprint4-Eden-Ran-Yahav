@@ -5,7 +5,7 @@ import { loadBoards } from "../../../store/actions/board.actions"
 import { AddBtn } from "../../../services/svg.service"
 
 
-export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateCell }) {
+export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateCell, setIsEditing }) {
     const [isOpen, setIsOpen] = useState(false)
     const [users, setUsers] = useState(cell.dataId || [])
     const modalRef = useRef()
@@ -19,6 +19,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
 
         if (isOpen) {
             document.addEventListener("mousedown", handleClickOutside)
+            setIsEditing(true)
         }
 
         return () => {

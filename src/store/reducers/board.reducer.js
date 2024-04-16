@@ -30,7 +30,8 @@ const initialState = {
     lastRemovedBoard: null,
     isLoading: false,
     modalProps: {},
-    filterBy: boardService.getEmptyFilterBy()
+    filterBy: boardService.getEmptyFilterBy(),
+    isEditing: []
 }
 
 export function boardReducer(state = initialState, action) {
@@ -132,20 +133,21 @@ export function boardReducer(state = initialState, action) {
         }
 
 
-        case ADD_GROUP:{
+        case ADD_GROUP: {
 
-        
-            const newGroups = action.isBottom 
-                              ? [...state.board.groups, action.group]
-                              : [action.group, ...state.board.groups]
-        
+
+            const newGroups = action.isBottom
+                ? [...state.board.groups, action.group]
+                : [action.group, ...state.board.groups]
+
             return {
                 ...state,
                 board: {
                     ...state.board,
                     groups: newGroups
                 }
-            }}
+            }
+        }
         case REMOVE_GROUP:
             return {
                 ...state,
@@ -154,19 +156,19 @@ export function boardReducer(state = initialState, action) {
                     groups: state.board.groups.filter(group => group._id !== action.groupId)
                 }
             }
-            case UPDATE_GROUP: {
-                const { groupId, updatedGroupData } = action.payload;
-                console.log( groupId, 'grs', updatedGroupData, 'uppp')
-                return {
-                    ...state,
-                    board: {
-                        ...state.board,
-                        groups: state.board.groups.map(group =>
-                            group._id === groupId ? updatedGroupData : group
-                        )
-                    }
-                };
-            }
+        case UPDATE_GROUP: {
+            const { groupId, updatedGroupData } = action.payload;
+            console.log(groupId, 'grs', updatedGroupData, 'uppp')
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: state.board.groups.map(group =>
+                        group._id === groupId ? updatedGroupData : group
+                    )
+                }
+            };
+        }
 
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
