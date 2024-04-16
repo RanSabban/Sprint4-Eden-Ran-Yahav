@@ -39,7 +39,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         };
         update();
     }, [selectedCell]);
-    
+
 
     async function onChange(cell) {
         try {
@@ -98,7 +98,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <div className="task-preview-title-container" style={{
                 borderLeft: `0.4em solid ${groupColor}`
             }}
-            onClick={console.log('active')}
+                onClick={console.log('active')}
             >
                 <div className='dyn-cell checkbox-container'>
 
@@ -115,11 +115,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     </div>
                 </div>
             </div>
-
-
             {
                 cells.map((cell, idx) => (
-
                     <DynamicCmp key={idx}
                         groupId={groupId}
                         groupColor={groupColor}
@@ -136,14 +133,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     />
                 ))
             }
-            <div className='dyn-cell infinity'>
-
-            </div>
-            {/* {provided.placeholder} */}
-
+            <div className='dyn-cell infinity'></div>
         </>
     )
-
 }
 
 

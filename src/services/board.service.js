@@ -26,7 +26,8 @@ export const boardService = {
     getEmptyFilterBy,
     updateFilterBy,
     addBoard,
-    addColumn
+    addColumn,
+    removeColumn
 }
 window.cs = boardService
 
@@ -1464,7 +1465,6 @@ async function addColumn(type, boardId) {
         
         board.clmTypes.push(columnToAdd)
 
-        // Get an empty cell for all tasks in the board
         const emptyCell = getEmptyCell(type)
 
         board.groups.forEach(group => {
@@ -1477,15 +1477,44 @@ async function addColumn(type, boardId) {
             });
         });
 
-        // Save the updated board
-        await save(board);
-        console.log(`Column and cells added successfully to board ${boardId}`);
-        return board;
+        await save(board)
+        console.log(`Column and cells added successfully to board ${boardId}`)
+        return board
     } catch (err) {
-        console.error('Failed to add column and cells: ', err);
+        console.error('Failed to add column and cells: ', err)
         throw err;
     }
 
+}
+
+async function removeColumn(columnId, boardId) {
+    try {
+        let board = await getById(boardId);
+
+        if (!board) throw new Error('Board not found');
+
+        const columnIndex = board.clmTypes.findIndex(column => column._id === columnId);
+        if (columnIndex === -1) throw new Error('Column not found');
+        board.clmTypes.splice(columnIndex, 1);
+
+        board.groups.forEach(group => {
+            group.tasks.forEach(task => {
+                if (task.cells) {
+                    const cellIndex = task.cells.findIndex(cell => cell._id === columnId);
+                    if (cellIndex !== -1) {
+                        task.cells.splice(cellIndex, 1);
+                    }
+                }
+            });
+        });
+
+        await save(board);
+        console.log(`Column and cells removed successfully from board ${boardId}`);
+        return board;
+    } catch (err) {
+        console.error('Failed to remove column and cells: ', err);
+        throw err;
+    }
 }
 
 function getEmptyColumn(type) {
@@ -1573,23 +1602,23 @@ function getEmptyColumn(type) {
 function getEmptyCell(columnType) {
     switch (columnType) {
         case 'status':
-            return { dataId: "l100", title: "", color: "#c4c4c4", type: columnType };  // Default to the first 'empty' status
+            return { dataId: "l100", title: "", color: "#c4c4c4", type: columnType }
         case 'priority':
-            return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType };  // Default to the first 'empty' priority
+            return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
         case 'members':
-            return {type: columnType};  // Default to no member assigned
+            return {type: columnType}
         case 'timelines':
-            return { startDate: null, endDate: null, type: columnType };  // Default to no timeline set
+            return { startDate: null, endDate: null, type: columnType }
         case 'files':
-            return {type: columnType};  // Default to no file
+            return {type: columnType}
         case 'txt':
-            return { text: "" , type: columnType};  // Default to empty text
+            return { text: "" , type: columnType}
         case 'date':
-            return { date: null, type: columnType };  // Default to no date
+            return { date: null, type: columnType }
         case 'updates':
-            return {type: columnType};  // Default to no updates
+            return {type: columnType}
         default:
-            return {};
+            return {}
     }
 }
 

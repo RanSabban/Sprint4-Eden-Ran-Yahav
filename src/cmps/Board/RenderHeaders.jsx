@@ -1,6 +1,3 @@
-import { useSelector } from 'react-redux'
-import { TableHeader, TableHeaderCell } from 'monday-ui-react-core'
-import { Add } from 'monday-ui-react-core/icons'
 import { ColumnsEdit } from './ColumnsEdit';
 
 export function RenderHeaders({ clmTypes, isCollapsed }) {
