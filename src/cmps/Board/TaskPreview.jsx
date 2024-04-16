@@ -38,9 +38,10 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             } else {
                 setIsEditing(false)
             }
-        }
-        update()
-    }, [selectedCell])
+        };
+        update();
+    }, [selectedCell]);
+    
 
     async function onChange(cell) {
         try {
@@ -116,7 +117,8 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                         </Link>
                     </div>
                 </div>
-            </div >
+            </div>
+
 
             {
                 cells.map((cell, idx) => (
@@ -141,10 +143,14 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                 ))
             }
 
-            < div className='dyn-cell infinity'></div >
+<div className='dyn-cell infinity'></div>
+            {/* {provided.placeholder} */}
+
         </>
     )
+
 }
+
 
 function DynamicCmp(props) {
     switch (props.cmpType) {
@@ -167,3 +173,7 @@ function DynamicCmp(props) {
         default: <span></span>
     }
 }
+
+
+
+

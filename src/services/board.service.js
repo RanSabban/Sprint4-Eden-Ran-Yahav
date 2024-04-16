@@ -1509,13 +1509,14 @@ async function removeColumn(columnId, boardId) {
             });
         });
 
-        await save(board);
-        console.log(`Column and cells removed successfully from board ${boardId}`);
-        return board;
+        await save(board)
+        console.log(`Column and cells added successfully to board ${boardId}`)
+        return board
     } catch (err) {
-        console.error('Failed to remove column and cells: ', err);
+        console.error('Failed to add column and cells: ', err)
         throw err;
     }
+
 }
 
 async function updateClmTitle(txt,clmId,boardId){
@@ -1624,21 +1625,30 @@ function getEmptyCell(columnType) {
     switch (columnType) {
         case 'status':
             return { dataId: "l100", title: "", color: "#c4c4c4", type: columnType }
+            return { dataId: "l100", title: "", color: "#c4c4c4", type: columnType }
         case 'priority':
+            return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
             return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
         case 'members':
             return {type: columnType}
+            return {type: columnType}
         case 'timelines':
+            return { startDate: null, endDate: null, type: columnType }
             return { startDate: null, endDate: null, type: columnType }
         case 'files':
             return {type: columnType}
+            return {type: columnType}
         case 'txt':
+            return { text: "" , type: columnType}
             return { text: "" , type: columnType}
         case 'date':
             return { date: null, type: columnType }
+            return { date: null, type: columnType }
         case 'updates':
             return {type: columnType}
+            return {type: columnType}
         default:
+            return {}
             return {}
     }
 }
