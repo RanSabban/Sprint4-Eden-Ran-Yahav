@@ -300,7 +300,33 @@ export async function addColumn(type,boardId) {
             board
         })
     } catch (err) {
+        console.log('cannot add column - action', err);
+    }
+}
 
+export async function removeColumn(clmTypeId, boardId){
+    console.log(clmTypeId, boardId)
+    try {
+        const board = await boardService.removeColumn(clmTypeId, boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+    } catch (err) {
+        console.log('cannot remove column - action', err);
+    }
+}
+
+export async function updateClmTitle(txt,clmId,boardId) {
+    console.log(txt,clmId,boardId)
+    try {
+        const board = await boardService.updateClmTitle(txt,clmId,boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+    } catch (err) {
+        console.log('cannot edit column title - action', err);
     }
 }
 
