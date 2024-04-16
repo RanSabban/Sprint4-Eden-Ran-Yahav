@@ -53,7 +53,7 @@ export function GroupStatistics({ tasks, clmTypes, isCollapsed, groupColor }) {
             {clmTypes.map((clmType, index) => {
                 if (clmType.type === 'status' || clmType.type === 'priority') {
                     return (
-                        <div key={JSON.stringify(clmType.type)} className="stats-cell-container" style={!isCollapsed ? { padding: '2px' } : {}}>
+                        <div key={JSON.stringify(clmType._id)} className="stats-cell-container" style={!isCollapsed ? { padding: '2px' } : {}}>
                             <div style={{ display: 'flex' }} className="stats-clrs-container">
                                 {clmType.data.map((item, index) => {
                                     const stats = clmType.type === 'status' ? statusStats : priorityStats

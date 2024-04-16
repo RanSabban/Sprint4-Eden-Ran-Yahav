@@ -291,6 +291,19 @@ export async function updateFilterBy(filterBy, boardId) {
     }
 }
 
+export async function addColumn(type,boardId) {
+    console.log(type,boardId);
+    try {
+        const board = await boardService.addColumn(type,boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+    } catch (err) {
+
+    }
+}
+
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {

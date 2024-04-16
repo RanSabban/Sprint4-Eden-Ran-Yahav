@@ -27,6 +27,8 @@ export function BoardPreview({ onAddGroup}) {
     const groups = board.groups
     const clmTypes = board.clmTypes
 
+    console.log(clmTypes);
+
     async function onAddTask(groupId, taskTitle) {
         try {
             // console.log(groupId)
