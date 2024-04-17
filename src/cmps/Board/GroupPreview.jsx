@@ -204,7 +204,22 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                 />
                             )}
 
-                            {/* <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}></div> */}
+                            <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}>
+                                <div style={{ display: colorOpen }} className="color-picker-modal">
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#469e9b' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#579bfc' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#9aadbd' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bba5e8' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#8050ab' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#4f3a65' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#92334c' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
+                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
+                                </div>
+
+                            </div>
 
                             <Tooltip content="Click to Edit">
                                 <EditableHeading
@@ -219,20 +234,8 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
                                 />
                             </Tooltip>
-                            {/*                    
-                    <div style={{ display: colorOpen }} className="color-picker-modal">
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#469e9b' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#579bfc' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#9aadbd' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bba5e8' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#8050ab' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#4f3a65' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#92334c' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
-                        <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
-                    </div> */}
+
+
                             {/* </Tooltip> */}
                         </div>
                     </section>
@@ -253,7 +256,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                             </div>
                             { }
                             <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
-                        
+
                         </section>
                         <TaskList
                             groupColor={group.groupColor}

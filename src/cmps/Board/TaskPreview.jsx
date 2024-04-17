@@ -19,8 +19,6 @@ import { useEffect } from 'react'
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn, clmTypes }) {
 
-    // const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
-    const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const [isEditing, setIsEditing] = useState(false)
     const [selectedCell, setSelectedCell] = useState(null)
 
@@ -60,12 +58,6 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         console.log("almost")
     }
 
-    function getClmType(cellId) {
-        const clmToReturn = clmTypes.find(clmTypeToReturn => (clmTypeToReturn._id === cellId))
-        // setSelected(clmToReturn)
-        return clmToReturn
-    }
-
     function onUpdateTitle(newTxt) {
         const taskToUpdate = { ...task, title: newTxt }
         onUpdateTask(taskToUpdate)
@@ -78,6 +70,11 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         } catch (err) {
             console.log('cannot open modal', err)
         }
+    }
+
+    function getClmType(cellId) {
+        const clmToReturn = clmTypes.find(clmTypeToReturn => (clmTypeToReturn._id === cellId))
+        return clmToReturn
     }
 
     return (
