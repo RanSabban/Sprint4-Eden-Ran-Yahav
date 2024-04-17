@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
 import { Menu, MenuButton, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core"
+import { showSuccessMsg } from "../../services/event-bus.service"
 
 function truncateString(str, num) {
     if (str.length > num) {
@@ -24,13 +25,13 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-           
+
             if (inputRef.current && !inputRef.current.contains(event.target)) {
                 setIsEdit(false)
                 setIsShown(false)
 
                 if (editedTitle.trim() !== "" && board.title !== editedTitle) {
-                    
+
                     onUpdateBoard({ ...board, title: editedTitle })
                 }
             }
@@ -66,7 +67,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
     function onSubmitTitle(ev) {
         ev.preventDefault()
-        if(board.title === editedTitle) return
+        if (board.title === editedTitle) return
         onUpdateBoard({ ...board, title: editedTitle })
         setIsEdit(false)
         setIsShown(false)
@@ -74,6 +75,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
     function removeBoard() {
         onRemoveBoard(board._id)
+        showSuccessMsg('We successfully deleted the board!')
         setIsShown(false)
     }
 
