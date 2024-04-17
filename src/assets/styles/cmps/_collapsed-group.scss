@@ -1,18 +1,24 @@
 .group-card {
 
 
+    @include for-mobile-layout {
+        padding-left: 1em;
+    }
+
+
     & .collapsed-group {
         margin-bottom: 50px;
 
         & .group-container {
             padding: 4px 8px 8px 0;
-            background-color: #ffffff;
+            background-color: transparent !important;
             display: grid;
             grid-template-columns: 40px 600px 150px 150px 150px 400px 1fr;
             grid-auto-columns: minmax(100px, 1fr);
             grid-auto-rows: 30px 30px;
             width: 100%;
             margin-bottom: 1.75em;
+
 
             & .blank-cell {
                 display: flex;
@@ -35,7 +41,7 @@
                 grid-auto-rows: 30px 30px;
                 border-bottom: 1px solid $clr-border;
                 border-top-left-radius: 0.6em;
-                grid-auto-rows: auto;
+                // grid-auto-rows: auto;
                 z-index: 999;
                 width: 100%;
 
@@ -80,7 +86,7 @@
                     border-left: 0.4em solid rgb(255, 202, 0);
                     border-bottom-left-radius: 0.6em;
                     border-bottom: 1px solid $clr-border;
-                    grid-column: 1 / 3;
+                    grid-column: 1 / 2;
                     position: sticky;
                     left: 0px;
                     background: white;
@@ -89,7 +95,7 @@
                     position: sticky;
                     left: 40px;
 
-                    
+
 
 
 
@@ -116,15 +122,18 @@
                     top: 156px;
                     z-index: 9999;
                     border-bottom: 1px solid $clr-border;
+                    border-right: 1px solid $clr-border;
                     border-bottom-right-radius: 0.6em;
 
-                   
+
+
                     & .dyn-cell.infinity {
                         border: none;
                     }
 
                     & .stats-fill-cell {
-                        border-right: 1px solid $clr-border;
+                        // border-right: 1px solid $clr-border;
+                        border: none;
 
                     }
 

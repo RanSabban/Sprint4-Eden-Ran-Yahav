@@ -107,6 +107,24 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
         const gridTemplateColumns = `${fixedStart} ${dynamicColumns} ${fixedEnd}`
         return { gridTemplateColumns }
     }
+    function getTemplateStyleCollapsed() {
+        const fixedStart = '196px'
+        const dynamicColumns = clmTypes.map(clmType => {
+            switch (clmType.type) {
+                case 'priority':
+                case 'status':
+                case 'members':
+                    return '150px';
+                case 'timelines':
+                    return '180px'
+                default:
+                    return '125px';
+            }
+        }).join(' ')
+        const fixedEnd = "minmax(60px,1fr)"
+        const gridTemplateColumns = `${fixedStart} ${dynamicColumns} ${fixedEnd}`
+        return { gridTemplateColumns }
+    }
 
     const gridStyle = getTemplateStyle()
     // console.log(gridStyle)
@@ -117,9 +135,9 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
         <>
             {isCollapsed ? (
-                <div className="collapsed-group">
+                <div className="collapsed-group" >
                     <section
-                        className="group-container">
+                        className="group-container"  >
                         {/* <section className="header-items"> */}
                         <div className='blank-cell'>
 
@@ -135,7 +153,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                             <section className="header-items">
 
                                 <div className="group-preview-title-container dyn-cell"
-                                    style={{ borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.6em" }}>
+                                    style={{ borderLeft: `6px solid ${group.groupColor}`, borderTopLeftRadius: "0.6em" }}>
 
                                     <section className="group-header">
                                         <div className="section-group-header-sticky">

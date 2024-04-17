@@ -81,10 +81,10 @@ export function BoardPreview({ onAddGroup, board}) {
         try {
             if (type === 'TASK') {
                 dragAndDropTask(source, destination, localBoard._id)
-                showSuccessMsg('Tasks swiped!')
+                // showSuccessMsg('Tasks swiped!')
             } else if (type === 'GROUP') {
                 dragAndDropGroup(source, destination, localBoard._id)
-                showSuccessMsg('Tasks swiped!')
+                // showSuccessMsg('Tasks swiped!')
             }
         } catch (err) {
             // console.log('Error drag and drop', err)

@@ -20,9 +20,9 @@ window.userService = userService
 
 async function getUsers() {
     // return storageService.query('user')
-     const users = httpService.get(`user`)
-     console.log(users);
-     return users
+    const users = httpService.get(`user`)
+    console.log(users);
+    return users
 }
 
 
@@ -53,8 +53,13 @@ async function update({ _id, score }) {
 async function login(userCred) {
     // const users = await storageService.query('user')
     // const user = users.find(user => user.username === userCred.username)
-    const user = await httpService.post('auth/login', userCred)
-    if (user) return saveLocalUser(user)
+    try {
+
+        const user = await httpService.post('auth/login', userCred)
+        if (user) return saveLocalUser(user)
+    } catch (err) {
+        throw new Error(err.message || 'An err occurred during login')
+    }
 }
 
 async function signup(userCred) {
@@ -66,7 +71,7 @@ async function signup(userCred) {
 
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // return await httpService.post('auth/logout')
+    return await httpService.post('auth/logout')
 }
 
 function saveLocalUser(user) {
