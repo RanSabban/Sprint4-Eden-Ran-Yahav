@@ -87,8 +87,8 @@ export function BoardPreview({ onAddGroup, board}) {
                 // showSuccessMsg('Tasks swiped!')
             }
         } catch (err) {
-            // console.log('Error drag and drop', err)
-            showErrorMsg('Cannot swipe sorry AVATAR!!!')
+            console.log('Error drag and drop', err)
+            // showErrorMsg('Cannot swipe sorry AVATAR!!!')
         }
         finally {
             setPlaceholderProps({})

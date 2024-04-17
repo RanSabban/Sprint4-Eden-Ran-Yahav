@@ -26,7 +26,7 @@ export function BoardSideBar() {
     async function onRemoveBoard(boardId) {
         try {
             await removeBoard(boardId)
-            showSuccessMsg('Board removed')
+            showSuccessMsg('We successfully deleted the board')
         } catch (err) {
             showErrorMsg('Cannot remove board')
         }
