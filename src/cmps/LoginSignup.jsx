@@ -1,76 +1,84 @@
 import { useState, useEffect } from 'react'
-import { ImgUploader } from './ImgUploader'
 import { userService } from '../services/user.service'
+import { login } from '../store/actions/user.actions'
+import { useDispatch } from 'react-redux'
 
 export function LoginSignup(props) {
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
         loadUsers()
-    }, [])
+        console.log(users)
+        console.log(credentials);
+
+    }, [credentials])
 
     async function loadUsers() {
         const users = await userService.getUsers()
         setUsers(users)
     }
 
-    function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
-        setIsSignup(false)
-    }
-
     function handleChange(ev) {
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials({ ...credentials, [field]: value })
+        ev.preventDefault()
+        const { name, value } = ev.target
+        setCredentials(prev => ({ ...prev, [name]: value }))
+        console.log(credentials)
     }
 
-    function onLogin(ev = null) {
+    async function onLogin(ev, username) {
         if (ev) ev.preventDefault()
-        if (!credentials.username) return
-        props.onLogin(credentials)
-        clearState()
+        console.log("Login attempt with:", { username, password: credentials.password })
+        try {
+
+            const userCredentials = {
+                username: username || credentials.username,
+                password: credentials.username === 'guest' ? 'guest' : credentials.password
+            }
+
+            if (!userCredentials.username) {
+                return console.log("Username is empty")
+            }
+            await dispatch(login(userCredentials))
+            clearState()
+        } catch (err) {
+            console.log(err);
+        }
     }
 
-    function onSignup(ev = null) {
-        if (ev) ev.preventDefault()
-        if (!credentials.username || !credentials.password || !credentials.fullname) return
-        props.onSignup(credentials)
-        clearState()
+    function clearState() {
+        setCredentials({ username: '', password: '' })
+        setIsSignup(false)
     }
 
     function toggleSignup() {
         setIsSignup(!isSignup)
     }
 
-    function onUploaded(imgUrl) {
-        setCredentials({ ...credentials, imgUrl })
-    }
-
     return (
-        <div className="login-page">
+        <div className="login-signup">
             <p>
                 <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
             </p>
             {!isSignup && <form className="login-form" onSubmit={onLogin}>
-                <select
+                {/* <select
                     name="username"
                     value={credentials.username}
                     onChange={handleChange}
                 >
-                    <option value="">Select User</option>
-                    {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-                </select>
+                    <option value="">Log in as:</option>
+                    {users.map(user => <option key={user._id} value={user.username} onChange={onLogin}>{user.fullname}</option>)}
+                </select> */}
+
                 <input
                     type="text"
                     name="username"
                     value={credentials.username}
-                    placeholder="Username"
+                    placeholder="UserName"
                     onChange={handleChange}
                     required
-                    autoFocus
                 />
                 <input
                     type="password"
@@ -80,40 +88,8 @@ export function LoginSignup(props) {
                     onChange={handleChange}
                     required
                 />
-                <button type="submit">Login!</button>
+                <button type='submit'>boom</button>
             </form>}
-
-{/* 
-            <div className="signup-section">
-                {isSignup && <form className="signup-form" onSubmit={onSignup}>
-                    <input
-                        type="text"
-                        name="fullname"
-                        value={credentials.fullname}
-                        placeholder="Fullname"
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="username"
-                        value={credentials.username}
-                        placeholder="Username"
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={credentials.password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                    />
-                    <ImgUploader onUploaded={onUploaded} />
-                    <button >Signup!</button>
-                </form>}
-            </div> */}
         </div>
     )
 }

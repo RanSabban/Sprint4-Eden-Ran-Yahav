@@ -57,15 +57,14 @@ export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }
             <div className="task-date"
                 ref={referenceElem}
             >
-            
+
                 <div ref={popperElem}
                     style={styles.popper}
                     {...attributes.popper}
                     className="date-picker-modal">
                     <style>{pickerCss}</style>
                     <DayPicker
-                    monthsShown={2}
-                        mode="range"
+                        mode="single"
                         selected={selected}
                         onSelect={onChangeDueDate}
                         footer={footer}

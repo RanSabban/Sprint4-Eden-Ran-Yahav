@@ -18,9 +18,11 @@ export const userService = {
 window.userService = userService
 
 
-function getUsers() {
+async function getUsers() {
     // return storageService.query('user')
-    return httpService.get(`user`)
+     const users = httpService.get(`user`)
+     console.log(users);
+     return users
 }
 
 
@@ -78,12 +80,12 @@ function getLoggedinUser() {
 }
 
 
-; (async () => {
-    // await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
-    // await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-    // await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', isAdmin: true})
-    // userService.signup({ username: 'mukida', fullname: 'muki', password: 'muki1', isAdmin: true })
-})()
+// ; (async () => {
+//     // await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
+//     // await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
+//     // await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', isAdmin: true})
+//     // userService.signup({ username: 'mukida', fullname: 'muki', password: 'muki1', isAdmin: true })
+// })()
 
 
 
