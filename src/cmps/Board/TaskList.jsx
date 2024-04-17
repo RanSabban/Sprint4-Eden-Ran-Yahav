@@ -10,6 +10,7 @@ import { Checkbox } from 'monday-ui-react-core';
 import { EditableCmp } from './reusableCmps/EditableCmp'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { socketService } from '../../services/socket.service'
+import { automationService } from '../../services/automations.service'
 
 
 export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn, tasks }) {
@@ -32,6 +33,12 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
         try {
             // console.log(cell, taskId);
             await updateCell(cell, taskId, groupId, boardId)
+            if (cell.type === 'status') {
+                await automationService.runAutomation('STATUS_RELATED',cell,taskId,groupId,boardId)
+            }
+
+
+
         }
         catch (err) {
             console.log('err update task', err)

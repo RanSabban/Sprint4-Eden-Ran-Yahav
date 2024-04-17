@@ -30,7 +30,10 @@ export const boardService = {
     addColumn,
     removeColumn,
     updateClmTitle,
-    updateTaskConversation
+    updateTaskConversation,
+    moveTaskToTop,
+    getAllAutomations,
+    getAutomationById
 }
 window.cs = boardService
 
@@ -787,6 +790,34 @@ async function getById(boardId) {
     return await httpService.get(BASE_URL + boardId)
 }
 
+async function getAutomationById(boardId, automationId) {
+    try {
+        const board = await getById(boardId)
+        if (!board) throw new Error('cannot find board')
+        const automation = board.automations.find(automation => automation.id === automationId)
+        if (!automation) throw new Error('cannot find automation ', automationId, 'on board ', boardId)
+
+        return automation
+
+    } catch (err) {
+        console.log('Failed to get automation', err)
+        throw err
+    }
+}
+
+async function getAllAutomations(boardId) {
+    try {
+        const board = await getById(boardId) 
+        if (!board) throw new Error('cannot find board') 
+        const automations = board.automations
+        if (!automations) return [] 
+        return automations
+    } catch (err) {
+        console.log('failed to get automation', err); 
+        throw err
+    }
+}
+
 function getEmptyFilterBy() {
     return {
         title: ''
@@ -1451,6 +1482,41 @@ async function dragAndDropTask(source, destination, boardId) {
         return board
     } catch (err) {
         console.error('Error moving task:', err)
+    }
+}
+
+async function moveTaskToTop(taskId, destinationGroupId, boardId) {
+    try {
+        const board = await boardService.getById(boardId)
+        if (!board) throw new Error('Board not found')
+
+        let taskToMove = {}
+        let taskFound = false
+        board.groups = board.groups.map(group => {
+            if (taskFound) return group
+            const taskIndex = group.tasks.findIndex(task => task._id === taskId)
+            if (taskIndex !== -1) {
+                taskToMove = group.tasks.splice(taskIndex, 1)[0] // remove and store :)
+                taskFound = true
+            }
+            return group
+        })
+        
+        if (!taskToMove) throw new Error('Task not found');
+
+        const destinationGroupIndex = board.groups.findIndex(group => group._id === destinationGroupId)
+
+        if (destinationGroupIndex === -1) throw new Error('Destination group not found')
+
+        board.groups[destinationGroupIndex].tasks.unshift(taskToMove)
+
+        await boardService.save(board)
+        socketService.emit('board-updated', board)
+
+        return board
+
+    } catch (err) {
+
     }
 }
 
