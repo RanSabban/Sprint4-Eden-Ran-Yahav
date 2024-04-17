@@ -4,6 +4,22 @@
     margin-inline-start: 7px;
     padding: 16px 16px 0 16px;
     display: grid;
+    // opacity: 1;
+    /* end with fully visible */
+    // transform: translateY(0px);
+    /* end at the normal position */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    /* start with hidden */
+    // transform: translateY(-20px);
+    /* start slightly above */
+
+
+
+    .add-column-icon {
+        cursor: pointer;
+    }
+
 
     // width: 350px;
     svg {
@@ -16,15 +32,28 @@
         grid-template-columns: repeat(2, 1fr);
         position: absolute;
         width: 350px;
-        height: 300px;
+        height: max-content;
         right: 0;
-        background-color: #fff;
+        background-color: #ffffff;
         text-transform: capitalize;
         box-shadow: 0 4px 17px 6px rgba(0, 0, 0, .1);
         align-content: start;
         // row-gap: 5px;
         border-radius: 0.5em;
-        z-index: 11111111111111111111111111111111111;
+        z-index: 11111111;
+        padding: 16px;
+        // opacity: 0;
+        height: 0;
+        // transition: 0.2s;
+        will-change: opacity, transform, height;
+
+
+        &.open {
+            opacity: 1;
+            height: max-content;
+        }
+
+
 
 
         .columns-list-title {
@@ -37,21 +66,32 @@
         }
 
         .list-item-clmtype {
-            height: 24px;
+            height: 32px;
             text-align: start;
             width: 140px;
             justify-self: start;
             padding-inline-start: 5px;
-            padding-block: 3px;
-            display: grid;
+            // padding-block: 10px;
             align-content: center;
             margin-inline: 16px;
-            font-size: 14px;
+            font-size: 16px;
             background-color: white;
             transition: 0.3s;
             border-radius: 0.5em;
-            
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 20px 1fr;
+            column-gap: 8px;
+            align-items: center;
+
+            .monday-column-icon-component {
+                border-radius: 4px;
+                height: 20px;
+                background-color: white;
+            }
+
             cursor: pointer;
+
             &:hover {
                 background-color: rgba(103, 104, 121, 0.1);
                 ;
