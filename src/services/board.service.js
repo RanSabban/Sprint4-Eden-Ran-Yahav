@@ -29,7 +29,8 @@ export const boardService = {
     addBoard,
     addColumn,
     removeColumn,
-    updateClmTitle
+    updateClmTitle,
+    updateTaskConversation
 }
 window.cs = boardService
 
@@ -1349,6 +1350,34 @@ async function updateTask(taskToUpdate, groupId, boardId) {
     }
 }
 
+async function updateTaskConversation(taskToUpdate, groupId, boardId,update){
+    try {
+        const board = await getById(boardId) 
+        if (!board) {
+            throw new Error('Board not found')
+        }
+        const group = board.groups.find(group => group._id === groupId)
+        if (!group) {
+            throw new Error('group not found')
+        }
+
+        const updatedTasks = group.tasks.map(task => {
+            if (task._id === taskToUpdate._id) {
+                if(!task.updates) task.updates = []
+                task.updates.push(update)
+                return {...task}
+            } 
+            return task
+        })
+
+        await save(board)
+        return board
+
+    } catch (err) {
+        console.log('error update task', err);
+    }
+}
+
 
 async function removeTask(taskId, groupId, boardId) {
     const board = await getById(boardId)
@@ -1552,7 +1581,7 @@ async function updateClmTitle(txt,clmId,boardId){
 
         await save(board)
         socketService.emit('board-updated', board);
-        
+
         return board
 
     } catch (err) {

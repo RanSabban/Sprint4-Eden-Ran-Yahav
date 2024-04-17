@@ -41,7 +41,7 @@ export function UserMsg() {
     //   </section>
 
     <Toast open type={msg.type} autoHideDuration={5000} className={`monday-storybook-toast_wrapper ${msg ? `active` : ''}`} >
-      We successfully updated the board
+
     </Toast>
   )
 }

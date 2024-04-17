@@ -15,11 +15,11 @@ export function TimelinesComponent({ cell, groupColor, onUpdateCell, taskId }) {
         if (!selectedRange.from || !selectedRange.to) return
         try {
             setDatePickerOpen(false)
-            // Update the cell with the selected date range
+            
             const updatedCell = {
                 ...cell,
-                startDate: selectedRange.from.getTime(), // Convert to timestamp
-                endDate: selectedRange.to.getTime() // Convert to timestamp
+                startDate: selectedRange.from.getTime(), 
+                endDate: selectedRange.to.getTime() 
             }
             await onUpdateCell(updatedCell, taskId)
             setDatePickerOpen(false)
@@ -42,22 +42,43 @@ export function TimelinesComponent({ cell, groupColor, onUpdateCell, taskId }) {
         }
     }, [])
 
+    function calculateTimeDifference(startDate, endDate) {
+        const start = dayjs(startDate)
+        const end = dayjs(endDate)
+        const duration = end.diff(start, 'day') 
+
+        if (duration < 0) {
+            return "Invalid Date Range"
+        } else if (duration === 1) {
+            return "1d"
+        } else {
+            return `${duration}d`
+        }
+    }
+
     return (
         <div onClick={handleOnClick} className="dyn-cell timeline dyn-cell-flexy">
-           {isDatePickerOpen && (
-               <TimelineRange
-                   selectedRange={selectedRange}
-                   setSelectedRange={setSelectedRange}
-                   onUpdateCell={onChangeDueDate}
-               />
-           )}
+            {isDatePickerOpen && (
+                <TimelineRange
+                    selectedRange={selectedRange}
+                    setSelectedRange={setSelectedRange}
+                    onUpdateCell={onChangeDueDate}
+                />
+            )}
 
-            <section className="timeline-container">
+            <section style={{ position: 'absolute', background: (formatDisplayDate(cell.startDate, cell.endDate).key === null) ? 'gray' : 'rgb(48, 48, 48)' }} className="timeline-container">
                 <div className="progress-bar-container">
                     <span className="timeline-date-txt">{formatDisplayDate(cell.startDate, cell.endDate)}</span>
+                    <div className="time-difference">
+                        {calculateTimeDifference(cell.startDate, cell.endDate) === 'NaNd'
+                            ? 'Set Dates'
+                            : calculateTimeDifference(cell.startDate, cell.endDate)}
+                    </div>
+
                     <div style={{ width: getPercentage(cell.startDate, cell.endDate), background: groupColor, height: '100%' }} className="progress-bar"></div>
                 </div>
             </section>
+
         </div>
     )
 }
@@ -67,7 +88,7 @@ export function TimelineRange({ selectedRange, setSelectedRange, onUpdateCell })
     const popperElem = useRef(null)
 
     const handleDateRangeSelect = (range) => {
-        setSelectedRange(range) // Update selectedRange state
+        setSelectedRange(range) 
     }
 
     return (
@@ -76,10 +97,10 @@ export function TimelineRange({ selectedRange, setSelectedRange, onUpdateCell })
                 <DayPicker
                     mode="range"
                     selected={selectedRange || 'Add time line +'}
-                    onSelect={handleDateRangeSelect} // Call handleDateRangeSelect on selection
+                    onSelect={handleDateRangeSelect} 
                     showOutsideDays
                 />
-                <button style={{color: '#323338'}} onClick={onUpdateCell}>Update</button> {/* Add a button to trigger update */}
+                <button style={{ color: '#323338' }} onClick={onUpdateCell}>Update</button> {/* Add a button to trigger update */}
             </div>
         </div>
     )
@@ -94,8 +115,8 @@ function formatDisplayDate(startDate, endDate) {
 
     if (start.month() === end.month()) {
         formattedDate = `${start.format('D')} - ${end.format('D MMM')}`
-    }else if(!start.month() || !end.month() ){
-        formattedDate = '-'
+    } else if (!start.month() || !end.month()) {
+        formattedDate = <div className="no-timeline">-</div>
     } else {
         formattedDate = `${start.format('D MMM')} - ${end.format('D MMM')}`
     }
@@ -118,6 +139,3 @@ function getPercentage(startDate, endDate) {
     return `${percentage.toFixed(2)}%`
 }
 
-function noTimeLine(){
-    return <p>-</p>
-}
