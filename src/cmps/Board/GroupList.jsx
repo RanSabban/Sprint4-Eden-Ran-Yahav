@@ -17,6 +17,17 @@ import { useParams } from "react-router"
 
 export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedAll }) {
 
+    const [localGroups, setLocalGroups] = useState(groups)
+    const [localClmTypes, setLocalClmTypes] = useState(clmTypes)
+
+    useEffect(() => {
+        setLocalGroups(groups)
+    },[groups])
+
+    useEffect(() => {
+        setLocalClmTypes(clmTypes)
+    },[clmTypes])
+
 
     const groupListRef = useRef()
     const [placeholderProps, setPlaceholderProps] = useState("")
@@ -73,7 +84,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
     // console.log(groups);
 
 
-    if (!groups) return <div>Loading</div>
+    if (!localGroups) return <div>Loading</div>
     return (
         // <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate}>
 
@@ -89,7 +100,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                     <div className='mobile-border'></div>
 
 
-                    {groups.map((group, index) => (
+                    {localGroups.map((group, index) => (
 
                         <Draggable key={index} draggableId={group._id} index={index}>
 
@@ -105,7 +116,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                                         boardId={boardId}
                                         group={group}
                                         index={index}
-                                        clmTypes={clmTypes}
+                                        clmTypes={localClmTypes}
                                         boardType={boardType}
                                         onAddGroup={onAddGroup}
                                         onRemoveGroup={onRemoveGroup}

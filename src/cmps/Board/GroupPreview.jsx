@@ -26,6 +26,8 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     const [optionColorOpen, setOptionColorOpen] = useState(false)
     const colorOptions = optionColorOpen ? 'block' : 'none'
     const screenWidth = useScreenWidth()
+    const [currGroup, setCurrGroup] = useState(group)
+    const [currClmTypes, setCurrClmTypes] = useState(clmTypes)
 
 
     const [isCollapsed, setIsCollapsed] = useState(false)
@@ -47,6 +49,15 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
             setIsCollapsed(false)
         }
     }, [isCollapsedAll])
+
+    useEffect(() => {
+        setCurrGroup(group)
+    },[group])
+
+    useEffect(() => {
+        setCurrClmTypes(clmTypes)
+    },[clmTypes])
+
 
 
     async function handleClick() {
@@ -91,7 +102,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     function getTemplateStyle() {
         const fixedStart = screenWidth > 920 ? '40px 453px' : '196px'
-        const dynamicColumns = clmTypes.map(clmType => {
+        const dynamicColumns = currClmTypes.map(clmType => {
             switch (clmType.type) {
                 case 'priority':
                 case 'status':
@@ -113,6 +124,9 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     // console.log(dynamicStyle);
     // if (!group.tasks.length) return
+
+    console.log(currClmTypes);
+
     return (
 
         <>
@@ -135,7 +149,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                             <section className="header-items">
 
                                 <div className="group-preview-title-container dyn-cell"
-                                    style={{ borderLeft: `0.4em solid ${group.groupColor}`, borderTopLeftRadius: "0.6em" }}>
+                                    style={{ borderLeft: `0.4em solid ${currGroup.groupColor}`, borderTopLeftRadius: "0.6em" }}>
 
                                     <section className="group-header">
                                         <div className="section-group-header-sticky">
@@ -143,17 +157,17 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                             <DropdownChevronRight
                                                 className="btn-group-collapse-arrow"
                                                 size={22}
-                                                style={{ color: group.groupColor }}
+                                                style={{ color: currGroup.groupColor }}
                                                 onClick={() => setIsCollapsed(!isCollapsed)}
                                             />
 
                                             <Tooltip content="Click to Edit">
                                                 <EditableHeading
                                                     onFocus={() => setOptionColorOpen(!optionColorOpen)}
-                                                    style={{ color: group.groupColor }}
+                                                    style={{ color: currGroup.groupColor }}
                                                     type={EditableHeading.types.h3}
                                                     weight={"normal"}
-                                                    value={group.title}
+                                                    value={currGroup.title}
                                                     isEditMode={"true"}
                                                     id='editable-header'
                                                     onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
@@ -164,10 +178,10 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                     </section>
                                     {/* <div className='header-item sticky'>{boardType}</div> */}
                                 </div>
-                                <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} isCollapsed={isCollapsed} />
+                                <RenderHeaders clmTypes={currClmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} isCollapsed={isCollapsed} />
 
                             </section>
-                            <GroupStatistics tasks={group.tasks} clmTypes={clmTypes} isCollapsed={isCollapsed} groupColor={group.groupColor} />
+                            <GroupStatistics tasks={currGroup.tasks} clmTypes={currClmTypes} isCollapsed={isCollapsed} groupColor={currGroup.groupColor} />
                         </div>
 
                     </section>
@@ -255,7 +269,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                 <div className='header-item sticky' style={{ fontSize: '14px' }} >{boardType}</div>
                             </div>
                             { }
-                            <RenderHeaders clmTypes={clmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
+                            <RenderHeaders clmTypes={currClmTypes} setColumnWidths={setColumnWidths} columnWidths={columnWidths} />
 
                         </section>
                         <TaskList
@@ -265,10 +279,10 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                             onAddTask={onAddTask}
                             placeholderProps={placeholderProps}
                             columnWidth={columnWidths}
-                            clmTypes={clmTypes}
+                            clmTypes={currClmTypes}
                         />
 
-                        <GroupStatistics tasks={group.tasks} clmTypes={clmTypes} />
+                        <GroupStatistics tasks={group.tasks} clmTypes={currClmTypes} />
                     </section>
                 </>
             )}

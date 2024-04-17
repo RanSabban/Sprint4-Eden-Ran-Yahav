@@ -1109,7 +1109,7 @@ async function addGroup(boardId, isBottom) {
             board.groups.unshift(group)
         }
 
-        
+
         await save(board)
         socketService.emit('board-updated', board);
         console.log('Group added:', group, 'Updated Board:', board)
@@ -1350,9 +1350,9 @@ async function updateTask(taskToUpdate, groupId, boardId) {
     }
 }
 
-async function updateTaskConversation(taskToUpdate, groupId, boardId,update){
+async function updateTaskConversation(taskToUpdate, groupId, boardId, update) {
     try {
-        const board = await getById(boardId) 
+        const board = await getById(boardId)
         if (!board) {
             throw new Error('Board not found')
         }
@@ -1363,10 +1363,10 @@ async function updateTaskConversation(taskToUpdate, groupId, boardId,update){
 
         const updatedTasks = group.tasks.map(task => {
             if (task._id === taskToUpdate._id) {
-                if(!task.updates) task.updates = []
+                if (!task.updates) task.updates = []
                 task.updates.push(update)
-                return {...task}
-            } 
+                return { ...task }
+            }
             return task
         })
 
@@ -1392,7 +1392,7 @@ async function removeTask(taskId, groupId, boardId) {
             return group
         })
     }
-    await save(boardToUpdate) 
+    await save(boardToUpdate)
     socketService.emit('board-updated', boardToUpdate);
 }
 
@@ -1509,7 +1509,7 @@ async function addColumn(type, boardId) {
         const columnToAdd = getEmptyColumn(type)
 
         if (!columnToAdd) throw new Error('Failed to create a new column of type: ' + type)
-        
+
         board.clmTypes.push(columnToAdd)
 
         const emptyCell = getEmptyCell(type)
@@ -1519,7 +1519,7 @@ async function addColumn(type, boardId) {
                 if (!task.cells) task.cells = []
                 task.cells.push({
                     ...emptyCell,
-                    _id: columnToAdd._id 
+                    _id: columnToAdd._id
                 });
             });
         });
@@ -1568,24 +1568,33 @@ async function removeColumn(columnId, boardId) {
 
 }
 
-async function updateClmTitle(txt,clmId,boardId){
+async function updateClmTitle(txt, clmId, boardId) {
     try {
-        let board = await getById(boardId)
+        const board = await getById(boardId)
 
         if (!board) throw new Error('board not found')
 
-        const column = board.clmTypes.find(column => column._id === clmId)
-        if (!column) throw new Error('column not found')
-    
-        column.title = txt
+        // const column = board.clmTypes.find(column => column._id === clmId)
+        // if (!column) throw new Error('column not found')
 
-        await save(board)
-        socketService.emit('board-updated', board);
+        const boardToReturn = {
+            ...board,
+            clmTypes: board.clmTypes.map(clm => ({
+                ...clm,
+                title: clm._id === clmId ? txt : clm.title
+            }))
+        }
 
-        return board
+        await save(boardToReturn)
+        socketService.emit('board-updated', boardToReturn);
+        console.log(boardToReturn)
+
+        return boardToReturn
 
     } catch (err) {
         console.log('cannot update clm title', err)
+    } finally {
+
     }
 }
 
@@ -1680,23 +1689,23 @@ function getEmptyCell(columnType) {
             return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
             return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
         case 'members':
-            return {type: columnType}
-            return {type: columnType}
+            return { type: columnType }
+            return { type: columnType }
         case 'timelines':
             return { startDate: null, endDate: null, type: columnType }
             return { startDate: null, endDate: null, type: columnType }
         case 'files':
-            return {type: columnType}
-            return {type: columnType}
+            return { type: columnType }
+            return { type: columnType }
         case 'txt':
-            return { text: "" , type: columnType}
-            return { text: "" , type: columnType}
+            return { text: "", type: columnType }
+            return { text: "", type: columnType }
         case 'date':
             return { date: null, type: columnType }
             return { date: null, type: columnType }
         case 'updates':
-            return {type: columnType}
-            return {type: columnType}
+            return { type: columnType }
+            return { type: columnType }
         default:
             return {}
             return {}

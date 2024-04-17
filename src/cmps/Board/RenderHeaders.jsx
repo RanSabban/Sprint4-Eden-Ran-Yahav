@@ -5,10 +5,14 @@ import { removeColumn, updateClmTitle } from '../../store/actions/board.actions'
 import { useParams } from 'react-router';
 import { EditableHeaderTitle } from './reusableCmps/EditableHeaderTitle';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-export function RenderHeaders({ clmTypes, isCollapsed }) {
+export function RenderHeaders({ isCollapsed, clmTypes }) {
 
     const [isEditMode, setIsEditMode] = useState(false)
+
+    // const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
+
 
     const { boardId } = useParams()
 
@@ -20,9 +24,9 @@ export function RenderHeaders({ clmTypes, isCollapsed }) {
         }
     }
 
-    function onUpdateClmTitle(txt,clmId) {
+    async function onUpdateClmTitle(txt,clmId) {
         try {
-            updateClmTitle(txt,clmId,boardId)
+            await updateClmTitle(txt,clmId,boardId)
         } catch (err) {
             console.log('cannot edit clm title', err)
         }
