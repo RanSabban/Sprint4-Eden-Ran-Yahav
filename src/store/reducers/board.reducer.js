@@ -21,6 +21,7 @@ export const SET_LABEL_MODAL = 'SET_LABEL_MODAL'
 export const HIDE_LABEL_MODAL = 'HIDE_LABEL_MODAL'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const UPDATE_CELL = 'UPDATE_CELL'
+export const UPDATE_TASK_CONVERSATION = 'UPDATE_TASK_CONVERSATION'
 
 const initialState = {
     boards: null,
@@ -132,6 +133,26 @@ export function boardReducer(state = initialState, action) {
             };
         }
 
+        case UPDATE_TASK_CONVERSATION: {
+            const {taskToUpdate, groupId, boardId,update} = action.payload
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: state.board.groups.map(group => {
+                        if (group._id !== groupId) return group
+                        return {
+                            ...group,
+                            tasks: group.tasks.map(task => {
+                                if (task._id !== taskToUpdate._id) return task
+                                const updatedUpdates = Array.isArray(task.updates) ? [...task.updates, update] : [update]
+                                return {...task, updates: updatedUpdates}
+                            })
+                        };
+                    })
+                }
+            };
+        }
 
         case ADD_GROUP: {
 
