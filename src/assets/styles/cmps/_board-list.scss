@@ -7,26 +7,59 @@
         font-family: Figtree, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
         word-break: keep-all;
         white-space: nowrap;
+        border: 1px solid transparent;
+    }
+
+    .actions-border-side {
+        // box-shadow: 0 4px 17px 6px #0000001a;
+        border-radius: 8px;
+        white-space: nowrap;
+        z-index: 1;
+        opacity: 0;
     }
 
     .board-side-preview {
-        display: flex;
-        gap: 1em;
-        padding: 0.3em;
-    }
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        padding-block: 4px;
+        height: 32px;
+        grid-template-columns: max-content 1fr max-content;
+        margin-inline-end: 8px;
+        padding: 0 8px;
 
+        .svg-container-board-list-sidebar {
+            width: min-content;
+            padding-block-start: 5.375px;
+        }
 
-    .board-side-preview:hover {
-        background-color: rgba(103, 104, 121, 10%);
-        border-radius: 4px;
-        width: 14.2em;
-        cursor: pointer;
+        &:hover {
+            background-color: rgba(103, 104, 121, 10%);
+            border-radius: 4px;
+            // width: 14.2em;
+            cursor: pointer;
+        }
+
+        &:hover .actions-border-side {
+            opacity: 1;
+        }
+
+        .input-sidebar-list {
+            margin: 0;
+            outline-width: 0.5px;
+            // border: 1px solid $clr-border;
+            height: 22px;
+            margin-left: 5px;
+            font-size: 14px;
+            font-family: Figtree, roboto;
+            width: 95%;
+        }
     }
 
     .board-side-preview.active {
         background-color: #cce5ff;
-        border-radius: 6px;
-        width: 14.2em;
+        border-radius: 4px;
+        // width: 14.2em;
     }
 
     .board-list-prev {
@@ -49,17 +82,6 @@
         .preview-three-points {
             opacity: 1;
         }
-    }
-
-    .actions-border-side {
-        position: fixed;
-        left: 13em;
-        background-color: #fff;
-        box-shadow: 0 4px 17px 6px #0000001a;
-        border-radius: 8px;
-        padding: 8px;
-        white-space: nowrap;
-        z-index: 1;
     }
 
     .action-side {

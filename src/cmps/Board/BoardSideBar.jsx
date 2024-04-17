@@ -91,7 +91,7 @@ export function BoardSideBar() {
             <div className="sidebar-container">
                 <Tooltip position='right' content='Close navigation'
                     animationType="expand"><button className="button-sidebar" style={{ transform: !isOpen ? 'rotate(180deg)' : '' }} onClick={() => setIsOpen(!isOpen)}><OpenSidebar /></button> </Tooltip>
-                <div className={`lower-sidebar ${dynClass}`} style={{ marginLeft: "1em" }}>
+                <div className={`lower-sidebar ${dynClass}`}>
                     <div className="all-sidebar" style={{ display: "flex", flexDirection: "column" }}>
                         <div className="upper-actions">
                             <NavLink style={{ backgroundColor: dynClasse, borderRadius: '6px', maxWidth: '16.2em' }} className="actions-sidebar-upper" to="/board"> <Home /> Home</NavLink>
@@ -137,7 +137,7 @@ export function BoardSideBar() {
                             </section>
                         </section>
 
-                        <div className="board-sidebar-lowwer">
+                        <div className="board-sidebar-lower">
 
                             <BoardList boards={boards} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
 

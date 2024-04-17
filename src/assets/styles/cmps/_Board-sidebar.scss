@@ -29,6 +29,7 @@
         transition: width 0.2s ease;
         overflow: hidden;
 
+
         &:hover {
             width: 255px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
@@ -52,7 +53,8 @@
     }
 
     .lower-sidebar.open-sidebar {
-        margin-left: 1em;
+        // margin-left: 1em;
+        padding-inline-start: 8px ;
         width: 255px;
         opacity: 1;
         overflow: hidden;
@@ -350,5 +352,9 @@
     .textField_0272890e16 .inputWrapper_c9ca15ceee .input_fc606b7266.inputHasIcon_e429f386dd{
         width: 14em;
     }
+
+    
+
+
 
 }

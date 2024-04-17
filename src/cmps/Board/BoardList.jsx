@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
-import { Menu, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core"
-
-import { BoardListPreview } from "./BoardListPreview"
+import { Menu, MenuButton, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core"
 
 function truncateString(str, num) {
-  if (str.length > num) {
-    return str.slice(0, num) + '...'
-  }
-  return str
+    if (str.length > num) {
+        return str.slice(0, num) + '...'
+    }
+    return str
 }
 
 function Board({ board, onUpdateBoard, onRemoveBoard }) {
@@ -20,15 +18,19 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const [isShown, setIsShown] = useState(false)
     const [editedTitle, setEditedTitle] = useState(board.title)
 
+
+
     const inputRef = useRef(null)
 
     useEffect(() => {
         const handleClickOutside = (event) => {
+           
             if (inputRef.current && !inputRef.current.contains(event.target)) {
                 setIsEdit(false)
                 setIsShown(false)
 
-                if (editedTitle.trim() !== "") {
+                if (editedTitle.trim() !== "" && board.title !== editedTitle) {
+                    
                     onUpdateBoard({ ...board, title: editedTitle })
                 }
             }
@@ -64,6 +66,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
     function onSubmitTitle(ev) {
         ev.preventDefault()
+        if(board.title === editedTitle) return
         onUpdateBoard({ ...board, title: editedTitle })
         setIsEdit(false)
         setIsShown(false)
@@ -95,24 +98,21 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
     return (
         <NavLink
             className="board-side-preview"
-            style={{ textDecoration: "none", display: "flex", gap: "1em", color: "#323338" }}
+            style={{ textDecoration: "none", color: "#323338" }}
             to={`/board/${board._id}`}
             key={board._id}
         >
-            <div className="board-list-prev">
-                <Tooltip zIndex='100' position="right" content="This board is public, visible to all team members" animationType="expand" ><SidePrevSvg /></Tooltip>
-                {!isEdit && <BoardListPreview board={{...board, title: truncateString(board.title, 20)}} />}
-                {!isEdit && (
-                    <button onClick={() => setIsShown(!isShown)} className="preview-three-points">
-                        <ThreePoints />
-                    </button>
-                )}
-            </div>
-            {!isEdit && (
-                <div>
-                    <div style={{ display: isShown ? "block" : "none" }} className={`actions-border-side`}>
 
-                        <Menu id="menu" size={Menu.sizes.LARGE}>
+            <span className="svg-container-board-list-sidebar">
+                <SidePrevSvg />
+            </span>
+            {!isEdit && <span className="board-option-sidebar">{board.title}</span>}
+
+            {!isEdit && (
+
+                <div className={`actions-border-side`}>
+                    <MenuButton size='XS' onClick={(ev) => ev.stopPropagation()}>
+                        <Menu id={`menu-${board._id}`} size={Menu.sizes.LARGE}>
                             <MenuItem onClick={openInNewTab} icon={NewTab} title="Open Board in New Tab" />
                             <MenuDivider />
                             <MenuItem onClick={changeBoardName} icon={RenameSvg} title="Rename Board" />
@@ -121,13 +121,19 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
                             <MenuItem onClick={removeBoard} icon={DeleteSvg} title="Delete" />
 
                         </Menu>
+                    </MenuButton>
 
-                    </div>
+                    {/* <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '999999' }}>
+                        <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
+                    </Menu> */}
+
+
                 </div>
+
             )}
             {isEdit && (
                 <form onSubmit={onSubmitTitle}>
-                    <input style={{ width: '175px' }} type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+                    <input className="input-sidebar-list" type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
                 </form>
             )}
         </NavLink>
