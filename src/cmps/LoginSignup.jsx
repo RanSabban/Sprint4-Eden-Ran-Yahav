@@ -1,56 +1,48 @@
 import { useState, useEffect } from 'react'
-import { userService } from '../services/user.service'
-import { login } from '../store/actions/user.actions'
 import { useDispatch } from 'react-redux'
+import { login, signup } from '../store/actions/user.actions'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 
-export function LoginSignup(props) {
+export function LoginSignup() {
     const [credentials, setCredentials] = useState({ username: '', password: '' })
     const [isSignup, setIsSignup] = useState(false)
-    const [users, setUsers] = useState([])
-    const dispatch = useDispatch()
 
-    useEffect(() => {
-        loadUsers()
-        console.log(users)
-        console.log(credentials);
-
-    }, [credentials])
-
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        setUsers(users)
-    }
+    // useEffect(() => {
+    //     console.log("Current credentials:", credentials)
+    // }, [credentials])
 
     function handleChange(ev) {
-        ev.preventDefault()
         const { name, value } = ev.target
         setCredentials(prev => ({ ...prev, [name]: value }))
-        console.log(credentials)
     }
 
-    async function onLogin(ev, username) {
-        if (ev) ev.preventDefault()
-        console.log("Login attempt with:", { username, password: credentials.password })
+    async function handleSubmit(ev) {
+        ev.preventDefault()
+        console.log(`${isSignup ? "Signup" : "Login"} attempt with:`, credentials)
+
+        if (!credentials.username || !credentials.password) {
+            console.log("Required fields are empty")
+            return
+        }
+
         try {
-
-            const userCredentials = {
-                username: username || credentials.username,
-                password: credentials.username === 'guest' ? 'guest' : credentials.password
+            if (isSignup) {
+                signup(credentials)
+                showSuccessMsg('Signed up successfully')
+            } else {
+                login(credentials)
+                showSuccessMsg('Logged in successfully')
             }
-
-            if (!userCredentials.username) {
-                return console.log("Username is empty")
-            }
-            await dispatch(login(userCredentials))
-            clearState()
         } catch (err) {
-            console.log(err);
+            showErrorMsg(err.message)
+            console.error(err)
+        } finally {
+            clearState()
         }
     }
 
     function clearState() {
         setCredentials({ username: '', password: '' })
-        setIsSignup(false)
     }
 
     function toggleSignup() {
@@ -59,24 +51,23 @@ export function LoginSignup(props) {
 
     return (
         <div className="login-signup">
-            <p>
-                <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
-            </p>
-            {!isSignup && <form className="login-form" onSubmit={onLogin}>
-                {/* <select
-                    name="username"
-                    value={credentials.username}
+            <button className="btn-link" onClick={toggleSignup}>
+                {isSignup ? 'Already a member? Log In' : 'Need an account? Sign Up'}
+            </button>
+            <form onSubmit={handleSubmit}>
+                {/* <input
+                    type="text"
+                    name="fullname"
+                    value={credentials.fullname}
+                    placeholder="Israel Israeli"
                     onChange={handleChange}
-                >
-                    <option value="">Log in as:</option>
-                    {users.map(user => <option key={user._id} value={user.username} onChange={onLogin}>{user.fullname}</option>)}
-                </select> */}
-
+                    required
+                /> */}
                 <input
                     type="text"
                     name="username"
                     value={credentials.username}
-                    placeholder="UserName"
+                    placeholder="Username"
                     onChange={handleChange}
                     required
                 />
@@ -88,8 +79,8 @@ export function LoginSignup(props) {
                     onChange={handleChange}
                     required
                 />
-                <button type='submit'>boom</button>
-            </form>}
+                <button type="submit">{isSignup ? 'Sign Up' : 'Log In'}</button>
+            </form>
         </div>
     )
 }

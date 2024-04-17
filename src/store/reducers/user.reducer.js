@@ -1,4 +1,4 @@
-import { userService } from '../../services/user.service.js'
+import { userService } from "../../services/user.service"
 
 export const INCREMENT = 'INCREMENT'
 export const DECREMENT = 'DECREMENT'
@@ -9,7 +9,7 @@ export const SET_USERS = 'SET_USERS'
 export const SET_SCORE = 'SET_SCORE'
 
 const initialState = {
-    user: userService.getLoggedinUser(),
+    loggedInUser: userService.getLoggedinUser(),
     users: [],
     watchedUser : null
 }
@@ -24,7 +24,7 @@ export function userReducer(state = initialState, action) {
             newState = { ...state, count: state.count - 1 }
             break
         case SET_USER:
-            newState = { ...state, user: action.user }
+            newState = { ...state, loggedInUser: action.user }
             break
         case SET_WATCHED_USER:
             newState = { ...state, watchedUser: action.user }
