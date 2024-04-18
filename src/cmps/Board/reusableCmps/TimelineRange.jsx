@@ -6,6 +6,7 @@ import 'react-day-picker/dist/style.css'
 
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service"
 import { RangePicker } from "./RangePicker"
+import { DatePicker } from "monday-ui-react-core"
 
 export function TimelineRange({ setDatePickerOpen, taskId, cell, onUpdateCell }) {
     console.log('ss tt mm', setDatePickerOpen, taskId, cell, onUpdateCell)
@@ -64,18 +65,21 @@ export function TimelineRange({ setDatePickerOpen, taskId, cell, onUpdateCell })
                     className="date-picker-modal">
                     <style>{pickerCss}</style>
                     <DayPicker
-                        numberOfMonths={1}
+                    inline
+                        numberOfMonths={2}
                         mode="selected"
                         selected={selected}
                         onSelect={onChangeDueDate}
                         footer={footer}
                         showOutsideDays
                         modifiers={modifiers}
+                        showTwoMonths={true}
                         modifiersClassNames={{
                             selected: 'my-selected',
                             today: 'my-today',
                         }}
                     />
+                   
                     <div ref={arrowElem} style={styles.arrow} />
                 </div>
             </div>

@@ -99,7 +99,7 @@ export function TimelineRange({ selectedRange, setSelectedRange, onUpdateCell })
                     selected={selectedRange || 'Add time line +'}
                     onSelect={handleDateRangeSelect} 
                     showOutsideDays
-                    monthsShows={2}
+                    numberOfMonths={2} // Set the number of months to display
                 />
                 <button style={{ color: '#323338' }} onClick={onUpdateCell}>Update</button> {/* Add a button to trigger update */}
             </div>
