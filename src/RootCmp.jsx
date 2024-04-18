@@ -45,7 +45,7 @@ export function RootCmp() {
             {showHeaderFooter && <AppHeader />}
             <Routes>
                 <Route path='/' element={<HomePage />} />
-                {/* <Route path="/auth/:navLocation" element={<LoginSignup />}  /> */}
+                {/* <Route path="/auth/" element={<LoginSignup />}  /> */}
 
                 <Route path='/board' element={<BoardIndex />}>
                     <Route index element={<BoardHome />} />

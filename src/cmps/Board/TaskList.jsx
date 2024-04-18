@@ -21,8 +21,10 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
     const [localTasks, setLocalTasks] = useState(tasks)
 
     useEffect(() => {
-        setLocalTasks(tasks)
-    },[tasks])
+        if (Array.isArray(tasks)) {
+            setLocalTasks(tasks);
+        }
+    }, [tasks])
 
     // console.log(localTasks)
 
@@ -31,13 +33,13 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
     async function onUpdateCell(cell, taskId) {
         try {
-            // console.log(cell, taskId);
+            if (cell.dataId === 'l101') {
+                cell.animation = true
+            }
             await updateCell(cell, taskId, groupId, boardId)
             if (cell.type === 'status') {
-                await automationService.runAutomation('STATUS_RELATED',cell,taskId,groupId,boardId)
+                await automationService.runAutomation('STATUS_RELATED', cell, taskId, groupId, boardId)
             }
-
-
 
         }
         catch (err) {
@@ -47,7 +49,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
     async function onUpdateTask(task) {
         try {
-            updateTask(task, groupId,boardId)
+            updateTask(task, groupId, boardId)
         } catch (err) {
             console.log('Error update task', err)
         }
@@ -131,7 +133,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             height: placeholderProps.clientHeight,
                             border: "1px dashed #d0d4e4",
                             borderRadius: "2px",
-                            width: placeholderProps.clientWidth - `10`,
+                            width: placeholderProps.clientWidth - `10px`,
                         }} />
                     )}
                     {provided.placeholder}
@@ -159,11 +161,8 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
 
                         </div>
                     </div>
-
-
                 </div>
-            )
-            }
+            )}
         </Droppable >
     )
 }

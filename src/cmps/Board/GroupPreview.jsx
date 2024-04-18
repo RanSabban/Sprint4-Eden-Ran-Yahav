@@ -74,7 +74,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     }
     useEffect(() => {
         setCurrGroup(group)
-    },[group])
+    }, [group])
 
     useEffect(() => {
         setCurrClmTypes([...clmTypes])
@@ -164,7 +164,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     // console.log(dynamicStyle);
     // if (!group.tasks.length) return
 
-    console.log(currClmTypes);
+    // console.log(currClmTypes);
 
     return (
 
@@ -205,8 +205,6 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                                     onFocus={() => setOptionColorOpen(!optionColorOpen)}
                                                     style={{
                                                         color: currGroup.groupColor,
-                                                        paddingLeft: isEditMode ? '36px' : undefined
-                                                        
                                                     }}
                                                     editing='false'
                                                     type={EditableHeading.types.h3}

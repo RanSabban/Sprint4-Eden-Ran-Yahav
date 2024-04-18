@@ -95,7 +95,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                 >
                     <div  className={`mobile-border ${isActive ? 'active' : ''}`}></div>
 
-
                     {localGroups.map((group, index) => (
 
                         <Draggable key={index} draggableId={group._id} index={index}>
@@ -108,7 +107,6 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                                     className="group-card"
                                 >
                                     <GroupPreview
-                                    ref={ref}
                                         placeholderProps={placeholderProps}
                                         boardId={boardId}
                                         group={group}
@@ -134,7 +132,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                             height: placeholderProps.clientHeight,
                             border: "1px dashed #d0d4e4",
                             borderRadius: "2px",
-                            width: placeholderProps.clientWidth - `10`,
+                            width: placeholderProps.clientWidth - `10px`,
                         }} />
                     )}
                     {provided.placeholder}
