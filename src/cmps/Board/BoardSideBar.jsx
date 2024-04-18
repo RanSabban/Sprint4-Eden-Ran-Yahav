@@ -37,7 +37,7 @@ export function BoardSideBar() {
         // console.log('-----', board)
         try {
             const savedBoard = await addBoard()
-            showSuccessMsg(`Board added (id: ${savedBoard._id})`)
+            // showSuccessMsg(`Board added (id: ${savedBoard._id})`)
         } catch (err) {
             showErrorMsg('Cannot add board')
         }
