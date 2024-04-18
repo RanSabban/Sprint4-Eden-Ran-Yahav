@@ -1,75 +1,106 @@
 import { utilService } from './util.service.js'
 import { socketService } from './socket.service.js'
-import { boardService } from './board.service.js';
-
+import { boardService } from './board.service.js'
+import { store } from '../store/store.js'
+import { SET_CURRENT_BOARD } from '../store/reducers/board.reducer.js'
 export const automationService = {
     registerAutomation,
-    executeAutomation,
     runAutomation
 }
 
 async function registerAutomation(automationRule, boardId) {
-    console.log('Registering automation:', automationRule);
+    console.log('Registering automation:', automationRule)
     try {
-        const board = await boardService.getById(boardId);
+        const board = await boardService.getById(boardId)
         if (!board.automations) {
-            board.automations = [];
+            board.automations = []
         }
-        board.automations.push(automationRule);
-        await boardService.save(board);
-        return board;
+        board.automations.push(automationRule)
+        await boardService.save(board)
+        return board
     } catch (err) {
-        console.error('Failed to register automation:', err);
-        throw err; // Rethrow to handle higher up the call stack
+        console.error('Failed to register automation:', err)
+        throw err
     }
 }
 
-
-async function runAutomation(trigger,cell,taskId,groupId,boardId) {
-    const boardAutomations = await boardService.getAllAutomations(boardId)
-}
-
-
-
-async function executeAutomation(automationId, boardId,) {
-
+async function runAutomation(trigger, data) {
+    console.log(trigger,data);
     try {
-        console.log('executing automation', automationId);
-        const automation = boardService.getAutomationById(automationId, boardId)
-        if (!automation) {
-            console.log('cannot find automation');
-            return
-        }
-        const { action } = automation
-        if (action === 'MOVE_TO_GROUP') {
-            console.log('automation accurs - move item', automation)
-            await boardService.moveTaskToTop(taskId, destinationGroupId, boardId)
-
-        }
-    } catch (err) {
-
-    }
-}
-
-async function executeAllCellRelatedAutomations(boardId, updatedCell, taskId, groupId) {
-    const boardAutomations = await boardService.getAllAutomations(boardId)
-    try {
-        // Assuming there's a function to get all automations for a board
-        const automations = await boardService.getAllAutomations(boardId);
-        for (const automation of automations) {
-            if (automation.trigger === 'UPDATE_CELL' && evaluateCondition(automation.condition, updatedCell)) {
-                await executeAutomation(automation.id, boardId, taskId, groupId, updatedCell);
+        const { boardId } = data
+        const boardAutomations = await boardService.getAllAutomations(boardId)
+        console.log(boardAutomations);
+        const relatedAutomations = boardAutomations.filter(automation => automation.trigger === trigger)
+        console.log(relatedAutomations)
+        if (!relatedAutomations.length) return
+        const validatedAutomations = validateAutomation(trigger, relatedAutomations, data)
+        console.log(validatedAutomations)
+        if (!validatedAutomations.length) return
+        for (const automation of validatedAutomations) {
+            if (automation.action === 'MOVE_TO_GROUP') {
+                const { taskId , boardId} = data
+                const board = await boardService.moveTaskToTop(taskId, automation.target, boardId)
+                console.log('activating automation', automation);
+                store.dispatch({
+                    type: SET_CURRENT_BOARD,
+                    board
+                })
             }
         }
     } catch (err) {
-        console.error('Error executing cell-related automations:', err);
+        console.log('cannot run automations', err)
     }
 }
 
+function validateAutomation(trigger, relatedAutomations, data) {
+    const validatedAutomations = relatedAutomations.filter(automation => {
+        if (trigger === 'STATUS_CHANGE') {
+            const { condition } = automation
+            const { cell } = data
+            const { _id, dataId } = cell
+            if (condition[_id] === dataId) {
+                return automation
+            }
+        }
+    })
+    console.log(validatedAutomations);
+    return validatedAutomations
+}
+
+// async function executeAutomation(automationId, boardId,) {
+//     try {
+//         console.log('executing automation', automationId)
+//         const automation = boardService.getAutomationById(automationId, boardId)
+//         if (!automation) {
+//             console.log('cannot find automation')
+//             return
+//         }
+//         const { action } = automation
+//         if (action === 'MOVE_TO_GROUP') {
+//             console.log('automation accurs - move item', automation)
+//             await boardService.moveTaskToTop(taskId, destinationGroupId, boardId)
+//         }
+//     } catch (err) {
+//     }
+// }
+// async function executeAllCellRelatedAutomations(boardId, updatedCell, taskId, groupId) {
+//     const boardAutomations = await boardService.getAllAutomations(boardId)
+//     try {
+//         // Assuming there's a function to get all automations for a board
+//         const automations = await boardService.getAllAutomations(boardId)
+//         for (const automation of automations) {
+//             if (automation.trigger === 'UPDATE_CELL' && evaluateCondition(automation.condition, updatedCell)) {
+//                 await executeAutomation(automation.id, boardId, taskId, groupId, updatedCell)
+//             }
+//         }
+//     } catch (err) {
+//         console.error('Error executing cell-related automations:', err)
+//     }
+// }
 // async function executeAllCellRelatedAutomations(boardId, updatedCell, taskId, groupId) {
 //     try {
-//         const automations = await boardService.getAllAutomations(boardId);
-//         const relevantAutomations = automations.filter(automation => 
+//         const automations = await boardService.getAllAutomations(boardId)
+//         const relevantAutomations = automations.filter(automation =>
 //             automation.trigger === 'UPDATE_CELL' && evaluateCondition(automation.condition, updatedCell)
 //         )
 //         for (const automation of relevantAutomations) {
@@ -79,10 +110,5 @@ async function executeAllCellRelatedAutomations(boardId, updatedCell, taskId, gr
 //         console.error('Error executing cell-related automations:', err)
 //     }
 // }
-
-
-
-
-window.cs = automationService
-
-// export async function 
+window.as = automationService
+// export async function
