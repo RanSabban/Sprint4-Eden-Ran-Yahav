@@ -8,22 +8,23 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
     const [status, setStatus] = useState({ color: '', title: '' })
     const [animation, setAnimation] = useState('')
     const animations = ['confetti', 'balloon', 'crazy_balls']
-    const prevTitle = useRef()
+    const prevTitle = useRef('')
 
     useEffect(() => {
-        if (!clmType) return 
+        if (!clmType) return
+        setTimeout(() => isEditing = true, 500);  // Clear animation after it plays
         const item = clmType.data.find(item => item.id === cell.dataId)
         if (item) {
             setStatus({ color: item.color, title: item.title })
-            if (item.title === 'Done' && prevTitle.current !== 'Done') {
-            // if (item.title === 'Done') {
+            if (item.title === 'Done' && prevTitle.current !== 'Done' && isEditing === false) {
                 setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
             } else {
                 setAnimation('')
             }
         }
         prevTitle.current = item.title
-    }, [clmType, cell])
+    }, [isEditing])
+
 
     return (
         <>

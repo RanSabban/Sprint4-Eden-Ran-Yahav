@@ -1,17 +1,19 @@
 import { useSelector } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd'
-import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading, ColorPicker } from 'monday-ui-react-core';
+import { Menu, MenuButton, MenuItem, Button, Checkbox, Tooltip, EditableHeading } from 'monday-ui-react-core';
 import { Add, AddSmall, Delete, DropdownChevronDown, DropdownChevronRight, DropdownChevronUp } from 'monday-ui-react-core/icons';
 import { RenderHeaders } from './RenderHeaders'
 import { TaskList } from './TaskList'
 import { useEffect, useState } from 'react';
 import { useEditableText } from '../../customHooks/useEditableText';
 import { ResizableColumn } from './ResizableColumn';
-import { loadBoards, updateGroup } from '../../store/actions/board.actions';
+import { loadBoards, onOpenModalLabel, updateGroup } from '../../store/actions/board.actions';
 import { GroupStatistics } from './GroupStatistics';
 import { useParams } from 'react-router';
 import { ColumnsEdit } from './ColumnsEdit';
 import { useScreenWidth } from '../../customHooks/useScreenWidth';
+import { utilService } from '../../services/util.service';
+import { ColorPicker } from './reusableCmps/ColorPicker';
 
 export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
@@ -36,12 +38,8 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     const { boardId } = useParams()
 
-    // console.log(boardId)
-
-
     const [collapseClass, setCollapseClass] = useState('')
     // const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'
-
 
     useEffect(() => {
         if (isCollapsedAll) {
@@ -52,6 +50,28 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
         }
     }, [isCollapsedAll])
 
+    function onClickLabel(target, groupId, clmType, key) {
+        try {
+            console.log(target, groupId, clmType);
+            onOpenModalLabel(target, group, clmType, boardId, specificGroup)
+        } catch (err) {
+            console.log('cannot open modal', err)
+        }
+    }
+
+    async function onUpdateGroupData(groupId, key, value) {
+        const updatedGroupData = { ...specificGroup, [key]: value };
+        try {
+            setOptionColorOpen(!optionColorOpen)
+            await updateGroup(groupId, updatedGroupData, boardId)
+            console.log('Group updated successfully')
+        } catch (err) {
+            console.error('Error updating group:', err)
+
+        } finally {
+            console.log(`Updating group ${groupId}: ${key} = ${value}`);
+        }
+    }
     useEffect(() => {
         setCurrGroup(group)
     },[group])
@@ -80,7 +100,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
         const updatedGroupData = { ...specificGroup, groupColor: ev.target.style.backgroundColor }
 
         try {
-            await updateGroup(group._id, updatedGroupData)
+            await updateGroup(group._id, updatedGroupData, boardId)
             // setSpecificGroup(updatedGroupData)
             setOptionColorOpen(!optionColorOpen)
             console.log('Group updated successfully')
@@ -89,7 +109,6 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
             console.error('Error updating group:', err)
 
         }
-
     }
 
     const resizeColumn = (index, newWidth) => {
@@ -184,13 +203,18 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                             <Tooltip content="Click to Edit">
                                                 <EditableHeading
                                                     onFocus={() => setOptionColorOpen(!optionColorOpen)}
-                                                    style={{ color: currGroup.groupColor }}
+                                                    style={{
+                                                        color: currGroup.groupColor,
+                                                        paddingLeft: isEditMode ? '36px' : undefined
+                                                        
+                                                    }}
+                                                    editing='false'
                                                     type={EditableHeading.types.h3}
                                                     weight={"normal"}
                                                     value={currGroup.title}
                                                     isEditMode={"true"}
-                                                    id='editable-header'
-                                                    onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
+                                                    id={`editable-header %${editing ? "yes" : 'no'}`}
+                                                    onBlur={(newTitle) => onUpdateGroupData(group._id, 'title', newTitle)}
 
                                                 />
                                             </Tooltip>
@@ -217,11 +241,6 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                 </Menu>
                             </MenuButton>
 
-                            {/* <Tooltip content="Click to Edit"
-                        zIndex="99999"
-                        animationType="expand"> */}
-                            {/* <span style={{ color: group.groupColor, transform: 'rotate(90deg)', }} className='group-collapse'> <GroupArrow /> </span> */}
-
                             {isCollapsed ? (
                                 <DropdownChevronUp
                                     className="btn-group-collapse-arrow"
@@ -237,23 +256,24 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                     onClick={() => setIsCollapsed(!isCollapsed)}
                                 />
                             )}
+                            <div className="group-color-display" onClick={(ev) => onClickLabel(ev.target, group._id, "groupColor")} style={{ backgroundColor: group.groupColor, display: colorOptions }}></div>
 
-                            <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}>
-                                <div style={{ display: colorOpen }} className="color-picker-modal">
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ffcb00' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#007038' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#469e9b' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#579bfc' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#9aadbd' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bba5e8' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#8050ab' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#4f3a65' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#92334c' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#bb3354' }}></div>
-                                    <div onClick={setGroupColor} className="color" style={{ backgroundColor: '#ff7575' }}></div>
+
+                            {/* <ColorPicker group={group} onClickLabel={onClickLabel} /> */}
+
+                            {/* <div onClick={() => setIsOpen(!isOpen)} className="group-color-display" style={{ backgroundColor: group.groupColor, display: colorOptions }}>
+                                <div className='color-picker-modal'>
+                                    {
+                                        colorsList.map((color, index) => (
+                                            <div className='color'
+                                                key={index} 
+                                                onClick={() => onUpdateGroupData(group._id, 'groupColor', color)} 
+                                                style={{ backgroundColor: color }}
+                                            ></div>
+                                        ))
+                                    }
                                 </div>
-
-                            </div>
+                            </div> */}
 
                             <Tooltip content="Click to Edit">
                                 <EditableHeading
@@ -264,7 +284,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                     value={group.title}
                                     isEditMode={"true"}
                                     id='editable-header'
-                                    onFinishEditing={(newTitle) => onUpdateGroup(group._id, newTitle)}
+                                    onFinishEditing={(newTitle) => onUpdateGroupData(group._id, 'title', newTitle)}
 
                                 />
                             </Tooltip>

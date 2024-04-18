@@ -102,7 +102,7 @@ export async function addGroup(boardId, isBottom) {
         // const board = await boardService.getById(boardId)
         // console.log('Boards from DB:', board)
         const group = await boardService.addGroup(boardId, isBottom)
-        console.log(group);
+        console.log(group)
         store.dispatch({
             type: ADD_GROUP,
             group: group,
@@ -114,22 +114,35 @@ export async function addGroup(boardId, isBottom) {
     }
 }
 
-export async function removeGroup(groupId,boardId) {
+export async function removeGroup(groupId, boardId) {
     try {
-        boardService.removeGroup(groupId,boardId)
+        boardService.removeGroup(groupId, boardId)
         store.dispatch({
             type: REMOVE_GROUP,
             groupId
         })
 
     } catch (err) {
-        console.log('cannot remove group', err);
+        console.log('cannot remove group', err)
     }
 }
 
-export async function updateGroup(groupId, updatedTitle, boardId) {
+// export async function updateGroup(groupId, updatedTitle, boardId) {
+//     try {
+//         const updatedBoard = await boardService.updateGroup(groupId, updatedTitle, boardId)
+
+//         store.dispatch({
+//             type: SET_CURRENT_BOARD,
+//             board: updatedBoard
+//         })
+
+//     } catch (err) {
+//         console.log('cannot update group', err)
+//     }
+// }
+export async function updateGroup(groupId, updatedGroupData, boardId) {
     try {
-        const updatedBoard = await boardService.updateGroup(groupId, updatedTitle, boardId)
+        const updatedBoard = await boardService.updateGroup(groupId, updatedGroupData, boardId)
 
         store.dispatch({
             type: SET_CURRENT_BOARD,
@@ -137,16 +150,17 @@ export async function updateGroup(groupId, updatedTitle, boardId) {
         })
 
     } catch (err) {
-        console.log('cannot update group', err);
+        console.log('cannot update group', err)
     }
 }
+
 
 export async function addTask(groupId, boardId, taskTitle) {
     try {
         const task = await boardService.getEmptyTask(boardId)
         if (taskTitle) task.title = taskTitle
         const updatedBoard = await boardService.addTask(groupId, task, boardId)
-        console.log('here');
+        console.log('here')
         store.dispatch({
             type: SET_CURRENT_BOARD,
             board: updatedBoard
@@ -154,12 +168,12 @@ export async function addTask(groupId, boardId, taskTitle) {
 
     }
     catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
 
 export async function removeTask(taskId, groupId, boardId) {
-    // console.log(taskId,groupId,boardId);
+    // console.log(taskId,groupId,boardId)
     try {
         await boardService.removeTask(taskId, groupId, boardId)
         store.dispatch({
@@ -172,15 +186,15 @@ export async function removeTask(taskId, groupId, boardId) {
         })
 
     } catch (err) {
-        console.log('Cannot remove task sorry', err);
+        console.log('Cannot remove task sorry', err)
     }
 }
 
 export async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        console.log('updatedCell:', updatedCell, 'taskId', taskId, 'groupId', groupId, 'boardId', boardId);
+        console.log('updatedCell:', updatedCell, 'taskId', taskId, 'groupId', groupId, 'boardId', boardId)
         const board = await boardService.updateCell(updatedCell, taskId, groupId, boardId)
-        console.log(board);
+        console.log(board)
 
         store.dispatch({
             type: SET_CURRENT_BOARD,
@@ -198,26 +212,26 @@ export async function updateCell(updatedCell, taskId, groupId, boardId) {
         // })
     }
     catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
 
-export async function updateTask(task, groupId,boardId) {
+export async function updateTask(task, groupId, boardId) {
     try {
-        const board = boardService.updateTask(task, groupId,boardId)
+        const board = boardService.updateTask(task, groupId, boardId)
         // store.dispatch
     } catch (err) {
-        console.log('Error update task', err);
+        console.log('Error update task', err)
     }
 }
 
-export async function updateTaskConversation(taskToUpdate, groupId, boardId,update){
+export async function updateTaskConversation(taskToUpdate, groupId, boardId, update) {
     try {
-        const board = await boardService.updateTaskConversation(taskToUpdate, groupId, boardId,update)
+        const board = await boardService.updateTaskConversation(taskToUpdate, groupId, boardId, update)
         store.dispatch({
             type: UPDATE_TASK_CONVERSATION,
             payload: {
-                taskToUpdate, groupId, boardId,update
+                taskToUpdate, groupId, boardId, update
             }
         })
 
@@ -248,7 +262,7 @@ export async function dragAndDropTask(source, destination, boardId) {
 
 export async function dragAndDropGroup(source, destination, boardId) {
     try {
-        console.log(source, destination, boardId);
+        console.log(source, destination, boardId)
         store.dispatch({
             type: DROP_GROUP,
             payload: {
@@ -267,17 +281,17 @@ export async function dragAndDropGroup(source, destination, boardId) {
     }
 }
 
-export async function onOpenModalLabel(target, clmType, cell, task, groupId, callBackFunc) {
+export async function onOpenModalLabel(target, clmType, cell, task, groupId, callBackFunc, specificGroup) {
     try {
-        // console.log(target);
+        // console.log(target)
         store.dispatch({
             type: SET_LABEL_MODAL,
             payload: {
-                target, clmType, cell, task, isOpen: true, groupId, callBackFunc
+                target, clmType, cell, task, isOpen: true, groupId, callBackFunc, specificGroup
             }
         })
     } catch (err) {
-        console.log('Error open moadl', err);
+        console.log('Error open moadl', err)
     }
 }
 
@@ -290,13 +304,13 @@ export async function onHideModalLabel() {
             }
         })
     } catch (err) {
-        console.log('Error open moadl', err);
+        console.log('Error open moadl', err)
     }
 }
 
 export async function updateFilterBy(filterBy, boardId) {
     try {
-        console.log(filterBy, boardId);
+        console.log(filterBy, boardId)
         const board = await boardService.updateFilterBy(filterBy, boardId)
         store.dispatch({
             type: SET_CURRENT_BOARD,
@@ -307,20 +321,20 @@ export async function updateFilterBy(filterBy, boardId) {
     }
 }
 
-export async function addColumn(type,boardId) {
-    console.log(type,boardId);
+export async function addColumn(type, boardId) {
+    console.log(type, boardId)
     try {
-        const board = await boardService.addColumn(type,boardId)
+        const board = await boardService.addColumn(type, boardId)
         store.dispatch({
             type: SET_CURRENT_BOARD,
             board
         })
     } catch (err) {
-        console.log('cannot add column - action', err);
+        console.log('cannot add column - action', err)
     }
 }
 
-export async function removeColumn(clmTypeId, boardId){
+export async function removeColumn(clmTypeId, boardId) {
     console.log(clmTypeId, boardId)
     try {
         const board = await boardService.removeColumn(clmTypeId, boardId)
@@ -329,20 +343,20 @@ export async function removeColumn(clmTypeId, boardId){
             board
         })
     } catch (err) {
-        console.log('cannot remove column - action', err);
+        console.log('cannot remove column - action', err)
     }
 }
 
-export async function updateClmTitle(txt,clmId,boardId) {
-    console.log(txt,clmId,boardId)
+export async function updateClmTitle(txt, clmId, boardId) {
+    console.log(txt, clmId, boardId)
     try {
-        const board = await boardService.updateClmTitle(txt,clmId,boardId)
+        const board = await boardService.updateClmTitle(txt, clmId, boardId)
         store.dispatch({
             type: SET_CURRENT_BOARD,
             board
         })
     } catch (err) {
-        console.log('cannot edit column title - action', err);
+        console.log('cannot edit column title - action', err)
     }
 }
 

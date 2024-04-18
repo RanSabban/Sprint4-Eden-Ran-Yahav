@@ -56,17 +56,26 @@ export function boardReducer(state = initialState, action) {
             }
             break
 
+        // case SET_CURRENT_BOARD:
+        //     const { groups, clmTypes } = action.board
+        //     newState = { ...state, board: action.board, groups: groups, clmTypes: clmTypes }
+        //     break
         case SET_CURRENT_BOARD:
             const { groups, clmTypes } = action.board
-            newState = { ...state, board: action.board, groups: groups, clmTypes: clmTypes }
-            break
 
-
-        case SET_LABEL_MODAL: {
-            const { target, clmType, cell, task, isOpen, groupId, callBackFunc } = action.payload
             newState = {
                 ...state,
-                modalProps: { target, clmType, task, cell, isOpen, groupId, callBackFunc }
+                board: action.board,
+                groups,
+                clmTypes
+            }
+            break
+
+        case SET_LABEL_MODAL: {
+            const { target, clmType, cell, task, isOpen, groupId, callBackFunc, specificGroup } = action.payload
+            newState = {
+                ...state,
+                modalProps: { target, clmType, task, cell, isOpen, groupId, callBackFunc, specificGroup }
             }
             break
         }
@@ -81,8 +90,8 @@ export function boardReducer(state = initialState, action) {
         }
 
         case ADD_TASK:
-            const { groupId, task } = action.payload;
-            console.log(groupId, task);
+            const { groupId, task } = action.payload
+            console.log(groupId, task)
 
             return {
                 ...state,
@@ -96,7 +105,7 @@ export function boardReducer(state = initialState, action) {
                 },
             }
         case REMOVE_TASK: {
-            const { taskId, groupId } = action.payload;
+            const { taskId, groupId } = action.payload
 
             return {
                 ...state,
@@ -108,11 +117,11 @@ export function boardReducer(state = initialState, action) {
                             : group
                     ),
                 },
-            };
+            }
         }
 
         case UPDATE_CELL: {
-            const { updatedCell, taskId } = action.payload;
+            const { updatedCell, taskId } = action.payload
 
             return {
                 ...state,
@@ -130,11 +139,11 @@ export function boardReducer(state = initialState, action) {
                         )
                     }))
                 }))
-            };
+            }
         }
 
         case UPDATE_TASK_CONVERSATION: {
-            const {taskToUpdate, groupId, boardId,update} = action.payload
+            const { taskToUpdate, groupId, boardId, update } = action.payload
             return {
                 ...state,
                 board: {
@@ -146,12 +155,12 @@ export function boardReducer(state = initialState, action) {
                             tasks: group.tasks.map(task => {
                                 if (task._id !== taskToUpdate._id) return task
                                 const updatedUpdates = Array.isArray(task.updates) ? [...task.updates, update] : [update]
-                                return {...task, updates: updatedUpdates}
+                                return { ...task, updates: updatedUpdates }
                             })
-                        };
+                        }
                     })
                 }
-            };
+            }
         }
 
         case ADD_GROUP: {
@@ -178,7 +187,7 @@ export function boardReducer(state = initialState, action) {
                 }
             }
         case UPDATE_GROUP: {
-            const { groupId, updatedGroupData } = action.payload;
+            const { groupId, updatedGroupData } = action.payload
             console.log(groupId, 'grs', updatedGroupData, 'uppp')
             return {
                 ...state,
@@ -188,33 +197,33 @@ export function boardReducer(state = initialState, action) {
                         group._id === groupId ? updatedGroupData : group
                     )
                 }
-            };
+            }
         }
 
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
         case DROP_TASK: {
-            const { sourceGroupId, sourceTaskIndex, destinationGroupId, destinationTaskIndex } = action.payload;
-            const boardCopy = JSON.parse(JSON.stringify(state.board)); // Deep copy to avoid direct state mutation
+            const { sourceGroupId, sourceTaskIndex, destinationGroupId, destinationTaskIndex } = action.payload
+            const boardCopy = JSON.parse(JSON.stringify(state.board)) // Deep copy to avoid direct state mutation
 
             // Find source and destination groups
-            const sourceGroup = boardCopy.groups.find(group => group._id === sourceGroupId);
-            const destinationGroup = boardCopy.groups.find(group => group._id === destinationGroupId);
+            const sourceGroup = boardCopy.groups.find(group => group._id === sourceGroupId)
+            const destinationGroup = boardCopy.groups.find(group => group._id === destinationGroupId)
 
             if (!sourceGroup || !destinationGroup) {
-                console.error('Source or destination group not found');
-                return state; // Return current state if groups are not found
+                console.error('Source or destination group not found')
+                return state // Return current state if groups are not found
             }
 
-            const [movedTask] = sourceGroup.tasks.splice(sourceTaskIndex, 1);
+            const [movedTask] = sourceGroup.tasks.splice(sourceTaskIndex, 1)
 
-            destinationGroup.tasks.splice(destinationTaskIndex, 0, movedTask);
+            destinationGroup.tasks.splice(destinationTaskIndex, 0, movedTask)
 
             return {
                 ...state,
                 board: boardCopy
-            };
+            }
         }
 
         case DROP_GROUP:

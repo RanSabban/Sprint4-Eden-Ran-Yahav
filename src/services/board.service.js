@@ -830,7 +830,7 @@ async function addBoard() {
         const savedBoard = await save(board)
         return savedBoard
     } catch (err) {
-        console.log('cannot add board', err);
+        console.log('cannot add board', err)
     }
 }
 
@@ -1091,7 +1091,7 @@ function getEmptyBoard() {
 }
 
 async function getEmptyTask(boardId) {
-    console.log(boardId);
+    console.log(boardId)
     const board = await getById(boardId)
     const { clmTypes } = board
     console.log(clmTypes)
@@ -1142,7 +1142,7 @@ async function addGroup(boardId, isBottom) {
 
 
         await save(board)
-        socketService.emit('board-updated', board);
+        socketService.emit('board-updated', board)
         console.log('Group added:', group, 'Updated Board:', board)
         return group
     } catch (err) {
@@ -1161,26 +1161,26 @@ async function addGroup(boardId, isBottom) {
 // }
 
 async function removeGroup(groupId, boardId) {
-    console.log('Group ID:', groupId);
-    console.log('Board ID:', boardId);
+    console.log('Group ID:', groupId)
+    console.log('Board ID:', boardId)
     try {
-        const board = await getById(boardId);
+        const board = await getById(boardId)
         if (!board) {
-            throw new Error('Board not found');
+            throw new Error('Board not found')
         }
 
-        console.log('Original Board:', board);
+        console.log('Original Board:', board)
 
-        const filteredGroups = board.groups.filter(group => group._id !== groupId);
-        board.groups = filteredGroups;
+        const filteredGroups = board.groups.filter(group => group._id !== groupId)
+        board.groups = filteredGroups
 
-        await save(board);
+        await save(board)
 
-        console.log('Group removed:', groupId, 'Updated Board:', board);
-        socketService.emit('board-updated', board);
-        return board;
+        console.log('Group removed:', groupId, 'Updated Board:', board)
+        socketService.emit('board-updated', board)
+        return board
     } catch (err) {
-        console.error('Error removing group:', err);
+        console.error('Error removing group:', err)
         throw err
     }
 }
@@ -1199,87 +1199,109 @@ async function removeGroup(groupId, boardId) {
 //     return _save(STORAGE_KEY, boards)
 // }
 async function addTask(groupId, task, boardId) {
-    console.log(groupId, task, boardId);
-    const board = await getById(boardId);  // Retrieves the board based on boardId
+    console.log(groupId, task, boardId)
+    const board = await getById(boardId) 
 
     if (!board) {
-        throw new Error("Board not found");
+        throw new Error("Board not found")
     }
 
-    let taskAdded = false;
+    let taskAdded = false
     board.groups.forEach(group => {
         if (group._id === groupId) {
-            group.tasks.push(task);
-            taskAdded = true;  // Set flag when task is added
+            group.tasks.push(task)
+            taskAdded = true  
         }
-    });
+    })
 
-    // If no groupId provided or groupId not found, add to the first group
     if (!groupId || !taskAdded) {
         if (board.groups.length > 0) {
-            board.groups[0].tasks.push(task);
-            taskAdded = true;  // Ensure task is only added once
+            board.groups[0].tasks.push(task)
+            taskAdded = true  
         } else {
-            throw new Error("No groups exist on the board to add a task");
+            throw new Error("No groups exist on the board to add a task")
         }
     }
 
-    console.log(board);
-    await save(board);  // Save the modified board
-    socketService.emit('board-updated', board);
+    console.log(board)
+    await save(board)  
+    socketService.emit('board-updated', board)
 
     return board
 }
 
-async function updateGroup(groupId, updatedTitle, boardId) {
+// async function updateGroup(groupId, updatedTitle, boardId) {
+//     try {
+//         const board = await getById(boardId)
+//         board.groups.map(group => {
+//             if (group._id === groupId) {
+//                 group.title = updatedTitle
+//                 return group
+//             } return group
+//         })
+//         await save(board)
+
+//         socketService.emit('board-updated', board)
+
+//         return board
+
+//     } catch (err) {
+//         console.error('Error updating group:', err)
+//     }
+// }
+async function updateGroup(groupId, updatedGroupData, boardId) {
+    console.log('yooooooooo',groupId, updatedGroupData, boardId);
     try {
         const board = await getById(boardId)
-        board.groups.map(group => {
-            if (group._id === groupId) {
-                group.title = updatedTitle
+        const updatedBoard = {
+            ...board,
+            groups: board.groups.map(group => {
+                if (group._id === groupId) {
+                    return { ...group, ...updatedGroupData }
+                }
                 return group
-            } return group
-        })
-        await save(board)
-
-        socketService.emit('board-updated', board);
-
-        return board
+            })
+        }
+        await save(updatedBoard)
+        socketService.emit('board-updated', updatedBoard)
+        return updatedBoard
 
     } catch (err) {
         console.error('Error updating group:', err)
+        throw err
     }
 }
 
 
+
 async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        let board = await getById(boardId);
+        let board = await getById(boardId)
         board.groups = board.groups.map(group => {
             if (group._id === groupId) {
                 group.tasks = group.tasks.map(task => {
                     if (task._id === taskId) {
                         task.cells = task.cells.map(cell => {
                             if (cell._id === updatedCell._id) {
-                                return updatedCell; // Update the cell
+                                return updatedCell // Update the cell
                             }
-                            return cell;
-                        });
+                            return cell
+                        })
                     }
-                    return task;
-                });
+                    return task
+                })
             }
-            return group;
-        });
+            return group
+        })
 
-        await save(board); // Assuming _save is an async function
+        await save(board) // Assuming _save is an async function
 
         socketService.emit('board-updated', board)
 
-        return board; // Return the updated board
+        return board // Return the updated board
     } catch (err) {
-        console.error('Error updating cell:', err);
-        throw err; // It's often better to throw the error so the caller can handle it
+        console.error('Error updating cell:', err)
+        throw err // It's often better to throw the error so the caller can handle it
     }
 }
 function getEmptyGroup() {
@@ -1344,40 +1366,40 @@ function getEmptyGroup() {
 }
 
 async function updateTask(taskToUpdate, groupId, boardId) {
-    console.log('Updating task:', taskToUpdate, 'in group:', groupId, 'on board:', boardId);
+    console.log('Updating task:', taskToUpdate, 'in group:', groupId, 'on board:', boardId)
 
     try {
         // Fetch the specific board directly
-        const board = await getById(boardId);
+        const board = await getById(boardId)
         if (!board) {
-            throw new Error('Board not found');
+            throw new Error('Board not found')
         }
 
         // Find the group in the board
-        const group = board.groups.find(group => group._id === groupId);
+        const group = board.groups.find(group => group._id === groupId)
         if (!group) {
-            throw new Error('Group not found');
+            throw new Error('Group not found')
         }
 
         // Update the task within the found group
         const updatedTasks = group.tasks.map(task => {
             if (task._id === taskToUpdate._id) {
-                return { ...task, ...taskToUpdate };
+                return { ...task, ...taskToUpdate }
             }
-            return task;
-        });
+            return task
+        })
 
         // Set the updated tasks array back to the group
-        group.tasks = updatedTasks;
+        group.tasks = updatedTasks
 
         // Save the updated board back to the storage
-        await save(board);
-        socketService.emit('board-updated', board);
-        console.log('Task updated successfully:', taskToUpdate);
-        return taskToUpdate; // Optionally return the updated task
+        await save(board)
+        socketService.emit('board-updated', board)
+        console.log('Task updated successfully:', taskToUpdate)
+        return taskToUpdate // Optionally return the updated task
     } catch (err) {
-        console.error('Error updating task:', err);
-        throw err;  // Rethrow the error to be handled by the caller
+        console.error('Error updating task:', err)
+        throw err  // Rethrow the error to be handled by the caller
     }
 }
 
@@ -1405,7 +1427,7 @@ async function updateTaskConversation(taskToUpdate, groupId, boardId, update) {
         return board
 
     } catch (err) {
-        console.log('error update task', err);
+        console.log('error update task', err)
     }
 }
 
@@ -1436,12 +1458,12 @@ async function dragAndDropGroup(source, destination, boardId) {
         board.groups.splice(source.index, 1)
         board.groups.splice(destination.index, 0, groupToCut)
         save(board)
-        socketService.emit('board-updated', board);
+        socketService.emit('board-updated', board)
         return board
     }
     // const boardToUpdate =
     catch (err) {
-        console.log('cannot drag&drop group', err);
+        console.log('cannot drag&drop group', err)
     } finally {
         console.log(board)
     }
@@ -1477,7 +1499,7 @@ async function dragAndDropTask(source, destination, boardId) {
         // Persist the updated board
         await save(board)
         console.log('Task moved successfully.')
-        socketService.emit('board-updated', board);
+        socketService.emit('board-updated', board)
 
         return board
     } catch (err) {
@@ -1521,48 +1543,48 @@ async function moveTaskToTop(taskId, destinationGroupId, boardId) {
 }
 
 // async function updateFilterBy(filterBy, boardId) {
-//     console.log('here');
+//     console.log('here')
 //     try {
-//         let board = await getById(boardId);
+//         let board = await getById(boardId)
 //         board.groups = board.groups.map(group => {
 //                 return group.tasks = group.tasks.filter(task => {
 //                     if (filterBy.title){
 //                         const regex = new RegExp(filterBy.title, 'i')
 //                         return task.filter(task => regex.test(task.title))
 //                     }
-//                     // return task;
-//                 });
-//             return group;
-//         });
+//                     // return task
+//                 })
+//             return group
+//         })
 
-//         console.log(board);
+//         console.log(board)
 //         // await save(board)
 //     }
 //     catch (err) {
-//         console.log('cannot filter board', err);
+//         console.log('cannot filter board', err)
 //     }
 // }
 async function updateFilterBy(filterBy, boardId) {
-    console.log('here');
+    console.log('here')
     try {
-        let board = await getById(boardId);
+        let board = await getById(boardId)
         if (board && board.groups) {
             board.groups = board.groups.map(group => {
                 if (group.tasks) {
                     group.tasks = group.tasks.filter(task => {
-                        return !filterBy.title || new RegExp(filterBy.title, 'i').test(task.title);
-                    });
+                        return !filterBy.title || new RegExp(filterBy.title, 'i').test(task.title)
+                    })
                 }
-                return group;
-            });
+                return group
+            })
         }
 
-        console.log(board);
+        console.log(board)
         return board
-        // await save(board);
+        // await save(board)
     }
     catch (err) {
-        console.log('cannot filter board', err);
+        console.log('cannot filter board', err)
     }
 }
 
@@ -1597,39 +1619,39 @@ async function addColumn(type, boardId) {
         return board
     } catch (err) {
         console.error('Failed to add column and cells: ', err)
-        throw err;
+        throw err
     }
 
 }
 
 async function removeColumn(columnId, boardId) {
     try {
-        let board = await getById(boardId);
+        let board = await getById(boardId)
 
-        if (!board) throw new Error('Board not found');
+        if (!board) throw new Error('Board not found')
 
-        const columnIndex = board.clmTypes.findIndex(column => column._id === columnId);
-        if (columnIndex === -1) throw new Error('Column not found');
-        board.clmTypes.splice(columnIndex, 1);
+        const columnIndex = board.clmTypes.findIndex(column => column._id === columnId)
+        if (columnIndex === -1) throw new Error('Column not found')
+        board.clmTypes.splice(columnIndex, 1)
 
         board.groups.forEach(group => {
             group.tasks.forEach(task => {
                 if (task.cells) {
-                    const cellIndex = task.cells.findIndex(cell => cell._id === columnId);
+                    const cellIndex = task.cells.findIndex(cell => cell._id === columnId)
                     if (cellIndex !== -1) {
-                        task.cells.splice(cellIndex, 1);
+                        task.cells.splice(cellIndex, 1)
                     }
                 }
-            });
-        });
+            })
+        })
 
         await save(board)
-        socketService.emit('board-updated', board);
+        socketService.emit('board-updated', board)
         console.log(`Column and cells added successfully to board ${boardId}`)
         return board
     } catch (err) {
         console.error('Failed to add column and cells: ', err)
-        throw err;
+        throw err
     }
 
 }
@@ -1677,7 +1699,7 @@ function getEmptyColumn(type) {
                     { id: "l103", title: "Stuck", color: "#df2f4a" },
                     { id: "l101", title: "Done", color: "#00c875" },
                 ]
-            };
+            }
         case 'priority':
             return {
                 _id: utilService.makeId(),
@@ -1690,7 +1712,7 @@ function getEmptyColumn(type) {
                     { id: "l203", title: "Medium", color: "#5559df" },
                     { id: "l204", title: "Low", color: "#579bfc" },
                 ]
-            };
+            }
         case 'members':
             return {
                 _id: utilService.makeId(),
@@ -1702,33 +1724,33 @@ function getEmptyColumn(type) {
                     { _id: "EtzD3", fullname: "Ran Sabban", imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830" },
                     { _id: "EtzD4", fullname: "Mor Marzan", imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512" }
                 ]
-            };
+            }
         case 'timelines':
             return {
                 _id: utilService.makeId(),
                 type: "timelines",
                 title: "Timeline",
                 data: [{ _id: "sdf123" }]
-            };
+            }
         case 'files':
             return {
                 _id: utilService.makeId(),
                 type: "files",
                 title: "Files",
                 data: [{ _id: "sdf124", file: "https://res.cloudinary.com/dkvliixzt/image/upload/v1704304383/large-Screenshot_2024-01-03_at_11.35.48_qclnrt.png" }]
-            };
+            }
         case 'txt':
             return {
                 _id: utilService.makeId(),
                 type: "txt",
                 title: "Text"
-            };
+            }
         case 'date':
             return {
                 _id: utilService.makeId(),
                 type: "date",
                 title: "Date"
-            };
+            }
         case 'updates':
             return {
                 _id: utilService.makeId(),
@@ -1739,10 +1761,10 @@ function getEmptyColumn(type) {
                     { _id: "456", fullname: "Eden Gilady", date: 1703703751434, activity: "Added" },
                     { _id: "8965", fullname: "Ran Sabban", date: 1703703751834, activity: "Removed" }
                 ]
-            };
+            }
         default:
-            console.log(`Unrecognized type: ${type}`);
-            return null;
+            console.log(`Unrecognized type: ${type}`)
+            return null
     }
 }
 
