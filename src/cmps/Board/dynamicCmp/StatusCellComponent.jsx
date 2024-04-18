@@ -16,6 +16,7 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
         if (item) {
             setStatus({ color: item.color, title: item.title })
             if (item.title === 'Done' && prevTitle.current !== 'Done') {
+            // if (item.title === 'Done') {
                 setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
             } else {
                 setAnimation('')

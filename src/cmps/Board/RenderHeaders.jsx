@@ -7,7 +7,7 @@ import { EditableHeaderTitle } from './reusableCmps/EditableHeaderTitle';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-export function RenderHeaders({ isCollapsed, clmTypes }) {
+export function RenderHeaders({ isCollapsed , clmTypes}) {
 
     const [isEditMode, setIsEditMode] = useState(false)
 
