@@ -121,8 +121,8 @@ export function AppHeader() {
                     
                       <span> <Avatar size={Avatar.sizes.MEDIUM}
                         style={{lineHeight: '0.5em'}}
-                            // src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
-                            src={user.imgUrl || 'https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081'}
+                            src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+                            // src={user.imgUrl}
                             withoutBorder
                             type={Avatar.types.IMG}
                             ariaLabel="Yahav ganon" /> </span> 

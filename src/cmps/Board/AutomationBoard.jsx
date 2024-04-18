@@ -20,7 +20,7 @@ export function AutomationBoard() {
             taskId: 'c101',
             target: 'g101'
         }
-        automationService.registerAutomation(newRule,boardId )
+        automationService.registerAutomation(newRule, boardId)
     }
 
 
@@ -33,20 +33,15 @@ export function AutomationBoard() {
             </div>
             <div className="automations-main">
                 <div className="automations-filter">
-
                 </div>
                 <div className="automations-actions">
                     <Button onClick={onRegisterAutomation}>Register Automation</Button>
                 </div>
-
                 <span className="automations-count">
-
                 </span>
                 <div className="automations-list">
-
                 </div>
             </div>
-
         </section>
     )
 

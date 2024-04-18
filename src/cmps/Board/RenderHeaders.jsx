@@ -4,12 +4,19 @@ import { Delete } from 'monday-ui-react-core/icons';
 import { removeColumn, updateClmTitle } from '../../store/actions/board.actions';
 import { useParams } from 'react-router';
 import { EditableHeaderTitle } from './reusableCmps/EditableHeaderTitle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-export function RenderHeaders({ isCollapsed, clmTypes }) {
+export function RenderHeaders({ isCollapsed , clmTypes}) {
 
     const [isEditMode, setIsEditMode] = useState(false)
+
+    const [currClmTypes, setCurrClmTypes] = useState(clmTypes)
+
+    useEffect(() => {
+        setCurrClmTypes(clmTypes)
+    },[clmTypes])
+
 
     // const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
 
@@ -50,7 +57,7 @@ export function RenderHeaders({ isCollapsed, clmTypes }) {
                 })
             ) : (
                 <>
-                    {clmTypes.map((clmType, idx) => (
+                    {currClmTypes.map((clmType, idx) => (
                         <span className='dyn-cell header-item' style={{ fontSize: '14px' }} key={idx}>
                             <EditableHeaderTitle txt={clmType.title} setIsEditMode={setIsEditMode} onUpdateInput={onUpdateClmTitle} clmId={clmType._id} />
                             {!isEditMode &&

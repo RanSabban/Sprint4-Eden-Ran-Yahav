@@ -15,8 +15,10 @@ import { useScreenWidth } from '../../customHooks/useScreenWidth';
 import { utilService } from '../../services/util.service';
 import { ColorPicker } from './reusableCmps/ColorPicker';
 
-export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, clmTypes, placeholderProps, isCollapsedAll }) {
+export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
+    const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
+
     // const [specificGroup, setSpecificGroup] = useState(group)
     const [initialTitle, setInitialTitle] = useState(group.title)
     const [isEditable, setIsEditable] = useState(false)
@@ -75,7 +77,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     },[group])
 
     useEffect(() => {
-        setCurrClmTypes(clmTypes)
+        setCurrClmTypes([...clmTypes])
     },[clmTypes])
 
 

@@ -2,7 +2,7 @@ import { boardService } from '../../services/board.service.js'
 import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK, REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL, UPDATE_GROUP, UPDATE_TASK_CONVERSATION } from '../reducers/board.reducer.js'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK, REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL, UPDATE_GROUP, UPDATE_TASK_CONVERSATION, UPDATE_CLM_TITLES } from '../reducers/board.reducer.js'
 import { SET_SCORE } from '../reducers/user.reducer.js'
 
 // Action Creators:
@@ -355,6 +355,13 @@ export async function updateClmTitle(txt, clmId, boardId) {
             type: SET_CURRENT_BOARD,
             board
         })
+
+        // store.dispatch({
+        //     type: UPDATE_CLM_TITLES, 
+        //     boardId, 
+        //     clmId, 
+        //     newTitle: txt
+        // })
     } catch (err) {
         console.log('cannot edit column title - action', err)
     }
