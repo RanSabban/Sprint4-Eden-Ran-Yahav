@@ -44,6 +44,7 @@ export function ColumnsEdit() {
     async function onAddColumn(type) {
         try {
             addColumn(type, boardId)
+            setIsOpen(false)
         } catch (err) {
             console.log('cannot add column', err);
         }
