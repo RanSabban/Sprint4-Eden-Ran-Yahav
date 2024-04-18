@@ -61,7 +61,7 @@ export function LoginSignup() {
                     value={credentials.fullname}
                     placeholder="Israel Israeli"
                     onChange={handleChange}
-                    required
+                    // required
                 />
                 <input
                     type="text"

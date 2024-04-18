@@ -23,13 +23,12 @@ export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
     }
 
     return (
-        <div className="dyn-cell date-container dyn-cell-flexy">
-            <span className="dyn-cell date" onClick={handleOnClick}>
-                <span className="pass-date-icon">
-                    {isPassed()}
-                </span>
-                {getCellDate()}
+        <div className="dyn-cell date-container dyn-cell-flexy" onClick={handleOnClick}>
+            <span className="dyn-cell date" >
 
+                {cell.date && <span className="pass-date-icon">{isPassed()}</span>}
+
+                {cell.date && <span>{getCellDate()}</span>}
             </span>
             {isDatePickerOpen && <TimelinePicker
                 cell={cell}

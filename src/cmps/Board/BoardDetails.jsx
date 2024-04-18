@@ -38,7 +38,7 @@ export function BoardDetails() {
     async function onRemoveGroup(groupId) {
         try {
             await removeGroup(groupId)
-            showSuccessMsg('Group removed')
+            showSuccessMsg('Group Title group was successfully deleted.')
         } catch (err) {
             console.log('cannot remove group', err);
             showErrorMsg('Error remove group')

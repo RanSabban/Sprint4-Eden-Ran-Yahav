@@ -22,6 +22,7 @@ export const HIDE_LABEL_MODAL = 'HIDE_LABEL_MODAL'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const UPDATE_CELL = 'UPDATE_CELL'
 export const UPDATE_TASK_CONVERSATION = 'UPDATE_TASK_CONVERSATION'
+export const UPDATE_CLM_TITLES = 'UPDATE_CLM_TITLES'
 
 const initialState = {
     boards: null,
@@ -240,9 +241,20 @@ export function boardReducer(state = initialState, action) {
                 }
             }
 
-        
+        case UPDATE_CLM_TITLES: {
+            const { boardId, clmId, newTitle } = action.payload;
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    clmTypes: state.board.clmTypes.map(clm => 
+                        clm._id === clmId ? { ...clm, title: newTitle } : clm
+                    )
+                }
+            };
+        }
 
-            
+
         // default:
     }
     return newState

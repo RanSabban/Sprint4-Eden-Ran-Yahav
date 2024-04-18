@@ -25,7 +25,6 @@ export function BoardFilter({ onAddGroup, boardId }) {
         try {
             // console.log(groupId);
             await addTask('abc', boardId)
-            showSuccessMsg('Task Added')
         }
         catch (err) {
             console.log('err adding task', err);

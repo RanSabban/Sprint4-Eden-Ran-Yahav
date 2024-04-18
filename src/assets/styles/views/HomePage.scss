@@ -220,7 +220,7 @@
     font-size: 1.1428571429rem;
     font-family: poppins-light;
     line-height: 40px;
-    // word-break: break-word;
+    width: 35em;
 }
 
 .video-sec {
@@ -283,4 +283,14 @@ a:hover{
     transform: translateX(5px); /* Move the arrow icon 5 pixels to the right on hover */
   }
 
+}
+
+.h2-welcome{
+    width: 60%;
+    text-align: left;
+    font-size: 2.25rem;
+    line-height: 48px;
+    font-family: poppins-bold;
+    padding-inline-end: 60px;
+    color: #333;
 }

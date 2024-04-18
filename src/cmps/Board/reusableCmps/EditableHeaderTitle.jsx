@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function EditableHeaderTitle({txt, onUpdateInput, setIsEditMode, clmId}) {
     const [isEditingTxt, setIsEditingTxt] = useState(false);
     const [content, setContent] = useState(txt);
+
+    useEffect(() => {
+        setContent(txt)
+    },[txt])
 
     const handleSpanClick = () => {
         setIsEditingTxt(true)
