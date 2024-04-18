@@ -29,7 +29,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
             // showSuccessMsg('Group added')
         } catch (err) {
             console.log('Err add group', err);
-            showErrorMsg('Nono')
+            // showErrorMsg('Nono')
         }
     }
 
