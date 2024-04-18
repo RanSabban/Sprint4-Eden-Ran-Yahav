@@ -239,6 +239,10 @@ export function boardReducer(state = initialState, action) {
                     groups: newGroups
                 }
             }
+
+        
+
+            
         // default:
     }
     return newState

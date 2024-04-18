@@ -30,7 +30,10 @@ export const boardService = {
     addColumn,
     removeColumn,
     updateClmTitle,
-    updateTaskConversation
+    updateTaskConversation,
+    moveTaskToTop,
+    getAllAutomations,
+    getAutomationById
 }
 window.cs = boardService
 
@@ -787,6 +790,34 @@ async function getById(boardId) {
     return await httpService.get(BASE_URL + boardId)
 }
 
+async function getAutomationById(boardId, automationId) {
+    try {
+        const board = await getById(boardId)
+        if (!board) throw new Error('cannot find board')
+        const automation = board.automations.find(automation => automation.id === automationId)
+        if (!automation) throw new Error('cannot find automation ', automationId, 'on board ', boardId)
+
+        return automation
+
+    } catch (err) {
+        console.log('Failed to get automation', err)
+        throw err
+    }
+}
+
+async function getAllAutomations(boardId) {
+    try {
+        const board = await getById(boardId) 
+        if (!board) throw new Error('cannot find board') 
+        const automations = board.automations
+        if (!automations) return [] 
+        return automations
+    } catch (err) {
+        console.log('failed to get automation', err); 
+        throw err
+    }
+}
+
 function getEmptyFilterBy() {
     return {
         title: ''
@@ -1109,7 +1140,7 @@ async function addGroup(boardId, isBottom) {
             board.groups.unshift(group)
         }
 
-        
+
         await save(board)
         socketService.emit('board-updated', board)
         console.log('Group added:', group, 'Updated Board:', board)
@@ -1372,9 +1403,9 @@ async function updateTask(taskToUpdate, groupId, boardId) {
     }
 }
 
-async function updateTaskConversation(taskToUpdate, groupId, boardId,update){
+async function updateTaskConversation(taskToUpdate, groupId, boardId, update) {
     try {
-        const board = await getById(boardId) 
+        const board = await getById(boardId)
         if (!board) {
             throw new Error('Board not found')
         }
@@ -1385,10 +1416,10 @@ async function updateTaskConversation(taskToUpdate, groupId, boardId,update){
 
         const updatedTasks = group.tasks.map(task => {
             if (task._id === taskToUpdate._id) {
-                if(!task.updates) task.updates = []
+                if (!task.updates) task.updates = []
                 task.updates.push(update)
-                return {...task}
-            } 
+                return { ...task }
+            }
             return task
         })
 
@@ -1414,8 +1445,8 @@ async function removeTask(taskId, groupId, boardId) {
             return group
         })
     }
-    await save(boardToUpdate) 
-    socketService.emit('board-updated', boardToUpdate)
+    await save(boardToUpdate)
+    socketService.emit('board-updated', boardToUpdate);
 }
 
 async function dragAndDropGroup(source, destination, boardId) {
@@ -1476,6 +1507,41 @@ async function dragAndDropTask(source, destination, boardId) {
     }
 }
 
+async function moveTaskToTop(taskId, destinationGroupId, boardId) {
+    try {
+        const board = await boardService.getById(boardId)
+        if (!board) throw new Error('Board not found')
+
+        let taskToMove = {}
+        let taskFound = false
+        board.groups = board.groups.map(group => {
+            if (taskFound) return group
+            const taskIndex = group.tasks.findIndex(task => task._id === taskId)
+            if (taskIndex !== -1) {
+                taskToMove = group.tasks.splice(taskIndex, 1)[0] // remove and store :)
+                taskFound = true
+            }
+            return group
+        })
+        
+        if (!taskToMove) throw new Error('Task not found');
+
+        const destinationGroupIndex = board.groups.findIndex(group => group._id === destinationGroupId)
+
+        if (destinationGroupIndex === -1) throw new Error('Destination group not found')
+
+        board.groups[destinationGroupIndex].tasks.unshift(taskToMove)
+
+        await boardService.save(board)
+        socketService.emit('board-updated', board)
+
+        return board
+
+    } catch (err) {
+
+    }
+}
+
 // async function updateFilterBy(filterBy, boardId) {
 //     console.log('here')
 //     try {
@@ -1531,7 +1597,7 @@ async function addColumn(type, boardId) {
         const columnToAdd = getEmptyColumn(type)
 
         if (!columnToAdd) throw new Error('Failed to create a new column of type: ' + type)
-        
+
         board.clmTypes.push(columnToAdd)
 
         const emptyCell = getEmptyCell(type)
@@ -1541,10 +1607,10 @@ async function addColumn(type, boardId) {
                 if (!task.cells) task.cells = []
                 task.cells.push({
                     ...emptyCell,
-                    _id: columnToAdd._id 
-                })
-            })
-        })
+                    _id: columnToAdd._id
+                });
+            });
+        });
 
         await save(board)
         console.log(`Column and cells added successfully to board ${boardId}`)
@@ -1590,24 +1656,33 @@ async function removeColumn(columnId, boardId) {
 
 }
 
-async function updateClmTitle(txt,clmId,boardId){
+async function updateClmTitle(txt, clmId, boardId) {
     try {
-        let board = await getById(boardId)
+        const board = await getById(boardId)
 
         if (!board) throw new Error('board not found')
 
-        const column = board.clmTypes.find(column => column._id === clmId)
-        if (!column) throw new Error('column not found')
-    
-        column.title = txt
+        // const column = board.clmTypes.find(column => column._id === clmId)
+        // if (!column) throw new Error('column not found')
 
-        await save(board)
-        socketService.emit('board-updated', board)
+        const boardToReturn = {
+            ...board,
+            clmTypes: board.clmTypes.map(clm => ({
+                ...clm,
+                title: clm._id === clmId ? txt : clm.title
+            }))
+        }
 
-        return board
+        await save(boardToReturn)
+        socketService.emit('board-updated', boardToReturn);
+        console.log(boardToReturn)
+
+        return boardToReturn
 
     } catch (err) {
         console.log('cannot update clm title', err)
+    } finally {
+
     }
 }
 
@@ -1702,23 +1777,23 @@ function getEmptyCell(columnType) {
             return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
             return { dataId: "l200", title: "", color: "#c4c4c4", type: columnType }
         case 'members':
-            return {type: columnType}
-            return {type: columnType}
+            return { type: columnType }
+            return { type: columnType }
         case 'timelines':
             return { startDate: null, endDate: null, type: columnType }
             return { startDate: null, endDate: null, type: columnType }
         case 'files':
-            return {type: columnType}
-            return {type: columnType}
+            return { type: columnType }
+            return { type: columnType }
         case 'txt':
-            return { text: "" , type: columnType}
-            return { text: "" , type: columnType}
+            return { text: "", type: columnType }
+            return { text: "", type: columnType }
         case 'date':
             return { date: null, type: columnType }
             return { date: null, type: columnType }
         case 'updates':
-            return {type: columnType}
-            return {type: columnType}
+            return { type: columnType }
+            return { type: columnType }
         default:
             return {}
             return {}

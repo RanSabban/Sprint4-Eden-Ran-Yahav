@@ -9,6 +9,19 @@ import { useInView } from "react-intersection-observer"
 
 export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedAll }) {
 
+    const [localGroups, setLocalGroups] = useState(groups)
+    const [localClmTypes, setLocalClmTypes] = useState(clmTypes)
+
+    useEffect(() => {
+        setLocalGroups(groups)
+    },[groups])
+
+    useEffect(() => {
+        setLocalClmTypes(clmTypes)
+    },[clmTypes])
+
+
+    const groupListRef = useRef()
     const [placeholderProps, setPlaceholderProps] = useState("")
     const [isActive, setIsActive] = useState(false)
     const { ref, inView } = useInView({
@@ -66,6 +79,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
 
     if (!groups) return <div>Loading...</div>
 
+    if (!localGroups) return <div>Loading</div>
     return (
 
         // <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate}>
@@ -82,7 +96,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                     <div  className={`mobile-border ${isActive ? 'active' : ''}`}></div>
 
 
-                    {groups.map((group, index) => (
+                    {localGroups.map((group, index) => (
 
                         <Draggable key={index} draggableId={group._id} index={index}>
 
@@ -99,7 +113,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                                         boardId={boardId}
                                         group={group}
                                         index={index}
-                                        clmTypes={clmTypes}
+                                        clmTypes={localClmTypes}
                                         boardType={boardType}
                                         onAddGroup={onAddGroup}
                                         onRemoveGroup={onRemoveGroup}

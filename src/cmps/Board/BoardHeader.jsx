@@ -8,9 +8,10 @@ import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { CustomAdd, MenuDots } from "../../services/svg.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import { AutomationBoard } from "./AutomationBoard"
 
 
-export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
+export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen, setIsAutomateOpen }) {
     const boardTitle = useSelector(storeState => storeState.boardModule.board.title)
     const [initialTitle, setInitialTitle] = useState(boardTitle)
     const [isEditable, setIsEditable] = useState(false)
@@ -374,7 +375,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
                                     <Button
                                         className="btn"
                                         kind="tertiary"
-                                        onClick={() => console.log('m-list')}
+                                        onClick={() => setIsAutomateOpen(!isAutomateOpen)}
                                         size="sm"
                                     >
                                         <Robot
@@ -397,6 +398,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
                     </>
                 )}
                 <BoardFilter onAddGroup={onAddGroup} boardId={board._id} />
+              
             </div>
         </section>
     )

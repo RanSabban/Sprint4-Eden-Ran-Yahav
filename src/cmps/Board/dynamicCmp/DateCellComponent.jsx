@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import { TimelinePicker } from "../reusableCmps/TimelinePicker";
+import { PassDate } from "../../../services/svg.service";
 
 export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
     const [isDatePickerOpen, setDatePickerOpen] = useState(false);
 
     function getCellDate() {
         const date = dayjs(cell.date).format('DD MMM');
+        if (!date) return ''
         return date;
     }
 
@@ -15,10 +17,19 @@ export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
         console.log(isDatePickerOpen);
     }
 
+    function isPassed() {
+        if (cell.date < Date.now()) return <PassDate />
+        return ''
+    }
+
     return (
         <div className="dyn-cell date-container dyn-cell-flexy">
             <span className="dyn-cell date" onClick={handleOnClick}>
+                <span className="pass-date-icon">
+                    {isPassed()}
+                </span>
                 {getCellDate()}
+
             </span>
             {isDatePickerOpen && <TimelinePicker
                 cell={cell}

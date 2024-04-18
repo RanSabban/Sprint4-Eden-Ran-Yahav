@@ -416,6 +416,15 @@
     .dyn-cell.date-container {
         border-bottom: 1px solid $clr-border;
         cursor: pointer;
+        position: relative;
+        .pass-date-icon {
+            position: absolute;
+            color: #e03a52;
+            left: 8px;
+            svg {
+                width: 16px;
+            }
+        }
     }
 
     .dyn-cell.files {

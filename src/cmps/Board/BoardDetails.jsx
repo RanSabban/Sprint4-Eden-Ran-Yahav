@@ -7,6 +7,7 @@ import { BoardPreview } from "./BoardPreview"
 import { BoardHeader } from "./BoardHeader"
 import { useInView } from "react-intersection-observer"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import { AutomationBoard } from "./AutomationBoard"
 
 export function BoardDetails() {
 
@@ -16,6 +17,8 @@ export function BoardDetails() {
     const { ref, inView } = useInView({
         threshold: .1,
     })
+
+    const [isAutomateOpen, setIsAutomateOpen] = useState(false)
 
     useEffect(() => {
         if (boardId) loadBoard(boardId)
@@ -62,12 +65,15 @@ export function BoardDetails() {
         <>
             <section className="board-details" >
                 <div ref={ref} style={{ height: '1px', position: "absolute", width: '100%' }}></div>
-                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board}     />
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} isAutomateOpen ={isAutomateOpen} setIsAutomateOpen={setIsAutomateOpen}     />
                 <BoardPreview
                     onAddGroup={onAddGroup}
                     onRemoveGroup={onRemoveGroup}
                     board={board}
                 />
+                 {
+                    isAutomateOpen && <AutomationBoard />
+                }
                 <Outlet />
             </section>
         </>
