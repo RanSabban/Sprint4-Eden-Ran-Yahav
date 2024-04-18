@@ -16,7 +16,7 @@ export function HomePage() {
                     <img alt="oneday.com logo" src={logo}></img>
                 </div>
                 <div className="home-actions">
-                    <Link to={'/users'}>  <button className='login-btn'>Login</button> </Link>
+                    <Link to={'/user'}>  <button className='login-btn'>Login</button> </Link>
                     <Link to={'/board'}> <button className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
                 </div>
             </header>

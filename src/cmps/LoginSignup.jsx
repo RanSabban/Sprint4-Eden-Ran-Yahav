@@ -55,14 +55,14 @@ export function LoginSignup() {
                 {isSignup ? 'Already a member? Log In' : 'Need an account? Sign Up'}
             </button>
             <form onSubmit={handleSubmit}>
-                {/* <input
+                <input
                     type="text"
                     name="fullname"
                     value={credentials.fullname}
                     placeholder="Israel Israeli"
                     onChange={handleChange}
                     required
-                /> */}
+                />
                 <input
                     type="text"
                     name="username"

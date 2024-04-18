@@ -7,7 +7,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getPrettyRandomColor,
-    
+    getColors
+
 }
 
 function makeId(length = 6) {
@@ -68,4 +69,42 @@ function getPrettyRandomColor() {
     const colors = ['#579bfc', '#ffca00', '#9dd327', '#7e3b8a', '#175a63']
     const randomIndex = Math.floor(Math.random() * colors.length)
     return colors[randomIndex]
+}
+
+function getColors() {
+    return [
+        "#9dd327",
+        "#cbb641",
+        "#ffca00",
+        "#ff642e",
+        "#ffaead",
+        "#ff7575",
+        "#ba3354",
+        "#ff017e",
+        "#ff5ac3",
+        "#faa1f1",
+        "#794bd0",
+        "#7e3b8a",
+        "#401694",
+        "#5559df",
+        "#235091",
+        "#579bfc",
+        "#4ecdc6",
+        "#66cbff",
+        "#74b0cc",
+        "#9aadbc",
+        "#757575",
+        "#333333",
+        "#7f5348",
+        "#e384bc",
+        "#bda58b",
+        "#a0e3f6",
+        "#cd9282",
+        "#216fde",
+        "#175a63",
+        "#bea8fa",
+        "#a9bee9",
+        "#9d9ab9",
+        "#563e3e"
+    ]
 }

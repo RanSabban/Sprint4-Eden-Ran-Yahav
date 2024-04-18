@@ -1,40 +1,34 @@
-import { RenderHeaders } from "./RenderHeaders"
-import { TaskList } from "./TaskList"
-import { Menu, MenuButton, MenuItem } from "monday-ui-react-core"
-import { Button } from "monday-ui-react-core"
 import { addGroup, addTask, dragAndDropGroup, dragAndDropTask, updateGroup } from "../../store/actions/board.actions"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { removeGroup } from "../../store/actions/board.actions"
-import { AddSmall, Delete, Edit, Favorite, Moon } from "monday-ui-react-core/icons"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { GroupPreview } from "./GroupPreview"
-import { useSelector } from "react-redux"
-import { LabelPicker } from "./reusableCmps/LabelPicker"
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router"
-
-
+import { useInView } from "react-intersection-observer"
 
 export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedAll }) {
 
-
-    const groupListRef = useRef()
     const [placeholderProps, setPlaceholderProps] = useState("")
+    const [isActive, setIsActive] = useState(false)
+    const { ref, inView } = useInView({
+        threshold: .1,
+        rootMargin: '-10px',
+        triggerOnce: false
+    })
 
 
-    // useEffect(() => {
-    //     if (groupListRef.current) {
-    //         const scrollWidth = groupListRef.current.scrollWidth
-    //         console.log("Scrollable Width:", scrollWidth)
-    //     } console.log("isCollapsedAll", isCollapsedAll)
-    // }, [groups])
+    useEffect(() => {
+        setIsActive(inView)
+    }, [inView])
 
+    
     const { boardId } = useParams()
 
 
     async function onRemoveGroup(groupId) {
         try {
-            console.log(boardId);
+            console.log(boardId)
             await removeGroup(groupId, boardId)
             showSuccessMsg('Group removed')
         } catch (err) {
@@ -56,12 +50,12 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
         }
     }
 
-    async function onUpdateGroup(groupId, updatedTitle) {
+
+    async function onUpdateGroup(groupId, updatedGroupData) {
+        console.log(updatedGroupData)
+        console.log(groupId, updatedGroupData, boardId)
         try {
-
-            // const updatedGroupData = { title: updatedTitle }
-            await updateGroup(groupId, updatedTitle, boardId)
-
+            await updateGroup(groupId, updatedGroupData, boardId)
             console.log('Group updated successfully')
             // showSuccessMsg('Group updated successfully')
         } catch (err) {
@@ -70,11 +64,10 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
         }
     }
 
-    // console.log(groups);
+    if (!groups) return <div>Loading...</div>
 
-
-    if (!groups) return <div>Loading</div>
     return (
+
         // <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate}>
 
         <Droppable
@@ -86,7 +79,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                 >
-                    <div className='mobile-border'></div>
+                    <div  className={`mobile-border ${isActive ? 'active' : ''}`}></div>
 
 
                     {groups.map((group, index) => (
@@ -101,6 +94,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                                     className="group-card"
                                 >
                                     <GroupPreview
+                                    ref={ref}
                                         placeholderProps={placeholderProps}
                                         boardId={boardId}
                                         group={group}

@@ -6,6 +6,7 @@
         position: absolute;
 
         @include for-mobile-layout {
+            display: none;
             pointer-events: none;
             z-index: 99999;
             top: 127px;
@@ -336,6 +337,7 @@
         }
 
         #editable-header>div>input {
+            padding-left: 36px;
             font-family: poppins-medium;
             font-size: 18px !important;
         }
@@ -421,35 +423,7 @@
         color: inherit;
     }
 
-    .group-color-display {
-        position: relative;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        margin-inline: 1px 2px;
-        cursor: pointer;
-        z-index: 40;
-    }
-
-    .color-picker-modal {
-        display: grid;
-        grid-template-columns: repeat(5, auto);
-        gap: 6px;
-        background-color: #fff;
-        border-radius: 4px;
-        outline: 1px solid #c3c6d4;
-        padding: 5px;
-        cursor: auto;
-        // position: absolute;
-    }
-
-    .color {
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-    }
-
+   
     [data-testid="checkbox-label"] {
         display: none;
     }
@@ -461,4 +435,32 @@
     // position: fixed;
     top: -50px;
     left: 5em;
+}
+.group-color-display {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: em(4px);
+    // margin-inline: 1px 2px;
+    margin-left: em(76px);
+    cursor: pointer;
+    z-index: 40;
+}
+
+.color-picker-modal {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    gap: 7px;
+    background-color: #fff;
+    border-radius: 4px;
+    /* outline: 1px solid #c3c6d4; */
+    padding: 10px;
+    cursor: auto;
+}
+
+.color {
+    width: 24px;
+    height: 24px;
+    border-radius: em(4px);
+    cursor: pointer;
 }

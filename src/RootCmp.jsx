@@ -13,7 +13,7 @@ import { LoginPage } from './pages/LoginPage'
 
 export function RootCmp() {
     const location = useLocation()
-    const showHeaderFooter = location.pathname !== '/users' && location.pathname !== '/';
+    const showHeaderFooter = location.pathname !== '/user' && location.pathname !== '/';
     const isSurprisePrinted = useRef(false)
 
     useEffect(() => {
@@ -45,13 +45,15 @@ export function RootCmp() {
             {showHeaderFooter && <AppHeader />}
             <Routes>
                 <Route path='/' element={<HomePage />} />
+                {/* <Route path="/auth/:navLocation" element={<LoginSignup />}  /> */}
+
                 <Route path='/board' element={<BoardIndex />}>
                     <Route index element={<BoardHome />} />
                     <Route path=':boardId' element={<BoardDetails />}>
                         <Route path='task/:taskId' element={<Activity />} />
                     </Route>
                 </Route>
-                <Route path='/users' element={<LoginPage />} />
+                <Route path='/user' element={<LoginPage />} />
             </Routes>
             {showHeaderFooter && <AppFooter />}
         </>

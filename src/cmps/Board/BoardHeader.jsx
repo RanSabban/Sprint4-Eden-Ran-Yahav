@@ -25,7 +25,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board }) {
             console.log(boardId, isBottom);
             const group = await addGroup(boardId, isBottom)
             console.log(group)
-            showSuccessMsg('Group added')
+            // showSuccessMsg('Group added')
         } catch (err) {
             console.log('Err add group', err);
             showErrorMsg('Nono')
