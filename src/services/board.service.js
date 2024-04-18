@@ -1216,7 +1216,7 @@ async function addTask(groupId, task, boardId) {
 
     if (!groupId || !taskAdded) {
         if (board.groups.length > 0) {
-            board.groups[0].tasks.push(task)
+            board.groups[0].tasks.unshift(task)
             taskAdded = true  
         } else {
             throw new Error("No groups exist on the board to add a task")
