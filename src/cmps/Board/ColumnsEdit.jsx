@@ -18,7 +18,7 @@ export function ColumnsEdit() {
         { _id: "c1145", type: "txt" },
         { _id: "c115", type: "date" },
         { _id: "c1118", type: "updates" }
-    ];
+    ]
 
     const { boardId } = useParams()
 
@@ -107,7 +107,7 @@ export function ColumnsEdit() {
                                     <div className="monday-column-icon-component" style={{ backgroundColor: bgColor }}>
                                         <img className="monday-column-icon-component__icon" src={imgSrc} alt={clmType.type} />
                                     </div>
-                                    <span>{clmType.type}</span>
+                                    <span>{clmType.type === 'txt' ? 'Text' : clmType.type}</span>
                                 </li>
                             );
                         })}
