@@ -31,6 +31,7 @@ export function AppHeader() {
             // showSuccessMsg(`Welcome: ${user.fullname}`)
         } catch (err) {
             showErrorMsg('Cannot login')
+            user = onLogin(credentials)
         }
     }
     async function onSignup(credentials) {
