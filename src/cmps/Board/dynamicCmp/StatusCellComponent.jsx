@@ -34,12 +34,6 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
         setLoaded(true)
     }, [clmType, cell])
 
-    // useEffect(() => {
-
-    // })
-
-    // if(cell.animation) setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
-
     return (
         <>
             <div style={{ backgroundColor: status.color, width: '100%', cursor: 'pointer' }}

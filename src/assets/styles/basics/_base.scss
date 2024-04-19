@@ -189,3 +189,32 @@ li {
 @include for-mobile-layout {
     ::-webkit-scrollbar { display: none; }
 }
+
+.board-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .board-skeleton_header {
+    width: 100%;
+    height: 20px; /* Representative of an H1 size */
+  }
+  
+  .board-skeleton_columns {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .board-skeleton_column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .board-skeleton_items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
