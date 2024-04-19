@@ -25,7 +25,9 @@ export function AutomationBoard() {
         const filteredClms = board.clmTypes.filter(clmType => (clmType.type === 'status'))
         return filteredClms
     }
-    function setClmStatus() {
+    function setClmStatus(ev) {
+        console.log(ev.target.value);
+
     }
     const filteredClmsStatus = getStatusTypes()
     return (
@@ -45,10 +47,11 @@ export function AutomationBoard() {
                 </section>
                 <div className='automations-list'>
                     <span>When</span>
+                    <DynamicDialogAutomation filteredClmsStatus={filteredClmsStatus} callBack={setClmStatus}/>
                     <select name='status-picker' id='status-picker'>
                         {
                             filteredClmsStatus.map(clm => (
-                                <option value={clm._id} key={clm._id} onSelect={setClmStatus}>{clm.title}</option>
+                                <option value={clm._id} key={clm._id} onClick={setClmStatus}>{clm.title}</option>
                             ))
                         }
                     </select>
