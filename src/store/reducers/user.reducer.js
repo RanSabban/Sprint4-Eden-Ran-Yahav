@@ -24,8 +24,10 @@ export function userReducer(state = initialState, action) {
             newState = { ...state, count: state.count - 1 }
             break
         case SET_USER:
-            newState = { ...state, loggedInUser: action.user }
-            break
+            return {
+                ...state,
+                loggedInUser: action.user
+            }
         case SET_WATCHED_USER:
             newState = { ...state, watchedUser: action.user }
             break

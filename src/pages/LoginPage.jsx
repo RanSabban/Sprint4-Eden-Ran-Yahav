@@ -1,3 +1,5 @@
+import { Avatar, AvatarGroup, Button, IconButton, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
+
 import { Link, NavLink } from 'react-router-dom';
 import loginImage from '../../src/assets/img/login.png';
 import { LoginSignup } from '../cmps/LoginSignup';
@@ -20,8 +22,8 @@ export function LoginPage() {
                         Or
                         <div className="separator-line"></div>
                     </div>
-                        <LoginSignup/>
-    
+                    <LoginSignup />
+
                 </section>
 
                 {/* <footer>

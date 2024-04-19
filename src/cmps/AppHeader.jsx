@@ -6,18 +6,29 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/actions/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
 import { Help, Inbox, Invite, Notifications, Search } from 'monday-ui-react-core/icons'
-import { Avatar, Badge, Button, Tooltip } from 'monday-ui-react-core'
+import { Avatar, Badge, Button, Menu, MenuItem, Tooltip } from 'monday-ui-react-core'
 import { UserMsg } from './UserMsg.jsx'
+import { useState } from 'react'
+import { logoutUser } from '../services/svg.service.jsx'
 
 
 export function AppHeader() {
-    const user = useSelector(storeState => storeState.userModule.loggedInUser)
-    console.log('user',user);
+    const [isLogout, setIsLogout] = useState(false)
+    let user = useSelector(storeState => storeState.userModule.loggedInUser)
+    console.log('user', user);
+    
+    if(user === null){
+       let credentials = {
+        username: 'guest',
+        password: 'guest'
+    }
+        user = onLogin(credentials)
+    }
 
     async function onLogin(credentials) {
         try {
             const user = await login(credentials)
-            showSuccessMsg(`Welcome: ${user.fullname}`)
+            // showSuccessMsg(`Welcome: ${user.fullname}`)
         } catch (err) {
             showErrorMsg('Cannot login')
         }
@@ -25,7 +36,7 @@ export function AppHeader() {
     async function onSignup(credentials) {
         try {
             const user = await signup(credentials)
-            showSuccessMsg(`Welcome new user: ${user.fullname}`)
+            // showSuccessMsg(`Welcome new user: ${user.fullname}`)
         } catch (err) {
             showErrorMsg('Cannot signup')
         }
@@ -33,7 +44,8 @@ export function AppHeader() {
     async function onLogout() {
         try {
             await logout()
-            showSuccessMsg(`Bye now`)
+            // showSuccessMsg(`Bye now`)
+
         } catch (err) {
             showErrorMsg('Cannot logout')
         }
@@ -99,14 +111,14 @@ export function AppHeader() {
                 </Tooltip>
 
                 <div className="separator"></div>
-              
+
                 <Tooltip content='Help' animationType="expand">
                     <Button
                         className="btn"
                         kind="tertiary"
                         onClick={() => console.log('m-list')}
                         size="sm"
-                        style={{lineHeight: '0.5em'}}
+                        style={{ lineHeight: '0.5em' }}
                     >
                         <Help />
                     </Button>
@@ -116,20 +128,27 @@ export function AppHeader() {
                     <Button
                         className="btn"
                         kind="tertiary"
-                        onClick={() => console.log('m-list')}
                         size="sm"
                     >
-                    
-                      <span> <Avatar size={Avatar.sizes.MEDIUM}
-                        style={{lineHeight: '0.5em'}}
-                            src="https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
+
+                        <span onClick={() => setIsLogout(!isLogout)}> <Avatar size={Avatar.sizes.MEDIUM}
+                            style={{ lineHeight: '0.5em' }}
+                            src={user.imgUrl || "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"}
                             // src={user.imgUrl}
                             withoutBorder
                             type={Avatar.types.IMG}
-                            ariaLabel="Yahav ganon" /> </span> 
-                  
+                            ariaLabel={user.fullname || 'Yahav Ganon'} /> </span>
+
                     </Button>
-                </Tooltip> 
+                </Tooltip>
+
+                <div style={{ display: isLogout ? 'flex' : 'none' }} className="logout-check" >
+
+                    {logoutUser()}
+                    <Menu id="menu" size="large" style={{ height: "30px" }} >
+                        <MenuItem onClick={() => onLogout()} title={"Logout"} />
+                    </Menu>
+                </div>
 
 
 
