@@ -4,6 +4,7 @@ import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK, REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL, UPDATE_GROUP, UPDATE_TASK_CONVERSATION, UPDATE_CLM_TITLES } from '../reducers/board.reducer.js'
 import { SET_SCORE } from '../reducers/user.reducer.js'
+import { setIsLoading } from './system.actions.js'
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -37,6 +38,8 @@ export async function loadBoards() {
     } catch (err) {
         console.log('Cannot load boards', err)
         throw err
+    } finally {
+        setIsLoading(false)
     }
 
 }

@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
 import { Menu, MenuButton, MenuDivider, MenuItem, Tooltip } from "monday-ui-react-core"
 import { showSuccessMsg } from "../../services/event-bus.service"
+import loader from '/img/loader.gif'
 
 function truncateString(str, num) {
     if (str.length > num) {
@@ -19,8 +20,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const [isShown, setIsShown] = useState(false)
     const [editedTitle, setEditedTitle] = useState(board.title)
 
-
-
+    const navigate = useNavigate()
     const inputRef = useRef(null)
 
     useEffect(() => {
@@ -97,11 +97,16 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
         window.open(`http://localhost:5173/board/${board._id}`, '_blank', 'noopener')
     }
 
+    function onBoardNav() {
+        // setIsLoading(true)
+        navigate(`/board/${board._id}`)
+    }
+
     return (
-        <NavLink
+        <section
             className="board-side-preview"
             style={{ textDecoration: "none", color: "#323338" }}
-            to={`/board/${board._id}`}
+            onClick={onBoardNav}
             key={board._id}
         >
 
@@ -124,12 +129,6 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
                         </Menu>
                     </MenuButton>
-
-                    {/* <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '999999' }}>
-                        <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
-                    </Menu> */}
-
-
                 </div>
 
             )}
@@ -138,12 +137,20 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
                     <input className="input-sidebar-list" type="text" ref={inputRef} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
                 </form>
             )}
-        </NavLink>
+        </section>
     )
 }
 
 export function BoardList({ onAddBoard, onRemoveBoard, onUpdateBoard }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
+    const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
+
+
+    if (isLoading || !boards) return (
+        <div className="loader-container">
+            <img className="loader" src={loader} alt="loader" />
+        </div>
+    )
 
     return (
         <section className="board-list">

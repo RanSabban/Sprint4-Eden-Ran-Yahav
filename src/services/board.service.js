@@ -887,7 +887,7 @@ function getEmptyBoard() {
         archivedAt: null,
         createdBy: {
             _id: "EtzD1",
-            fullname: "Puki Norma",
+            fullname: "Dani Dean",
             imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
         },
         clmTypes: [
@@ -1272,8 +1272,6 @@ async function updateGroup(groupId, updatedGroupData, boardId) {
     }
 }
 
-
-
 async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
         let board = await getById(boardId)
@@ -1283,7 +1281,7 @@ async function updateCell(updatedCell, taskId, groupId, boardId) {
                     if (task._id === taskId) {
                         task.cells = task.cells.map(cell => {
                             if (cell._id === updatedCell._id) {
-                                return updatedCell // Update the cell
+                                return updatedCell 
                             }
                             return cell
                         })
@@ -1294,14 +1292,16 @@ async function updateCell(updatedCell, taskId, groupId, boardId) {
             return group
         })
 
-        await save(board) // Assuming _save is an async function
-
+        await save(board)
+        
+        // On purpose to render animations to the other users
         socketService.emit('board-updated', board)
-
-        return board // Return the updated board
+        socketService.emit('board-updated', board)
+        
+        return board 
     } catch (err) {
         console.error('Error updating cell:', err)
-        throw err // It's often better to throw the error so the caller can handle it
+        throw err 
     }
 }
 function getEmptyGroup() {

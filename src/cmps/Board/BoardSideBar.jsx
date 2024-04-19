@@ -2,17 +2,16 @@ import { Link, NavLink, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { CloseSidebar, Home, Home2, MyWork, OpenSidebar, OpenWorkSpace, PlusTool, SearchTool, ThreePoints } from "../../services/svg.service"
 import { BoardList } from "./BoardList"
-import { InputCell } from "./reusableCmps/InputCell"
-import { Avatar, AvatarGroup, Button, EditableHeading, MenuButton, MenuDivider, Tab, TabList, Tooltip, EditableText, Search, Menu, MenuItem, Flex } from "monday-ui-react-core";
-import { Favorite, Invite, AddSmall, Integrations, Robot, DropdownChevronUp, DropdownChevronDown, Info, Sun, Moon } from "monday-ui-react-core/icons";
+import { Tooltip, Search } from "monday-ui-react-core";
 import { loadBoards, removeBoard, updateBoard, addBoard } from "../../store/actions/board.actions"
-import { boardService } from "../../services/board.service"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+import  loader  from '/img/loader.gif'
+import { setIsLoading } from "../../store/actions/system.actions.js";
 
 
 export function BoardSideBar() {
-
+    const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
     const boards = useSelector(storeState => storeState.boardModule.boards)
 
     const { boardId } = useParams()
@@ -70,20 +69,8 @@ export function BoardSideBar() {
         setIsOpen(true)
     }
 
-    // const handleMouseLeave = () => {
-    //     if (isOpen2) return
-    //     setIsOpen(false)
-    // }
-
-    // onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
-
-    // <Tooltip
-    //     content='Click to edit'
-    //     animationType="expand">
-    // </Tooltip>
-    // className={`close-sidebar-btn ${isOpen && isOpen2 ? 'hide' : 'show'} ${isbtnshow}`}
-
     if (!boards) return (<div style={{ display: 'inline' }}></div>)
+
 
     return (
 

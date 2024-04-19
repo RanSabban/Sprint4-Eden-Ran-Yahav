@@ -24,14 +24,21 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
                     setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
                     cell.animation = false
                     console.log('cell.animation', cell.animation);
+                    setTimeout(() => {
+                        setAnimation('')
+                    }, 3000);
                 }
-            } else {
-                // setAnimation('')
-            }
+            } 
         }
         prevTitle.current = item.title
         setLoaded(true)
     }, [clmType, cell])
+
+    // useEffect(() => {
+
+    // })
+
+    // if(cell.animation) setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
 
     return (
         <>

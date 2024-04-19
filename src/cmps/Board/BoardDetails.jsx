@@ -8,10 +8,12 @@ import { BoardHeader } from "./BoardHeader"
 import { useInView } from "react-intersection-observer"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { AutomationBoard } from "./AutomationBoard"
+import loader from '/img/loader.gif'
 
 export function BoardDetails() {
 
     const { boardId } = useParams()
+    const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
     const board = useSelector(storeState => storeState.boardModule.board)
     const [isCollapsed, setIsCollapsed] = useState(false)
     const { ref, inView } = useInView({
@@ -25,14 +27,14 @@ export function BoardDetails() {
     }, [boardId])
 
     useEffect(() => {
-        setIsCollapsed(!inView);
-    }, [inView]);
+        setIsCollapsed(!inView)
+    }, [inView])
 
     useEffect(() => {
         if (isCollapsed) {
-            window.scrollTo({ top: 1500, behavior: 'smooth' });
+            window.scrollTo({ top: 1500, behavior: 'smooth' })
         }
-    }, [isCollapsed]);
+    }, [isCollapsed])
 
 
     async function onRemoveGroup(groupId) {
@@ -40,7 +42,7 @@ export function BoardDetails() {
             await removeGroup(groupId)
             showSuccessMsg('Group Title group was successfully deleted.')
         } catch (err) {
-            console.log('cannot remove group', err);
+            console.log('cannot remove group', err)
             showErrorMsg('Error remove group')
         }
     }
@@ -48,30 +50,33 @@ export function BoardDetails() {
 
     async function onAddGroup(boardId, isBottom) {
         try {
-            console.log('here');
+            console.log('here')
             const group = await addGroup(boardId, isBottom)
-            console.log(group);
+            console.log(group)
             showSuccessMsg('Group added')
         } catch (err) {
-            console.log('Err add group', err);
+            console.log('Err add group', err)
             showErrorMsg('Nono')
         }
     }
 
-    if (!board) return <section style={{ position: "relative", backgroundColor: 'white' }} className="loader-container" >
-        <img style={{ position: "fixed", left: '54em', top: '15em' }} className="loader" src="https://myday-p034.onrender.com/img/board-loader.gif" />
-    </section >
+    if (isLoading || !board) return (
+        <div className="loader-container">
+            <img className="loader" src={loader} alt="loader" />
+        </div>
+    )
+
     return (
         <>
             <section className="board-details" >
                 <div ref={ref} style={{ height: '1px', position: "absolute", width: '100%' }}></div>
-                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} isAutomateOpen ={isAutomateOpen} setIsAutomateOpen={setIsAutomateOpen}     />
+                <BoardHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} onAddGroup={onAddGroup} board={board} isAutomateOpen={isAutomateOpen} setIsAutomateOpen={setIsAutomateOpen} />
                 <BoardPreview
                     onAddGroup={onAddGroup}
                     onRemoveGroup={onRemoveGroup}
                     board={board}
                 />
-                 {
+                {
                     isAutomateOpen && <AutomationBoard />
                 }
                 <Outlet />
