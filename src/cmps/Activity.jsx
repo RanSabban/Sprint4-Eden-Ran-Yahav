@@ -11,7 +11,7 @@ import { useState } from "react";
 export function Activity() {
     const { taskId, boardId } = useParams()
 
-    console.log(boardId);
+    // console.log(boardId);
 
     const [txtToUpdate, setTxtToUpdate] = useState('')
 
@@ -31,7 +31,7 @@ export function Activity() {
 
     function handleChange({ target }) {
         setTxtToUpdate(target.value)
-        console.log(txtToUpdate);
+        // console.log(txtToUpdate);
     }
 
     function onSubmit(ev) {

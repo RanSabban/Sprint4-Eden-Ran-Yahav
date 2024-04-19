@@ -19,8 +19,8 @@
         grid-auto-flow: column;
         grid-column: 1/-1;
         align-items: center;
-        
-        .automations-logo{
+
+        .automations-logo {
             padding-inline-start: 18px;
         }
     }
@@ -28,6 +28,90 @@
     .automations-main {
         display: grid;
         grid-column: 2;
-        grid-template-rows:125px 1fr;
+        grid-template-rows: 125px 1fr;
+
+        .status-automation-container {
+            display: grid;
+            grid-auto-flow: column;
+            font-size: 24px;
+            justify-content: start;
+            column-gap: 7px;
+
+        }
+
+        .when-automation-span {
+            font-family: Poppins;
+            font-weight: 100;
+        }
+
+        // .move-automation-span {
+        //     grid-row: 2;
+        // }
+
+        .dynamic-dialog-automation-placeholder {
+            color: #c3c6d4;
+            box-shadow: 0px 2px 0px 0px #323336;
+            width: min-content;
+            position: relative;
+            cursor: pointer;
+
+            &.active {
+                color: #0073ea;
+            }
+
+        }
+
+        .dynamic-dialog-automation-container {
+            position: absolute;
+            color: #323338;
+            width: 260px;
+            background: #fff;
+            box-shadow: 0 4px 17px 6px rgba(0, 0, 0, .1);
+            border-radius: 8px;
+            margin-top: 1px;
+            left: -8px;
+            padding: 8px;
+            // top: 5px;
+            
+            .list-item-dialog-automation{
+                padding: 8px;
+                border-radius: 4px;
+                font-size: 16px;
+                display: grid;
+                grid-auto-flow: column;
+                justify-content: start;
+                align-items: center;
+                column-gap: 7px;      
+                cursor: pointer;          
+
+                svg {
+                    padding-top: 3px;
+                }
+                &:hover {
+                    background-color: rgba(103, 104, 121, 0.1);
+                }
+
+            }
+
+            .add-listed-automation {
+                display: grid;
+                padding: 8px;
+                text-align: center;
+                justify-self: center;
+                color: #0073ea;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(103, 104, 121, 0.1);
+                }
+            }
+
+        }
+
+
+
+
+
+
     }
 }

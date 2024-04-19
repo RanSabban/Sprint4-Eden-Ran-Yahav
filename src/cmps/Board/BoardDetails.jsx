@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { AutomationBoard } from "./AutomationBoard"
 import loader from '/img/loader.gif'
+import { BoardSkeleton } from "./reusableCmps/BoardSkeleton"
 
 export function BoardDetails() {
 
@@ -64,6 +65,7 @@ export function BoardDetails() {
         <div className="loader-container">
             <img className="loader" src={loader} alt="loader" />
         </div>
+        // <BoardSkeleton />
     )
 
     return (
@@ -77,7 +79,7 @@ export function BoardDetails() {
                     board={board}
                 />
                 {
-                    isAutomateOpen && <AutomationBoard />
+                    isAutomateOpen && <AutomationBoard setIsAutomateOpen={setIsAutomateOpen} />
                 }
                 <Outlet />
             </section>
