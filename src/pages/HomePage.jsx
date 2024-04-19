@@ -1,5 +1,7 @@
 import React from 'react'
-import logo from '../assets/img/oneday-logo.png'
+// import logo from '../assets/img/oneday-logo.png'
+import logo from '/img/oneday-logov2.png'
+
 // import { Link } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { ArrowRightHome } from '../services/svg.service'

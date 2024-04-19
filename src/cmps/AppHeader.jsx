@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import logo from '../assets/img/oneday-logo.png'
+// import logo from '../assets/img/oneday-logo.png'
+import logo from '/img/oneday-logov2.png'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/actions/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
