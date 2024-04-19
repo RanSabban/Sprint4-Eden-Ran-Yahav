@@ -1,14 +1,23 @@
 import { Delete, MoveArrowRight, Status } from "monday-ui-react-core/icons"
 import { automationService } from "../../services/automations.service"
+import { Toggle } from "monday-ui-react-core"
 
 
 export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
 
     async function onRemoveAutomation(automationId) {
         try {
-            await automationService.removeAutomation(automationId,boardId)
+            await automationService.removeAutomation(automationId, boardId)
         } catch (err) {
             console.log('cannot remove automation', err)
+        }
+    }
+
+    async function onToggleAutomation(automationId) {
+        try {
+            await automationService.toggleAutomationActive(automationId, boardId)
+        } catch (err) {
+            console.log('cannot toggle automation', err)
         }
     }
 
@@ -35,7 +44,7 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
     }
 
     function getAutomationDestiny(automation) {
-        if (automation.action === 'MOVE_TO_GROUP'){
+        if (automation.action === 'MOVE_TO_GROUP') {
             const group = groups.find(g => g._id === automation.target)
             return group.title
         }
@@ -44,24 +53,27 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
 
     return (
         <section className="active-automations-container">
-                {automations.map(automation => (
-                    <div key={automation.id} className="automation-item">
-                        <div className="automations-icons-list-container">
-                            <Status />
-                            <MoveArrowRight />
-                        </div>
-                        <div className="automation-details">
-                            <span>When</span>
-                            <span>{getAutomationCondition(automation)}</span>
-                            <span>{getAutomationAction(automation)}</span>
-                            <span>{getAutomationDestiny(automation)}</span>
-                        </div>
-                        <div className="automation-remove-action" onClick={() => onRemoveAutomation(automation.id)}>
-                            <Delete />
+            {automations.map(automation => (
+                <div key={automation.id} className="automation-item">
+                    <div className="automations-icons-list-container">
+                        <Status />
+                        <MoveArrowRight />
+                    </div>
+                    <div className="automation-details">
+                        <span>When</span>
+                        <span>{getAutomationCondition(automation)}</span>
+                        <span>{getAutomationAction(automation)}</span>
+                        <span>{getAutomationDestiny(automation)}</span>
+                    </div>
+                    <div className="automation-list-actions">
+                        <Toggle isSelected={automation.active} onChange={() => onToggleAutomation(automation.id)} />
+                        <div className="remove-automation-icon" onClick={() => onRemoveAutomation(automation.id)} >
+                            <Delete/>
                         </div>
                     </div>
-                ))}
-    
+                </div>
+            ))}
+
         </section>
     )
 }
