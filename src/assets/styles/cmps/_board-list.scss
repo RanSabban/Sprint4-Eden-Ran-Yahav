@@ -36,7 +36,7 @@
         &:hover {
             background-color: rgba(103, 104, 121, 10%);
             border-radius: 4px;
-            // width: 14.2em;
+            width: 14em;
             cursor: pointer;
         }
 
@@ -59,6 +59,7 @@
     .board-side-preview.active {
         background-color: #cce5ff;
         border-radius: 4px;
+        width: 14em;
         // width: 14.2em;
     }
 
