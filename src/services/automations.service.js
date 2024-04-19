@@ -5,7 +5,8 @@ import { store } from '../store/store.js'
 import { SET_CURRENT_BOARD } from '../store/reducers/board.reducer.js'
 export const automationService = {
     registerAutomation,
-    runAutomation
+    runAutomation,
+    removeAutomation
 }
 
 async function registerAutomation(automationRule, boardId) {
@@ -17,6 +18,10 @@ async function registerAutomation(automationRule, boardId) {
         }
         board.automations.push(automationRule)
         await boardService.save(board)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
         return board
     } catch (err) {
         console.error('Failed to register automation:', err)
@@ -65,6 +70,30 @@ function validateAutomation(trigger, relatedAutomations, data) {
     })
     console.log(validatedAutomations);
     return validatedAutomations
+}
+
+async function removeAutomation(automationId,boardId) {
+    console.log('automation Id', automationId);
+    try {
+        const board = await boardService.getById(boardId)
+        if (!board) {
+            throw new Error('Board not found')
+        }
+        const filteredAutomations = board.automations.filter(automation => automation.id !== automationId)
+        board.automations = filteredAutomations
+
+        await boardService.save(board)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        socketService.emit('board-updated', board)
+        
+
+    } catch (err) {
+        console.error('Error removing automation:', err)
+        throw err
+    }
 }
 
 // async function executeAutomation(automationId, boardId,) {

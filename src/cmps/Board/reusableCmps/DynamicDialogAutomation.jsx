@@ -1,49 +1,74 @@
 import { Lines } from "monday-ui-react-core/icons";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function DynamicDialogAutomation({ itemsToRender, callBack, placeHolder, addFunc, type }) {
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isSelected, setIsSelected] = useState(false)
+    const [placeHolderToShow, setPlaceHolderToShow] = useState(placeHolder)
+    const dialogRef = useRef(null)
 
     console.log(itemsToRender);
 
+    useEffect(() => {
+
+        function handleClickOutside(event) {
+            if (dialogRef.current && !dialogRef.current.contains(event.target)) {
+                setIsOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+
+    }, [])
+
+    function onSelect(itemId, itemTitle) {
+        setPlaceHolderToShow(itemTitle)
+        callBack(itemId)
+        setIsSelected(true)
+    }
+
+    async function onAddFunc(type) {
+        try {
+            await addFunc(type)
+            setIsOpen(true)
+        } catch (err) {
+            console.log('cannot add column - automation', err)
+        }
+    }
 
 
     const isActiveClass = isOpen ? 'active' : ''
+    const isSelectedClass = isSelected ? 'selected' : ''
 
 
     return (
-        <span className={`dynamic-dialog-automation-placeholder ${isActiveClass}`} onClick={() => setIsOpen(open => !open)}>{placeHolder}
-            
-                {isOpen && (<div className="dynamic-dialog-automation-container"> 
+        <span className={`dynamic-dialog-automation-placeholder ${isActiveClass} ${isSelectedClass}`} onClick={() => setIsOpen(open => !open)}>{placeHolderToShow}
+
+            {isOpen && (<div className="dynamic-dialog-automation-container" ref={dialogRef}>
                 {
                     itemsToRender.map(item => {
-                        if (item._id) {
-                            return (
-                                <div value={item._id} key={item._id} onClick={() => callBack(item._id)} className="list-item-dialog-automation">
-                                    <span>
+
+                        return (
+                            <div value={item._id || item.id} key={item._id} onClick={() => onSelect(item._id || item.id, item.title)} className="list-item-dialog-automation">
+                                <span>
                                     <Lines />
-                                    </span>
-                                    <span>
-                                        {item.title}
-                                    </span>
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <div value={item.id} key={item.id} onClick={() => callBack(item.id)} className="list-item-dialog-automation">
-                                    <span>
-                                        {item.title}
-                                    </span>
-                                </div>
-                            )
-                        }
+                                </span>
+                                <span>
+                                    {item.title}
+                                </span>
+                            </div>
+                        )
                     }
                     )}
-                    {addFunc ? <span className="add-listed-automation" onClick={() => addFunc(type)}>+ Add {type}</span> : ''}
-                    </div>)
-                }
-            
+                {addFunc ? <span className="add-listed-automation" onClick={() => onAddFunc(type)}>+ Add {type}</span> : ''}
+            </div>)
+            }
+
         </span>)
 
 

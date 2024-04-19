@@ -6,21 +6,14 @@ import { useParams } from 'react-router'
 import { useState } from 'react'
 import { DynamicDialogAutomation } from './reusableCmps/DynamicDialogAutomation'
 import { StatusAutomation } from './StatusAutomation'
+import { ActiveAutomationsList } from './ActiveAutomationsList'
 
-export function AutomationBoard({setIsAutomateOpen}) {
+export function AutomationBoard({ setIsAutomateOpen }) {
     const board = useSelector
         (storeState => storeState.boardModule.board)
     const [isSelected, setIsSelected] = useState(false)
     const { boardId } = useParams()
     function onRegisterAutomation(rule) {
-        // const newRule = {
-        //     id: new Date().getTime(),
-        //     trigger: 'STATUS_CHANGE',
-        //     action: 'MOVE_TO_GROUP',
-        //     condition: { c111: 'l101' },
-        //     // taskId: 'c101',
-        //     target: 'g102'
-        // }
         automationService.registerAutomation(rule, boardId)
     }
 
@@ -41,15 +34,20 @@ export function AutomationBoard({setIsAutomateOpen}) {
                     <div className='automations-filter'>
                     </div>
                     <div className='automations-actions'>
-                        <Button onClick={onRegisterAutomation}>Register Automation</Button>
+
                     </div>
                     <span className='automations-count'>
                     </span>
                 </section>
                 <div className='automations-list'>
-                    <StatusAutomation filteredClmsStatus={filteredClmsStatus} onRegisterAutomation={onRegisterAutomation} groups={board.groups}/>
+                    <section className="add-automations">
+                        <StatusAutomation filteredClmsStatus={filteredClmsStatus} onRegisterAutomation={onRegisterAutomation} groups={board.groups} />
+                    </section>
+              
+                        <ActiveAutomationsList automations={board.automations} clms={board.clmTypes} groups={board.groups} boardId={boardId} />
+               
                 </div>
             </div>
         </section>
-    )
+    )
 }
