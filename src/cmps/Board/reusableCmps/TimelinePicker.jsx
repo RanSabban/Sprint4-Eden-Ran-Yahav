@@ -44,8 +44,7 @@ export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }
             setDatePickerOpen(false)
             cell.date = timestamp
             await onUpdateCell(cell, taskId)
-            console.log(timestamp)
-            showSuccessMsg(`Changed due date in task ${taskId}`)
+            
             setSelected(date)
         } catch (err) {
             showErrorMsg(`Can't change due date in task ${taskId}`)

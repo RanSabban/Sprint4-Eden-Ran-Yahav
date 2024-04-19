@@ -5,6 +5,7 @@
     height: 100vh;
     width: 100vw;
     position: relative;
+    overflow: auto;
 
     & .rect {
         display: flex;
@@ -29,7 +30,6 @@
         display: flex;
         flex: 1;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
 
         & article {
@@ -160,6 +160,7 @@
         justify-content: center;
         margin-top: 16px;
         gap: 4px;
+        margin-bottom: 1em;
 
 
         .terms-links-wrapper {
@@ -199,4 +200,23 @@
             }
         }
     }
+}
+
+.input-login{
+    outline: 1px solid #d0d4e4;
+    border-radius: 4px;
+    margin-inline: 3px 12px;
+    padding: 10px 16px;
+    margin-inline: unset;
+    width: 100%;
+    transition: outline-color .2s;
+    border: 1px solid #0073ea;
+}
+
+.signup-option{
+    color: #1f76c2;
+}
+
+.signup-option:hover{
+    cursor: pointer;
 }
