@@ -22,11 +22,13 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
                 if (cell.animation && loaded) {
                     console.log('cell.animation', cell.animation);
                     setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
+                    cell.animation = false
                     console.log('cell.animation', cell.animation);
+                    setTimeout(() => {
+                        setAnimation('')
+                    }, 3000);
                 }
-            } else {
-                setAnimation('')
-            }
+            } 
         }
         prevTitle.current = item.title
         setLoaded(true)

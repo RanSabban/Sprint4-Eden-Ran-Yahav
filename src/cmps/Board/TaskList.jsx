@@ -123,7 +123,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                         <div className='blank-cell-add-task' style={{ width: '40px' }}>
                         </div>
                         <div className="add-task-sticky-container" style={{
-                            borderLeft: `0.4em solid ${groupColor}`,
+                            borderLeft: `0.370em solid ${groupColor}`,
                             borderBottomLeftRadius: '0.6em',
                             // borderTop: '1px solid #D0D4E4'
                         }}>

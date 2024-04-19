@@ -206,12 +206,11 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
                                                     style={{
                                                         color: currGroup.groupColor,
                                                     }}
-                                                    editing='false'
                                                     type={EditableHeading.types.h3}
                                                     weight={"normal"}
                                                     value={currGroup.title}
                                                     isEditMode={"true"}
-                                                    id={`editable-header %${editing ? "yes" : 'no'}`}
+                                                    id={`editable-header`}
                                                     onBlur={(newTitle) => onUpdateGroupData(group._id, 'title', newTitle)}
 
                                                 />

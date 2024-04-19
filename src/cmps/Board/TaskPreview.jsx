@@ -9,15 +9,16 @@ import { FilesComponent } from './dynamicCmp/FilesComponent'
 import { TimelinesComponent } from './dynamicCmp/TimelinesComponent'
 import { Button, Checkbox, Menu, MenuButton, MenuItem } from 'monday-ui-react-core'
 import { AddSmall, AddUpdate, Delete, Update } from 'monday-ui-react-core/icons'
-import { InputCell } from './reusableCmps/InputCell'
-import { LabelPicker } from './reusableCmps/LabelPicker'
+import loader from '/img/loader.gif'
 import { useState } from 'react'
 import { onOpenModalLabel } from '../../store/actions/board.actions'
 import { Link, useParams } from 'react-router-dom'
 import { EditableCellTitle } from './reusableCmps/EditableCellTitle'
 import { useEffect } from 'react'
+import { setIsLoading } from '../../store/actions/system.actions'
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn, clmTypes }) {
+    const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
 
     const [isEditing, setIsEditing] = useState(false)
     const [selectedCell, setSelectedCell] = useState(null)
@@ -39,6 +40,10 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         };
         update()
     }, [selectedCell])
+
+    // useEffect(() => {
+    //     setIsLoading(true)
+    // }, [])
 
 
     async function onChange(cell) {
@@ -77,6 +82,12 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         return clmToReturn
     }
 
+    if (isLoading || !cells) return (
+        <div className="loader-container">
+            <img className="loader" src={loader} alt="loader" />
+        </div>
+    )
+
     return (
         <>
             <span className='task-effect-box'></span>
@@ -87,13 +98,12 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     </Menu>
                 </MenuButton>
             </section>
-            <div className={`task-preview-title-container ${dynShadow}`} style={{ borderLeft: `0.4em solid ${groupColor}` }}>
-
+            <div className={`task-preview-title-container ${dynShadow}`} style={{ borderLeft: `0.370em solid ${groupColor}` }}>
                 <div className='dyn-cell checkbox-container'>
                     <Checkbox
-                    checked={isEditing}
-                    onChange={handleCheckboxChange}
-                    />
+                    // checked={isEditing}
+                    // onChange={handleCheckboxChange}
+                    /> 
                 </div>
                 <div className='task-title-cell'>
                     <span className='dyn-cell title'>
