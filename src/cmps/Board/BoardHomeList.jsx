@@ -104,7 +104,7 @@ export function BoardHomeList(screenWidth) {
                             <div className="gif-container">
                                 <img src="/img/highFive.gif" alt="highFive.gif" />
                             </div>
-                            <div class="no-updates-message">
+                            <div className="no-updates-message">
                                 <h5>No unread updates</h5>
                                 <p>To revisit updates you've already read, change the filter at the top left corner of your feed.</p>
                             </div>

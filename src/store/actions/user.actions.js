@@ -5,6 +5,7 @@ import { store } from '../store.js'
 import { showErrorMsg } from '../../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer.js'
 import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer.js'
+import { Password } from '@mui/icons-material'
 
 export async function loadUsers() {
     try {
@@ -59,10 +60,13 @@ export async function signup(credentials) {
 
 export async function logout() {
     try {
-        await userService.logout()
+        const user = await userService.login({
+            username: 'guest',
+            password: 'guest'
+        })
         store.dispatch({
             type: SET_USER,
-            user: null
+            user
         })
         socketService.logout()
     } catch (err) {

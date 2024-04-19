@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { login, signup } from '../store/actions/user.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function LoginSignup() {
     const [credentials, setCredentials] = useState({ username: '', password: '' })
     const [isSignup, setIsSignup] = useState(false)
+    const navigate = useNavigate()
 
     // useEffect(() => {
     //     console.log("Current credentials:", credentials)
@@ -30,9 +31,12 @@ export function LoginSignup() {
             if (isSignup) {
                 signup(credentials)
                 showSuccessMsg('Signed up successfully')
+                navigate('/board')
             } else {
+                console.log('this is the credentials : ', credentials)
                 login(credentials)
                 showSuccessMsg('Logged in successfully')
+                navigate('/board')
             }
         } catch (err) {
             showErrorMsg(err.message)

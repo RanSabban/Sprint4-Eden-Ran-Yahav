@@ -19,7 +19,7 @@ export function HomePage() {
                 </div>
                 <div className="home-actions">
                     <Link to={'/user'}>  <button className='login-btn'>Login</button> </Link>
-                    <Link to={'/board'}> <button className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
+                    <Link to={'/board'}>  <button className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
                 </div>
             </header>
             <section className='hero-header'>
@@ -43,7 +43,7 @@ export function HomePage() {
             </section>
             <section className='btn-container'>
 
-                <Link to={'/board'}> <button style={{marginBottom: '1em'}} className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
+                <Link to={'/board'}> <button style={{marginBottom: '1em', width: '150px', height: '50px'}} className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
 
                 <p className="no-credit-card-txt">No credit card needed<span>✦</span>Unlimited time on Free plan</p>
 
