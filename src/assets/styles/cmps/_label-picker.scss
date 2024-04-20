@@ -2,12 +2,12 @@
     position: absolute;
     background-color: #ffffff;
     width: 200px;
-    
+
     display: grid;
     justify-content: center;
     cursor: pointer;
     // box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,.32);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .32);
     // -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
     // -moz-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
     height: max-content;
@@ -16,14 +16,14 @@
     flex-direction: column;
     place-items: center;
     color: #323338;
-    
+
     // padding: 16px 24px 8px;
 
     // padding: 5px;
 
     ul {
         display: grid;
-        row-gap: 7px;
+        row-gap: 8px;
         padding-bottom: 10px;
     }
 
@@ -61,7 +61,7 @@
         display: grid;
         grid-auto-flow: column;
         align-items: center;
-        
+
     }
 
     .edit-btn:hover {
@@ -82,7 +82,7 @@
         // box-shadow: 0 8px 16px 0 rgba(0,0,0,.32);
     }
 
-    .arrow-down{
+    .arrow-down {
         position: absolute;
         right: 270px;
         transform: translate3d(178.4px, 0px, 0px) rotate(45deg);
@@ -93,6 +93,105 @@
         border-radius: 2px;
         bottom: -8px;
     }
+
+    .label-edit-container {
+        grid-auto-rows: 32px;
+
+        .add-label-btn {
+            padding: 4px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #e6e9ef;
+            overflow: hidden;
+            border-radius: 4px;
+            &:hover {
+                background-color: rgba(103, 104, 121, 0.1);
+            }
+        }
+
+        .label-edit {
+            height: 32px;
+            display: grid;
+            grid-auto-flow: column;
+            color: #323338;
+            border: 1px solid #e6e9ef;
+            padding-inline: 4px;
+            width: 150px;
+            column-gap: 4px;
+            position: relative;
+
+            &:hover .remove-label-picker {
+                opacity: 1;
+            }
+
+            .remove-label-picker {
+                opacity: 0;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: 0.4s;
+                &:hover {
+                    background-color: rgba(103, 104, 121, 0.1);
+                    scale: 1.1;
+                }
+                svg {
+                    width: 16px;
+                    color: #696970;
+                }
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &.focus {
+                border-color: #0073ea;
+            }
+
+            .color-picker-label-edit {
+                position: relative;
+            }
+
+            .color-picker-container-label-edit {
+                z-index: 1123234532543563464562432452435235435234;
+                position: absolute;
+                margin-top: 32px;
+                display: grid;
+                // z-index: 1123234532543563464562432452435235435234;
+                grid-template-columns: repeat(4, auto);
+                gap: 7px;
+                background-color: #fff;
+                border-radius: 4px;
+                /* outline: 1px solid #c3c6d4; */
+                padding: 10px;
+                // cursor: auto;
+
+
+                .color {
+                    width: 24px;
+                    height: 24px;
+                    border-radius: em(4px);
+                    cursor: pointer;
+                }
+
+
+            }
+
+
+
+            .label-edit-input {
+                border: none;
+                outline: none;
+                font-family: Figtree;
+                width: 116px;
+                border-width: 1px 1px 1px 0;
+                border-radius: 0 2px 2px 0;
+                // padding-right: 4px;
+            }
+
+        }
+    }
+
 
 
 }

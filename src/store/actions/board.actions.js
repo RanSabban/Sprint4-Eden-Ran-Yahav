@@ -371,6 +371,61 @@ export async function updateClmTitle(txt, clmId, boardId) {
     }
 }
 
+export async function addLabel(clmId, boardId, label) {
+    try {
+        const board = await boardService.addLabel(clmId, boardId, label)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        return board
+    } catch (err) {
+        console.log('cannot add label - action', err)
+    }
+}
+
+export async function updateLabelColor(color, labelId, clmId, boardId) {
+    try {
+        const board = await boardService.onUpdateLabelColor(color, labelId, clmId, boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        return board
+
+    } catch (err) {
+        console.log('cannot change label color', err)
+    }
+}
+
+export async function updateLabelTitle(clmId, labelId, newTitle, boardId) {
+    try {
+        const board = await boardService.onUpdateLabelTitle(clmId, labelId, newTitle, boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        return board
+
+    } catch (err) {
+        console.log('cannot change label title', err)
+    }
+}
+
+export async function removeLabel(labelId, clmId, boardId) {
+    try {
+        const board = await boardService.onRemoveLabel(labelId, clmId, boardId)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        return board
+
+    } catch (err) {
+        console.log('cannot remove label', err)
+    }
+}
+
 export function handleAddToCalendar(task) {
     console.log('talk', task);
 
