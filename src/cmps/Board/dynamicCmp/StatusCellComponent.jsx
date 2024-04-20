@@ -30,7 +30,7 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
                 }
             } 
         }
-        prevTitle.current = item.title
+        // prevTitle.current = item.title 
         setLoaded(true)
     }, [clmType, cell])
 

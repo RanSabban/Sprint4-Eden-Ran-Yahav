@@ -33,7 +33,12 @@ export const boardService = {
     updateTaskConversation,
     moveTaskToTop,
     getAllAutomations,
-    getAutomationById
+    getAutomationById,
+    addLabel,
+    getEmptyLabel,
+    onUpdateLabelColor,
+    onUpdateLabelTitle,
+    onRemoveLabel
 }
 window.cs = boardService
 
@@ -807,13 +812,13 @@ async function getAutomationById(boardId, automationId) {
 
 async function getAllAutomations(boardId) {
     try {
-        const board = await getById(boardId) 
-        if (!board) throw new Error('cannot find board') 
+        const board = await getById(boardId)
+        if (!board) throw new Error('cannot find board')
         const automations = board.automations
-        if (!automations) return [] 
+        if (!automations) return []
         return automations
     } catch (err) {
-        console.log('failed to get automation', err); 
+        console.log('failed to get automation', err);
         throw err
     }
 }
@@ -1200,7 +1205,7 @@ async function removeGroup(groupId, boardId) {
 // }
 async function addTask(groupId, task, boardId) {
     console.log(groupId, task, boardId)
-    const board = await getById(boardId) 
+    const board = await getById(boardId)
 
     if (!board) {
         throw new Error("Board not found")
@@ -1210,21 +1215,21 @@ async function addTask(groupId, task, boardId) {
     board.groups.forEach(group => {
         if (group._id === groupId) {
             group.tasks.push(task)
-            taskAdded = true  
+            taskAdded = true
         }
     })
 
     if (!groupId || !taskAdded) {
         if (board.groups.length > 0) {
             board.groups[0].tasks.unshift(task)
-            taskAdded = true  
+            taskAdded = true
         } else {
             throw new Error("No groups exist on the board to add a task")
         }
     }
 
     console.log(board)
-    await save(board)  
+    await save(board)
     socketService.emit('board-updated', board)
 
     return board
@@ -1250,7 +1255,7 @@ async function addTask(groupId, task, boardId) {
 //     }
 // }
 async function updateGroup(groupId, updatedGroupData, boardId) {
-    console.log('yooooooooo',groupId, updatedGroupData, boardId);
+    console.log('yooooooooo', groupId, updatedGroupData, boardId);
     try {
         const board = await getById(boardId)
         const updatedBoard = {
@@ -1281,7 +1286,7 @@ async function updateCell(updatedCell, taskId, groupId, boardId) {
                     if (task._id === taskId) {
                         task.cells = task.cells.map(cell => {
                             if (cell._id === updatedCell._id) {
-                                return updatedCell 
+                                return updatedCell
                             }
                             return cell
                         })
@@ -1293,15 +1298,15 @@ async function updateCell(updatedCell, taskId, groupId, boardId) {
         })
 
         await save(board)
-        
+
         // On purpose to render animations to the other users
         socketService.emit('board-updated', board)
         socketService.emit('board-updated', board)
-        
-        return board 
+
+        return board
     } catch (err) {
         console.error('Error updating cell:', err)
-        throw err 
+        throw err
     }
 }
 function getEmptyGroup() {
@@ -1523,7 +1528,7 @@ async function moveTaskToTop(taskId, destinationGroupId, boardId) {
             }
             return group
         })
-        
+
         if (!taskToMove) throw new Error('Task not found');
 
         const destinationGroupIndex = board.groups.findIndex(group => group._id === destinationGroupId)
@@ -1800,6 +1805,109 @@ function getEmptyCell(columnType) {
     }
 }
 
+async function addLabel(clmId, boardId, label) {
+    try {
+        const board = await getById(boardId)
+        if (!board) throw new Error('Board not found')
+        const column = board.clmTypes.find(clm => clm._id === clmId)
+        if (!column) throw new Error('Column not found')
+        // const newLabel = getEmptyLabel()
+        if (!column.data) column.data = []
+        column.data.push(label)
+        await save(board);
+        socketService.emit('board-updated', board);
+        return board
+
+    } catch (err) {
+        console.log('cannot add label', err);
+    }
+}
+
+async function onUpdateLabelColor(newColor, labelId, clmId, boardId) {
+    try {
+        const board = await getById(boardId)
+        if (!board) throw new Error('Board not found')
+
+        const column = board.clmTypes.find(column => column._id === clmId)
+        if (!column) throw new Error('Column not found')
+
+        const labelsUpdated = column.data.map(label => {
+            if (label.id === labelId) {
+                return { ...label, color: newColor }
+            }
+            return label
+        })
+
+        column.data = labelsUpdated
+
+        await save(board)
+        socketService.emit('board-updated', board)
+
+        console.log(`Color updated for label ${labelId} in column ${clmId} on board ${boardId}`)
+        return board
+    } catch (err) {
+        console.error('Error updating label color:', err)
+        throw err
+    }
+}
+
+async function onUpdateLabelTitle(clmId, labelId, newTitle, boardId) {
+    try {
+        const board = await getById(boardId)
+        if (!board) throw new Error('Board not found')
+
+
+        const column = board.clmTypes.find(column => column._id === clmId)
+        if (!column) throw new Error('Column not found')
+
+
+        const labelsUpdated = column.data.map(label => {
+            if (label.id === labelId) {
+                return { ...label, title: newTitle }
+            }
+            return label;
+        })
+
+
+        column.data = labelsUpdated
+
+
+        await save(board)
+        socketService.emit('board-updated', board)
+
+        console.log(`Title updated for label ${labelId} in column ${clmId} on board ${boardId}`)
+        return board
+    } catch (err) {
+        console.error('Error updating label title:', err)
+        throw err
+    }
+}
+
+async function onRemoveLabel(labelId, clmId, boardId) {
+    try {
+        const board = await getById(boardId)
+        if (!board) throw new Error('Board not found')
+
+
+        const column = board.clmTypes.find(column => column._id === clmId)
+        if (!column) throw new Error('Column not found')
+
+        const labelsUpdated = column.data.filter(label => label.id !== labelId)
+        column.data = labelsUpdated
+        await save(board)
+        socketService.emit('board-updated', board)
+
+        console.log(`Title updated for label ${labelId} in column ${clmId} on board ${boardId}`)
+        return board
+
+    } catch (err) {
+
+    }
+}
+
+function getEmptyLabel() {
+    return { id: utilService.makeId(), title: "", color: utilService.getPrettyRandomColor() }
+}
 
 // PRIVATE FUNCS
 
