@@ -23,6 +23,8 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
     const navigate = useNavigate()
     const inputRef = useRef(null)
 
+
+
     useEffect(() => {
         const handleClickOutside = (event) => {
 

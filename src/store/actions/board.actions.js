@@ -5,6 +5,7 @@ import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.j
 import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_CURRENT_BOARD, ADD_TASK, ADD_GROUP, REMOVE_GROUP, DROP_GROUP, DROP_TASK, REMOVE_TASK, SET_LABEL_MODAL, HIDE_LABEL_MODAL, UPDATE_CELL, UPDATE_GROUP, UPDATE_TASK_CONVERSATION, UPDATE_CLM_TITLES } from '../reducers/board.reducer.js'
 import { SET_SCORE } from '../reducers/user.reducer.js'
 import { setIsLoading } from './system.actions.js'
+import { utilService } from '../../services/util.service.js'
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -370,6 +371,36 @@ export async function updateClmTitle(txt, clmId, boardId) {
     }
 }
 
+export function handleAddToCalendar(task) {
+    console.log('talk', task);
+
+    const dateData = task.cells.find(cell => cell.type === 'date')
+    console.log('dateData', dateData);
+
+    if (!task) {
+        console.error('Stay details are missing')
+        return
+    }
+
+    if (!dateData) {
+        console.error('Order dates are missing')
+        return
+    }
+
+    const startDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
+    const endDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
+    console.log('Formatted Start Date:', startDateFormatted)
+    console.log('Formatted End Date:', endDateFormatted)
+
+    const startDate = startDateFormatted.replace(/\//g, '')
+    const endDate = endDateFormatted.replace(/\//g, '')
+    const startTime = 'T000000'
+    const endTime = 'T235959'
+    const details = encodeURIComponent(`Added from oneday.com`)
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=Task: ${task.title}&dates=${startDate}${startTime}/${endDate}${endTime}&details=${details}&sf=true&output=xml`
+
+    window.open(googleCalendarUrl, '_blank')
+}
 
 
 // Demo for Optimistic Mutation

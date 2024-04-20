@@ -7,13 +7,16 @@ import { useState } from 'react'
 import { DynamicDialogAutomation } from './reusableCmps/DynamicDialogAutomation'
 import { StatusAutomation } from './StatusAutomation'
 import { ActiveAutomationsList } from './ActiveAutomationsList'
+import { Close, NavigationChevronLeft } from 'monday-ui-react-core/icons'
 
 export function AutomationBoard({ setIsAutomateOpen }) {
     const board = useSelector
         (storeState => storeState.boardModule.board)
-    const [isSelected, setIsSelected] = useState(false)
+    const [isAddAutomation, setIsAddAutomation] = useState(false)
     const { boardId } = useParams()
+
     function onRegisterAutomation(rule) {
+        rule.active = true
         automationService.registerAutomation(rule, boardId)
     }
 
@@ -22,32 +25,65 @@ export function AutomationBoard({ setIsAutomateOpen }) {
         return filteredClms
     }
 
+    function getActiveAutomationsLength() {
+        const activeAutomations = board.automations.filter(automation => automation.active)
+        if (!activeAutomations.length) {
+            return 'No active automations yet on this board'
+        }
+        if (activeAutomations.length === 1) {
+            return '1 active automation on this board'
+        }
+        if (activeAutomations.length > 1) {
+            return `${activeAutomations.length} active automations on this board`
+        }
+    }
+
     const filteredClmsStatus = getStatusTypes()
     return (
         <section className='automations-container'>
             <div className='automations-header'>
-                <h2 className='automations-logo'>Automation Center</h2>
-                <Button onClick={() => (setIsAutomateOpen(open => !open))}>Exit</Button>
-            </div>
-            <div className='automations-main'>
-                <section className='automations-main-upper'>
-                    <div className='automations-filter'>
+                {!isAddAutomation && (
+                    <h2 className='automations-logo'>Automation Center</h2>
+                )}
+                {isAddAutomation && (
+                    <div className='close-add-automations' onClick={() => setIsAddAutomation(!isAddAutomation)}>
+                        <NavigationChevronLeft />
+                        <span>Back to board automations</span>
                     </div>
-                    <div className='automations-actions'>
-
-                    </div>
-                    <span className='automations-count'>
-                    </span>
-                </section>
-                <div className='automations-list'>
-                    <section className="add-automations">
-                        <StatusAutomation filteredClmsStatus={filteredClmsStatus} onRegisterAutomation={onRegisterAutomation} groups={board.groups} />
-                    </section>
-              
-                        <ActiveAutomationsList automations={board.automations} clms={board.clmTypes} groups={board.groups} boardId={boardId} />
-               
+                )}
+                <div className='close-automations' onClick={() => (setIsAutomateOpen(open => !open))}>
+                    <Close />
                 </div>
             </div>
+            <div className='automations-main'>
+                {!isAddAutomation && (
+                    <>
+                        <section className='automations-main-upper'>
+                            <div className='automations-filter'>
+                            </div>
+                            <div className='automations-actions'>
+                                <div className='create-automation-btn' onClick={() => setIsAddAutomation(!isAddAutomation)}>
+                                    + Add Automation
+                                </div>
+                            </div>
+                            <span className='automations-count'>
+                                {getActiveAutomationsLength()}
+                            </span>
+                        </section>
+                        <div className='automations-list'>
+                            <ActiveAutomationsList automations={board.automations} clms={board.clmTypes} groups={board.groups} boardId={boardId} />
+                        </div>
+
+                    </>)}
+                {
+                    isAddAutomation && (
+                        <section className="add-automations">
+                            <StatusAutomation filteredClmsStatus={filteredClmsStatus} onRegisterAutomation={onRegisterAutomation} groups={board.groups} />
+                        </section>
+                    )
+                }
+            </div>
+
         </section>
     )
 }

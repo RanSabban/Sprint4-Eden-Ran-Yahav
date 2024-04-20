@@ -7,7 +7,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getPrettyRandomColor,
-    getColors
+    getColors,
+    formatIsoDateToYMD
 
 }
 
@@ -46,6 +47,23 @@ function randomPastTime() {
 
     const pastTime = getRandomIntInclusive(HOUR, WEEK)
     return Date.now() - pastTime
+}
+
+function formatIsoDateToYMD(date) {
+    const dateObj = new Date(date)
+    if (isNaN(dateObj.getTime())) {
+        console.error('Invalid date provided')
+        return ''
+    }
+
+    let year = dateObj.getFullYear()
+    let month = dateObj.getMonth() + 1
+    let day = dateObj.getDate()
+
+    month = month < 10 ? `0${month}` : month
+    day = day < 10 ? `0${day}` : day
+
+    return `${year}/${month}/${day}`
 }
 
 function debounce(func, timeout = 300) {
