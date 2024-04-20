@@ -11,8 +11,9 @@
     transition: right .15s cubic-bezier(0, 0, .35, 1);
     display: flex;
     flex-direction: column;
-    z-index: 999999;
     overflow: auto;
+    z-index: 99999999999;
+
 
     .activity-input-container {
         display: flex;
