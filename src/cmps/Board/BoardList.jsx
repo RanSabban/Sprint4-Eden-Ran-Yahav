@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink, useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 import { DeleteSvg, DuplicateSvg, FavoritesSvg, NewTab, RenameSvg, SidePrevSvg, ThreePoints } from "../../services/svg.service"
@@ -14,7 +14,7 @@ function truncateString(str, num) {
     return str
 }
 
-function Board({ board, onUpdateBoard, onRemoveBoard }) {
+function Board({ board, onUpdateBoard, onRemoveBoard, boardId }) {
 
     const [isEdit, setIsEdit] = useState(false)
     const [isShown, setIsShown] = useState(false)
@@ -104,10 +104,12 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
         navigate(`/board/${board._id}`)
     }
 
+    console.log(boardId);
+
     return (
         <section
             className="board-side-preview"
-            style={{ textDecoration: "none", color: "#323338" }}
+            style={{ textDecoration: "none", color: "#323338", backgroundColor:`${board._id === boardId ? '#cce5ff' : ''}` }}
             onClick={onBoardNav}
             key={board._id}
         >
@@ -146,6 +148,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 export function BoardList({ onAddBoard, onRemoveBoard, onUpdateBoard }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
+    const {boardId} = useParams()
 
 
     if (isLoading || !boards) return (
@@ -162,6 +165,7 @@ export function BoardList({ onAddBoard, onRemoveBoard, onUpdateBoard }) {
                     board={board}
                     onUpdateBoard={onUpdateBoard}
                     onRemoveBoard={onRemoveBoard}
+                    boardId={boardId}
                 />)
             )}
         </section>
