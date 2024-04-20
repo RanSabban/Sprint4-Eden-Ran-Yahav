@@ -36,6 +36,11 @@
   .rdp-day {
     border-radius: 50%;
   }
+
+  .rdp-weeknumber,
+  .rdp-day {
+    padding: 1.2em 
+  }
 }
 
 .my-selected {
@@ -71,7 +76,6 @@
 padding: 1em;
   .rdp-weeknumber,
   .rdp-day {
-
     padding: 1.2em 
   }
   .rdp-day_selected{
