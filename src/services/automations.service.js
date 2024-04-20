@@ -60,7 +60,7 @@ async function runAutomation(trigger, data) {
 
 function validateAutomation(trigger, relatedAutomations, data) {
     const validatedAutomations = relatedAutomations.filter(automation => {
-        if (trigger === 'STATUS_CHANGE') {
+        if (trigger === 'STATUS_CHANGE' || 'PRIORITY_CHANGE') {
             const { condition } = automation
             const { cell } = data
             const { _id, dataId } = cell

@@ -37,6 +37,10 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                 const data = { cell, taskId, groupId, boardId }
                 await automationService.runAutomation('STATUS_CHANGE', data)
             }
+            if (cell.type === 'priority') {
+                const data = { cell, taskId, groupId, boardId }
+                await automationService.runAutomation('PRIORITY_CHANGE', data)
+            }
         }
         catch (err) {
             console.log('err update task', err)
