@@ -6,7 +6,9 @@ import { Board, DropdownChevronDown, DropdownChevronRight } from "monday-ui-reac
 import { Link } from "react-router-dom"
 import boardImg from '/img/boardImg.png'
 import  loader  from '/img/loader.gif'
-import { Avatar } from "monday-ui-react-core"
+import { Avatar, Button } from "monday-ui-react-core"
+import { userService } from "../../services/user.service"
+import { SlackMessageCmp } from "../SlackMessageCmp"
 
 
 export function BoardHomeList(screenWidth) {
@@ -21,8 +23,13 @@ export function BoardHomeList(screenWidth) {
         loadBoards()
     }, [])
 
+    function sendMsgToSlack(msg){
+        SlackMessageCmp(msg)
+
+    }
 
     console.log(boards)
+    // userService.sendMessageToSlack('yers')
 
     if (isLoading || !boards) return (
         <div className="loader-container">
@@ -33,7 +40,7 @@ export function BoardHomeList(screenWidth) {
     return <section className="board-home-grid-container">
 
         <section className="board-home-list-container">
-            <div className="recently-visited-acord">
+            <div className="recently-visited-card">
                 {screenWidth > 880 && (
                     isCollapsed ?
                         <DropdownChevronRight onClick={() => setIsCollapsed(!isCollapsed)} /> :
@@ -44,41 +51,14 @@ export function BoardHomeList(screenWidth) {
 
                 <h2>Recently visited</h2>
 
-
-                {/* ) : (
-                    <>
-                        <h2 className="activity-title" style={{ letterSpacing: '.5px', color: "#504F54" }} >What's new</h2>
-                        <section className="activity-wrapper">
-                            <article className="activity-card">
-                                <div className="activity-card-top">
-                                    <img className="activity-img" src={boardImg} alt="boardImg" />
-                                    <Avatar
-                                        className="activity-member"
-                                        ariaLabel="Eden Gilady"
-                                        src="https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
-                                        type="img"
-                                    />
-                                </div>
-                                <p className="activity-desc">There was a change in "Demo Launch"</p>
-                                <span>1 hour ago</span>
-                            </article>
-                            <article className="activity-card">
-                                <div className="activity-card-top">
-                                    <img className="activity-img" src={boardImg} alt="boardImg" />
-                                    <Avatar
-                                        className="activity-member"
-                                        ariaLabel="Eden Gilady"
-                                        src="https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
-                                        type="img"
-                                    />
-                                </div>
-                                <p className="activity-desc">There was a change in "Demo Launch"</p>
-                                <span>1 hour ago</span>
-                            </article>
-                        </section>
-                    </>
-                )} */}
             </div>
+            {/* <button onClick={() => sendMsgToSlack('Yoyo!!!!!!!')} style={{ background: 'black' }}>
+                    Click me!
+                </button>             */}
+                <div>
+            <SlackMessageCmp message="Yoyo!!!!!!!" />
+        </div>
+                
 
             {isCollapsed && (
                 <>
@@ -99,6 +79,7 @@ export function BoardHomeList(screenWidth) {
                     </section >
 
                     <article className="update-feed-container">
+                        {/* <Button onClick={sendMessageToSlack('Hello, Slack from my Frontend!')}></Button> */}
                         <h2>Update Feed</h2>
                         <section className="update-feed">
                             <div className="gif-container">
@@ -108,6 +89,7 @@ export function BoardHomeList(screenWidth) {
                                 <h5>No unread updates</h5>
                                 <p>To revisit updates you've already read, change the filter at the top left corner of your feed.</p>
                             </div>
+                            
                         </section>
                     </article>
                 </>

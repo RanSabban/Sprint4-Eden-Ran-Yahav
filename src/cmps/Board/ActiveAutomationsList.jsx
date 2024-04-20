@@ -22,7 +22,7 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
     }
 
     function getAutomationTrigger(automation) {
-        if (automation.trigger === 'STATUS_CHANGE') return 'change'
+        if (automation.trigger === 'STATUS_CHANGE' || 'PRIORITY_CHANGE') return 'change'
     }
 
     function getAutomationAction(automation) {
@@ -32,7 +32,7 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
     function getAutomationCondition(automation) {
         // const key = Object.keys(automation.condition)[0];
         // return `${key}: ${automation.condition[key]}`;
-        if (automation.trigger === 'STATUS_CHANGE') {
+        if (automation.trigger === 'STATUS_CHANGE' || 'PRIORITY_CHANGE') {
             const { condition } = automation
             const columnId = Object.keys(condition)[0]
             const labelId = condition[columnId]
@@ -50,6 +50,7 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
         }
     }
 
+    if (!automations) return
 
     return (
         <section className="active-automations-container">

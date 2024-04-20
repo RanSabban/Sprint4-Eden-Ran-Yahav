@@ -13,6 +13,7 @@ export const userService = {
     getById,
     remove,
     update,
+    sendMessageToSlack
 }
 
 window.userService = userService
@@ -84,6 +85,20 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
+async function sendMessageToSlack(message) {
+    try {
+        // Use the httpService to send the POST request
+        const result = await httpService.post('slack/message', { message });
+        console.log('Message sent:', result);
+        return result;
+    } catch (error) {
+        console.error('Error sending message to Slack:', error);
+        throw error;  // It's good practice to rethrow errors in case the calling function needs to handle it further.
+    }
+}
+
+// Example usage
+// sendMessageToSlack('Hello, Slack from my Frontend!');
 
 // ; (async () => {
 //     // await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
