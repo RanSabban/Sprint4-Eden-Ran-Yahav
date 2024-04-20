@@ -26,6 +26,9 @@ export function AutomationBoard({ setIsAutomateOpen }) {
     }
 
     function getActiveAutomationsLength() {
+        if (!board.automations) {
+            return 'No active automations yet on this board'
+        }
         const activeAutomations = board.automations.filter(automation => automation.active)
         if (!activeAutomations.length) {
             return 'No active automations yet on this board'
@@ -82,6 +85,9 @@ export function AutomationBoard({ setIsAutomateOpen }) {
                         </section>
                     )
                 }
+                {/* {!board.automations.length && (
+
+                )} */}
             </div>
 
         </section>

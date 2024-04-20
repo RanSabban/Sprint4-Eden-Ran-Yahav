@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-// not in use
-
 export function EditableLabelInput({ txt, labelId, onFocus, onUpdateLabelTitle, handleBlur,setFocusedId }) {
     const [isEditingTxt, setIsEditingTxt] = useState(false);
     const [content, setContent] = useState(txt);
