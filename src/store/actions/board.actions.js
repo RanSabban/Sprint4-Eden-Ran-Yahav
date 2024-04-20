@@ -457,6 +457,39 @@ export function handleAddToCalendar(task) {
     window.open(googleCalendarUrl, '_blank')
 }
 
+export function getLinkToCalendar(task) {
+    console.log('talk', task);
+
+    const dateData = task.cells.find(cell => cell.type === 'date')
+    console.log('dateData', dateData);
+
+    if (!task) {
+        console.error('Stay details are missing')
+        return
+    }
+
+    if (!dateData) {
+        console.error('Order dates are missing')
+        return
+    }
+
+    const startDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
+    const endDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
+    console.log('Formatted Start Date:', startDateFormatted)
+    console.log('Formatted End Date:', endDateFormatted)
+
+    const startDate = startDateFormatted.replace(/\//g, '')
+    const endDate = endDateFormatted.replace(/\//g, '')
+    const startTime = 'T000000'
+    const endTime = 'T235959'
+    const details = encodeURIComponent(`Added from oneday.com`)
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=Task:${task.title}&dates=${startDate}${startTime}/${endDate}${endTime}&details=${details}&sf=true&output=xml`
+
+    return googleCalendarUrl
+}
+
+
+
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
