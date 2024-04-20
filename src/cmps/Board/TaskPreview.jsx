@@ -15,7 +15,7 @@ import { handleAddToCalendar, onOpenModalLabel } from '../../store/actions/board
 import { Link, useParams } from 'react-router-dom'
 import { EditableCellTitle } from './reusableCmps/EditableCellTitle'
 import { useEffect } from 'react'
-import { googleCalendarIcon } from '../../services/svg.service'
+import { NoUpdates, googleCalendarIcon } from '../../services/svg.service'
 import { utilService } from '../../services/util.service'
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn, clmTypes }) {
@@ -78,6 +78,13 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
         }
     }
 
+    function msgsLength(task){
+        if(!task.msgs){
+            task.msgs = []
+        }
+        return task.msgs.length
+    }
+
     function getClmType(cellId) {
         const clmToReturn = clmTypes.find(clmTypeToReturn => (clmTypeToReturn._id === cellId))
         return clmToReturn
@@ -117,7 +124,9 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     </span>
                     <div className="btn-message-container">
                         <Link to={`/board/${boardId}/task/${task._id}`}>
-                            <AddUpdate />
+                            {!task.msgs && <AddUpdate />}
+                            {task.msgs && NoUpdates()}
+                            {task.msgs && <div className="msgs-num"><p>{msgsLength(task)}</p></div>}
                         </Link>
                     </div>
                 </div>

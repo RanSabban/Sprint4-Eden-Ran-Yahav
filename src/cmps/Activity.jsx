@@ -28,6 +28,7 @@ export function Activity() {
         return { task: null, groupId: null }
     })
 
+    
     function handleChange({ target }) {
         const { name: field, value } = target
         setTaskMsg(prevCreds => ({ ...prevCreds, [field]: value }))
@@ -35,7 +36,7 @@ export function Activity() {
 
     function onSubmit(ev) {
         ev.preventDefault()
-
+        
         // Prepare the new task message
         const newTaskMsg = {
             ...taskMsg,
@@ -83,7 +84,7 @@ export function Activity() {
     return (
         <section style={{ zIndex: '11111111' }} className="activity-container">
             <div className="upper-details">
-                <Link to={`/board/${boardId}`} className="close-details"><CloseIcon /></Link>
+                <Link to={`/board/${boardId}`} className="close-details"> X<CloseIcon /></Link>
                 <div className="upper-details-actions">
                     <div className="actions-list">
                         <section className="activity-input-container">
@@ -157,3 +158,6 @@ export function Activity() {
         </section>
     )
 }
+
+
+
