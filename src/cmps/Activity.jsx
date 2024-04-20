@@ -89,22 +89,25 @@ export function Activity() {
                         <section className="activity-input-container">
                             <input value={task.title} type="text" className="input-details" onChange={handleChange} />
                         </section>
-                        {task && task.createdBy ? (
-                            <Avatar
-                                style={{ maxWidth: '30px', maxHeight: '30px' }}
-                                src={task.createdBy.imgUrl || 'fallback-image-url-here'}
-                                type="img"
-                            />
-                        ) : (
-                            <img style={{ width: '30px', height: '30px', borderRadius: '50%' }} src="https://res.cloudinary.com/dkvliixzt/image/upload/v1704358773/person-empty_zckbtr_wrffbw.svg" href="" />
-                        )}
-                        <div style={{ lineHeight: "3.5em", marginRight: "2em" }} >
-                            Í<DetailsIcon />
-                        </div>
+                        <section className='right-top' >
+                            {task && task.createdBy ? (
+                                <Avatar
+                                    style={{ maxWidth: '30px', maxHeight: '30px' }}
+                                    src={task.createdBy.imgUrl || 'fallback-image-url-here'}
+                                    type="img"
+                                />
+                            ) : (
+                                <img style={{ width: '30px', height: '30px', borderRadius: '50%' }} src="https://res.cloudinary.com/dkvliixzt/image/upload/v1704358773/person-empty_zckbtr_wrffbw.svg" href="" />
+                            )}
+                            <div>
+                                <DetailsIcon />
+                            </div>
+                        </section>
                     </div>
 
-                    <section style={{ marginLeft: "3.4em" }} className="panel-subjects flex">
-                        <button className="details-option"><HouseIcon />Updates</button>
+                    <section style={{ marginLeft: "2.25em" }} className="panel-subjects flex">
+                        <HouseIcon />
+                        <button className="details-option">Updates</button>
                         <button className="details-option">Files</button>
                         <button className="details-option">Activity Log</button>
                     </section>
@@ -143,8 +146,8 @@ export function Activity() {
                                     {formatDistanceToNow(new Date(msg.createdAt), { addSuffix: true })}
                                 </div>
                             </section>
-                            <span style={{marginLeft: '1.5em'}}>
-                            {msg.msg}
+                            <span style={{ marginLeft: '1.5em' }}>
+                                {msg.msg}
                             </span>
                         </li>
                     )) : <div className="no-updates"><img style={{ width: '26em' }} src="https://myday-p034.onrender.com/img/no-updates.svg" alt="" /><div className="post-not-found-txt"><h2 style={{ margin: '1em 0' }}>No Updates yet for this item</h2><p className="post-not-found-subtitle">Be the first one to update about progress, mention someone<br />or upload files to share with your team members</p></div></div>}

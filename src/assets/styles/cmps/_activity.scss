@@ -13,6 +13,13 @@
     flex-direction: column;
     z-index: 999999;
 
+    .right-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+    }
+
     .task-msg-preview {
         flex-grow: 1;
         margin: 20px;
@@ -81,7 +88,9 @@
 
         .actions-list {
             display: flex;
-            
+            justify-content: space-between;
+            margin-right: 2em;
+
         }
     }
 
