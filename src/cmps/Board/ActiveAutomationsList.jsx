@@ -50,6 +50,7 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
         }
     }
 
+    if (!automations) return
 
     return (
         <section className="active-automations-container">
