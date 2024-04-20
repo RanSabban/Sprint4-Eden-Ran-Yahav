@@ -5,7 +5,9 @@ import { store } from '../store/store.js'
 import { SET_CURRENT_BOARD } from '../store/reducers/board.reducer.js'
 export const automationService = {
     registerAutomation,
-    runAutomation
+    runAutomation,
+    removeAutomation,
+    toggleAutomationActive
 }
 
 async function registerAutomation(automationRule, boardId) {
@@ -17,6 +19,10 @@ async function registerAutomation(automationRule, boardId) {
         }
         board.automations.push(automationRule)
         await boardService.save(board)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
         return board
     } catch (err) {
         console.error('Failed to register automation:', err)
@@ -25,7 +31,7 @@ async function registerAutomation(automationRule, boardId) {
 }
 
 async function runAutomation(trigger, data) {
-    console.log(trigger,data);
+    console.log(trigger, data);
     try {
         const { boardId } = data
         const boardAutomations = await boardService.getAllAutomations(boardId)
@@ -38,7 +44,7 @@ async function runAutomation(trigger, data) {
         if (!validatedAutomations.length) return
         for (const automation of validatedAutomations) {
             if (automation.action === 'MOVE_TO_GROUP') {
-                const { taskId , boardId} = data
+                const { taskId, boardId } = data
                 const board = await boardService.moveTaskToTop(taskId, automation.target, boardId)
                 console.log('activating automation', automation);
                 store.dispatch({
@@ -58,13 +64,61 @@ function validateAutomation(trigger, relatedAutomations, data) {
             const { condition } = automation
             const { cell } = data
             const { _id, dataId } = cell
-            if (condition[_id] === dataId) {
+            if (condition[_id] === dataId && automation.active) {
                 return automation
             }
         }
     })
     console.log(validatedAutomations);
     return validatedAutomations
+}
+
+async function removeAutomation(automationId, boardId) {
+    console.log('automation Id', automationId);
+    try {
+        const board = await boardService.getById(boardId)
+        if (!board) {
+            throw new Error('Board not found')
+        }
+        const filteredAutomations = board.automations.filter(automation => automation.id !== automationId)
+        board.automations = filteredAutomations
+
+        await boardService.save(board)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        socketService.emit('board-updated', board)
+
+
+    } catch (err) {
+        console.error('Error removing automation:', err)
+        throw err
+    }
+}
+
+async function toggleAutomationActive(automationId, boardId) {
+    console.log('automation ID', automationId);
+    try {
+        const board = await boardService.getById(boardId)
+        if (!board) {
+            throw new Error('Board not found')
+        }
+        const automationsToReturn = board.automations.map(automation =>
+            automation.id === automationId
+                ? { ...automation, active: !automation.active }
+                : automation
+        )
+        board.automations = automationsToReturn
+        await boardService.save(board)
+        store.dispatch({
+            type: SET_CURRENT_BOARD,
+            board
+        })
+        socketService.emit('board-updated', board)
+    } catch (err) {
+
+    }
 }
 
 // async function executeAutomation(automationId, boardId,) {

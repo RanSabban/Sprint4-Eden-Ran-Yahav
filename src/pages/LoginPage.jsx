@@ -1,3 +1,5 @@
+import { Avatar, AvatarGroup, Button, IconButton, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
+
 import { Link, NavLink } from 'react-router-dom';
 import loginImage from '../../src/assets/img/login.png';
 import { LoginSignup } from '../cmps/LoginSignup';
@@ -20,28 +22,14 @@ export function LoginPage() {
                         Or
                         <div className="separator-line"></div>
                     </div>
-                        <LoginSignup/>
-                    <section className='work-email'>
-                        <span>Work email</span>
-                        <input className='work-email-input rect' type="email" required placeholder='name@company.com' />
-                        <Link to='/board'>
-                        <button className='rect'>Continue</button>
-                        </Link>
-                    </section>
-                    <div className="terms">
-                        <p>By proceeding, you agree to the</p>
-                        <div className='terms-links-wrapper'>
-                        <a href="#">Terms of Service</a>
-                        <p> and </p>
-                        <a href="#">Privacy Policy</a>
-                        </div>
-                    </div>
+                    <LoginSignup />
+
                 </section>
 
-                <footer>
+                {/* <footer>
                     <p>Already have an account?</p>
                     <a href="#">Log in</a>
-                </footer>
+                </footer> */}
             </div>
 
             <aside className='img-container' >

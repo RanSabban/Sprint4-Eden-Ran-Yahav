@@ -36,7 +36,6 @@ export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }
 
             cell.date = timestamp
             await onUpdateCell(cell, taskId)
-            console.log('Date updated:', format(date, 'PPP'))
             setDatePickerOpen(false)
         } catch (err) {
             console.error('Failed to update date:', err)
