@@ -11,11 +11,12 @@ import { Button, Checkbox, Menu, MenuButton, MenuItem } from 'monday-ui-react-co
 import { AddSmall, AddUpdate, Delete, Update } from 'monday-ui-react-core/icons'
 import loader from '/img/loader.gif'
 import { useState } from 'react'
-import { onOpenModalLabel } from '../../store/actions/board.actions'
+import { handleAddToCalendar, onOpenModalLabel } from '../../store/actions/board.actions'
 import { Link, useParams } from 'react-router-dom'
 import { EditableCellTitle } from './reusableCmps/EditableCellTitle'
 import { useEffect } from 'react'
-import { setIsLoading } from '../../store/actions/system.actions'
+import { googleCalendarIcon } from '../../services/svg.service'
+import { utilService } from '../../services/util.service'
 
 export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemoveTask, groupColor, isLast, columnWidth, resizeColumn, clmTypes }) {
     const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
@@ -94,6 +95,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
             <section style={{}} className="task-actions">
                 <MenuButton size='XS'>
                     <Menu id={`menu-${task._id}`} size={Menu.sizes.SMALL} style={{ zIndex: '999999' }}>
+                        <MenuItem icon={googleCalendarIcon} title="Add To Calender" onClick={() => handleAddToCalendar(task)} />
                         <MenuItem icon={Delete} title="Delete" onClick={() => onRemoveTask(task._id)} />
                     </Menu>
                 </MenuButton>
@@ -103,7 +105,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     <Checkbox
                     // checked={isEditing}
                     // onChange={handleCheckboxChange}
-                    /> 
+                    />
                 </div>
                 <div className='task-title-cell'>
                     <span className='dyn-cell title'>
@@ -120,7 +122,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     </div>
                 </div>
             </div>
-    
+
             {
                 cells.map((cell, idx) => (
 
@@ -142,7 +144,7 @@ export function TaskPreview({ groupId, task, onUpdateCell, onUpdateTask, onRemov
                     />
                 ))
             }
-    
+
             <div className='dyn-cell infinity'></div>
         </>
     )
@@ -168,5 +170,5 @@ function DynamicCmp(props) {
         case 'updates':
             return <LastUpdatedComponent {...props} />
         default: <span></span>
-    }
+    }
 }

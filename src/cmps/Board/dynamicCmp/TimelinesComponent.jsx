@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import dayjs from "dayjs"
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
+import { Button } from "monday-ui-react-core"
 
 export function TimelinesComponent({ cell, groupColor, onUpdateCell, taskId }) {
     const [isDatePickerOpen, setDatePickerOpen] = useState(false)
@@ -15,11 +16,11 @@ export function TimelinesComponent({ cell, groupColor, onUpdateCell, taskId }) {
         if (!selectedRange.from || !selectedRange.to) return
         try {
             setDatePickerOpen(false)
-            
+
             const updatedCell = {
                 ...cell,
-                startDate: selectedRange.from.getTime(), 
-                endDate: selectedRange.to.getTime() 
+                startDate: selectedRange.from.getTime(),
+                endDate: selectedRange.to.getTime()
             }
             await onUpdateCell(updatedCell, taskId)
             setDatePickerOpen(false)
@@ -45,7 +46,7 @@ export function TimelinesComponent({ cell, groupColor, onUpdateCell, taskId }) {
     function calculateTimeDifference(startDate, endDate) {
         const start = dayjs(startDate)
         const end = dayjs(endDate)
-        const duration = end.diff(start, 'day') 
+        const duration = end.diff(start, 'day')
 
         if (duration < 0) {
             return "Invalid Date Range"
@@ -88,20 +89,33 @@ export function TimelineRange({ selectedRange, setSelectedRange, onUpdateCell })
     const popperElem = useRef(null)
 
     const handleDateRangeSelect = (range) => {
-        setSelectedRange(range) 
+        setSelectedRange(range)
     }
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (referenceElem.current && !referenceElem.current.contains(event.target)) {
+                onUpdateCell(selectedRange)
+                setSelectedRange(range)
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick)
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick)
+        }
+    }, [selectedRange, onUpdateCell, setSelectedRange, referenceElem])
 
     return (
         <div className="task-date" ref={referenceElem}>
-            <div ref={popperElem} className="date-picker-modal">
+            <div ref={popperElem} className="range-picker-modal">
                 <DayPicker
                     mode="range"
                     selected={selectedRange || 'Add time line +'}
-                    onSelect={handleDateRangeSelect} 
+                    onSelect={handleDateRangeSelect}
                     showOutsideDays
-                    numberOfMonths={2} // Set the number of months to display
+                    numberOfMonths={2}
                 />
-                <button style={{ color: '#323338' }} onClick={onUpdateCell}>Update</button> {/* Add a button to trigger update */}
+                <Button onClick={onUpdateCell}>Update</Button>
             </div>
         </div>
     )

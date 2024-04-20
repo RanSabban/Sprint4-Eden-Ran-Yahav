@@ -12,6 +12,7 @@ import { EditableCmp } from './reusableCmps/EditableCmp'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { socketService } from '../../services/socket.service'
 import { automationService } from '../../services/automations.service'
+import { utilService } from '../../services/util.service'
 
 export function TaskList({ groupId, groupColor, placeholderProps, boardType, clmTypes, columnWidth, resizeColumn, tasks }) {
     // const tasks = useSelector(storeState =>
@@ -41,6 +42,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
             console.log('err update task', err)
         }
     }
+
     async function onUpdateTask(task) {
         try {
             updateTask(task, groupId, boardId)
@@ -137,12 +139,10 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                                 <EditableCmp onUpdateInput={onAddTaskFromList} placeholder={'+ Add item'} />
                             </div>
                         </div>
-                        <div className='add-task-fill-gap'>
-                        </div>
+                        <div className='add-task-fill-gap'></div>
                     </div>
                 </div>
             )}
         </Droppable >
     )
 }
-
