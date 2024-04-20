@@ -14,13 +14,13 @@ import { socketService } from "../../services/socket.service"
 import { useDispatch } from "react-redux"
 
 
-export function BoardPreview({ onAddGroup, board}) {
+export function BoardPreview({ onAddGroup, board }) {
 
     const [placeholderProps, setPlaceholderProps] = useState("")
     const [isCollapsedAll, setIsCollapsedAll] = useState(false)
 
     // const board = useSelector(storeState => storeState.boardModule.board)
-    const {boardId} = useParams()
+    const { boardId } = useParams()
     const dispatch = useDispatch()
 
     const [localBoard, setLocalBoard] = useState(board)
@@ -31,7 +31,7 @@ export function BoardPreview({ onAddGroup, board}) {
 
     useEffect(() => {
         setLocalBoard(board)
-    },[board])
+    }, [board])
 
     // useEffect(() => {
     //     if (boardId) {
@@ -44,7 +44,7 @@ export function BoardPreview({ onAddGroup, board}) {
         // console.log('board preview socket !');
         socketService.on('board-updated', updatedBoard => {
             if (updatedBoard._id === boardId) {
-                console.log(updatedBoard);
+                // console.log(updatedBoard);
                 setLocalBoard(updatedBoard)
             }
         })
@@ -101,8 +101,23 @@ export function BoardPreview({ onAddGroup, board}) {
 
 
     const queryAttr = "data-rbd-drag-handle-draggable-id"
+    function onBeforeDragStart(type) {
+        console.log(type);
+        console.log('isCollapsedAll', isCollapsedAll);
+        try {
+            if (type.type === 'GROUP') {
+                setIsCollapsedAll(true)
+                console.log('isCollapsedAll', isCollapsedAll);
 
+                // showSuccessMsg('Tasks swiped!')
+            }
+        } catch (err) {
+            console.log('Error drag and drop', err)
+            // showErrorMsg('Cannot swipe sorry AVATAR!!!')
+        }
+    }
     function onDragUpdate(update) {
+
         if (!update.destination) {
             return
         }
@@ -135,7 +150,7 @@ export function BoardPreview({ onAddGroup, board}) {
         })
     }
 
-    console.log('localboard',localBoard);
+    // console.log('localboard',localBoard);
 
     if (!groups && !localBoard) return <div>LOADING</div>
     return (
@@ -143,7 +158,7 @@ export function BoardPreview({ onAddGroup, board}) {
 
         <section className="board-preview">
             <LabelPicker />
-            <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate} >
+            <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={onDragUpdate} onBeforeDragStart={onBeforeDragStart} >
                 <GroupList
                     placeholderProps={placeholderProps}
                     setPlaceholderProps={setPlaceholderProps}
@@ -157,9 +172,9 @@ export function BoardPreview({ onAddGroup, board}) {
                     onAddGroup={onAddGroup} />
             </DragDropContext>
             <div onClick={() => onAddGroup(localBoard._id, true)} className="add-group-bottom-container"
-            style={{display: 'grid', gridAutoFlow: 'column'}}
+                style={{ display: 'grid', gridAutoFlow: 'column' }}
             >
-                <Add/>
+                <Add />
                 <span className="bottom-add-group-btn">Add new group</span>
             </div>
         </section>

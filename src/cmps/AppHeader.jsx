@@ -15,7 +15,7 @@ import { logoutUser } from '../services/svg.service.jsx'
 export function AppHeader() {
     const [isLogout, setIsLogout] = useState(false)
     let user = useSelector(storeState => storeState.userModule.loggedInUser)
-    console.log('user', user);
+    // console.log('user', user);
     
     if(user === null){
        let credentials = {
@@ -69,7 +69,7 @@ export function AppHeader() {
                     <Button
                         className="btn"
                         kind="tertiary"
-                        onClick={() => console.log('m-list')}
+                        // onClick={() => console.log('m-list')}
                         size="sm"
                     >
                         <Badge alignment={Badge.alignments.CIRCULAR}>
@@ -82,7 +82,7 @@ export function AppHeader() {
                     <Button
                         className="btn"
                         kind="tertiary"
-                        onClick={() => console.log('m-list')}
+                        // onClick={() => console.log('m-list')}
                         size="sm"
                     >
                         <Inbox />
@@ -93,7 +93,7 @@ export function AppHeader() {
                     <Button
                         className="btn"
                         kind="tertiary"
-                        onClick={() => console.log('m-list')}
+                        // onClick={() => console.log('m-list')}
                         size="sm"
                     >
                         <Invite />
@@ -104,7 +104,7 @@ export function AppHeader() {
                     <Button
                         className="btn"
                         kind="tertiary"
-                        onClick={() => console.log('m-list')}
+                        // onClick={() => console.log('m-list')}
                         size="sm"
                     >
                         <Search />
@@ -117,7 +117,7 @@ export function AppHeader() {
                     <Button
                         className="btn"
                         kind="tertiary"
-                        onClick={() => console.log('m-list')}
+                        // onClick={() => console.log('m-list')}
                         size="sm"
                         style={{ lineHeight: '0.5em' }}
                     >

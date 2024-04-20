@@ -16,7 +16,7 @@ export function BoardSideBar() {
 
     const { boardId } = useParams()
     const dynClasse = !boardId ? '#cce5ff' : '#ffffff'
-    console.log(boardId)
+    // console.log(boardId)
 
     useEffect(() => {
         loadBoards()

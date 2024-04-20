@@ -97,7 +97,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
 
                     {localGroups.map((group, index) => (
 
-                        <Draggable key={index} draggableId={group._id} index={index}>
+                        <Draggable key={group._id} draggableId={group._id} index={index}>
 
                             {(provided, snapshot) => (
                                 <li
@@ -124,7 +124,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                             )}
                         </Draggable>
                     ))}
-                    {snapshot.isDraggingOver && (
+                    {/* {snapshot.isDraggingOver && (
                         <div style={{
                             position: "absolute",
                             top: placeholderProps.clientY,
@@ -134,7 +134,7 @@ export function GroupList({ clmTypes, onAddTask, boardType, groups, isCollapsedA
                             borderRadius: "2px",
                             width: placeholderProps.clientWidth - `10px`,
                         }} />
-                    )}
+                    )} */}
                     {provided.placeholder}
                 </ul>
             )}
