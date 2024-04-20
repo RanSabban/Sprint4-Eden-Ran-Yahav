@@ -3,6 +3,8 @@ import { boardReducer } from './reducers/board.reducer.js'
 import { userReducer } from './reducers/user.reducer.js'
 import { reviewReducer } from './reducers/review.reducer.js'
 import { systemReducer } from './reducers/system.reducer.js'
+import { slackReducer } from './reducers/slack.reducer'
+
 
 import {
     combineReducers,
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
     userModule: userReducer,
     systemModule: systemReducer,
     reviewModule: reviewReducer,
+    slackModule: slackReducer,
+
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
