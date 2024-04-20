@@ -43,7 +43,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     useEffect(() => {
         if (isCollapsedAll) {
-            console.log(isCollapsedAll);
+            console.log('isCollapsedAll',isCollapsedAll);
             setIsCollapsed(true)
         } else {
             setIsCollapsed(false)

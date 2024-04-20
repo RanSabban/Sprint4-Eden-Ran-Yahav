@@ -117,7 +117,7 @@ export function TaskList({ groupId, groupColor, placeholderProps, boardType, clm
                             height: placeholderProps.clientHeight,
                             border: "1px dashed #D0D4E4",
                             borderRadius: "2px",
-                            width: placeholderProps.clientWidth - `10px`,
+                            width: placeholderProps.clientWidth ,
                         }} />
                     )}
                     {provided.placeholder}

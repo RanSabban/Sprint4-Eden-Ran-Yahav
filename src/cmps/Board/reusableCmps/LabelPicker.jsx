@@ -10,7 +10,7 @@ import { ColorPicker } from "./ColorPicker"
 export function LabelPicker() {
     const modalProps = useSelector(storeState => storeState.boardModule.modalProps)
     const { target, clmType, cell, isOpen, task, groupId, group, callBackFunc } = modalProps
-    console.log("Modal Props:", modalProps);
+    // console.log("Modal Props:", modalProps);
 
     const dispatch = useDispatch()
     const [isUp, setIsUp] = useState('')
@@ -39,7 +39,7 @@ export function LabelPicker() {
             const spaceAbove = rect.top
             const spaceBelow = window.innerHeight - rect.bottom
 
-            console.log(spaceAbove, 'for sure')
+            // console.log(spaceAbove, 'for sure')
 
             // if (spaceAbove < 450) {
             // }
@@ -49,10 +49,10 @@ export function LabelPicker() {
             // }
             let isOpenUp
 
-            console.log(spaceAbove, spaceBelow)
+            // console.log(spaceAbove, spaceBelow)
             let topPosition
             if (spaceBelow > pickerHeight || spaceBelow > spaceAbove) {
-                console.log('bottom!')
+                // console.log('bottom!')
                 setIsUp(true)
                 isOpenUp = true
                 topPosition = rect.bottom + window.scrollY
@@ -63,7 +63,7 @@ export function LabelPicker() {
                 topPosition = rect.top - pickerHeight + window.scrollY
                 setIsUp(false)
                 isOpenUp = false
-                console.log('top!')
+                // console.log('top!')
                 if (topPosition < 0) {
                     topPosition = 0
                 }
@@ -124,9 +124,9 @@ export function LabelPicker() {
         }
     }
 
-    console.log(cell)
+    // console.log(cell)
 
-    console.log(pickerRef)
+    // console.log(pickerRef)
 
     return (
         <div className="label-picker-container" ref={pickerRef}>
@@ -151,7 +151,7 @@ export function LabelPicker() {
 
 
 export function DynamicCmp(props) {
-    console.log('this is props:', props)
+    // console.log('this is props:', props)
 
     let componentType = props.cmpType
 
