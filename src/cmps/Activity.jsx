@@ -1,32 +1,32 @@
-import { formatDistanceToNow } from 'date-fns';
-import { useParams } from "react-router";
-import { Avatar, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { CloseIcon, DetailsIcon, EmailIcon, HouseIcon, TimerSvg } from "../services/svg.service";
-import { useState } from "react";
-import { updateTask } from "../store/actions/board.actions";
+import { formatDistanceToNow } from 'date-fns'
+import { useParams } from "react-router"
+import { Avatar, Button, EditableHeading, Menu, MenuButton, MenuDivider, MenuItem, Tab, TabList, Tooltip, } from "monday-ui-react-core"
+import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { CloseIcon, DetailsIcon, EmailIcon, HouseIcon, TimerSvg } from "../services/svg.service"
+import { useState } from "react"
+import { updateTask } from "../store/actions/board.actions"
 
 export function Activity() {
     const { taskId, boardId } = useParams()
     const [txtToUpdate, setTxtToUpdate] = useState('')
     const [taskMsg, setTaskMsg] = useState({ id: '', msg: '', by: { _id: '' } })
     let user = useSelector(storeState => storeState.userModule.loggedInUser)
-    console.log('user maybe:', user);
+    console.log('user maybe:', user)
 
     const { task, groupId } = useSelector(storeState => {
-        const groups = storeState.boardModule.board.groups || [];
+        const groups = storeState.boardModule.board.groups || []
         for (let group of groups) {
             for (let task of group.tasks) {
                 if (task._id === taskId) {
                     // Directly return from here if a match is found
-                    return { task, groupId: group._id };
+                    return { task, groupId: group._id }
                 }
             }
         }
         // Return a consistent object structure, even when no task is found
-        return { task: null, groupId: null };
-    });
+        return { task: null, groupId: null }
+    })
 
     function handleChange({ target }) {
         const { name: field, value } = target
@@ -34,7 +34,7 @@ export function Activity() {
     }
 
     function onSubmit(ev) {
-        ev.preventDefault();
+        ev.preventDefault()
 
         // Prepare the new task message
         const newTaskMsg = {
@@ -47,31 +47,31 @@ export function Activity() {
                 fullname: user.fullname
 
             }
-        };
+        }
 
         // Check if the task messages array exists, if not, initialize it
         if (!task.msgs) {
-            task.msgs = [];
+            task.msgs = []
         }
 
         // Push the new message into the task messages array
-        task.msgs.push(newTaskMsg);
+        task.msgs.unshift(newTaskMsg)
 
         // Call the updateTask function to update the task
         updateTask(task, groupId, boardId)
             .then(() => {
                 // Optionally, display a success message
-                console.log('Your message was added successfully.');
-                // showSuccessMsg('Your msg added');
+                console.log('Your message was added successfully.')
+                // showSuccessMsg('Your msg added')
             })
             .catch((err) => {
                 // Optionally, display an error message
-                console.error('Could not add your message.', err);
-                // showErrorMsg('Cannot add your msg');
-            });
+                console.error('Could not add your message.', err)
+                // showErrorMsg('Cannot add your msg')
+            })
 
         // Reset the task message input fields
-        setTaskMsg({ id: '', msg: '', by: { _id: '' } });
+        setTaskMsg({ id: '', msg: '', by: { _id: '' } })
     }
 
     console.log('task please', task)
