@@ -323,7 +323,7 @@ export async function updateFilterBy(filterBy, boardId) {
         if (filterBy.title) {
             store.dispatch({
                 type: TOGGLE_FILTER_BY,
-                isFilterBy: true
+                filterBy: true
             })
         } else {
             store.dispatch({

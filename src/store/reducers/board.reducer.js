@@ -86,10 +86,14 @@ export function boardReducer(state = initialState, action) {
             }
 
         case TOGGLE_FILTER_BY: {
+
+            console.log(action.filterBy);
+
             newState = {
                 ...state, 
-                filterBy: action.isFilterBy
+                filterBy: action.filterBy
             }
+            break
         }
 
         case SET_LABEL_MODAL: {

@@ -980,7 +980,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: Date.now()
                             }
                         ],
                         createdBy: {
@@ -1006,7 +1006,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: Date.now()
                             },
                         ],
                         createdBy: {
@@ -1021,7 +1021,7 @@ function getEmptyBoard() {
                         cells: [
                             { _id: "c111", type: "status", dataId: "l100" }, // Working on it
                             { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
-                            { _id: "c115", type: "date", date: 1589983468418 }, // Example date
+                            { _id: "c115", type: "date", date: Date.now() }, // Example date
                         ],
                         createdBy: {
                             _id: "EtzD2",
@@ -1034,7 +1034,7 @@ function getEmptyBoard() {
             },
             {
                 _id: utilService.makeId(),
-                title: "Group title",
+                title: "Group Title",
                 groupColor: utilService.getPrettyRandomColor(),
                 archivedAt: null,
                 tasks: [
@@ -1055,7 +1055,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: Date.now()
                             }
                         ],
                         createdBy: {
@@ -1081,7 +1081,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c115",
                                 type: "date",
-                                date: 1589983468418
+                                date: Date.now()
                             }
                         ],
                         createdBy: {

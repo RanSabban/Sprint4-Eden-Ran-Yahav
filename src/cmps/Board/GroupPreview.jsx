@@ -164,7 +164,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     // console.log(dynamicStyle);
     console.log(filterBy);
-    if (!group.tasks.length && filterBy) return
+    if (!currGroup.tasks.length && filterBy) return
 
     // console.log(currClmTypes);
 
