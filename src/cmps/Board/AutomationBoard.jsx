@@ -8,6 +8,7 @@ import { DynamicDialogAutomation } from './reusableCmps/DynamicDialogAutomation'
 import { StatusAutomation } from './StatusAutomation'
 import { ActiveAutomationsList } from './ActiveAutomationsList'
 import { Close, NavigationChevronLeft } from 'monday-ui-react-core/icons'
+import { TriggerSelect } from './TriggerSelect'
 
 export function AutomationBoard({ setIsAutomateOpen }) {
     const board = useSelector
@@ -73,6 +74,18 @@ export function AutomationBoard({ setIsAutomateOpen }) {
                                 {getActiveAutomationsLength()}
                             </span>
                         </section>
+
+                        {!board.automations || !board.automations.length && (
+                            <section className="no-automations-container">
+                                <img src="https://res.cloudinary.com/dwutylewo/image/upload/v1713617557/Group_201261155364_xnoqke.png" className='no-automations-img' />
+                                <p className='no-automations-first-p'>
+                                    No active automations yet on this board 
+                                </p>
+                                <p className='no-automations-sec-p'>
+                                    Save time and reduce manual work by adding automations
+                                </p>
+                            </section>
+                        )}
                         <div className='automations-list'>
                             <ActiveAutomationsList automations={board.automations} clms={board.clmTypes} groups={board.groups} boardId={boardId} />
                         </div>
@@ -80,14 +93,13 @@ export function AutomationBoard({ setIsAutomateOpen }) {
                     </>)}
                 {
                     isAddAutomation && (
-                        <section className="add-automations">
-                            <StatusAutomation filteredClmsStatus={filteredClmsStatus} onRegisterAutomation={onRegisterAutomation} groups={board.groups} />
-                        </section>
+                        <TriggerSelect groups={board.groups} clms={board.clmTypes} onRegisterAutomation={onRegisterAutomation} setIsAddAutomation={setIsAddAutomation} />
+                        // <section className="add-automations">
+                        //     <StatusAutomation filteredClmsStatus={filteredClmsStatus} onRegisterAutomation={onRegisterAutomation} groups={board.groups} setIsAddAutomation={setIsAddAutomation} />
+                        // </section>
                     )
                 }
-                {/* {!board.automations.length && (
 
-                )} */}
             </div>
 
         </section>

@@ -4,7 +4,7 @@ import { addColumn } from "../../store/actions/board.actions";
 import { MoveArrowDown } from "monday-ui-react-core/icons";
 import { useParams } from "react-router";
 
-export function StatusAutomation({ filteredClmsStatus, groups, onRegisterAutomation, setIsAddAutomation }) {
+export function PriorityAutomation({ filteredClmsPriority, groups, onRegisterAutomation, setIsAddAutomation }) {
 
     const [selectedClm, setSelectedClm] = useState('')
     const [selectedLabel, setSelectedLabel] = useState('')
@@ -14,13 +14,13 @@ export function StatusAutomation({ filteredClmsStatus, groups, onRegisterAutomat
 
     const { boardId } = useParams()
 
-    function setClmStatus(clmId) {
+    function setClmPriority(clmId) {
         setSelectedClm(getClmData(clmId))
         setIsSelected(true)
     }
 
     function getClmData(clmId) {
-        const clm = filteredClmsStatus.find(clm => clm._id === clmId)
+        const clm = filteredClmsPriority.find(clm => clm._id === clmId)
         return clm
     }
 
@@ -35,7 +35,7 @@ export function StatusAutomation({ filteredClmsStatus, groups, onRegisterAutomat
     function onCreateAutomation() {
         const newRule = {
             id: new Date().getTime(),
-            trigger: 'STATUS_CHANGE',
+            trigger: 'PRIORITY_CHANGE',
             action: 'MOVE_TO_GROUP',
             condition: { [selectedClm._id]: selectedLabel },
             // taskId: 'c101',
@@ -56,10 +56,10 @@ export function StatusAutomation({ filteredClmsStatus, groups, onRegisterAutomat
 
 
     return (
-        <div className="status-automation-container">
+        <div className="priority-automation-container">
             <div className="trigger-container-automation">
                 <span className="when-automation-span">When</span>
-                <DynamicDialogAutomation itemsToRender={filteredClmsStatus} callBack={setClmStatus} placeHolder={'status'} addFunc={onAddColumn} type={'status'} />
+                <DynamicDialogAutomation itemsToRender={filteredClmsPriority} callBack={setClmPriority} placeHolder={'priority'} addFunc={onAddColumn} type={'priority'} />
 
                 <span>changes to</span>
                 {isSelected && (

@@ -29,6 +29,7 @@
             padding-inline-end: 18px;
             cursor: pointer;
         }
+
         .close-add-automations {
             display: grid;
             grid-auto-flow: column;
@@ -56,7 +57,27 @@
         grid-column: 2;
         grid-template-rows: 125px 1fr;
 
-        .add-automations{
+        .no-automations-container {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            height: max-content;
+            row-gap: 14px;
+            text-align: center;
+
+            .no-automations-img {
+                width: max-content;
+                align-self: center;
+                justify-self: center;
+            }
+
+            .no-automations-sec-p {
+                font-family: figtree-bold;
+            }
+        }
+
+
+        .add-automations {
             justify-self: center;
             margin-top: 88px;
         }
@@ -77,17 +98,21 @@
             }
 
         }
-        .automations-main-upper{
+
+        .automations-main-upper {
             display: grid;
             grid-auto-flow: column;
+
             .automations-actions {
                 display: grid;
                 justify-items: end;
                 grid-row: 1;
+
                 .create-automation-btn {
                     height: max-content;
                 }
             }
+
             .automations-count {
                 grid-row: 2;
                 grid-column: 1;
@@ -103,7 +128,14 @@
             }
         }
 
-        .status-automation-container {
+        .select-trigger-modal-container {
+            display: grid;
+            justify-items: center;
+        }
+
+        .status-automation-container,
+        .priority-automation-container {
+            margin-top: 84px;
             display: grid;
             // grid-auto-flow: column;
             row-gap: 20px;
@@ -140,6 +172,7 @@
             width: max-content;
             position: relative;
             cursor: pointer;
+            font-size: 24px;
 
             &.active {
                 color: #0073ea;
@@ -181,6 +214,7 @@
                         background-color: transparent;
                         padding: 4px;
                         border-radius: 4px;
+
                         &:hover {
                             background-color: rgba(103, 104, 121, 0.1);
                         }

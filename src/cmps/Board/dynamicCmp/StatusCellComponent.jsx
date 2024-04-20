@@ -23,7 +23,7 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
                     console.log('cell.animation', cell.animation);
                     setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
                     cell.animation = false
-                    console.log('cell.animation', cell.animation);
+                    // console.log('cell.animation', cell.animation);
                     setTimeout(() => {
                         setAnimation('')
                     }, 3000);
