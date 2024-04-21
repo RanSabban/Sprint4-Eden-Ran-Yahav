@@ -15,7 +15,7 @@ export function BoardSideBar() {
     const boards = useSelector(storeState => storeState.boardModule.boards)
 
     const { boardId } = useParams()
-    const dynClasse = !boardId ? '#cce5ff' : '#ffffff'
+    const dynClasse = !boardId ? '#cce5ff' : ''
     // console.log(boardId)
 
     useEffect(() => {
@@ -120,13 +120,13 @@ export function BoardSideBar() {
                                 />
 
                                 {/* </div> */}
-                                <Tooltip className='tool' position="absolute" zIndex='111111' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
+                                <Tooltip className='tool'  zIndex='99999999' content="Add item to workspace" animationType="expand" ><button onClick={addBoardOnClick} className="plus-button"><PlusTool /></button></Tooltip>
                             </section>
                         </section>
 
                         <div className="board-sidebar-lower">
 
-                            <BoardList boards={boards} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
+                            <BoardList boards={boards} dynClasse={dynClasse} onAddBoard={onAddBoard} onRemoveBoard={onRemoveBoard} onUpdateBoard={onUpdateBoard} />
 
                         </div>
                     </div>

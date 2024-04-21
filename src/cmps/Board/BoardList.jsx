@@ -14,11 +14,12 @@ function truncateString(str, num) {
     return str
 }
 
-function Board({ board, onUpdateBoard, onRemoveBoard }) {
+function Board({ board, onUpdateBoard, onRemoveBoard, dynClasse }) {
 
     const [isEdit, setIsEdit] = useState(false)
     const [isShown, setIsShown] = useState(false)
     const [editedTitle, setEditedTitle] = useState(board.title)
+    const [isSelected, setIsSelected] = useState(false);
 
     const navigate = useNavigate()
     const inputRef = useRef(null)
@@ -106,7 +107,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard }) {
 
     return (
         <section
-            className="board-side-preview"
+            className={`board-side-preview ${isSelected ? 'selected' : ''}`}
             style={{ textDecoration: "none", color: "#323338" }}
             onClick={onBoardNav}
             key={board._id}

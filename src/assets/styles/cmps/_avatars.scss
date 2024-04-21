@@ -1,6 +1,6 @@
 .overlap-images-wrapper {
     flex-wrap: nowrap;
-    
+
 
     >* {
         position: relative;
@@ -67,6 +67,10 @@
     white-space: nowrap;
     gap: 1em;
     cursor: pointer;
+
+    &:hover{
+        background-color: #323338;
+    }
 }
 
 .members-picker {
@@ -81,6 +85,16 @@
     flex-direction: column;
     border-radius: 8px;
     cursor: default;
+
+    .textField_0272890e16 {
+        padding-bottom: 10px;
+        align-self: center !important;
+        display: flex;
+        position: relative;
+        box-sizing: border-box;
+        font: var(--font-text2-normal);
+        width: 320px;
+    }
 
     .textField_9430c37135 .inputWrapper_129bb61475 .iconContainer_8576251e2c.iconContainerActive_bcba3e1e17 .icon_129bb61475 {
         position: absolute;

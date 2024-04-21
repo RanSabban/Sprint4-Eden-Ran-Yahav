@@ -33,6 +33,10 @@
             padding-block-start: 5.375px;
         }
 
+        & .selected{
+            background-color: #cce5ff;
+        }
+
         &:hover {
             background-color: rgba(103, 104, 121, 10%);
             border-radius: 4px;

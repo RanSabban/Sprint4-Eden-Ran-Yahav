@@ -54,7 +54,7 @@
 
     .lower-sidebar.open-sidebar {
         // margin-left: 1em;
-        padding-inline-start: 8px ;
+        padding-inline-start: 8px;
         width: 255px;
         opacity: 1;
         overflow: hidden;
@@ -149,12 +149,26 @@
         display: flex;
         padding: 5px 40px 6px 4px;
         width: 14em;
+
+        // &:hover {
+        //     background-color: #d0d4e4;
+        //     border-radius: 4px;
+        //     width: 14em;
+        // }
     }
 
     .actions-sidebar-upper:hover {
         background-color: rgba(103, 104, 121, 10%);
+        width: 15em;
         border-radius: 4px;
-        width: 14em;
+    }
+
+    .board-side-preview {
+
+        &.selected {
+            background-color: #d0d4e4;
+
+        }
     }
 
     .actions-sidebar-upper-second {
@@ -349,11 +363,11 @@
     //     }
     // }
 
-    .textField_0272890e16 .inputWrapper_c9ca15ceee .input_fc606b7266.inputHasIcon_e429f386dd{
+    .textField_0272890e16 .inputWrapper_c9ca15ceee .input_fc606b7266.inputHasIcon_e429f386dd {
         width: 14em;
     }
 
-    
+
 
 
 

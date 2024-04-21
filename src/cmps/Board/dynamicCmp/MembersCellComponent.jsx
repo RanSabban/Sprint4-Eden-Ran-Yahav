@@ -27,7 +27,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
         }
     }, [isOpen])
 
-    const dynClass = isOpen ? 'block' : 'none'
+    const dynClass = isOpen ? 'flex' : 'none'
 
     function getUnassignedUsers(allUsers, users) {
         return allUsers.filter(user => !users.includes(user._id))

@@ -262,7 +262,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                         )}
 
                         <Tooltip
-                            zIndex="2000"
+                            zIndex="999999"
                             content='Add to favorites'
                             animationType="expand">
                             <Button
@@ -279,7 +279,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                         </Tooltip>
 
                         <Tooltip
-                            zIndex="2000"
+                            zIndex="99999999"
                             content='Options'
                             animationType="expand">
                             <MenuButton
@@ -325,7 +325,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                                 <TabList
                                     style={{ marginBottom: "16px" }}
                                     size="sm">
-                                    <Tooltip content='Main Table' animationType="expand" zIndex="2000">
+                                    <Tooltip content='Main Table' animationType="expand" zIndex="9999999">
                                         <Tab
                                             className="main-table-tab"
                                             active={true}
@@ -339,7 +339,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
 
                                 <Tooltip content='Add view'
                                     animationType="expand"
-                                    position="right"
+                                    position="rig999ht"
                                     zIndex="999999">
                                     <Button
                                         className="btn-add"
@@ -356,7 +356,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                                 <Tooltip
                                     content='Integrate'
                                     animationType="expand"
-                                    zIndex="2000">
+                                    zIndex="99999999">
                                     <Button
                                         className="btn"
                                         kind="tertiary"
@@ -371,7 +371,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                                 <Tooltip
                                     content='Automate'
                                     animationType="expand"
-                                    zIndex="2000">
+                                    zIndex="99999999">
                                     <Button
                                         className="btn"
                                         kind="tertiary"

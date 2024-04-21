@@ -74,7 +74,6 @@ export function BoardFilter({ onAddGroup, boardId }) {
                         size="small">
                         <span style={{ marginLeft: "2px" }}>Search</span>
                     </Button>
-
                 ) : (
                     <TextField
                         id="search-input-focused"

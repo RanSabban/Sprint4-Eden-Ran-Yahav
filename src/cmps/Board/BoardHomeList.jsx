@@ -55,9 +55,9 @@ export function BoardHomeList(screenWidth) {
             {/* <button onClick={() => sendMsgToSlack('Yoyo!!!!!!!')} style={{ background: 'black' }}>
                     Click me!
                 </button>             */}
-                <div>
+                {/* <div>
             <SlackMessageCmp message="Yoyo!!!!!!!" />
-        </div>
+        </div> */}
                 
 
             {isCollapsed && (
