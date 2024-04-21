@@ -31,6 +31,7 @@
         }
 
         .close-add-automations {
+            font-size: 14px;
             display: grid;
             grid-auto-flow: column;
             width: max-content;
@@ -41,6 +42,7 @@
             height: 32px;
             border-radius: 4px;
             padding-inline: 4px;
+            padding-right: 12px;
 
             &:hover {
                 background-color: rgba(103, 104, 121, 0.1);
@@ -53,9 +55,10 @@
     }
 
     .automations-main {
+        align-items: center;
         display: grid;
         grid-column: 2;
-        grid-template-rows: 125px 1fr;
+        grid-template-rows: 120px 1fr;
 
         .no-automations-container {
             display: grid;
@@ -129,18 +132,26 @@
         }
 
         .select-trigger-modal-container {
+            margin-top: 100px;
             display: grid;
             justify-items: center;
         }
 
         .status-automation-container,
         .priority-automation-container {
-            margin-top: 84px;
+            margin-top: 160px;
             display: grid;
+            position: fixed;
             // grid-auto-flow: column;
             row-gap: 20px;
-            font-size: 24px;
+            font-family: 'poppins-light';
             justify-content: start;
+            font-size: 30px !important;
+            .when-automation-span{
+                font-family: 'poppins-light';
+                font-size: 30px !important;
+            }
+
 
             // column-gap: 7px;
             .trigger-container-automation,
@@ -149,6 +160,13 @@
                 grid-auto-flow: column;
                 column-gap: 7px;
                 align-items: center;
+                font-size: 30px;
+                
+                &>*{
+                    font-size: 30px;
+
+                }
+
             }
 
             .action-container-automation {
@@ -167,12 +185,15 @@
         }
 
         .dynamic-dialog-automation-placeholder {
+            font-family: 'poppins-light';
+            font-size: 30px;
             color: #c3c6d4;
             box-shadow: 0px 2px 0px 0px #323336;
             width: max-content;
             position: relative;
             cursor: pointer;
-            font-size: 24px;
+
+            
 
             &.active {
                 color: #0073ea;
@@ -278,6 +299,7 @@
                 justify-self: center;
                 color: #0073ea;
                 cursor: pointer;
+                font-size: 14px;
 
                 &:hover {
                     background-color: rgba(103, 104, 121, 0.1);

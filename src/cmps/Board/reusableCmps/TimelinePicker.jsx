@@ -31,7 +31,7 @@ export function TimelinePicker({ setDatePickerOpen, taskId, cell, onUpdateCell }
     async function handleDayClick(date) {
         const timestamp = date.getTime()
         try {
-            console.log(date)
+            // console.log(date)
             setSelected(date)
 
             cell.date = timestamp

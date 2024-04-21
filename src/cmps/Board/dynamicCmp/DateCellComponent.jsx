@@ -14,7 +14,7 @@ export function DateCellComponent({ clmType, cell, onUpdateCell, taskId }) {
 
     const handleOnClick = () => {
         setDatePickerOpen(true);
-        console.log(isDatePickerOpen);
+        // console.log(isDatePickerOpen);
     }
 
     function isPassed() {

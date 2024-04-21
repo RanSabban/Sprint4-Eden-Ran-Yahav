@@ -10,17 +10,15 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
     const [animation, setAnimation] = useState('')
     const animations = ['confetti', 'balloon', 'crazy_balls']
     const prevTitle = useRef('')
-
     useEffect(() => {
         if (!clmType) return
         const item = clmType.data.find(item => item.id === cell.dataId)
-
         if (item) {
             setStatus({ color: item.color, title: item.title })
             if (item.title === 'Done' && prevTitle.current !== 'Done') {
                 
                 if (cell.animation && loaded) {
-                    console.log('cell.animation', cell.animation);
+                    // console.log('cell.animation', cell.animation);
                     setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
                     cell.animation = false
                     // console.log('cell.animation', cell.animation);
@@ -28,11 +26,20 @@ export function StatusCellComponent({ clmType, cell, onChange, onClickLabel, isE
                         setAnimation('')
                     }, 3000);
                 }
+            } else {
+                // setAnimation('')
+            }
             } 
-        }
-        // prevTitle.current = item.title 
+        
+        prevTitle.current = item.title
         setLoaded(true)
     }, [clmType, cell])
+
+    // useEffect(() => {
+
+    // })
+
+    // if(cell.animation) setAnimation(animations[utilService.getRandomIntInclusive(0, animations.length - 1)])
 
     return (
         <>

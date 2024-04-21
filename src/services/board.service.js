@@ -1166,22 +1166,22 @@ async function addGroup(boardId, isBottom) {
 // }
 
 async function removeGroup(groupId, boardId) {
-    console.log('Group ID:', groupId)
-    console.log('Board ID:', boardId)
+    // console.log('Group ID:', groupId)
+    // console.log('Board ID:', boardId)
     try {
         const board = await getById(boardId)
         if (!board) {
             throw new Error('Board not found')
         }
 
-        console.log('Original Board:', board)
+        // console.log('Original Board:', board)
 
         const filteredGroups = board.groups.filter(group => group._id !== groupId)
         board.groups = filteredGroups
 
         await save(board)
 
-        console.log('Group removed:', groupId, 'Updated Board:', board)
+        // console.log('Group removed:', groupId, 'Updated Board:', board)
         socketService.emit('board-updated', board)
         return board
     } catch (err) {
@@ -1204,7 +1204,7 @@ async function removeGroup(groupId, boardId) {
 //     return _save(STORAGE_KEY, boards)
 // }
 async function addTask(groupId, task, boardId) {
-    console.log(groupId, task, boardId)
+    // console.log(groupId, task, boardId)
     const board = await getById(boardId)
 
     if (!board) {
@@ -1228,7 +1228,7 @@ async function addTask(groupId, task, boardId) {
         }
     }
 
-    console.log(board)
+    // console.log(board)
     await save(board)
     socketService.emit('board-updated', board)
 
@@ -1255,7 +1255,7 @@ async function addTask(groupId, task, boardId) {
 //     }
 // }
 async function updateGroup(groupId, updatedGroupData, boardId) {
-    console.log('yooooooooo', groupId, updatedGroupData, boardId);
+    // console.log('yooooooooo', groupId, updatedGroupData, boardId);
     try {
         const board = await getById(boardId)
         const updatedBoard = {
@@ -1371,7 +1371,7 @@ function getEmptyGroup() {
 }
 
 async function updateTask(taskToUpdate, groupId, boardId) {
-    console.log('Updating task:', taskToUpdate, 'in group:', groupId, 'on board:', boardId)
+    // console.log('Updating task:', taskToUpdate, 'in group:', groupId, 'on board:', boardId)
 
     try {
         // Fetch the specific board directly
@@ -1400,7 +1400,7 @@ async function updateTask(taskToUpdate, groupId, boardId) {
         // Save the updated board back to the storage
         await save(board)
         socketService.emit('board-updated', board)
-        console.log('Task updated successfully:', taskToUpdate)
+        // console.log('Task updated successfully:', taskToUpdate)
         return taskToUpdate // Optionally return the updated task
     } catch (err) {
         console.error('Error updating task:', err)
@@ -1457,7 +1457,7 @@ async function removeTask(taskId, groupId, boardId) {
 async function dragAndDropGroup(source, destination, boardId) {
     const board = await getById(boardId)
     try {
-        console.log(source, destination, boardId)
+        // console.log(source, destination, boardId)
         // const groupToCut = board.groups[source.index]
         const groupToCut = board.groups.find((group, idx) => idx === source.index)
         board.groups.splice(source.index, 1)
@@ -1470,14 +1470,14 @@ async function dragAndDropGroup(source, destination, boardId) {
     catch (err) {
         console.log('cannot drag&drop group', err)
     } finally {
-        console.log(board)
+        // console.log(board)
     }
 }
 
 async function dragAndDropTask(source, destination, boardId) {
     const board = await getById(boardId)
     try {
-        console.log('Dragging task from', source, 'to', destination)
+        // console.log('Dragging task from', source, 'to', destination)
 
         // Extract the relevant data from the source and destination payloads
         // const { groupId: sourceGroupId, index: sourceTaskIndex } = source
@@ -1489,7 +1489,7 @@ async function dragAndDropTask(source, destination, boardId) {
 
         const sourceGroup = board.groups.find(group => group._id === sourceGroupId)
         const destinationGroup = board.groups.find(group => group._id === destinationGroupId)
-        console.log(sourceGroup, destinationGroup)
+        // console.log(sourceGroup, destinationGroup)
         // If we can't find the groups, we should not continue
         if (!sourceGroup || !destinationGroup) {
             throw new Error('Group not found.')
@@ -1503,7 +1503,7 @@ async function dragAndDropTask(source, destination, boardId) {
 
         // Persist the updated board
         await save(board)
-        console.log('Task moved successfully.')
+        // console.log('Task moved successfully.')
         socketService.emit('board-updated', board)
 
         return board
@@ -1570,7 +1570,7 @@ async function moveTaskToTop(taskId, destinationGroupId, boardId) {
 //     }
 // }
 async function updateFilterBy(filterBy, boardId) {
-    console.log('here')
+    // console.log('here')
     try {
         let board = await getById(boardId)
         if (board && board.groups) {
@@ -1584,7 +1584,7 @@ async function updateFilterBy(filterBy, boardId) {
             })
         }
 
-        console.log(board)
+        // console.log(board)
         return board
         // await save(board)
     }
@@ -1618,7 +1618,7 @@ async function addColumn(type, boardId) {
         });
 
         await save(board)
-        console.log(`Column and cells added successfully to board ${boardId}`)
+        // console.log(`Column and cells added successfully to board ${boardId}`)
         socketService.emit('board-updated', board)
 
         return board
@@ -1652,7 +1652,7 @@ async function removeColumn(columnId, boardId) {
 
         await save(board)
         socketService.emit('board-updated', board)
-        console.log(`Column and cells added successfully to board ${boardId}`)
+        // console.log(`Column and cells added successfully to board ${boardId}`)
         return board
     } catch (err) {
         console.error('Failed to add column and cells: ', err)
@@ -1680,7 +1680,7 @@ async function updateClmTitle(txt, clmId, boardId) {
 
         await save(boardToReturn)
         socketService.emit('board-updated', boardToReturn);
-        console.log(boardToReturn)
+        // console.log(boardToReturn)
 
         return boardToReturn
 
@@ -1768,7 +1768,7 @@ function getEmptyColumn(type) {
                 ]
             }
         default:
-            console.log(`Unrecognized type: ${type}`)
+            // console.log(`Unrecognized type: ${type}`)
             return null
     }
 }
@@ -1843,7 +1843,7 @@ async function onUpdateLabelColor(newColor, labelId, clmId, boardId) {
         await save(board)
         socketService.emit('board-updated', board)
 
-        console.log(`Color updated for label ${labelId} in column ${clmId} on board ${boardId}`)
+        // console.log(`Color updated for label ${labelId} in column ${clmId} on board ${boardId}`)
         return board
     } catch (err) {
         console.error('Error updating label color:', err)
@@ -1875,7 +1875,7 @@ async function onUpdateLabelTitle(clmId, labelId, newTitle, boardId) {
         await save(board)
         socketService.emit('board-updated', board)
 
-        console.log(`Title updated for label ${labelId} in column ${clmId} on board ${boardId}`)
+        // console.log(`Title updated for label ${labelId} in column ${clmId} on board ${boardId}`)
         return board
     } catch (err) {
         console.error('Error updating label title:', err)
@@ -1897,7 +1897,7 @@ async function onRemoveLabel(labelId, clmId, boardId) {
         await save(board)
         socketService.emit('board-updated', board)
 
-        console.log(`Title updated for label ${labelId} in column ${clmId} on board ${boardId}`)
+        // console.log(`Title updated for label ${labelId} in column ${clmId} on board ${boardId}`)
         return board
 
     } catch (err) {

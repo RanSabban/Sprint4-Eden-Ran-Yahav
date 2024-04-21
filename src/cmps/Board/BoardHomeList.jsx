@@ -28,7 +28,7 @@ export function BoardHomeList(screenWidth) {
 
     }
 
-    console.log(boards)
+    // console.log(boards)
     // userService.sendMessageToSlack('yers')
 
     if (isLoading || !boards) return (

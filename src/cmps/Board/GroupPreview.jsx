@@ -44,7 +44,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     useEffect(() => {
         if (isCollapsedAll) {
-            console.log('isCollapsedAll',isCollapsedAll);
+            // console.log('isCollapsedAll',isCollapsedAll);
             setIsCollapsed(true)
         } else {
             setIsCollapsed(false)
@@ -53,10 +53,10 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
 
     function onClickLabel(target, groupId, clmType, key) {
         try {
-            console.log(target, groupId, clmType);
+            // console.log(target, groupId, clmType);
             onOpenModalLabel(target, group, clmType, boardId, specificGroup)
         } catch (err) {
-            console.log('cannot open modal', err)
+            // console.log('cannot open modal', err)
         }
     }
 
@@ -65,12 +65,12 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
         try {
             setOptionColorOpen(!optionColorOpen)
             await updateGroup(groupId, updatedGroupData, boardId)
-            console.log('Group updated successfully')
+            // console.log('Group updated successfully')
         } catch (err) {
-            console.error('Error updating group:', err)
+            // console.error('Error updating group:', err)
 
         } finally {
-            console.log(`Updating group ${groupId}: ${key} = ${value}`);
+            // console.log(`Updating group ${groupId}: ${key} = ${value}`);
         }
     }
     useEffect(() => {
@@ -104,10 +104,10 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
             await updateGroup(group._id, updatedGroupData, boardId)
             // setSpecificGroup(updatedGroupData)
             setOptionColorOpen(!optionColorOpen)
-            console.log('Group updated successfully')
+            // console.log('Group updated successfully')
 
         } catch (err) {
-            console.error('Error updating group:', err)
+            // console.error('Error updating group:', err)
 
         }
     }
@@ -163,7 +163,7 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     // console.log(gridStyle)
 
     // console.log(dynamicStyle);
-    console.log(filterBy);
+    // console.log(filterBy);
     if (!currGroup.tasks.length && filterBy) return
 
     // console.log(currClmTypes);

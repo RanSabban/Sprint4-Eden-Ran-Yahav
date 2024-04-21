@@ -26,8 +26,8 @@ export const store = createStore(rootReducer, composeEnhancers())
 
 window.gStore = store
 
-store.subscribe(() => {
-    console.log('**** Store state changed: ****')
-    console.log('storeState:\n', store.getState())
-    console.log('*******************************')
-})
+// store.subscribe(() => {
+//     console.log('**** Store state changed: ****')
+//     console.log('storeState:\n', store.getState())
+//     console.log('*******************************')
+// })

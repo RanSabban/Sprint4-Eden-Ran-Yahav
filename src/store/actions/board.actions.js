@@ -30,14 +30,14 @@ export function getActionUpdateBoard(board) {
 export async function loadBoards() {
     try {
         const boards = await boardService.query()
-        console.log('Boards from DB:', boards)
+        // console.log('Boards from DB:', boards)
         store.dispatch({
             type: SET_BOARDS,
             boards
         })
 
     } catch (err) {
-        console.log('Cannot load boards', err)
+        // console.log('Cannot load boards', err)
         throw err
     } finally {
         setIsLoading(false)
@@ -81,7 +81,7 @@ export function updateBoard(board) {
             return savedBoard
         })
         .catch(err => {
-            console.log('Cannot save board', err)
+            // console.log('Cannot save board', err)
             throw err
         })
 }
@@ -89,7 +89,7 @@ export function updateBoard(board) {
 export async function loadBoard(boardId) {
     try {
         const board = await boardService.getById(boardId)
-        console.log('Boards from DB:', board)
+        // console.log('Boards from DB:', board)
         store.dispatch({
             type: SET_CURRENT_BOARD,
             board
@@ -106,7 +106,7 @@ export async function addGroup(boardId, isBottom) {
         // const board = await boardService.getById(boardId)
         // console.log('Boards from DB:', board)
         const group = await boardService.addGroup(boardId, isBottom)
-        console.log(group)
+        // console.log(group)
         store.dispatch({
             type: ADD_GROUP,
             group: group,
@@ -127,7 +127,7 @@ export async function removeGroup(groupId, boardId) {
         })
 
     } catch (err) {
-        console.log('cannot remove group', err)
+        // console.log('cannot remove group', err)
     }
 }
 
@@ -154,7 +154,7 @@ export async function updateGroup(groupId, updatedGroupData, boardId) {
         })
 
     } catch (err) {
-        console.log('cannot update group', err)
+        // console.log('cannot update group', err)
     }
 }
 
@@ -164,7 +164,7 @@ export async function addTask(groupId, boardId, taskTitle) {
         const task = await boardService.getEmptyTask(boardId)
         if (taskTitle) task.title = taskTitle
         const updatedBoard = await boardService.addTask(groupId, task, boardId)
-        console.log('here')
+        // console.log('here')
         store.dispatch({
             type: SET_CURRENT_BOARD,
             board: updatedBoard
@@ -172,7 +172,7 @@ export async function addTask(groupId, boardId, taskTitle) {
 
     }
     catch (err) {
-        console.log(err)
+        // console.log(err)
     }
 }
 
@@ -196,9 +196,9 @@ export async function removeTask(taskId, groupId, boardId) {
 
 export async function updateCell(updatedCell, taskId, groupId, boardId) {
     try {
-        console.log('updatedCell:', updatedCell, 'taskId', taskId, 'groupId', groupId, 'boardId', boardId)
+        // console.log('updatedCell:', updatedCell, 'taskId', taskId, 'groupId', groupId, 'boardId', boardId)
         const board = await boardService.updateCell(updatedCell, taskId, groupId, boardId)
-        console.log(board)
+        // console.log(board)
 
         store.dispatch({
             type: SET_CURRENT_BOARD,
@@ -266,7 +266,7 @@ export async function dragAndDropTask(source, destination, boardId) {
 
 export async function dragAndDropGroup(source, destination, boardId) {
     try {
-        console.log(source, destination, boardId)
+        // console.log(source, destination, boardId)
         store.dispatch({
             type: DROP_GROUP,
             payload: {
@@ -314,7 +314,7 @@ export async function onHideModalLabel() {
 
 export async function updateFilterBy(filterBy, boardId) {
     try {
-        console.log(filterBy, boardId)
+        // console.log(filterBy, boardId)
         const board = await boardService.updateFilterBy(filterBy, boardId)
         store.dispatch({
             type: SET_CURRENT_BOARD,
@@ -338,7 +338,7 @@ export async function updateFilterBy(filterBy, boardId) {
 }
 
 export async function addColumn(type, boardId) {
-    console.log(type, boardId)
+    // console.log(type, boardId)
     try {
         const board = await boardService.addColumn(type, boardId)
         store.dispatch({
@@ -351,7 +351,7 @@ export async function addColumn(type, boardId) {
 }
 
 export async function removeColumn(clmTypeId, boardId) {
-    console.log(clmTypeId, boardId)
+    // console.log(clmTypeId, boardId)
     try {
         const board = await boardService.removeColumn(clmTypeId, boardId)
         store.dispatch({
@@ -364,7 +364,7 @@ export async function removeColumn(clmTypeId, boardId) {
 }
 
 export async function updateClmTitle(txt, clmId, boardId) {
-    console.log(txt, clmId, boardId)
+    // console.log(txt, clmId, boardId)
     try {
         const board = await boardService.updateClmTitle(txt, clmId, boardId)
         store.dispatch({
@@ -439,10 +439,10 @@ export async function removeLabel(labelId, clmId, boardId) {
 }
 
 export function handleAddToCalendar(task) {
-    console.log('talk', task);
+    // console.log('talk', task);
 
     const dateData = task.cells.find(cell => cell.type === 'date')
-    console.log('dateData', dateData);
+    // console.log('dateData', dateData);
 
     if (!task) {
         console.error('Stay details are missing')
@@ -456,8 +456,8 @@ export function handleAddToCalendar(task) {
 
     const startDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
     const endDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
-    console.log('Formatted Start Date:', startDateFormatted)
-    console.log('Formatted End Date:', endDateFormatted)
+    // console.log('Formatted Start Date:', startDateFormatted)
+    // console.log('Formatted End Date:', endDateFormatted)
 
     const startDate = startDateFormatted.replace(/\//g, '')
     const endDate = endDateFormatted.replace(/\//g, '')
@@ -470,10 +470,10 @@ export function handleAddToCalendar(task) {
 }
 
 export function getLinkToCalendar(task) {
-    console.log('talk', task);
+    // console.log('talk', task);
 
     const dateData = task.cells.find(cell => cell.type === 'date')
-    console.log('dateData', dateData);
+    // console.log('dateData', dateData);
 
     if (!task) {
         console.error('Stay details are missing')
@@ -487,8 +487,8 @@ export function getLinkToCalendar(task) {
 
     const startDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
     const endDateFormatted = utilService.formatIsoDateToYMD(dateData.date)
-    console.log('Formatted Start Date:', startDateFormatted)
-    console.log('Formatted End Date:', endDateFormatted)
+    // console.log('Formatted Start Date:', startDateFormatted)
+    // console.log('Formatted End Date:', endDateFormatted)
 
     const startDate = startDateFormatted.replace(/\//g, '')
     const endDate = endDateFormatted.replace(/\//g, '')

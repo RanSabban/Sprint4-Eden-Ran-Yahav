@@ -105,7 +105,7 @@ function Board({ board, onUpdateBoard, onRemoveBoard, boardId }) {
         navigate(`/board/${board._id}`)
     }
 
-    console.log(boardId);
+    // console.log(boardId);
 
     return (
         <section

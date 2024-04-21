@@ -11,7 +11,7 @@ export const automationService = {
 }
 
 async function registerAutomation(automationRule, boardId) {
-    console.log('Registering automation:', automationRule)
+    // console.log('Registering automation:', automationRule)
     try {
         const board = await boardService.getById(boardId)
         if (!board.automations) {
@@ -31,22 +31,22 @@ async function registerAutomation(automationRule, boardId) {
 }
 
 async function runAutomation(trigger, data) {
-    console.log(trigger, data);
+    // console.log(trigger, data);
     try {
         const { boardId } = data
         const boardAutomations = await boardService.getAllAutomations(boardId)
-        console.log(boardAutomations);
+        // console.log(boardAutomations);
         const relatedAutomations = boardAutomations.filter(automation => automation.trigger === trigger)
-        console.log(relatedAutomations)
+        // console.log(relatedAutomations)
         if (!relatedAutomations.length) return
         const validatedAutomations = validateAutomation(trigger, relatedAutomations, data)
-        console.log(validatedAutomations)
+        // console.log(validatedAutomations)
         if (!validatedAutomations.length) return
         for (const automation of validatedAutomations) {
             if (automation.action === 'MOVE_TO_GROUP') {
                 const { taskId, boardId } = data
                 const board = await boardService.moveTaskToTop(taskId, automation.target, boardId)
-                console.log('activating automation', automation);
+                // console.log('activating automation', automation);
                 store.dispatch({
                     type: SET_CURRENT_BOARD,
                     board
@@ -69,12 +69,12 @@ function validateAutomation(trigger, relatedAutomations, data) {
             }
         }
     })
-    console.log(validatedAutomations);
+    // console.log(validatedAutomations);
     return validatedAutomations
 }
 
 async function removeAutomation(automationId, boardId) {
-    console.log('automation Id', automationId);
+    // console.log('automation Id', automationId);
     try {
         const board = await boardService.getById(boardId)
         if (!board) {
@@ -98,7 +98,7 @@ async function removeAutomation(automationId, boardId) {
 }
 
 async function toggleAutomationActive(automationId, boardId) {
-    console.log('automation ID', automationId);
+    // console.log('automation ID', automationId);
     try {
         const board = await boardService.getById(boardId)
         if (!board) {

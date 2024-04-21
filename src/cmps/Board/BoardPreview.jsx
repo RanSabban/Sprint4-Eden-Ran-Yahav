@@ -95,19 +95,19 @@ export function BoardPreview({ onAddGroup, board }) {
             setIsCollapsedAll(false)
 
         }
-        console.log(destination, source)
+        // console.log(destination, source)
     }
 
 
 
     const queryAttr = "data-rbd-drag-handle-draggable-id"
     function onBeforeDragStart(type) {
-        console.log(type);
-        console.log('isCollapsedAll', isCollapsedAll);
+        // console.log(type);
+        // console.log('isCollapsedAll', isCollapsedAll);
         try {
             if (type.type === 'GROUP') {
                 setIsCollapsedAll(true)
-                console.log('isCollapsedAll', isCollapsedAll);
+                // console.log('isCollapsedAll', isCollapsedAll);
 
                 // showSuccessMsg('Tasks swiped!')
             }
