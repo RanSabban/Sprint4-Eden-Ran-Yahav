@@ -51,10 +51,10 @@ export function DynamicDialogAutomation({ itemsToRender, callBack, placeHolder, 
 
             {isOpen && (<div className="dynamic-dialog-automation-container" ref={dialogRef}>
                 {
-                    itemsToRender.map(item => {
+                    itemsToRender.map((item,index) => {
 
                         return (
-                            <div value={item._id || item.id} key={item._id} onClick={() => onSelect(item._id || item.id, item.title)} className="list-item-dialog-automation">
+                            <div value={item._id || item.id} key={index} onClick={() => onSelect(item._id || item.id, item.title)} className="list-item-dialog-automation">
                                 <span>
                                     <Lines />
                                 </span>

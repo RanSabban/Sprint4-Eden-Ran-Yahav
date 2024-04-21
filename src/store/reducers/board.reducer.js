@@ -23,16 +23,19 @@ export const UPDATE_TASK = 'UPDATE_TASK'
 export const UPDATE_CELL = 'UPDATE_CELL'
 export const UPDATE_TASK_CONVERSATION = 'UPDATE_TASK_CONVERSATION'
 export const UPDATE_CLM_TITLES = 'UPDATE_CLM_TITLES'
+export const SET_CURRENT_FILTERED_BOARD = 'SET_CURRENT_FILTERED_BOARD'
+export const TOGGLE_FILTER_BY = 'TOGGLE_FILTER_BY'
 
 const initialState = {
     boards: null,
     board: null,
+    filteredBoard: null,
     // groups: null,
     // clmTypes: null,
     lastRemovedBoard: null,
     isLoading: false,
     modalProps: {},
-    filterBy: boardService.getEmptyFilterBy(),
+    filterBy: false,
     isEditing: []
 }
 
@@ -61,7 +64,7 @@ export function boardReducer(state = initialState, action) {
         //     const { groups, clmTypes } = action.board
         //     newState = { ...state, board: action.board, groups: groups, clmTypes: clmTypes }
         //     break
-        case SET_CURRENT_BOARD:
+        case SET_CURRENT_BOARD: {
             const { groups, clmTypes } = action.board
 
             newState = {
@@ -71,6 +74,27 @@ export function boardReducer(state = initialState, action) {
                 clmTypes
             }
             break
+        }
+
+        case SET_CURRENT_FILTERED_BOARD:
+            {
+                newState = {
+                    ...state,
+                    filteredBoard: action.board,
+                }
+                break
+            }
+
+        case TOGGLE_FILTER_BY: {
+
+            console.log(action.filterBy);
+
+            newState = {
+                ...state, 
+                filterBy: action.filterBy
+            }
+            break
+        }
 
         case SET_LABEL_MODAL: {
             const { target, clmType, cell, task, isOpen, groupId, callBackFunc, specificGroup } = action.payload
@@ -206,14 +230,14 @@ export function boardReducer(state = initialState, action) {
 
         case DROP_TASK: {
             const { sourceGroupId, sourceTaskIndex, destinationGroupId, destinationTaskIndex } = action.payload
-            const boardCopy = JSON.parse(JSON.stringify(state.board)) 
+            const boardCopy = JSON.parse(JSON.stringify(state.board))
 
             const sourceGroup = boardCopy.groups.find(group => group._id === sourceGroupId)
             const destinationGroup = boardCopy.groups.find(group => group._id === destinationGroupId)
 
             if (!sourceGroup || !destinationGroup) {
                 console.error('Source or destination group not found')
-                return state 
+                return state
             }
 
             const [movedTask] = sourceGroup.tasks.splice(sourceTaskIndex, 1)
@@ -246,7 +270,7 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 board: {
                     ...state.board,
-                    clmTypes: state.board.clmTypes.map(clm => 
+                    clmTypes: state.board.clmTypes.map(clm =>
                         clm._id === clmId ? { ...clm, title: newTitle } : clm
                     )
                 }

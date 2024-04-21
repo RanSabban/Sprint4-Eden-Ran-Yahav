@@ -18,6 +18,7 @@ import { ColorPicker } from './reusableCmps/ColorPicker';
 export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTask, onUpdateGroup, boardType, placeholderProps, isCollapsedAll }) {
     const specificGroup = useSelector(storeState => storeState.boardModule.board.groups.find(g => g === group))
     const clmTypes = useSelector(storeState => storeState.boardModule.board.clmTypes)
+    const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
 
     // const [specificGroup, setSpecificGroup] = useState(group)
     const [initialTitle, setInitialTitle] = useState(group.title)
@@ -162,7 +163,8 @@ export function GroupPreview({ onAddGroup, group, index, onRemoveGroup, onAddTas
     // console.log(gridStyle)
 
     // console.log(dynamicStyle);
-    // if (!group.tasks.length) return
+    console.log(filterBy);
+    if (!currGroup.tasks.length && filterBy) return
 
     // console.log(currClmTypes);
 

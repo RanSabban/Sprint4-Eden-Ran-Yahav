@@ -27,6 +27,8 @@
         grid-template-columns: max-content 1fr max-content;
         margin-inline-end: 8px;
         padding: 0 8px;
+        border-radius: 4px;
+        transition: 0.3s;
 
         .svg-container-board-list-sidebar {
             width: min-content;
@@ -40,7 +42,7 @@
         &:hover {
             background-color: rgba(103, 104, 121, 10%);
             border-radius: 4px;
-            width: 14em;
+            // width: 14em;
             cursor: pointer;
         }
 
@@ -62,7 +64,7 @@
 
     .board-side-preview.active {
         background-color: #cce5ff;
-        border-radius: 4px;
+       
         width: 14em;
         // width: 14.2em;
     }
