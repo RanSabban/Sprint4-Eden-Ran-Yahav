@@ -46,7 +46,7 @@ export function ActiveAutomationsList({ automations, groups, clms, boardId }) {
     function getAutomationDestiny(automation) {
         if (automation.action === 'MOVE_TO_GROUP') {
             const group = groups.find(g => g._id === automation.target)
-            return group.title
+            if (group) return group.title
         }
     }
 

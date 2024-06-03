@@ -1179,6 +1179,8 @@ async function removeGroup(groupId, boardId) {
         const filteredGroups = board.groups.filter(group => group._id !== groupId)
         board.groups = filteredGroups
 
+        console.log(board);
+
         await save(board)
 
         // console.log('Group removed:', groupId, 'Updated Board:', board)

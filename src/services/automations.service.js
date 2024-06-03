@@ -121,6 +121,13 @@ async function toggleAutomationActive(automationId, boardId) {
     }
 }
 
+// async function removeRelatedGroupAutomations(board,groupId) {
+//     try {
+
+//     }
+// }
+
+
 // async function executeAutomation(automationId, boardId,) {
 //     try {
 //         console.log('executing automation', automationId)
