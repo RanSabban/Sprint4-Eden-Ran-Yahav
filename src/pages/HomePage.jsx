@@ -1,6 +1,14 @@
 import React from 'react'
 // import logo from '../assets/img/oneday-logo.png'
 import logo from '/img/oneday-logov2.png'
+import workflows from '/img/MoreWorkflowsImg.png'
+import OperationsImg from '/img/OperationsImg.png'
+import CreativeDesignImg from '/img/CreativeDesignImg.png'
+import MarketingImg from '/img/MarketingImg.png'
+import ProjectManagementImg from '/img/ProjectManagementImg.png'
+import TaskManagementImg from '/img/TaskManagementImg.png'
+import HRImg from '/img/HRImg.png'
+import ITImg from '/img/ITImg.png'
 
 // import { Link } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -31,21 +39,21 @@ export function HomePage() {
             </section>
             <section className='welcome-section'>
 
-                <article className="card card1"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/CreativeDesignImg.png" alt="" /><span>Creative &amp; design</span></article>
-                <article className="card card2"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/OperationsImg.png" alt="" /><span>Operations</span></article>
-                <article className="card card3"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/MarketingImg.png" alt="" /><span>Marketing</span></article>
-                <article className="card card1"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/ProjectManagementImg.png" alt="" /><span>Project management</span></article>
-                <article className="card card2"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/TaskManagementImg.png" alt="" /><span>Task management</span></article>
-                <article className="card card3"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/HRImg.png" alt="" /><span>HR</span></article>
-                <article className="card card1"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/ITImg.png" alt="" /><span>IT</span></article>
-                <article className="card card2"><img className='img-welcome' src="https://myday-p034.onrender.com/img/home_page/MoreWorkflowsImg.png" alt="" /><span>More workflows</span></article>
+                <article className="card card1"><img className='img-welcome' src={CreativeDesignImg} alt="" /><span>Creative &amp; design</span></article>
+                <article className="card card2"><img className='img-welcome' src={OperationsImg} alt="" /><span>Operations</span></article>
+                <article className="card card3"><img className='img-welcome' src={MarketingImg} alt="" /><span>Marketing</span></article>
+                <article className="card card1"><img className='img-welcome' src={ProjectManagementImg} alt="" /><span>Project management</span></article>
+                <article className="card card2"><img className='img-welcome' src={TaskManagementImg} alt="" /><span>Task management</span></article>
+                <article className="card card3"><img className='img-welcome' src={HRImg} alt="" /><span>HR</span></article>
+                <article className="card card1"><img className='img-welcome' src={ITImg} alt="" /><span>IT</span></article>
+                <article className="card card2"><img className='img-welcome' src={workflows} alt="" /><span>More workflows</span></article>
 
             </section>
             <section className='btn-container'>
 
                 <Link to={'/board'}> <button style={{marginBottom: '1em', width: '150px', height: '50px'}} className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
 
-                <p className="no-credit-card-txt">No credit card needed<span>✦</span>Unlimited time on Free plan</p>
+                <p className="no-credit-card-txt">No credit card needed<span> ✦ </span>Unlimited time on Free plan</p>
 
             </section>
             <img src="	https://myday-p034.onrender.com/img/home_page/HomeAppPreviewImg.avif
