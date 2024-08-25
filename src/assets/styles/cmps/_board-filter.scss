@@ -1,19 +1,42 @@
 @include for-narrow-layout {
     .board-filter-wrapper {
+        .chosen-member-filter {
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            column-gap: 0.3em;
+        }
+        .clear-member-filter {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            cursor: pointer;
+            padding: 0.2em;
+            border-radius: 0.2em;
+            svg {
+                width: 1em;
+                height: 1em;
+            }
+            &:hover {
+                background-color: #6768791a ;
+            }
+        }
 
         .person-filter-container {
             position: relative;
+
             & :nth-child(3) {
                 padding: 0;
                 padding-inline-start: 4px;
             }
+
             .open-filter-person-title {
                 font-size: 1.2em;
                 font-family: Figtree-bold;
             }
-            .open-filter-person-subtitle {
 
-            }
+            .open-filter-person-subtitle {}
+
             .open-filter-person {
                 position: absolute;
                 top: 32px;
@@ -24,9 +47,9 @@
                 padding-inline-end: 10em;
                 padding-inline-start: 2em;
                 text-align: start;
-                box-shadow: 0 4px 8px #0003; 
+                box-shadow: 0 4px 8px #0003;
                 display: grid;
-                row-gap: 0.5em               ;
+                row-gap: 0.5em;
             }
         }
 
@@ -66,6 +89,13 @@
         margin-left: em(6px);
         margin-bottom: em(16px);
 
+        .chosen-member-filter {
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            column-gap: 0.5em;
+        }
+
         .board-filter {
             display: none;
         }
@@ -96,4 +126,5 @@
             }
         }
     }
+
 }
