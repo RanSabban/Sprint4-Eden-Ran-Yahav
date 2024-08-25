@@ -43,20 +43,20 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
             setUsers(newAssignedUsers)
             setIsOpen(false)
         } catch (err) {
-            console.log('Err on assigned member to task', err)
+            // console.log('Err on assigned member to task', err)
         }
     }
 
     async function removeMember(id) {
         const newAssignedUsers = users.filter(user => user !== id)
-        console.log("newAssignedUsers", newAssignedUsers);
+        // console.log("newAssignedUsers", newAssignedUsers);
         try {
             const newCell = { ...cell, dataId: newAssignedUsers }
-            console.log('!!!!!!!1', newCell)
+            // console.log('!!!!!!!1', newCell)
             await onUpdateCell(newCell, taskId, groupId)
             setUsers(newAssignedUsers)
         } catch (err) {
-            console.log('Err on remove member', err)
+            // console.log('Err on remove member', err)
         }
     }
 

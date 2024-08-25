@@ -1,11 +1,18 @@
-import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useState } from 'react'
 import { login, signup } from '../store/actions/user.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { uploadService } from '../services/upload.service'
+import Compressor from 'compressorjs'
+
 export function LoginSignup() {
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '', avatar: null })
+    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '', imgUrl: '' })
     const [isSignup, setIsSignup] = useState(false)
-    const [avatarPreview, setAvatarPreview] = useState('https://res.cloudinary.com/dkvliixzt/image/upload/v1704358773/person-empty_zckbtr_wrffbw.svg')
+    const [file, setFile] = useState(null)
+    const [previewUrl, setPreviewUrl] = useState('https://res.cloudinary.com/dkvliixzt/image/upload/v1704358773/person-empty_zckbtr_wrffbw.svg')
+    const [uploading, setUploading] = useState(false)
+    const [uploadSuccess, setUploadSuccess] = useState(false)
     const navigate = useNavigate()
 
     function handleChange(ev) {
@@ -13,47 +20,98 @@ export function LoginSignup() {
         setCredentials(prev => ({ ...prev, [name]: value }))
     }
 
-    function handleFileChange(ev) {
-        const file = ev.target.files[0]
-        setCredentials(prev => ({ ...prev, avatar: file }))
-        if (file) {
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                setAvatarPreview(reader.result)
+    const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5 MB
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0]
+        if (file && file.type.startsWith('image')) {
+            if (file.size > MAX_FILE_SIZE) {
+                showErrorMsg('File size exceeds the maximum limit of 5 MB.')
+                return
             }
-            reader.readAsDataURL(file)
+    
+            new Compressor(file, {
+                quality: 0.6,
+                success(result) {
+                    setFile(result)
+                    const reader = new FileReader()
+                    reader.onload = (loadEvent) => {
+                        setPreviewUrl(loadEvent.target.result)
+                        setCredentials(prev => ({ ...prev, imgUrl: loadEvent.target.result })) // Set base64 URL for preview
+                    }
+                    reader.readAsDataURL(result)
+                },
+                error(err) {
+                    console.error('Compression error:', err)
+                }
+            })
+        } else {
+            setFile(null)
+            setPreviewUrl('https://res.cloudinary.com/dkvliixzt/image/upload/v1704358773/person-empty_zckbtr_wrffbw.svg')
+            showErrorMsg('Please select a valid image file.')
         }
     }
 
     async function handleSubmit(ev) {
-        ev.preventDefault()
+    ev.preventDefault()
 
-        if (!credentials.username || !credentials.password || (isSignup && !credentials.fullname)) {
-            console.log("Required fields are empty")
-            return
-        }
-
-        try {
-            if (isSignup) {
-                signup(credentials)
-                showSuccessMsg('Signed up successfully')
-                navigate('/board')
-            } else {
-                login(credentials)
-                showSuccessMsg('Logged in successfully')
-                navigate('/board')
-            }
-        } catch (err) {
-            showErrorMsg(err.message)
-            console.error(err)
-        } finally {
-            clearState()
-        }
+    if (!credentials.username || !credentials.password || (isSignup && !credentials.fullname)) {
+        showErrorMsg("Required fields are empty")
+        return
     }
 
+    try {
+        let finalCredentials = { ...credentials }
+        if (file) {
+            // Upload image to Cloudinary
+            setUploading(true)
+            setUploadSuccess(false)
+            const uploaded = await uploadService.uploadImg({ target: { files: [file] } })
+            console.log('Upload successful:', uploaded)
+            if (uploaded.secure_url) {
+                finalCredentials.imgUrl = uploaded.secure_url // Set secure URL for submission
+                setPreviewUrl(uploaded.secure_url)
+                setUploadSuccess(true)
+            } else {
+                showErrorMsg('Image upload failed. Please try again.')
+                return
+            }
+        }
+
+        console.log('Final credentials:', finalCredentials) // Verify that imgUrl is correct
+        // Proceed with signup or login
+        if (isSignup) {
+            try {
+                await signup(finalCredentials)
+                showSuccessMsg('Signed up successfully')
+                navigate('/board')
+            } catch (error) {
+                if (error.response && error.response.data && error.response.data.error === 'Username taken') {
+                    showErrorMsg('Username is already taken. Please choose a different username.')
+                } else {
+                    showErrorMsg('An error occurred. Please try again.')
+                }
+                console.error(error)
+            }
+        } else {
+            await login(finalCredentials)
+            showSuccessMsg('Logged in successfully')
+            navigate('/board')
+        }
+    } catch (err) {
+        showErrorMsg(err.message)
+        console.error(err)
+    } finally {
+        setUploading(false)
+        clearState()
+    }
+}
+
+
     function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', avatar: null })
-        setAvatarPreview(null)
+        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
+        setPreviewUrl('https://res.cloudinary.com/dkvliixzt/image/upload/v1704358773/person-empty_zckbtr_wrffbw.svg')
+        setFile(null)
     }
 
     return (
@@ -98,10 +156,8 @@ export function LoginSignup() {
 
                     <section className="avatar-upload" style={{ cursor: 'pointer' }}>
                         <label htmlFor="avatar-upload" className="avatar-label" style={{ cursor: 'pointer' }}>
-                            <img src={avatarPreview} alt="Avatar Preview" className="avatar-image" style={{ cursor: 'pointer' }} />
-
+                            <img src={previewUrl} alt="Avatar Preview" className="avatar-image" style={{ cursor: 'pointer' }} />
                             <div className="avatar-placeholder" style={{ cursor: 'pointer' }}>Upload Avatar</div>
-
                         </label>
                         <input
                             type="file"
@@ -112,8 +168,9 @@ export function LoginSignup() {
                         />
                     </section>
 
-
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" disabled={uploading}>
+                        {uploading ? 'Uploading...' : 'Sign Up'}
+                    </button>
                 </form>
             ) : (
                 <form onSubmit={handleSubmit}>

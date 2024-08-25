@@ -54,11 +54,11 @@ export function BoardFilter({ onAddGroup, boardId }) {
     const getAllUsers = async () => {
         try {
             const users = await userService.getUsers()
-            console.log('users', users);
+            // console.log('users', users);
             setUsers(users)
             // return users
         } catch (err) {
-            console.log('cannot get users', err);
+            // console.log('cannot get users', err);
             throw err
         }
     }
@@ -84,7 +84,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
         return user.fullname
     }
 
-    console.log(filterByToUpdate);
+    // console.log(filterByToUpdate);
 
     return (
 
@@ -175,7 +175,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                     </Tooltip>}
 
 
-                <Tooltip content='Filter board by anything' animationType="expand">
+                {/* <Tooltip content='Filter board by anything' animationType="expand">
                     <Button
                         className="icon"
                         leftIcon={Filter}
@@ -184,7 +184,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                         size="small">
                         <span>Filter</span>
                     </Button>
-                </Tooltip>
+                </Tooltip> */}
 
 
                 <Tooltip content='Sort board by any column' animationType="expand">

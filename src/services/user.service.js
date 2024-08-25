@@ -22,7 +22,7 @@ window.userService = userService
 async function getUsers() {
     // return storageService.query('user')
     const users = httpService.get(`user`)
-    console.log(users);
+    // console.log(users);
     return users
 }
 
