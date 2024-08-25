@@ -5,16 +5,21 @@ import { addTask, updateFilterBy } from "../../store/actions/board.actions";
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service";
 import { boardService } from "../../services/board.service";
 import { MondaySearchIcon } from "../../services/svg.service";
+import { userService } from "../../services/user.service";
+import { AvatarGroupAng } from "./reusableCmps/AvatarGroupAang";
 
 export function BoardFilter({ onAddGroup, boardId }) {
 
     const [isSearch, setIsSearch] = useState(false)
     const [filterByToUpdate, setFilterByToUpdate] = useState(boardService.getEmptyFilterBy)
+    const [isPersonFilterOpen, setIsPersonFilterOpen] = useState(false)
+    const [users, setUsers] = useState([])
 
     const dynSearchBtn = isSearch ? '' : 'searchBtn'
 
     useEffect(() => {
         setIsSearch(false)
+        getAllUsers()
     }, [])
 
     function toggleIsSearch() {
@@ -38,11 +43,33 @@ export function BoardFilter({ onAddGroup, boardId }) {
 
     async function handleChangeFilter(value) {
         try {
-            updateFilterBy({ title: value }, boardId)
+            updateFilterBy({ ...filterByToUpdate, title: value }, boardId)
         } catch (err) {
-
+            console.log('cannot filter board', err);
+            throw err
         }
     }
+
+    const getAllUsers = async () => {
+        try {
+            const users = await userService.getUsers()
+            console.log('users', users);
+            setUsers(users)
+            // return users
+        } catch (err) {
+            console.log('cannot get users', err);
+            throw err
+        }
+    }
+
+    const handleChangeMember = (user) => {
+        console.log(user._id);
+        if (user) {
+            updateFilterBy({ ...filterByToUpdate, userId: user._id }, boardId)
+        }
+    }
+
+    console.log(users);
 
     return (
 
@@ -90,15 +117,28 @@ export function BoardFilter({ onAddGroup, boardId }) {
                 }
 
 
-                <Tooltip content='Sort board by person' animationType="expand">
+                <Tooltip content='Filter board by person' animationType="expand">
                     <Button
-                        className="icon"
+                        className="icon person-filter-container"
                         leftIcon={PersonRound}
                         kind="tertiary"
                         size="small"
                         style={{ marginRight: "6px" }}
+                        onClick={() => setIsPersonFilterOpen(!isPersonFilterOpen)}
                     >
-                        <span>Person</span>
+                        {isPersonFilterOpen && (
+                            <section className="open-filter-person">
+                                <div className="open-filter-person-title">Filter this board by Person</div>
+                                <div className="open-filter-person-subtitle">And find items they're working on.</div>
+                                <AvatarGroupAng users={users} maxUsers={users.length} userSize="medium"
+                                    handleChangeMember={handleChangeMember}
+                                />
+                            </section>
+                        )}
+                        <span >Person
+
+                        </span>
+
                     </Button>
                 </Tooltip>
 

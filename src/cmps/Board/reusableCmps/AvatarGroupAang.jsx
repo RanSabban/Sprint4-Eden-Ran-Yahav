@@ -1,7 +1,7 @@
 import { Avatar, AvatarGroup } from "monday-ui-react-core";
 import { PersonRound } from "monday-ui-react-core/icons";
 
-export function AvatarGroupAng({ users }) {
+export function AvatarGroupAng({ users, maxUsers = 2, userSize = 'small', handleChangeMember }) {
 
 
     // if (!users.length) return <PersonRound height={'30px'} />
@@ -14,7 +14,8 @@ export function AvatarGroupAng({ users }) {
     />
 
     return (
-        <AvatarGroup className="avatar-group" max={2} size="small">
+        <AvatarGroup className="avatar-group" max={maxUsers} size={userSize}
+        >
 
             {
                 users.map(user => (
@@ -23,6 +24,8 @@ export function AvatarGroupAng({ users }) {
                         src={user.imgUrl}
                         type="img"
                         key={user._id}
+                        size={userSize}
+                        onClick={() => handleChangeMember(user)}
                     />
                 ))
             }

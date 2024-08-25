@@ -314,7 +314,7 @@ export async function onHideModalLabel() {
 
 export async function updateFilterBy(filterBy, boardId) {
     try {
-        // console.log(filterBy, boardId)
+        console.log(filterBy, boardId)
         const board = await boardService.updateFilterBy(filterBy, boardId)
         store.dispatch({
             type: SET_CURRENT_BOARD,
