@@ -5,6 +5,9 @@
             grid-auto-flow: column;
             align-items: center;
             column-gap: 0.3em;
+            background-color: rgb(204, 229, 255);
+            padding: em(2px) em(4px);
+            border-radius: em(4px);
         }
         .clear-member-filter {
             display: grid;
@@ -27,7 +30,7 @@
 
             & :nth-child(3) {
                 padding: 0;
-                padding-inline-start: 4px;
+                // padding-inline-start: 4px;
             }
 
             .open-filter-person-title {
@@ -50,6 +53,10 @@
                 box-shadow: 0 4px 8px #0003;
                 display: grid;
                 row-gap: 0.5em;
+
+                & .avatar_ee8133c453{
+                    margin-right: 10px;
+                } 
             }
         }
 
