@@ -60,7 +60,7 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
         }
     }
 
-    if (!clmType) return 
+    if (!clmType) return
 
     const unassignedUsers = getUnassignedUsers(clmType.data, users)
 
@@ -78,9 +78,11 @@ export function MembersCellComponent({ clmType, cell, taskId, groupId, onUpdateC
                 <div className="chips-div">
                     {users.map((userId) => {
                         const user = clmType.data.find(user => user._id === userId)
-                        return (
-                            <Chips onDelete={() => removeMember(user._id)} key={userId} label={user.fullname} leftAvatar={user.imgUrl} />
-                        )
+                        if (user) {
+                            return (
+                                <Chips onDelete={() => removeMember(user._id)} key={userId} label={user.fullname} leftAvatar={user.imgUrl} />
+                            )
+                        }
                     })}
                 </div>
                 <Search

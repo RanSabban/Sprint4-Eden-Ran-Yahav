@@ -69,6 +69,16 @@ export function BoardFilter({ onAddGroup, boardId }) {
         }
     }
 
+    const getUserImg = (userId) => {
+        const user = users.find(user => user._id === userId)
+        return user.imgUrl
+    }
+
+    const getUserFullName = (userId) => {
+        const user = users.find(user => user._id === userId)
+        return user.fullname
+    }
+
     console.log(users);
 
     return (
@@ -116,31 +126,38 @@ export function BoardFilter({ onAddGroup, boardId }) {
                     />)
                 }
 
+                {filterByToUpdate.userId ? <Avatar
+                    ariaLabel={getUserFullName(filterByToUpdate.userId)}
+                    src={getUserImg(filterByToUpdate.userId)}
+                    type="img"
+                    size='small'
+                /> :
+                    <Tooltip content='Filter board by person' animationType="expand">
+                        <Button
+                            className="icon person-filter-container"
+                            leftIcon={PersonRound}
+                            kind="tertiary"
+                            size="small"
+                            style={{ marginRight: "6px" }}
+                            onClick={() => setIsPersonFilterOpen(!isPersonFilterOpen)}
+                        >
 
-                <Tooltip content='Filter board by person' animationType="expand">
-                    <Button
-                        className="icon person-filter-container"
-                        leftIcon={PersonRound}
-                        kind="tertiary"
-                        size="small"
-                        style={{ marginRight: "6px" }}
-                        onClick={() => setIsPersonFilterOpen(!isPersonFilterOpen)}
-                    >
-                        {isPersonFilterOpen && (
-                            <section className="open-filter-person">
-                                <div className="open-filter-person-title">Filter this board by Person</div>
-                                <div className="open-filter-person-subtitle">And find items they're working on.</div>
-                                <AvatarGroupAng users={users} maxUsers={users.length} userSize="medium"
-                                    handleChangeMember={handleChangeMember}
-                                />
-                            </section>
-                        )}
-                        <span >Person
+                            {isPersonFilterOpen && (
+                                <section className="open-filter-person">
+                                    <div className="open-filter-person-title">Filter this board by Person</div>
+                                    <div className="open-filter-person-subtitle">And find items they're working on.</div>
+                                    <AvatarGroupAng users={users} maxUsers={users.length} userSize="medium"
+                                        handleChangeMember={handleChangeMember}
+                                    />
+                                </section>
+                            )}
+                            <span >Person
 
-                        </span>
+                            </span>
 
-                    </Button>
-                </Tooltip>
+                        </Button>
+                    </Tooltip>}
+
 
                 <Tooltip content='Filter board by anything' animationType="expand">
                     <Button
