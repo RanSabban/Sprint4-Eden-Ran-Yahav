@@ -1573,26 +1573,72 @@ async function moveTaskToTop(taskId, destinationGroupId, boardId) {
 // }
 async function updateFilterBy(filterBy, boardId) {
     // console.log('here')
+    // try {
+    //     let board = await getById(boardId)
+    //     if (board && board.groups) {
+    //         board.groups = board.groups.map(group => {
+    //             if (group.tasks) {
+    //                 group.tasks = group.tasks.filter(task => {
+    //                     return !filterBy.title || new RegExp(filterBy.title, 'i').test(task.title)
+    //                 })
+    //                 if (filterBy.userId) {
+    //                     group.tasks = group.tasks.filter(task => {
+    //                         return task.cells.map (cell => {
+    //                             return cell.dataId === filterBy.userId
+    //                         })
+    //                     })
+    //                 }
+    //             }
+    //             return group
+    //         })
+    //     }
+
+    //     console.log(board)
+    //     return board
+    //     // await save(board)
+    // }
+    // catch (err) {
+    //     console.log('cannot filter board', err)
+    // }
     try {
-        let board = await getById(boardId)
+        let board = await getById(boardId);
         if (board && board.groups) {
             board.groups = board.groups.map(group => {
                 if (group.tasks) {
-                    group.tasks = group.tasks.filter(task => {
-                        return !filterBy.title || new RegExp(filterBy.title, 'i').test(task.title)
-                    })
+                    // Filter by task title if provided
+                    if (filterBy.title) {
+                        group.tasks = group.tasks.filter(task => {
+                            return new RegExp(filterBy.title, 'i').test(task.title);
+                        });
+                    }
+    
+                    // Filter by user ID if provided
+                    if (filterBy.userId) {
+                        group.tasks = group.tasks.filter(task => {
+                            return task.cells.some(cell => {
+                                // Ensure cell.dataId is an array and check for userId
+                                if (cell.type === 'members') {
+                                    const dataId = cell.dataId || [];
+                                    return Array.isArray(dataId) && dataId.includes(filterBy.userId);
+                                }
+                                return false;
+                            });
+                        });
+                    }
                 }
-                return group
-            })
+                return group;
+            });
         }
-
-        // console.log(board)
-        return board
-        // await save(board)
+    
+        console.log(board);
+        return board;
+        // await save(board);
     }
     catch (err) {
-        console.log('cannot filter board', err)
+        console.log('cannot filter board', err);
     }
+    
+    
 }
 
 async function addColumn(type, boardId) {
