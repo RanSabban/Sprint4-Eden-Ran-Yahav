@@ -134,7 +134,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
                         className='table-btn mobileBtn'
                         // wrapperClassName="table-btn mobileBtn"
                         leftIcon={Table}
-                        rightIcon={DropdownChevronDown}
+                        // rightIcon={DropdownChevronDown}
                     >
                         <span>Main Table</span>
                     </Button>
