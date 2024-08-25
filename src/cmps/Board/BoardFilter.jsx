@@ -7,6 +7,7 @@ import { boardService } from "../../services/board.service";
 import { MondaySearchIcon } from "../../services/svg.service";
 import { userService } from "../../services/user.service";
 import { AvatarGroupAng } from "./reusableCmps/AvatarGroupAang";
+import {CloseRound} from "monday-ui-react-core/icons";
 
 export function BoardFilter({ onAddGroup, boardId }) {
 
@@ -63,9 +64,13 @@ export function BoardFilter({ onAddGroup, boardId }) {
     }
 
     const handleChangeMember = (user) => {
-        console.log(user._id);
+        // console.log(user._id);
         if (user) {
             updateFilterBy({ ...filterByToUpdate, userId: user._id }, boardId)
+            setFilterByToUpdate({ ...filterByToUpdate, userId: user._id })
+        } else {
+            updateFilterBy({ ...filterByToUpdate, userId: null }, boardId)
+            setFilterByToUpdate({ ...filterByToUpdate, userId: null })
         }
     }
 
@@ -79,7 +84,7 @@ export function BoardFilter({ onAddGroup, boardId }) {
         return user.fullname
     }
 
-    console.log(users);
+    console.log(filterByToUpdate);
 
     return (
 
@@ -126,12 +131,23 @@ export function BoardFilter({ onAddGroup, boardId }) {
                     />)
                 }
 
-                {filterByToUpdate.userId ? <Avatar
-                    ariaLabel={getUserFullName(filterByToUpdate.userId)}
-                    src={getUserImg(filterByToUpdate.userId)}
-                    type="img"
-                    size='small'
-                /> :
+                {filterByToUpdate.userId ? <div className="chosen-member-filter"
+                    style={{ marginRight: "6px" }}
+                >
+                    <Avatar
+                        ariaLabel={getUserFullName(filterByToUpdate.userId)}
+                        src={getUserImg(filterByToUpdate.userId)}
+                        type="img"
+                        size='small'
+                    />
+                    <span>{getUserFullName(filterByToUpdate.userId)}</span>
+                    <div className="clear-member-filter"
+                    onClick={() => handleChangeMember(null)}
+                    >
+                        <CloseRound
+                        />
+                    </div>
+                </div> :
                     <Tooltip content='Filter board by person' animationType="expand">
                         <Button
                             className="icon person-filter-container"
