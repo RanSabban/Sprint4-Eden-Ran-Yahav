@@ -9,6 +9,18 @@ import ProjectManagementImg from '/img/ProjectManagementImg.png'
 import TaskManagementImg from '/img/TaskManagementImg.png'
 import HRImg from '/img/HRImg.png'
 import ITImg from '/img/ITImg.png'
+import BdImg from '/img/BdImg.png'
+import CanvaImg from '/img/CanvaImg.png'
+import CarrefourImg from '/img/CarrefourImg.png'
+import CocaColaImg from '/img/CocaColaImg.png'
+import GlossierImg from '/img/GlossierImg.png'
+import OxyImg from '/img/OxyImg.png'
+import UniversalImg from '/img/UniversalImg.png'
+import HoltCatImg from '/img/HoltCatImg.jpg'
+import LionsgateImg from '/img/LionsgateImg.png'
+import HomeAppPreviewImg from '/img/HomeAppPreviewImg.jpg'
+// import HomeAppPreviewImg from '/img/HomeAppPreviewImg.jpg'
+
 
 // import { Link } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -51,17 +63,35 @@ export function HomePage() {
             </section>
             <section className='btn-container'>
 
-                <Link to={'/board'}> <button style={{marginBottom: '1em', width: '150px', height: '50px'}} className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
+                <Link to={'/board'}> <button style={{ marginBottom: '1em', width: '150px', height: '50px' }} className='cta-button'>Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
 
                 <p className="no-credit-card-txt">No credit card needed<span> ✦ </span>Unlimited time on Free plan</p>
 
             </section>
-            <img src="	https://myday-p034.onrender.com/img/home_page/HomeAppPreviewImg.avif
-" alt="" />
-            <section className="sponsers-section"><div className="sponsers-imgs-container"><img style={{ width: '6.875em' }} src="https://myday-p034.onrender.com/img/home_page/HoltCatImg.avif" alt="" /><img style={{ width: '6.875em' }} src="https://myday-p034.onrender.com/img/home_page/CanvaImg.png" alt="" /><img style={{ width: '6.875em' }} src="https://myday-p034.onrender.com/img/home_page/CocaColaImg.png" alt="" /><img style={{ width: '4.375em' }} className="oxy-img" src="https://myday-p034.onrender.com/img/home_page/OxyImg.png
-" alt="" /><img style={{ width: '6.875em' }} src="https://myday-p034.onrender.com/img/home_page/LionsgateImg.png" alt="" /><img style={{ width: '4.375em' }} className="carrefour-img" src="https://myday-p034.onrender.com/img/home_page/CarrefourImg.png" alt="" /><img style={{ width: '6.875em' }} src="https://myday-p034.onrender.com/img/home_page/BdImg.png" alt="" /><img style={{ width: '6.875em' }} src="	https://myday-p034.onrender.com/img/home_page/GlossierImg.png" alt="" /><img style={{ width: '6.875em' }} src="https://myday-p034.onrender.com/img/home_page/UniversalImg.png" alt="" /></div></section>
+            <img src={HomeAppPreviewImg} alt="" />
+            <section className="sponsers-section">
+                <div className="sponsers-imgs-container">
+                    <img style={{ width: '6.875em' }} src={BdImg} alt="BdImg" />
+                    <img style={{ width: '6.875em' }} src={CanvaImg} alt="CanvaImg" />
+                    <img style={{ width: '6.875em' }} src={CocaColaImg} alt="CocaColaImg" />
+                    <img style={{ width: '4.375em' }} className="oxy-img" src={OxyImg} alt="OxyImg" />
+                    <img style={{ width: '6.875em' }} src={GlossierImg} alt="GlossierImg" />
+                    <img style={{ width: '4.375em' }} className="carrefour-img" src={CarrefourImg} alt="CarrefourImg" />
+                    <img style={{ width: '6.875em' }} src={UniversalImg} alt="UniversalImg" />
+                    <img style={{ width: '6.875em' }} src={LionsgateImg} alt="LionsgateImg" />
+                    <img style={{ width: '6.875em' }} src={HoltCatImg} alt="HoltCatImg" />
+                </div>
+            </section>
 
-            <section className="boost-your-team flex"><div className="flex justify-center"><h2 className='h2-welcome'>The Work OS that lets you shape workflows, your way</h2><div className="boost-your-team-cta flex column"><span className='span'>Boost your team’s alignment, efficiency, and productivity by customizing any workflow to fit your needs.</span><div className="flex"> <Link to={'/board'}><button className="cta-button">Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link></div></div></div></section>
+            <section className="boost-your-team ">
+                <div className="flex justify-center align-center column">
+                    <h2 className='h2-welcome'>The Work OS that lets you shape workflows, your way</h2>
+                    <div className="boost-your-team-cta ">
+                        <span className='span'>Boost your team’s alignment, efficiency, and productivity by customizing any workflow to fit your needs.</span>
+                        <Link to={'/board'} className='cta-button'><button className="cta-button justify-center">Get Started  <ArrowRightHome className='arrow-icon' /></button> </Link>
+                    </div>
+                </div>
+            </section>
 
             <div className="full-paragraph align-items-center css-1dkjmkt eo3on790" style={{ textAlign: "center" }}><div className="title-wrapper" style={{ marginTop: "0px" }}><div className="core-title-container css-18anjwe e168hrcx0"><h2 className="monday-markup-language-component core-title lg"><b>Everything you need for any workflow</b></h2></div></div><div className="paragraph-body-wrapper"><div className="paragraph-wrapper css-1id7hrb ehzaxgp0"><div style={{ fontSize: '1.125rem', lineHeight: '32px' }}>Easily build your ideal workflow with monday.com building blocks.</div></div></div></div>
 

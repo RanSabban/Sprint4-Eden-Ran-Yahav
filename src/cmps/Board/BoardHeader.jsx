@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 import { CustomAdd, MenuDots } from "../../services/svg.service"
 import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 import { AutomationBoard } from "./AutomationBoard"
+import { useNavigate } from "react-router"
 
 
 export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen, setIsAutomateOpen }) {
@@ -16,6 +17,8 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
     const [initialTitle, setInitialTitle] = useState(boardTitle)
     const [isEditable, setIsEditable] = useState(false)
     const [dynClass, setDynClass] = useState('')
+    const navigate = useNavigate();
+
     const dynCollapseBtn = isCollapsed ? '' : 'collapseBtn'
     const editableTitleRef = useRef(null)
 
@@ -133,6 +136,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                 <div className={`board-header-top flex align-center justify-between ${isCollapsed ? 'collapsed' : ''}`}>
 
                     <IconButton
+                        onClick={() => navigate('/board/')}
                         icon={MoveArrowLeft}
                         kind="tertiary"
                         wrapperClassName="back-btn"
@@ -398,7 +402,7 @@ export function BoardHeader({ isCollapsed, setIsCollapsed, board, isAutomateOpen
                     </>
                 )}
                 <BoardFilter onAddGroup={onAddGroup} boardId={board._id} />
-              
+
             </div>
         </section>
     )
