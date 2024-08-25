@@ -5,24 +5,32 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { Link, useNavigate } from 'react-router-dom'
 
 export function LoginSignup() {
-    const [credentials, setCredentials] = useState({ username: '', password: '' })
+    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '', avatar: null })
     const [isSignup, setIsSignup] = useState(false)
+    const [avatarPreview, setAvatarPreview] = useState(null)
     const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     console.log("Current credentials:", credentials)
-    // }, [credentials])
 
     function handleChange(ev) {
         const { name, value } = ev.target
         setCredentials(prev => ({ ...prev, [name]: value }))
     }
 
+    function handleFileChange(ev) {
+        const file = ev.target.files[0]
+        setCredentials(prev => ({ ...prev, avatar: file }))
+        if (file) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                setAvatarPreview(reader.result)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
+
     async function handleSubmit(ev) {
         ev.preventDefault()
-        console.log(`${isSignup ? "Signup" : "Login"} attempt with:`, credentials)
 
-        if (!credentials.username || !credentials.password) {
+        if (!credentials.username || !credentials.password || (isSignup && !credentials.fullname)) {
             console.log("Required fields are empty")
             return
         }
@@ -33,7 +41,6 @@ export function LoginSignup() {
                 showSuccessMsg('Signed up successfully')
                 navigate('/board')
             } else {
-                console.log('this is the credentials : ', credentials)
                 login(credentials)
                 showSuccessMsg('Logged in successfully')
                 navigate('/board')
@@ -47,23 +54,14 @@ export function LoginSignup() {
     }
 
     function clearState() {
-        setCredentials({ username: '', password: '' })
-    }
-
-    function toggleSignup() {
-        setIsSignup(!isSignup)
+        setCredentials({ username: '', password: '', fullname: '', avatar: null })
+        setAvatarPreview(null)
     }
 
     return (
         <div className="login-signup">
-            {/* <button className="btn-link" onClick={toggleSignup}>
-                {isSignup ? 'Already a member? Log In' : 'Need an account? Sign Up'}
-            </button> */}
             {isSignup &&
                 <form onSubmit={handleSubmit}>
-
-
-
                     <label htmlFor='fullname'>Full Name</label>
                     <input
                         className='input-login'
@@ -73,15 +71,24 @@ export function LoginSignup() {
                         value={credentials.fullname}
                         placeholder="Israel Israeli"
                         onChange={handleChange}
-                    // required
+                        required
                     />
 
-                    <section className='work-email'>
-                        <label>Work email</label>
-                        <input className='work-email-input rect' type="email" required placeholder='name@company.com' />
-                        {/* <Link to='/board'>
-                        <button className='rect'>Continue</button>
-                    </Link> */}
+                    <section className="avatar-upload">
+                        <label htmlFor="avatar-upload" className="avatar-label">
+                            {avatarPreview ? (
+                                <img src={avatarPreview} alt="Avatar Preview" className="avatar-image" />
+                            ) : (
+                                <div className="avatar-placeholder">Upload Avatar</div>
+                            )}
+                        </label>
+                        <input
+                            type="file"
+                            id="avatar-upload"
+                            style={{ display: 'none' }}
+                            accept="image/*"
+                            onChange={handleFileChange}
+                        />
                     </section>
 
                     <label htmlFor='username'>Username</label>
@@ -95,6 +102,7 @@ export function LoginSignup() {
                         onChange={handleChange}
                         required
                     />
+
                     <label htmlFor='password'>Password</label>
                     <input
                         className='input-login'
@@ -106,48 +114,12 @@ export function LoginSignup() {
                         onChange={handleChange}
                         required
                     />
+
                     <button type="submit">{isSignup ? 'Sign Up' : 'Log In'}</button>
-                </form>}
+                </form>
+            }
 
-            {!isSignup &&
-                <form onSubmit={handleSubmit}>
-
-                    <label htmlFor='username'>Username</label>
-                    <input
-                        className='input-login'
-                        type="text"
-                        name="username"
-                        id='username'
-                        value={credentials.username}
-                        placeholder="Username"
-                        onChange={handleChange}
-                        required
-                    />
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        className='input-login'
-                        type="password"
-                        name="password"
-                        id='password'
-                        value={credentials.password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                    />
-                    <button type="submit">{isSignup ? 'Sign Up' : 'Log In'}</button>
-                </form>}
-
-            <div className="terms">
-                <p>By proceeding, you agree to the</p>
-                <div className='terms-links-wrapper'>
-                    <a href="#">Terms of Service</a>
-                    <p> and </p>
-                    <a href="#">Privacy Policy</a>
-                </div>
-            </div>
-            {isSignup && <p>Already have an account?  <span className='signup-option' style={{ color: '#1f76c2' }} onClick={() => setIsSignup(!isSignup)}>Login</span></p>}
-            {!isSignup && <p>Don't have an account yet? <span className='signup-option' style={{ color: '#1f76c2' }} onClick={() => setIsSignup(!isSignup)}>Sign up</span></p>}
-
+            {/* The rest of the form for login/signup toggling */}
         </div>
     )
 }
