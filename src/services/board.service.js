@@ -830,7 +830,7 @@ function getEmptyFilterBy() {
 }
 
 async function addBoard() {
-    const board = getEmptyBoard()
+    const board = await getEmptyBoard()
     try {
         const savedBoard = await save(board)
         return savedBoard
@@ -884,7 +884,7 @@ async function addBoardMsg(boardId, txt) {
     return msg
 }
 
-function getEmptyBoard() {
+async function getEmptyBoard() {
     return {
         title: "New Board",
         isStarred: false,
@@ -927,28 +927,7 @@ function getEmptyBoard() {
                 _id: "c112",
                 type: "members",
                 title: "Assigned To",
-                data: [
-                    {
-                        _id: "EtzD1",
-                        fullname: "Eden Gilady",
-                        imgUrl: "https://files.monday.com/euc1/photos/58211317/thumb/58211317-user_photo_2024_04_03_12_43_15.png?1712148195"
-                    },
-                    {
-                        _id: "EtzD2",
-                        fullname: "Yahav Ganon",
-                        imgUrl: "https://files.monday.com/euc1/photos/58211325/thumb_small/58211325-user_photo_2024_04_03_12_41_20.png?1712148081"
-                    },
-                    {
-                        _id: "EtzD3",
-                        fullname: "Ran Sabban",
-                        imgUrl: "https://files.monday.com/euc1/photos/58193035/small/58193035-user_photo_2024_04_04_15_17_09.png?1712243830"
-                    },
-                    {
-                        _id: "EtzD4",
-                        fullname: "Mor Marzan",
-                        imgUrl: "https://ca.slack-edge.com/T06BA1MNBK8-U06GT00SQJ3-a496fd1353ec-512"
-                    }
-                ]
+                data: await getEmptyMembers()
             },
             {
                 _id: "c115",
@@ -975,7 +954,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD1"]
+                                dataId: []
                             },
                             {
                                 _id: "c115",
@@ -1001,7 +980,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD1"]
+                                dataId: []
                             },
                             {
                                 _id: "c115",
@@ -1020,7 +999,7 @@ function getEmptyBoard() {
                         title: "Task 3",
                         cells: [
                             { _id: "c111", type: "status", dataId: "l100" }, // Working on it
-                            { _id: "c112", type: "members", dataId: ["EtzD2"] }, // Yahav Ganon
+                            { _id: "c112", type: "members", dataId: [] }, // Yahav Ganon
                             { _id: "c115", type: "date", date: Date.now() }, // Example date
                         ],
                         createdBy: {
@@ -1050,7 +1029,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD2"]
+                                dataId: []
                             },
                             {
                                 _id: "c115",
@@ -1076,7 +1055,7 @@ function getEmptyBoard() {
                             {
                                 _id: "c112",
                                 type: "members",
-                                dataId: ["EtzD3"]
+                                dataId: []
                             },
                             {
                                 _id: "c115",
@@ -1093,6 +1072,20 @@ function getEmptyBoard() {
                 ]
             },]
     }
+}
+
+const getEmptyMembers = async () => {
+    try {
+        const users = await userService.getUsers()
+        return users.map(user => {
+            return (
+                { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
+            )
+        })
+    } catch (err) {
+        console.log('Failed to get users', err)
+    }
+  
 }
 
 async function getEmptyTask(boardId) {
